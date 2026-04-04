@@ -1,0 +1,73 @@
+\chapter{Inequality and Legitimacy}
+\label{ch:inequality-legitimacy}
+
+\epigraph{The comfort of the rich depends upon an abundant supply of the poor.}{Voltaire}
+
+\noindent
+Every unequal society faces a legitimation problem: why do the many accept the privilege of the few?
+Doxonomics provides a precise framework for studying how inequality is narratively shielded from contestation.
+
+\section{The Legitimation Problem}
+\label{sec:ch24-problem}
+
+\begin{definition}[Legitimation Function]
+\label{def:legitimation}
+\index{legitimation}
+The \emph{legitimation function} $L: \R_{\geq 0} \times \R_{\geq 0} \to [0,1]$ maps the level of inequality $I$ and doxonomic investment $\phi_L$ to the population's acceptance level:
+\[
+  L(I, \phi_L) = \frac{\phi_L}{\phi_L + \kappa(I - I_0)^+}
+\]
+where $I_0$ is a baseline inequality level below which legitimation is ``free'' and $\kappa$ is the sensitivity parameter.
+As inequality rises above $I_0$, legitimation requires increasing narrative investment.
+\end{definition}
+
+\begin{proposition}[Escalating Cost of Legitimation]
+\label{prop:escalation}
+For fixed acceptance level $L^*$, the required investment is
+\[
+  \phi_L^* = \frac{L^*}{1 - L^*} \cdot \kappa(I - I_0)
+\]
+which grows linearly in inequality.
+Highly unequal societies must spend proportionally more on narrative maintenance.
+\end{proposition}
+
+\section{Wealth-Virtue Association}
+\label{sec:ch24-wealth-virtue}
+
+The most efficient legitimating narrative is the association of wealth with virtue: the belief that the rich \emph{deserve} their wealth because they are more talented, hardworking, or morally superior.
+This narrative is the intersection of the meritocratic regime (Chapter~\ref{ch:meritocracy}) and the selfish-anthropology regime (Chapter~\ref{ch:human-nature}): competition is natural, winners earned it, losers deserve their fate.
+
+\section{Narrative Shielding}
+\label{sec:ch24-shielding}
+
+\begin{definition}[Narrative Shield]
+\label{def:narrative-shield}
+\index{narrative shield}
+A \emph{narrative shield} is a set of beliefs that deflects attention from structural causes of inequality to individual explanations.
+Formally, a narrative shield maps the proposition ``inequality is structurally produced'' to ``inequality reflects individual differences,'' reducing the perceived need for collective action.
+\end{definition}
+
+\section{Notes and References}
+\label{sec:ch24-notes}
+
+On inequality and its justification, see \textcite{piketty2014} and \textcite{stiglitz2012}.
+The wealth-virtue association is analyzed in \textcite{sandel2012}.
+Narrative shielding connects to \textcite{lukes2005} on the third dimension of power.
+For the political economy of inequality, see \textcite{acemoglu2012}.
+
+\section{Exercises}
+
+\begin{exercise}
+Using the legitimation function, estimate $\kappa$ for the United States by comparing inequality growth and think-tank spending over the past 40 years.
+\end{exercise}
+
+\begin{exercise}
+Identify three narrative shields currently active in public discourse about wealth inequality.
+For each, trace the belief production chain.
+\end{exercise}
+
+\begin{exercise}
+Model a society where legitimation fails ($L < L^*$).
+What observable consequences follow?
+Connect to Chapter~\ref{ch:how-belief-regimes-fracture}.
+\end{exercise}

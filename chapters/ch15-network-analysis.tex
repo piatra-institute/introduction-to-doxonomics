@@ -1,0 +1,119 @@
+\chapter{Network Analysis of Belief Systems}
+\label{ch:network-analysis}
+
+\epigraph{Tell me who your friends are, and I will tell you who you are.}{Proverb}
+
+\noindent
+Doxonomic systems are networks: funders connect to institutions, institutions connect to media, media connect to audiences.
+This chapter applies graph theory and network science to map and measure these structures.
+
+\section{Doxonomic Networks}
+\label{sec:ch15-networks}
+
+\begin{definition}[Doxonomic Network]
+\label{def:doxonomic-network}
+\index{doxonomic network}
+A \emph{doxonomic network} is a weighted directed graph $G = (V, E, w)$ where vertices $V$ are doxonomic agents (funders, institutions, media, audiences), edges $E$ represent influence or resource flows, and weights $w: E \to \R_{\geq 0}$ measure the magnitude of the flow (dollars, citations, audience share).
+\end{definition}
+
+\section{Centrality Measures}
+\label{sec:ch15-centrality}
+
+\begin{definition}[Doxonomic Centrality]
+\label{def:centrality}
+\index{centrality}
+The \emph{doxonomic centrality} of node $v$ is its eigenvector centrality in the weighted network:
+\[
+  x_v = \frac{1}{\lambda} \sum_{u: (u,v) \in E} w_{uv} \cdot x_u
+\]
+where $\lambda$ is the largest eigenvalue of the weighted adjacency matrix.
+Nodes with high doxonomic centrality are those that receive large weighted inputs from other central nodes.
+\end{definition}
+
+High-centrality nodes are the bottlenecks of belief production.
+Disrupting or capturing a high-centrality institution has disproportionate effect on the entire narrative ecosystem.
+
+\section{Community Detection}
+\label{sec:ch15-community}
+
+\begin{definition}[Narrative Cluster]
+\label{def:narrative-cluster}
+\index{narrative cluster}
+A \emph{narrative cluster} is a community in the doxonomic network: a subset $S \subset V$ with denser internal connections than external ones.
+Formally, $S$ maximizes the modularity:
+\[
+  Q = \frac{1}{2W} \sum_{i,j \in S} \left(w_{ij} - \frac{s_i s_j}{2W}\right)
+\]
+where $s_i = \sum_j w_{ij}$ and $W = \frac{1}{2}\sum_{ij} w_{ij}$.
+\end{definition}
+
+Narrative clusters reveal which institutions form coherent ideological coalitions, even without explicit coordination.
+
+\section{Brokerage}
+\label{sec:ch15-brokerage}
+
+\begin{definition}[Epistemic Broker]
+\label{def:broker}
+\index{epistemic broker}
+An \emph{epistemic broker} is a node $v$ with high betweenness centrality:
+\[
+  g(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}
+\]
+where $\sigma_{st}$ is the number of shortest paths from $s$ to $t$ and $\sigma_{st}(v)$ is the number passing through $v$.
+Brokers bridge otherwise disconnected narrative clusters and can translate ideas between communities.
+\end{definition}
+
+\section{Example: A Donor-Institution Network}
+
+\begin{center}
+\begin{tikzpicture}[
+  funder/.style={circle, draw, thick, fill=doxoblue!20, minimum size=1cm, font=\footnotesize},
+  inst/.style={circle, draw, thick, fill=doxogreen!20, minimum size=1cm, font=\footnotesize},
+  media/.style={circle, draw, thick, fill=doxored!20, minimum size=1cm, font=\footnotesize},
+  edge/.style={-Stealth, thick},
+]
+  \node[funder] (f1) at (0,2) {$F_1$};
+  \node[funder] (f2) at (0,0) {$F_2$};
+  \node[inst] (i1) at (3,3) {$I_1$};
+  \node[inst] (i2) at (3,1) {$I_2$};
+  \node[inst] (i3) at (3,-1) {$I_3$};
+  \node[media] (m1) at (6,2) {$M_1$};
+  \node[media] (m2) at (6,0) {$M_2$};
+
+  \draw[edge] (f1) -- node[above, font=\scriptsize] {\$3M} (i1);
+  \draw[edge] (f1) -- node[above, font=\scriptsize] {\$1M} (i2);
+  \draw[edge] (f2) -- node[below, font=\scriptsize] {\$2M} (i2);
+  \draw[edge] (f2) -- node[below, font=\scriptsize] {\$4M} (i3);
+  \draw[edge] (i1) -- (m1);
+  \draw[edge] (i2) -- (m1);
+  \draw[edge] (i2) -- (m2);
+  \draw[edge] (i3) -- (m2);
+\end{tikzpicture}
+\end{center}
+
+In this network, institution $I_2$ is the epistemic broker: it bridges both funders and both media outlets.
+
+\section{Notes and References}
+\label{sec:ch15-notes}
+
+Network analysis draws on \textcite{jackson2008}.
+Community detection via modularity is due to \textcite{newman2006}.
+Betweenness centrality is from \textcite{freeman1977}.
+For applications to media and political networks, see \textcite{watts2002}.
+Donor networks in U.S.\ politics are mapped in \textcite{mayer2016}.
+
+\section{Exercises}
+
+\begin{exercise}
+Compute the eigenvector centrality of each node in the example network above.
+Which node has the highest doxonomic centrality?
+\end{exercise}
+
+\begin{exercise}
+Using citation data from a policy domain of your choice, construct a donor-institution-media network and identify narrative clusters.
+\end{exercise}
+
+\begin{exercise}
+Prove that removing a node with high betweenness centrality from a connected doxonomic network increases the number of connected components.
+Under what conditions is this guaranteed?
+\end{exercise}

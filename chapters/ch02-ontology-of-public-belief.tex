@@ -1,0 +1,496 @@
+\chapter{The Ontology of Public Belief}
+\label{ch:ontology-belief}
+
+\epigraph{What is most difficult to perceive is what is taken for granted.}{Pierre Bourdieu}
+
+\noindent
+Before we can study how beliefs are produced, we must clarify what a belief \emph{is}---and, crucially, what distinguishes a \emph{public} belief from a private mental state.
+Doxonomics is not psychology.
+Its object is not the individual mind but the social distribution of interpretive commitments: what a population takes to be true, normal, natural, or inevitable, and how that distribution is shaped by institutional forces.
+
+This chapter provides the ontological ground floor.
+It distinguishes opinion from belief from ideology from common sense from doxa, formalizes each, addresses the gap between private thought and public expression, introduces anthropological regimes, develops a layered ontology that goes beyond propositions, and confronts the relationship between truth and power that any such project must face.
+
+
+\section{Opinion, Belief, Ideology, Common Sense, Doxa}
+\label{sec:ch2-taxonomy}
+
+Ordinary language conflates several distinct objects.
+A newspaper editorial is an ``opinion''; a religious conviction is a ``belief''; a political program is an ``ideology''; the assumption that growth is good is ``common sense''; and the taken-for-granted nature of wage labor is something so deep it barely has a name.
+Doxonomics needs sharp distinctions among these because each has a different production cost, institutional profile, and vulnerability to disruption.
+
+\begin{definition}[Belief]
+\label{def:belief}
+\index{belief}
+A \emph{belief} is a proposition $p$ together with a subjective probability $\pi(p) \in [0,1]$ that an agent assigns to its truth.
+A \emph{public belief} is a measurable aggregate: a distribution $\mu$ over the population such that $\mu(p) = \E_{j \in \text{Pop}}[\pi_j(p)]$ gives the population-average credence in $p$.
+\end{definition}
+
+\begin{remark}
+\label{rem:belief-limitations}
+This definition is precise but deliberately narrow.
+It models belief as propositional and probabilistic---suitable for claims like ``most people are selfish'' or ``markets are efficient,'' which can be assigned truth values.
+Much of what doxonomics studies, however, does not fit neatly into this format.
+We address this limitation in Section~\ref{sec:ch2-layers} below.
+The propositional model is a workable first approximation, not a claim about the deep structure of cognition.
+\end{remark}
+
+An \emph{opinion}\index{opinion} is a belief that the holder recognizes as contestable---one among several possible views.
+The distinguishing feature is reflexive awareness: the opinion-holder knows that others disagree and does not experience the disagreement as irrational.
+Opinions are relatively cheap to produce and easy to change.
+
+\begin{definition}[Ideology]
+\label{def:ideology}
+\index{ideology}
+An \emph{ideology} is a structured set of propositions $\mathcal{P} = \{p_1, \ldots, p_n\}$ equipped with an internal logic (deductive, narrative, or affective) such that acceptance of a subset tends to raise credence in the others.
+Formally, for $S \subset \mathcal{P}$ and $p_j \notin S$:
+\[
+  \E[\pi(p_j) \mid \pi(p_i) > \tau \text{ for all } p_i \in S] > \E[\pi(p_j)]
+\]
+The \emph{coherence strength} of the ideology is
+\[
+  \kappa(\mathcal{P}) = \frac{1}{|\mathcal{P}|^2} \sum_{i \neq j} \mathrm{Corr}(\pi(p_i), \pi(p_j))
+\]
+measuring how tightly the propositions are bundled in the population's belief structure.
+\end{definition}
+
+\begin{example}
+\label{ex:neoliberal-ideology}
+The neoliberal ideology bundles: $p_1$ = ``markets are efficient,'' $p_2$ = ``government intervention distorts,'' $p_3$ = ``individuals are responsible for their outcomes,'' $p_4$ = ``deregulation promotes growth,'' $p_5$ = ``inequality reflects differential contribution.''
+Accepting $p_1$ raises credence in $p_2$--$p_5$ not by logical entailment but by narrative coherence: they ``fit together'' as a worldview.
+A person exposed to $p_1$ through economics education is more likely to accept $p_3$ through meritocratic framing, even though the two claims are logically independent.
+The doxonomic significance of ideology is that bundling reduces the per-proposition production cost: investing in one node of the bundle raises credence across the whole set.
+\end{example}
+
+\begin{definition}[Common Sense]
+\label{def:common-sense}
+\index{common sense}
+A proposition $p$ is \emph{common sense} in a population if:
+\begin{enumerate}[nosep]
+  \item $\mu(p) > \theta$ for a high threshold $\theta$ (widespread adoption),
+  \item $\mathrm{Var}(\pi_j(p))$ is low (tight concentration---not just average belief but near-universal belief),
+  \item $p$ is rarely challenged in mainstream institutional discourse.
+\end{enumerate}
+Common sense is not merely widespread belief; it is belief whose distribution is tightly concentrated around high credence and whose contestation is socially costly.
+\end{definition}
+
+\textcite{bourdieu1984} introduced \textit{doxa}\index{doxa} as the deepest layer: propositions so thoroughly embedded that they are not perceived as beliefs at all.
+They are experienced as the texture of reality rather than as assertions.
+A person operating within doxa does not \emph{agree} that wage labor is natural; they simply cannot imagine economic life organized otherwise.
+
+\begin{definition}[Doxa]
+\label{def:doxa}
+\index{doxa!formal definition}
+A proposition $p$ is \emph{doxic} in a population if it satisfies the conditions for common sense and, additionally:
+\begin{enumerate}[nosep]
+  \setcounter{enumi}{3}
+  \item $p$ is not represented in public discourse as a contestable claim---it is invisible as a proposition.
+\end{enumerate}
+The transition from common sense to doxa is the transition from ``everyone agrees'' to ``there is nothing to agree or disagree about.''
+This is the deepest form of doxonomic achievement: the belief has been absorbed into the infrastructure of perception.
+\end{definition}
+
+\begin{remark}
+The invisibility condition (4) is the hardest to operationalize.
+One proxy: the frequency with which $p$ appears as the \emph{conclusion} of an argument versus the frequency with which it appears as an unstated \emph{premise}.
+A doxic proposition is almost never argued for; it is argued \emph{from}.
+Corpus analysis (Chapter~\ref{ch:text-media}) can detect this asymmetry.
+\end{remark}
+
+The doxonomic production cost increases as we move from opinion to doxa.
+Changing an opinion requires a persuasive argument.
+Changing common sense requires sustained institutional effort.
+Changing doxa requires making the invisible visible---which is the most difficult and most important task of doxonomic analysis.
+
+\begin{center}
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  level/.style={draw, thick, rounded corners, minimum width=4cm, minimum height=0.7cm, align=center},
+]
+\matrix[row sep=0.4cm] {
+  \node[level, fill=doxoblue!5] {Opinion}; &
+  \node[font=\small, text width=7cm] {Recognized as contestable. Cheap to produce. Easy to change.}; \\
+  \node[level, fill=doxoblue!15] {Belief}; &
+  \node[font=\small, text width=7cm] {Held with credence. May or may not be reflexively examined.}; \\
+  \node[level, fill=doxoblue!25] {Ideology}; &
+  \node[font=\small, text width=7cm] {Bundled propositions. Internal coherence reinforces adoption.}; \\
+  \node[level, fill=doxoblue!40] {Common Sense}; &
+  \node[font=\small, text width=7cm] {Near-universal, low variance, rarely challenged. Costly to contest.}; \\
+  \node[level, fill=doxoblue!60, text=white] {Doxa}; &
+  \node[font=\small, text width=7cm] {Invisible as a claim. Experienced as reality. Most durable.}; \\
+};
+\end{tikzpicture}
+\end{center}
+
+
+\section{Private Belief and Public Expression}
+\label{sec:ch2-private-public}
+
+The distinction between what people privately think and what they publicly act on is not merely philosophical.
+It has precise game-theoretic structure---and it is doxonomically consequential, because a doxonomic system need not convince people in order to govern them.
+It suffices to maintain the \emph{appearance} of consensus.
+
+\begin{definition}[Pluralistic Ignorance]
+\label{def:pluralistic-ignorance}
+\index{pluralistic ignorance}
+A population exhibits \emph{pluralistic ignorance} with respect to $p$ if:
+\begin{enumerate}[nosep]
+  \item $\mu_{\text{private}}(p) < \tau$: most individuals privately doubt $p$,
+  \item $\mu_{\text{expressed}}(p) > \tau$: most individuals publicly affirm $p$,
+  \item this gap is sustained by the false belief that most others sincerely hold $p$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+\label{ex:pluralistic-ignorance}
+In many corporate environments, employees privately doubt that constant growth is sustainable or that competition among colleagues improves performance.
+But each employee, observing that everyone else appears to endorse these claims (in meetings, in performance reviews, in public communication), concludes that their own doubt is unusual.
+The result: a collective performance of belief that no individual sincerely holds.
+The doxonomic system need only maintain the performance, not the conviction.
+\end{example}
+
+\textcite{kuran1995} formalized this as \emph{preference falsification}: individuals misrepresent their private beliefs to conform to perceived public norms, and the aggregate misrepresentation creates the very norms it appears to obey.
+The cost of maintaining false consensus is typically lower than the cost of genuine persuasion, which is one reason pluralistic ignorance is a recurrent feature of doxonomic regimes.
+
+\begin{model}[Preference Falsification Game]
+\label{mod:falsification}
+\index{preference falsification}
+Let $n$ agents each have a private belief $\pi_j \in [0,1]$ and choose a public expression $e_j \in \{0, 1\}$ (affirm or dissent).
+Each agent faces:
+\begin{itemize}[nosep]
+  \item a \emph{conformity payoff} $c \cdot |\bar{e} - e_j|$ penalizing deviation from the average expression,
+  \item a \emph{sincerity cost} $s \cdot |e_j - \mathbf{1}[\pi_j > 0.5]|$ from expressing what one does not believe,
+  \item a \emph{reputation payoff} $r(e_j)$ from institutional rewards for affirming $p$.
+\end{itemize}
+When $c + r > s$, agents affirm $p$ regardless of private belief.
+The equilibrium expression $\bar{e}^* = 1$ is then supported even if $\mu_{\text{private}}(p) < 0.5$.
+\end{model}
+
+\begin{proposition}[Fragility of Pluralistic Ignorance]
+\label{prop:fragility}
+A pluralistic-ignorance equilibrium is fragile: if a sufficient number of agents simultaneously reveal their private beliefs, the equilibrium collapses.
+Formally, if $k > k^*$ agents express dissent, the conformity payoff reverses sign and a cascade of honest expression follows.
+The threshold $k^*$ depends on the distribution of private beliefs and the conformity parameter $c$.
+This is the mechanism underlying the sudden collapse of apparently stable regimes---what \textcite{kuran1995} calls ``the element of surprise in revolutions.''
+\end{proposition}
+
+This has a direct doxonomic implication: some apparently dominant belief regimes are held together by expression management, not by genuine conviction.
+Doxonomic systems that rely on pluralistic ignorance rather than deep internalization are cheaper to maintain but more vulnerable to sudden collapse.
+Chapter~\ref{ch:how-belief-regimes-fracture} develops this further.
+
+
+\section{Anthropological Regimes}
+\label{sec:ch2-anthropological}
+
+The most consequential beliefs are not about policy but about \emph{what human beings are}.
+Policy disputes presuppose an anthropology: if humans are selfish, then institutions must use incentives; if they are cooperative, then institutions can rely on reciprocity; if they are plastic, then the institutional environment itself determines the outcome.
+
+\begin{definition}[Anthropological Regime]
+\label{def:anthropological-regime}
+\index{anthropological regime}
+An \emph{anthropological regime} is a dominant practical model $\alpha$ of human nature, specifying:
+\begin{enumerate}[nosep]
+  \item a \emph{motivational theory} (what drives people: self-interest, status, care, duty, fear, \ldots),
+  \item a \emph{social ontology} (whether persons are fundamentally isolated or constitutively relational),
+  \item a \emph{capacity claim} (what people can and cannot do collectively---cooperate without coercion? govern themselves? share resources sustainably?).
+\end{enumerate}
+Formally, $\alpha \in \mathcal{A}$ where $\mathcal{A}$ is the space of such models, and the population's effective anthropological regime is
+\[
+  \hat{\alpha} = \arg\max_{\alpha \in \mathcal{A}} \sum_j w_j \cdot \mathbf{1}[\alpha_j = \alpha]
+\]
+where $w_j$ are institutional weights reflecting not headcount but institutional embeddedness.
+\end{definition}
+
+The institutional weighting $w_j$ is essential.
+An anthropological regime can dominate even if most individuals privately doubt it, provided it is embedded in the institutions that structure daily life: workplaces, schools, legal systems, media.
+A worker who privately believes in cooperation but operates within a workplace designed around the assumption of shirking lives under a selfish-anthropology regime regardless of private conviction.
+
+\begin{example}[Competing Anthropological Regimes]
+\label{ex:competing-regimes}
+\index{anthropological regime!examples}
+Three historically significant regimes:
+\begin{description}[nosep]
+  \item[Hobbesian] ($\alpha_H$): humans are competitive by nature; order requires sovereignty, enforcement, and hierarchy.
+    Institutional expression: criminal justice systems, competitive labor markets, principal-agent contracts.
+  \item[Smithian-Neoclassical] ($\alpha_S$): humans are rational self-interest maximizers; social welfare emerges from individual optimization within markets.
+    Institutional expression: economics curricula, cost-benefit analysis, incentive-based regulation.
+  \item[Cooperative] ($\alpha_C$): humans are conditional cooperators; collective action is possible under appropriate institutional conditions.
+    Institutional expression: commons governance, cooperatives, public goods provision, Scandinavian welfare states.
+\end{description}
+The doxonomic question is not which is ``true'' (all capture real tendencies) but which receives the most institutional support, and how that support shapes the evidence environment.
+\end{example}
+
+Anthropological regimes have a distinctive doxonomic property: they can be \emph{self-fulfilling}.
+If institutions are designed around the assumption that people are selfish, they create environments that reward selfish behavior, which generates behavioral evidence for the selfish assumption, which justifies maintaining the institutions.
+Chapter~\ref{ch:human-nature} analyzes this feedback loop in detail.
+
+
+\section{Beyond Propositions: A Layered Ontology}
+\label{sec:ch2-layers}
+
+The propositional-credence framework of the previous sections is a useful formal tool, but it does not exhaust the phenomena doxonomics must study.
+Many politically consequential ``beliefs'' are not well-modeled as explicit credences in propositions.
+
+\begin{itemize}[nosep]
+  \item \textbf{Practical schemas} (Bourdieu's \textit{habitus}\index{habitus}): embodied dispositions that organize perception and action without passing through conscious propositional evaluation.
+  A person raised in a competitive school system does not decide that ``life is competition''; they \emph{perceive} the world through competitive categories, feel anxiety when not competing, and organize action around comparative performance---all without propositional mediation.
+
+  \item \textbf{Social norms}\index{social norm}: shared expectations about behavior that agents follow without necessarily believing them to be true or good.
+  A norm can govern behavior even when no one endorses it \autocite{cialdini2006}.
+
+  \item \textbf{Identity commitments}\index{identity commitment}: affiliations (national, religious, professional, racial, gendered) that structure interpretation prior to evidence evaluation.
+  Identity acts as a \emph{prior filter}: evidence consistent with identity is more readily absorbed; evidence threatening to identity is resisted or reinterpreted \autocite{kahan2012}.
+
+  \item \textbf{Affective orientations}\index{affective orientation}: trust, fear, disgust, and solidarity toward social categories---felt rather than believed.
+  Racial prejudice, for example, often operates through affective response rather than propositional endorsement: a person may sincerely disavow racist beliefs while exhibiting implicit bias in behavior.
+
+  \item \textbf{Tacit classifications}\index{tacit classification}: the taken-for-granted categories through which experience is organized---``worker,'' ``citizen,'' ``consumer,'' ``taxpayer,'' ``illegal.''
+  These classifications are not beliefs \emph{about} the world; they are the \emph{grid} through which the world is apprehended.
+  Changing a classification system is among the most difficult and consequential doxonomic interventions.
+\end{itemize}
+
+A person can \emph{enact} an anthropological regime they cannot state propositionally.
+A worker who ``knows'' that competition is natural may not hold an explicit belief to that effect; the assumption is built into their behavioral repertoire, their emotional responses, and their sense of what is and is not possible.
+
+\begin{principle}[Layered Ontology]
+\label{prin:layered-ontology}
+\index{layered ontology}
+Doxonomic analysis distinguishes at least five layers of socially shaped cognition:
+\begin{enumerate}[nosep]
+  \item \textbf{Propositional belief}: explicit credence in a statement ($\pi_j(p)$).
+  \item \textbf{Norm perception}: belief about what others believe or do ($\hat{\mu}_j$).
+  \item \textbf{Practical schema}: embodied disposition shaping action without deliberation.
+  \item \textbf{Identity commitment}: group affiliation structuring interpretation.
+  \item \textbf{Affective orientation}: emotional stance toward categories and institutions.
+\end{enumerate}
+The probability representation used in most formal models of this book operates at layer~1.
+This is a \emph{local convenience}, not a full ontology of ideological life.
+Layers 2--5 are acknowledged as important and addressed qualitatively where needed; their full formalization is an open problem for the field.
+\end{principle}
+
+\begin{remark}
+The layers differ in their doxonomic production pathways.
+Layer~1 (propositional belief) is most responsive to evidence and argument---and therefore to traditional persuasion.
+Layer~3 (practical schema) is produced primarily through prolonged institutional immersion---schooling, workplace discipline, military training---and is resistant to propositional counter-argument.
+Layer~5 (affective orientation) is shaped by repetition, association, and social identity, often below the threshold of conscious processing.
+A doxonomic system that operates at multiple layers simultaneously is more durable than one operating at layer~1 alone, because it cannot be dislodged by argument.
+\end{remark}
+
+
+\section{Truth, Power, and the Scope of Doxonomic Analysis}
+\label{sec:ch2-truth-power}
+
+Doxonomics studies how beliefs are produced, not whether they are true.
+But this scope statement requires care, because the relationship between truth and power is not simple.
+A naively stated doxonomics could slide into the claim that ``all socially successful beliefs are just power effects''---which is both philosophically untenable and empirically false.
+
+A belief may be:
+\begin{enumerate}[nosep]
+  \item funded \emph{because} it is true (scientific consensus attracts institutional support: the germ theory of disease, the efficacy of vaccines),
+  \item made to \emph{appear} true by subsidy (repetition creates familiarity, which is mistaken for evidence: ``tax cuts pay for themselves''),
+  \item partly true but selectively amplified (``markets create wealth'' is true in some senses, but the selective emphasis obscures distributional effects, externalities, and power asymmetries),
+  \item normatively useful but descriptively false (``hard work always pays off'' motivates effort but misdescribes the economy),
+  \item descriptively accurate only under institutions built around it (``people are selfish'' becomes true when institutions reward selfishness and punish cooperation---the self-fulfilling case).
+\end{enumerate}
+
+Each type requires a different doxonomic analysis.
+Type~1 is not a doxonomic pathology at all; it is the normal operation of evidence-responsive institutions.
+Type~2 is pure doxonomic distortion.
+Types~3--5 are mixed cases that require careful disentangling.
+
+\begin{principle}[Separation of Audit and Evaluation]
+\label{prin:separation}
+\index{audit and evaluation, separation of}
+The doxonomic audit (tracing material scaffolding) and the epistemic evaluation (assessing truth status) are \emph{distinct operations}.
+A heavily funded belief is not automatically suspect; a poorly funded belief is not automatically true.
+The audit reveals the scaffolding.
+The evaluation requires independent evidence and argument.
+Conflating the two is a category error that doxonomics must avoid \autocite{mannheim1936, fricker2007}.
+\end{principle}
+
+\begin{remark}
+This principle protects the field in both directions.
+It prevents critics from dismissing doxonomics as ``everything you disagree with is ideology.''
+And it prevents practitioners from assuming that revealing a belief's material support settles the question of its truth.
+The most interesting doxonomic cases are precisely those where the truth status is mixed or uncertain, and where the material scaffolding is doing real epistemic work---for better or worse.
+\end{remark}
+
+
+\section{Belief as Probability Distribution}
+\label{sec:ch2-probability}
+
+With the layered ontology acknowledged, we proceed to the formal representation used in most of this book.
+For mathematical purposes, we represent a population's propositional beliefs as a probability measure $\mu$ on a proposition space $(\Omega, \mathcal{F})$, where $\Omega$ is the set of possible world-models and $\mathcal{F}$ is a $\sigma$-algebra of propositions.
+
+\begin{remark}
+\label{rem:distribution-not-mean}
+Population-level belief is better represented as a \emph{distribution} over individual credences than as a single mean.
+A society with 50/50 polarization and a society with universal moderate uncertainty can have the same mean credence $\mu(p) = 0.5$, but these are radically different doxonomic situations.
+Throughout this book, when we write $\belief{i}$, we refer to a summary statistic.
+Full doxonomic analysis should attend to:
+\begin{itemize}[nosep]
+  \item the \emph{shape} of the credence distribution (unimodal, bimodal, skewed),
+  \item its \emph{variance} and kurtosis,
+  \item its \emph{clustering by subgroup} (class, race, education, media environment),
+  \item the \emph{gap between private and expressed beliefs} (pluralistic ignorance),
+  \item the \emph{elite-mass divergence} (do elites and populations hold the same beliefs?).
+\end{itemize}
+\end{remark}
+
+\begin{definition}[Belief Distribution]
+\label{def:belief-distribution}
+\index{belief distribution}
+The \emph{belief distribution} for proposition $p$ in a population of $N$ agents is the empirical measure
+\[
+  \hat{F}_p(x) = \frac{1}{N} \sum_{j=1}^{N} \mathbf{1}[\pi_j(p) \leq x]
+\]
+We define the following summary statistics:
+\begin{itemize}[nosep]
+  \item Mean belief: $\bar{\mu}(p) = \frac{1}{N}\sum_j \pi_j(p)$
+  \item Belief variance: $\sigma^2(p) = \frac{1}{N}\sum_j (\pi_j(p) - \bar{\mu}(p))^2$
+  \item Polarization index: $\mathrm{Pol}(p) = 4\bar{\mu}(p)(1 - \bar{\mu}(p)) \cdot (1 + \sigma^2(p)/\bar{\mu}(p)(1-\bar{\mu}(p)))$ when $\bar{\mu}(p) \in (0,1)$
+\end{itemize}
+A belief is \emph{polarized} when $\hat{F}_p$ is bimodal (clustered near 0 and 1) and $\mathrm{Pol}(p)$ is high.
+\end{definition}
+
+\begin{proposition}[Belief Updating Under Unequal Exposure]
+\label{prop:unequal-updating}
+Let agents update beliefs via Bayes' rule.
+If agent $j$ observes evidence $e_j$ drawn from a distribution $\nu_j$ that depends on the channels $j$ is exposed to, then even rational agents will converge to different posteriors when their evidence streams differ systematically.
+Formally, if $\nu_j \neq \nu_k$ for agents $j, k$ in different media environments, then generically $\pi_j(p \mid e_j) \neq \pi_k(p \mid e_k)$ even in the limit.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Under Bayes' rule, the posterior after $T$ signals is
+\[
+  \pi_j^{(T)}(p) = \frac{\pi_j^{(0)}(p) \prod_{t=1}^{T} L(s_t^{(j)} \mid p)}{\pi_j^{(0)}(p) \prod_{t=1}^{T} L(s_t^{(j)} \mid p) + (1 - \pi_j^{(0)}(p)) \prod_{t=1}^{T} L(s_t^{(j)} \mid \neg p)}
+\]
+When the signal distribution $\nu_j$ systematically favors $p$ (more signals consistent with $p$ than with $\neg p$), the likelihood ratio $\prod_t L(s_t \mid p)/L(s_t \mid \neg p) \to \infty$, driving $\pi_j^{(T)} \to 1$.
+Two agents with the same prior but different signal distributions will diverge.
+The divergence rate is bounded below by the KL divergence $D_{\mathrm{KL}}(\nu_j \| \nu_k)$.
+\end{proof}
+
+This is the Bayesian foundation of doxonomics: differential exposure to evidence, not irrationality, suffices to produce differential belief.
+Rational agents in asymmetric information environments will hold different beliefs---and the doxonomic question is: who controls the information environments?
+
+\begin{remark}
+The Bayesian model assumes agents are rational updaters.
+In practice, agents also exhibit motivated reasoning (updating asymmetrically depending on whether evidence confirms or threatens identity), confirmation bias (seeking evidence consistent with prior beliefs), source credibility weighting (discounting evidence from distrusted sources regardless of content), and bounded attention (processing only a fraction of available information).
+Each of these makes the doxonomic effect \emph{stronger} than the pure Bayesian model predicts: biased exposure combined with biased processing produces faster and more durable divergence.
+\end{remark}
+
+
+\section{Operationalizing the Invisible: How to Detect Doxa}
+\label{sec:ch2-detecting-doxa}
+
+The deepest doxonomic products are, by definition, hard to see.
+If a proposition is truly doxic---invisible as a claim---how does the researcher identify it?
+
+Several heuristic methods are available:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Premise analysis}: search large corpora for propositions that appear overwhelmingly as unstated premises rather than as explicit conclusions.
+  If ``economic growth is desirable'' appears in 10,000 texts as a background assumption but is explicitly argued for in only 50, it is behaving doxically.
+
+  \item \textbf{Contrast with other societies}: propositions that are doxic in one society but explicitly debated in another are candidates for doxonomic analysis.
+  The assumption that health care is a market commodity is doxic in the United States but explicitly contested in most European countries.
+
+  \item \textbf{Historical discontinuity}: if a proposition was once explicitly argued for (with named advocates and institutional campaigns) but is now ``just how things are,'' the transition from argument to doxa is itself a doxonomic achievement worth tracing.
+
+  \item \textbf{Anomaly response}: observe how institutions respond when someone challenges a doxic proposition.
+  If the response is not counter-argument but \emph{confusion, dismissal, or ridicule}---``that's just how the world works''---the proposition is likely doxic.
+
+  \item \textbf{Cross-domain consistency}: if the same anthropological assumption appears in economics, management, law, media, and everyday speech without any of these domains citing the others, it has achieved the kind of distributed invisibility characteristic of doxa.
+\end{enumerate}
+
+\begin{exercise}
+\label{ex:ch2-detect-doxa}
+Apply the five heuristic methods above to the proposition ``economic growth is the primary objective of government.''
+For each method, describe what evidence you would look for and what a positive finding would indicate.
+\end{exercise}
+
+
+\section{Notes and References}
+\label{sec:ch2-notes}
+
+The taxonomy of belief, ideology, and common sense draws on \textcite{gramsci1971}, \textcite{bourdieu1984}, and \textcite{foucault1971}.
+The social construction of reality as a general framework is developed in \textcite{berger1966}; the sociology of knowledge as a discipline originates with \textcite{mannheim1936}.
+\textcite{althusser1970} provides a structural account of how institutions reproduce ideology through ideological state apparatuses.
+
+Pluralistic ignorance was formalized by \textcite{kuran1995}.
+The game-theoretic structure of public belief connects to coordination games in \textcite{schelling1978}.
+On cognitive dissonance and belief maintenance under contradictory evidence, see \textcite{festinger1957}.
+Cultural cognition and identity-protective reasoning are developed in \textcite{kahan2012} and \textcite{mercier2017}.
+Social identity theory is foundational for understanding how group affiliation structures belief \autocite{tajfel1979}.
+
+Bayesian updating under asymmetric information exposure is treated in \textcite{gentzkow2010}.
+The concept of anthropological regimes extends \textcite{gintis2005}.
+On epistemic injustice---how social power shapes who is heard and believed---see \textcite{fricker2007} and \textcite{medina2013}.
+The layered ontology draws on Bourdieu's habitus, \textcite{hall1980} on encoding/decoding, and the pragmatist tradition of \textcite{dewey1927}.
+On the relation between truth and power in social analysis, see \textcite{mannheim1936} and \textcite{jasanoff2004}.
+On performativity---the way models and descriptions can remake the reality they claim to describe---see \textcite{mackenzie2006}.
+
+The operationalization of doxa through corpus analysis connects to methods in Chapter~\ref{ch:text-media}.
+For mass opinion formation as a multi-layered process, see \textcite{zaller1992}.
+On propaganda as a total social phenomenon rather than merely a state tool, see \textcite{ellul1965}.
+
+
+\section{Exercises}
+
+\begin{exercise}
+\label{ex:ch2-coordination}
+Give a formal example of pluralistic ignorance using a coordination game with $n$ players.
+Show that an equilibrium exists in which all players publicly affirm $p$ despite privately doubting it.
+Compute the critical mass $k^*$ of dissenters needed to collapse the equilibrium as a function of the conformity parameter $c$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch2-kl}
+Consider two populations exposed to different evidence streams $\nu_A$ and $\nu_B$ about human cooperation.
+Using Bayes' rule, show that after $T$ periods their posterior beliefs on ``human nature is selfish'' diverge by an amount proportional to the KL divergence $D_{\mathrm{KL}}(\nu_A \| \nu_B)$.
+What happens when $T \to \infty$?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch2-classify}
+Classify the following as opinion, belief, ideology, common sense, or doxa in contemporary Western societies:
+(a)~``hard work leads to success,''
+(b)~``the earth orbits the sun,''
+(c)~``economic growth is good,''
+(d)~``taxation is theft,''
+(e)~``a person's worth is measured by their productivity,''
+(f)~``democratic elections are the legitimate way to choose leaders.''
+Justify each classification using the formal definitions above.
+For any that you classify as common sense or doxa, describe what institutional apparatus maintains them.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch2-layers}
+For the belief ``inequality is a natural consequence of differences in talent and effort,'' identify how this belief operates at each of the five layers of the layered ontology.
+At which layer is it most deeply embedded?
+At which layer would intervention be most effective?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch2-selffullfilling}
+Formalize the self-fulfilling property of anthropological regimes.
+Let institutions design rules based on regime $\alpha$, and let agents respond to those rules.
+Under what conditions does the observed behavior confirm $\alpha$ regardless of the ``true'' human nature?
+(Hint: model this as a game where the institutional designer chooses a mechanism based on $\alpha$, and agents best-respond.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch2-coherence}
+Compute the coherence strength $\kappa(\mathcal{P})$ for a hypothetical ideology with five propositions.
+Suppose that beliefs in $p_1$ and $p_2$ are highly correlated ($r = 0.8$), $p_3$ and $p_4$ are moderately correlated ($r = 0.4$), and all other pairs are uncorrelated ($r = 0$).
+What is $\kappa$?
+Is this a ``strong'' ideology by your measure?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch2-doxa-detection}
+Choose a proposition you suspect is doxic in your society.
+Apply at least three of the five heuristic detection methods from Section~\ref{sec:ch2-detecting-doxa}.
+Report what you find.
+If the proposition turns out to be common sense rather than doxa, explain what evidence would distinguish the two.
+\end{exercise}

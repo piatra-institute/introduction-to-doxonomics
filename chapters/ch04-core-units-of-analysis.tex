@@ -1,0 +1,178 @@
+\chapter{Core Units of Analysis}
+\label{ch:core-units}
+
+\epigraph{All models are wrong, but some are useful.}{George E.\ P.\ Box}
+
+\noindent
+Doxonomics requires a precise vocabulary of parts.
+This chapter defines the core units---agents, institutions, channels, budgets, narratives, audiences, and feedback loops---and gives each a mathematical specification.
+
+\section{Agents}
+\label{sec:ch4-agents}
+
+\begin{definition}[Doxonomic Agent]
+\label{def:agent}
+\index{agent}
+A \emph{doxonomic agent} is an entity $a \in \agentspace$ characterized by a type $\tau(a) \in \{\text{funder}, \text{institution}, \text{intermediary}, \text{audience}\}$, a resource endowment $r(a) \in \R_{\geq 0}$, a belief state $\pi_a \in \Delta(\Omega)$ (a probability distribution over propositions), and a strategic objective $u_a: \beliefspace \to \R$.
+\end{definition}
+
+Funders allocate resources to channels.
+Institutions process funding into narrative outputs.
+Intermediaries amplify, filter, or repackage narratives.
+Audiences receive, interpret, and may resist or adopt them.
+
+The key asymmetry is that funders optimize over $\beliefspace$---they have preferences about what the population believes---while audiences are typically modeled as updating agents without strategic control over the information environment.
+
+\section{Institutions as Belief-Processing Functions}
+\label{sec:ch4-institutions}
+
+\begin{definition}[Institutional Processing Function]
+\label{def:institution-function}
+\index{institution!processing function}
+An institution $\iota \in \insteco$ is a function
+\[
+  \iota: \R_{\geq 0} \times \narspace_{\text{in}} \to \narspace_{\text{out}} \times [0,1]
+\]
+mapping a funding level and input narrative material to an output narrative and a credibility multiplier.
+The credibility multiplier reflects the institution's accumulated epistemic capital $\ecap(\iota)$.
+\end{definition}
+
+A university, a newspaper, a think tank, and an advertising agency all process inputs into narrative outputs, but with different credibility profiles.
+The credibility of the output depends not only on its content but on the institutional brand attached to it.
+
+\begin{example}
+\label{ex:think-tank}
+A think tank $\iota$ receives funding $\funding{k} = \$2\text{M/year}$ and raw policy positions from its donors.
+It outputs research papers, op-eds, and expert testimony.
+Its credibility multiplier $\credibility{\iota} = 0.7$ reflects its reputation among journalists and policymakers.
+A university economics department performing similar work might have $\credibility{\iota'} = 0.9$.
+The difference in $\credibility{}$ means the same proposition, backed by the same evidence, has different doxonomic force depending on its institutional origin.
+\end{example}
+
+\section{Channels}
+\label{sec:ch4-channels}
+
+\begin{definition}[Doxonomic Channel]
+\label{def:channel}
+\index{channel}
+A \emph{channel} is a medium of narrative transmission characterized by:
+\begin{itemize}[nosep]
+  \item reach $\reach{k} \in [0,1]$ (fraction of population exposed),
+  \item credibility $\credibility{k} \in [0,1]$ (weight assigned to messages by the audience),
+  \item persistence $\persistence{k} \in \R_{>0}$ (half-life of the narrative in audience memory),
+  \item cost $c_k: \R_{\geq 0} \to [0,1]$ (mapping from funding to effective reach, typically concave).
+\end{itemize}
+\end{definition}
+
+Channels include mass media, social media, education systems, entertainment, peer networks, and platform algorithms.
+Each has a characteristic cost-reach curve.
+Education has low reach per unit time but very high persistence.
+Social media has high reach but low persistence and variable credibility.
+
+\section{Budgets as Resource Allocation Vectors}
+\label{sec:ch4-budgets}
+
+\begin{definition}[Doxonomic Budget]
+\label{def:budget}
+\index{budget}
+A \emph{doxonomic budget} for belief $i$ is a vector $\fundingvec_i = (\funding{1}, \ldots, \funding{m}) \in \R^m_{\geq 0}$ specifying the resource allocation across $m$ channels directed at promoting belief $i$.
+The total doxonomic expenditure on $i$ is $F_i = \sum_k \funding{k}$.
+\end{definition}
+
+The budget allocation problem is: given a total expenditure $F_i$, how should a funder allocate across channels to maximize $\belief{i}$?
+This is a constrained optimization problem whose solution depends on the relative cost-effectiveness of each channel.
+
+\begin{proposition}[Optimal Allocation]
+\label{prop:optimal-allocation}
+Under the first-order model~\eqref{eq:first-order} with concave cost-reach functions $c_k$, the optimal allocation satisfies
+\[
+  \credibility{k} \cdot \relevance{k}{i} \cdot c_k'(\funding{k}) \cdot \persistence{k} = \lambda \quad \text{for all } k \text{ with } \funding{k} > 0
+\]
+where $\lambda$ is the Lagrange multiplier on the budget constraint $\sum_k \funding{k} = F_i$.
+\end{proposition}
+
+This is the doxonomic analogue of the equimarginal principle in economics: at the optimum, the marginal belief return per dollar is equalized across all active channels.
+
+\section{Narratives}
+\label{sec:ch4-narratives}
+
+\begin{definition}[Narrative]
+\label{def:narrative}
+\index{narrative}
+A \emph{narrative} $n \in \narspace$ is a structured proposition or set of propositions equipped with:
+\begin{enumerate}[nosep]
+  \item a \emph{causal claim} (``$X$ because $Y$''),
+  \item a \emph{normative framing} (``this is good/bad/natural/inevitable''),
+  \item a \emph{subject position} (who the audience is invited to identify with).
+\end{enumerate}
+\end{definition}
+
+Narratives are the currency of doxonomic systems.
+They are what institutions produce, channels transmit, and audiences internalize.
+The narrative space $\narspace$ can be formalized as a vector space (using embeddings), a discrete set, or a more structured object depending on the application.
+
+\section{Audiences and Prior Distributions}
+\label{sec:ch4-audiences}
+
+Audiences are not homogeneous.
+A population consists of subgroups $\{G_1, \ldots, G_L\}$ with different prior belief distributions $\mu_{G_l}$, different media exposure patterns, and different resistance profiles.
+
+\begin{definition}[Audience Heterogeneity]
+\label{def:audience-heterogeneity}
+\index{audience}
+The population-level belief $\belief{i}$ is a mixture:
+\[
+  \belief{i} = \sum_{l=1}^{L} w_l \cdot \belief{i}^{(l)}
+\]
+where $w_l$ is the population share of group $l$ and $\belief{i}^{(l)}$ is the average credence in group $l$.
+A doxonomic system may target some groups more than others.
+\end{definition}
+
+\section{Feedback Loops}
+\label{sec:ch4-feedback}
+
+The belief production chain is not unidirectional.
+Beliefs, once internalized, alter behavior, which alters institutions, which alters funding.
+
+\begin{definition}[Doxonomic Feedback]
+\label{def:feedback}
+\index{feedback loop}
+A \emph{doxonomic feedback loop} is a dynamical coupling in which the belief state $\beliefvec(t)$ influences the funding vector $\fundingvec(t+1)$ through behavioral and institutional responses:
+\[
+  \fundingvec(t+1) = g(\beliefvec(t), \fundingvec(t))
+\]
+for some function $g$.
+The system is \emph{self-reinforcing} if $\partial g_k / \partial \belief{i} > 0$ for the belief $i$ that channel $k$ promotes.
+\end{definition}
+
+Self-reinforcing feedback is the mechanism by which temporary doxonomic investments become permanent features of a society's common sense.
+
+\section{Notes and References}
+\label{sec:ch4-notes}
+
+Agent-based models of belief formation draw on \textcite{jackson2008} and \textcite{granovetter1978}.
+The institutional processing framework extends \textcite{north1990}.
+Optimal allocation of persuasion resources connects to \textcite{downs1957} and \textcite{tullock1967}.
+Audience heterogeneity models are treated in \textcite{manski1993}.
+Feedback loops in social systems are central to \textcite{schelling1978}.
+
+\section{Exercises}
+
+\begin{exercise}
+Classify the following as agents, institutions, channels, or narratives: (a)~the Koch Foundation, (b)~the \textit{New York Times}, (c)~Twitter/X, (d)~``free markets create prosperity,'' (e)~a university economics department.
+\end{exercise}
+
+\begin{exercise}
+Compute the optimal budget allocation for a funder with $F_i = \$10\text{M}$ across two channels with $\credibility{1} = 0.9$, $\credibility{2} = 0.5$, and cost-reach functions $c_1(f) = \sqrt{f}$, $c_2(f) = 2\sqrt{f}$.
+Assume $\relevance{k}{i} = \persistence{k} = 1$ for both.
+\end{exercise}
+
+\begin{exercise}
+Model a self-reinforcing feedback loop in which belief in meritocracy increases tolerance for inequality, which increases political donations from wealthy actors, which increases funding for meritocratic narratives.
+Write the system as a pair of coupled difference equations.
+\end{exercise}
+
+\begin{exercise}
+Consider a population with two groups: $G_1$ (30\% of population, high media exposure, low prior credence in $p$) and $G_2$ (70\%, low media exposure, high prior credence in $p$).
+Under what conditions does a doxonomic investment targeting $G_1$ change the population-level $\belief{i}$ more than one targeting $G_2$?
+\end{exercise}

@@ -1,0 +1,164 @@
+\chapter{Formal Models of Doxonomic Systems}
+\label{ch:formal-models}
+
+\epigraph{A theory has only the alternative of being right or wrong. A model has a third possibility: it may be right, but irrelevant.}{Manfred Eigen}
+
+\noindent
+This chapter develops the mathematical core of doxonomics: stock-and-flow models, epidemiological diffusion, Bayesian updating under unequal exposure, cascade models, and differential equation frameworks for belief dynamics.
+
+\section{Stock-and-Flow Models}
+\label{sec:ch11-stock-flow}
+
+\begin{definition}[Belief Stock and Narrative Flow]
+\label{def:stock-flow}
+\index{stock-and-flow model}
+The \emph{belief stock} $\belief{i}(t) \in [0,1]$ is the fraction of the population holding belief $i$ at time $t$.
+The \emph{narrative flow} $\phi_i(t) \in \R_{\geq 0}$ is the rate at which narrative content supporting $i$ is produced and circulated.
+The dynamics are:
+\begin{equation}
+\label{eq:stock-flow}
+  \frac{d\belief{i}}{dt} = \alpha \cdot \phi_i(t) \cdot (1 - \belief{i}(t)) - \delta \cdot \belief{i}(t) + \beta \cdot \belief{i}(t)(1 - \belief{i}(t))
+\end{equation}
+where $\alpha$ is the persuasion rate, $\delta$ is the natural decay rate, and $\beta$ is the social reinforcement rate (peer effects).
+\end{definition}
+
+\begin{proposition}[Steady States]
+\label{prop:steady-states}
+Equation~\eqref{eq:stock-flow} has at most three steady states.
+Setting $d\belief{i}/dt = 0$, the trivial steady state $\belief{i}^* = 0$ exists when $\phi_i = 0$.
+For $\phi_i > 0$ and $\beta > 0$, there exist two non-trivial steady states:
+\[
+  \belief{i}^* = \frac{(\alpha\phi_i + \beta - \delta) \pm \sqrt{(\alpha\phi_i + \beta - \delta)^2 + 4\beta\alpha\phi_i}}{2\beta}
+\]
+The system exhibits bistability when $\beta$ is sufficiently large relative to $\delta$, corresponding to the lock-in phenomenon of Chapter~\ref{ch:common-sense-capture}.
+\end{proposition}
+
+\section{Epidemiological Diffusion Models}
+\label{sec:ch11-sir}
+
+Belief spread shares structural features with disease transmission.
+
+\begin{model}[SIR Model for Belief]
+\label{mod:sir-belief}
+\index{SIR model}
+Partition the population into three compartments:
+\begin{itemize}[nosep]
+  \item $S(t)$: susceptible (have not encountered the narrative),
+  \item $I(t)$: infected (actively hold and transmit the belief),
+  \item $R(t)$: recovered (have encountered and rejected the belief, or lost interest).
+\end{itemize}
+The dynamics are:
+\begin{align}
+  \frac{dS}{dt} &= -\beta S I - \alpha \phi(t) S \label{eq:sir-s}\\
+  \frac{dI}{dt} &= \beta S I + \alpha \phi(t) S - \gamma I \label{eq:sir-i}\\
+  \frac{dR}{dt} &= \gamma I \label{eq:sir-r}
+\end{align}
+where $\beta$ is the peer transmission rate, $\alpha\phi(t)$ is the institutional transmission rate (from narrative infrastructure), and $\gamma$ is the recovery rate (skepticism, counter-narrative exposure).
+\end{model}
+
+\begin{definition}[Basic Reproduction Number]
+\label{def:R0}
+\index{basic reproduction number}
+The \emph{doxonomic reproduction number} is
+\[
+  R_0 = \frac{\beta + \alpha\phi}{\gamma}
+\]
+If $R_0 > 1$, the belief can spread epidemically.
+If $R_0 < 1$, it dies out without sustained institutional support ($\phi > 0$).
+\end{definition}
+
+A crucial difference from epidemiology: institutions can maintain $\phi > 0$ indefinitely, sustaining beliefs that would otherwise die out.
+This is the formal basis of the claim that some beliefs persist not because they are persuasive but because they are subsidized.
+
+\section{Bayesian Updating Under Unequal Exposure}
+\label{sec:ch11-bayesian}
+
+\begin{model}[Asymmetric Information Environment]
+\label{mod:asymmetric-bayes}
+\index{Bayesian updating!asymmetric}
+Agent $j$ observes a sequence of signals $\{s_t^{(j)}\}_{t=1}^{T}$ where each $s_t^{(j)}$ is drawn from
+\[
+  s_t^{(j)} \sim \begin{cases} \nu^+_j & \text{with probability } q_j \\ \nu^-_j & \text{with probability } 1 - q_j \end{cases}
+\]
+and $q_j$ depends on $j$'s media environment.
+Agents in channel $k$ have $q_j = q_k$, determined by the channel's editorial stance.
+After $T$ signals, the posterior is
+\[
+  \pi_j^{(T)}(p) = \frac{\pi_j^{(0)}(p) \cdot \prod_{t=1}^T L(s_t^{(j)} \mid p)}{\pi_j^{(0)}(p) \cdot \prod_{t=1}^T L(s_t^{(j)} \mid p) + (1-\pi_j^{(0)}(p)) \cdot \prod_{t=1}^T L(s_t^{(j)} \mid \neg p)}
+\]
+\end{model}
+
+\begin{theorem}[Polarization Under Asymmetric Exposure]
+\label{thm:polarization}
+\index{polarization}
+If two groups $A$ and $B$ have $q_A > 1/2$ and $q_B < 1/2$ (their channels systematically favor opposite conclusions), then as $T \to \infty$:
+\[
+  \pi_A^{(T)}(p) \to 1 \quad \text{and} \quad \pi_B^{(T)}(p) \to 0
+\]
+almost surely, even if both groups are perfectly rational Bayesian updaters.
+\end{theorem}
+
+This theorem is the formal foundation for the claim that doxonomic polarization does not require irrationality---only asymmetric evidence supply.
+
+\section{Cascade Models}
+\label{sec:ch11-cascades}
+
+\begin{model}[Information Cascade]
+\label{mod:cascade}
+\index{information cascade}
+Following \textcite{banerjee1992} and \textcite{bikhchandani1992}, agents act sequentially, observing predecessors' actions but not their private signals.
+An \emph{information cascade} occurs when agent $j$'s optimal action is independent of $j$'s private signal---the public evidence overwhelms private information.
+In doxonomic terms, a cascade occurs when the accumulated weight of institutional narrative is so strong that individual experience becomes irrelevant to expressed belief.
+\end{model}
+
+\section{Differential Equation Framework}
+\label{sec:ch11-ode}
+
+We can model competing beliefs as a dynamical system.
+Let $\belief{1}(t)$ and $\belief{2}(t) = 1 - \belief{1}(t)$ be two competing beliefs.
+
+\begin{model}[Lotka-Volterra Belief Competition]
+\label{mod:lotka-volterra}
+\index{Lotka-Volterra model}
+\begin{align}
+  \frac{d\belief{1}}{dt} &= \belief{1}(\alpha_1 \phi_1 - \gamma_1 - \beta_{12}\belief{2}) \\
+  \frac{d\belief{2}}{dt} &= \belief{2}(\alpha_2 \phi_2 - \gamma_2 - \beta_{21}\belief{1})
+\end{align}
+where $\phi_k$ is the narrative flow for belief $k$, $\gamma_k$ is the intrinsic decay, and $\beta_{ij}$ is the competitive displacement rate.
+The funding asymmetry $\phi_1 \gg \phi_2$ can ensure dominance of belief 1 regardless of intrinsic merit.
+\end{model}
+
+\section{Notes and References}
+\label{sec:ch11-notes}
+
+Stock-and-flow models adapt systems dynamics \autocite{jackson2008}.
+The SIR framework for information is developed in \textcite{watts2002}.
+Bayesian polarization under asymmetric information is treated in the economics of media bias \autocite{gentzkow2010}.
+Cascade models originate with \textcite{banerjee1992} and \textcite{bikhchandani1992}.
+Lotka-Volterra models for cultural competition appear in cultural evolution literature \autocite{nowak2006}.
+
+\section{Exercises}
+
+\begin{exercise}
+For the stock-and-flow model~\eqref{eq:stock-flow} with $\alpha = 0.3$, $\delta = 0.1$, $\beta = 0.5$, find the minimum narrative flow $\phi^*$ needed for a stable high-adoption equilibrium to exist.
+\end{exercise}
+
+\begin{exercise}
+Compute $R_0$ for a belief spread through social media ($\beta = 0.05$, $\gamma = 0.2$) with institutional support $\alpha\phi = 0.1$.
+Can the belief sustain itself without institutional support?
+\end{exercise}
+
+\begin{exercise}
+Simulate the Bayesian polarization theorem: generate $T = 100$ signals for two groups with $q_A = 0.7$ and $q_B = 0.3$, starting from the same prior $\pi^{(0)} = 0.5$.
+Plot the posterior trajectories.
+\end{exercise}
+
+\begin{exercise}
+In the Lotka-Volterra model, find the conditions under which belief 2 survives despite $\phi_1 > \phi_2$.
+Interpret economically: what makes a counter-narrative resilient?
+\end{exercise}
+
+\begin{exercise}
+Extend the SIR model to include a ``vaccinated'' compartment $V(t)$ representing people who have received counter-narrative inoculation.
+Write the modified equations and find the new $R_0$.
+\end{exercise}

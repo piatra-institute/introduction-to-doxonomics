@@ -1,0 +1,225 @@
+\chapter{The Belief Production Chain}
+\label{ch:belief-production-chain}
+
+\epigraph{It is difficult to get a man to understand something when his salary depends upon his not understanding it.}{Upton Sinclair}
+
+\noindent
+The previous chapters introduced the components.
+This chapter assembles them into the central object of doxonomic theory: the \emph{belief production chain}\index{belief production chain}, formalized as a composition of operators.
+
+\section{The Chain as Operator Composition}
+\label{sec:ch5-composition}
+
+\begin{definition}[Belief Production Chain]
+\label{def:bpc-formal}
+The belief production chain is a composition of six operators:
+\[
+  \bpc = \mathcal{R} \circ \mathcal{B} \circ \mathcal{I} \circ \mathcal{C} \circ \mathcal{P} \circ \mathcal{F}
+\]
+where:
+\begin{enumerate}[nosep]
+  \item $\mathcal{F}: \R^m_{\geq 0} \to \R^m_{\geq 0}$ is the \emph{funding allocation operator},
+  \item $\mathcal{P}: \R^m_{\geq 0} \to \narspace$ is the \emph{institutional processing operator},
+  \item $\mathcal{C}: \narspace \to \narspace \times [0,1]^N$ is the \emph{circulation operator} (narrative plus exposure vector),
+  \item $\mathcal{I}: \narspace \times [0,1]^N \times \beliefspace \to \beliefspace$ is the \emph{internalization operator},
+  \item $\mathcal{B}: \beliefspace \to \mathcal{X}$ is the \emph{behavioral consequence operator} (mapping beliefs to actions),
+  \item $\mathcal{R}: \mathcal{X} \to \R^m_{\geq 0}$ is the \emph{reproduction operator} (mapping behaviors back to funding).
+\end{enumerate}
+\end{definition}
+
+The full chain maps an initial funding allocation to a new funding allocation via beliefs and behavior.
+When $\bpc$ has a fixed point, the doxonomic system is in equilibrium: belief reproduces the conditions of its own production.
+
+\section{Stage 1: Funding Allocation}
+\label{sec:ch5-funding}
+
+The funding allocation operator $\mathcal{F}$ distributes total resources $F$ across channels according to a strategy $\sigma$:
+\[
+  \mathcal{F}(F, \sigma) = (\funding{1}, \ldots, \funding{m}) \quad \text{subject to} \quad \sum_k \funding{k} = F
+\]
+
+The strategy $\sigma$ may be the solution to the optimization problem in Proposition~\ref{prop:optimal-allocation}, or it may reflect institutional inertia, path dependence, or donor ideology.
+In practice, most doxonomic funding is not optimally allocated; it follows organizational routines.
+
+\section{Stage 2: Institutional Processing}
+\label{sec:ch5-processing}
+
+Each institution $\iota_k$ transforms funding and raw material into credentialed narrative output:
+\[
+  \mathcal{P}_k(\funding{k}) = (n_k, \credibility{k})
+\]
+where $n_k \in \narspace$ is the narrative output and $\credibility{k} \in [0,1]$ is its credibility weight.
+
+\begin{proposition}[Credibility Premium]
+\label{prop:credibility-premium}
+If two channels produce the same narrative $n$ but with credibility weights $\credibility{1} > \credibility{2}$, then the doxonomic effect satisfies
+\[
+  \Delta\belief{i}(\text{channel } 1) = \frac{\credibility{1}}{\credibility{2}} \cdot \Delta\belief{i}(\text{channel } 2)
+\]
+under the first-order model.
+High-credibility institutions thus provide a \emph{credibility premium}: the same narrative, laundered through a prestigious institution, has proportionally greater doxonomic force.
+\end{proposition}
+
+\section{Stage 3: Circulation}
+\label{sec:ch5-circulation}
+
+The circulation operator models how narratives reach populations.
+Let $e_{jk} \in \{0,1\}$ indicate whether individual $j$ is exposed to channel $k$.
+The exposure matrix $E = (e_{jk})$ determines who hears what.
+
+\begin{definition}[Exposure Distribution]
+\label{def:exposure}
+\index{exposure distribution}
+The \emph{exposure distribution} for belief $i$ is the vector $\bm{v}_i \in [0,1]^N$ where
+\[
+  v_{i,j} = 1 - \prod_{k=1}^{m} (1 - e_{jk} \cdot \relevance{k}{i})
+\]
+is the probability that individual $j$ encounters at least one narrative relevant to belief $i$.
+\end{definition}
+
+\section{Stage 4: Internalization}
+\label{sec:ch5-internalization}
+
+Internalization is the process by which exposure becomes credence.
+We model it as Bayesian updating with bounded attention:
+
+\[
+  \pi_j^{(t+1)}(p_i) = \frac{\pi_j^{(t)}(p_i) \cdot L_j(e_j \mid p_i)}{\pi_j^{(t)}(p_i) \cdot L_j(e_j \mid p_i) + (1 - \pi_j^{(t)}(p_i)) \cdot L_j(e_j \mid \neg p_i)}
+\]
+
+where $L_j$ is the likelihood function shaped by $j$'s exposure.
+When exposure is heavily skewed---when $j$ sees many more arguments for $p_i$ than against---the posterior converges toward $p_i$ regardless of the prior.
+
+\begin{conjecture}[Asymptotic Capture]
+\label{conj:asymptotic-capture}
+\index{asymptotic capture}
+Let agent $j$ receive a sequence of conditionally independent signals $(s_1, s_2, \ldots)$ where each $s_t$ supports $p_i$ with probability $q > 1/2$, drawn from a well-specified likelihood model.
+Assume the agent updates via Bayes' rule, does not discount sources, and does not revise the model itself.
+Then $\pi_j^{(t)}(p_i) \to 1$ almost surely as $t \to \infty$, regardless of the prior $\pi_j^{(0)}(p_i) > 0$.
+\end{conjecture}
+
+\begin{remark}
+The assumptions matter.
+In practice, agents discount unfamiliar sources, update models, experience motivated reasoning, and face correlated rather than independent signals.
+The conjecture identifies an idealized mechanism---asymmetric exposure can overwhelm priors---not a universal law.
+Repetition alone does not mathematically guarantee capture; it does so only under conditions that doxonomic systems are designed to approximate.
+\end{remark}
+
+This is the formal basis of common-sense capture through repetition: sufficiently asymmetric exposure, under favorable conditions, overwhelms any prior.
+
+\section{Stage 5: Behavioral Consequence}
+\label{sec:ch5-behavior}
+
+Internalized beliefs alter behavior.
+Let $x_j \in \mathcal{X}$ be the action of agent $j$.
+We model behavior as a function of beliefs:
+\[
+  x_j = \arg\max_{x \in \mathcal{X}} \, u_j(x, \pi_j)
+\]
+
+When the population internalizes the belief that humans are selfish, cooperation declines, which appears to confirm the belief---a self-fulfilling prophecy \autocite{fischbacher2001, henrich2001}.
+
+\section{Stage 6: Reproduction}
+\label{sec:ch5-reproduction}
+
+The final stage closes the loop.
+Behavioral patterns generate institutional demands, electoral outcomes, market structures, and philanthropic priorities that feed back into the funding vector.
+
+\begin{definition}[Doxonomic Equilibrium]
+\label{def:doxonomic-equilibrium}
+\index{doxonomic equilibrium}
+A \emph{doxonomic equilibrium} is a fixed point of the belief production chain:
+\[
+  \fundingvec^* = \bpc(\fundingvec^*)
+\]
+At equilibrium, the beliefs produced by the system generate exactly the behaviors and institutions that sustain those beliefs.
+\end{definition}
+
+\begin{conjecture}[Multiplicity of Equilibria]
+\label{conj:multiplicity}
+For most doxonomic systems, multiple equilibria exist.
+A society may be locked into a ``selfish human nature'' equilibrium or a ``cooperative human nature'' equilibrium, each self-sustaining.
+Transitions between equilibria require coordinated disruption of the belief production chain at multiple stages simultaneously.
+\end{conjecture}
+
+\section{Comparison with Input-Output Models}
+\label{sec:ch5-leontief}
+
+The belief production chain bears structural resemblance to Leontief input-output models in economics.
+In Leontief's framework, each sector's output is an input to other sectors, and equilibrium is a fixed point of the production matrix.
+
+\begin{model}[Doxonomic Input-Output]
+\label{mod:input-output}
+\index{input-output model}
+Let $\bm{A}$ be a matrix where $A_{ij}$ represents the fraction of channel $j$'s output that serves as input to channel $i$.
+The total narrative output vector $\bm{n}$ satisfies
+\[
+  \bm{n} = \bm{A}\bm{n} + \bm{d}
+\]
+where $\bm{d}$ is exogenous demand (direct funder injection).
+The solution, when $(\bm{I} - \bm{A})$ is invertible, is
+\[
+  \bm{n} = (\bm{I} - \bm{A})^{-1}\bm{d}
+\]
+The matrix $(\bm{I} - \bm{A})^{-1}$ is the \emph{doxonomic multiplier}: it shows how a unit injection of narrative through one channel amplifies through the system.
+\end{model}
+
+\section{The Full Chain Diagram}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=2cm and 2.5cm,
+  block/.style={draw, thick, rounded corners, minimum height=1.2cm, minimum width=2.8cm, align=center, font=\small},
+  op/.style={font=\footnotesize\itshape, midway, above},
+  arrow/.style={-Stealth, thick}
+]
+  \node[block] (F) {$\fundingvec \in \R^m_{\geq 0}$\\Funding};
+  \node[block, right=of F] (P) {$\insteco$\\Processing};
+  \node[block, right=of P] (N) {$\narspace$\\Narratives};
+  \node[block, below=of N] (C) {$E$\\Circulation};
+  \node[block, left=of C] (I) {$\beliefspace$\\Internalization};
+  \node[block, left=of I] (B) {$\mathcal{X}$\\Behavior};
+
+  \draw[arrow] (F) -- (P) node[op] {$\mathcal{F}$};
+  \draw[arrow] (P) -- (N) node[op] {$\mathcal{P}$};
+  \draw[arrow] (N) -- (C) node[op, right] {$\mathcal{C}$};
+  \draw[arrow] (C) -- (I) node[op] {$\mathcal{I}$};
+  \draw[arrow] (I) -- (B) node[op] {$\mathcal{B}$};
+  \draw[arrow, dashed] (B) -- (F) node[op] {$\mathcal{R}$};
+\end{tikzpicture}
+\end{center}
+
+\section{Notes and References}
+\label{sec:ch5-notes}
+
+The operator-composition framework is original to this text.
+The Leontief input-output analogy draws on standard economic input-output analysis \autocite{stiglitz2012}.
+Self-fulfilling beliefs in cooperation are documented in \textcite{fischbacher2001} and \textcite{henrich2001}.
+Threshold models of collective behavior originate with \textcite{granovetter1978} and \textcite{schelling1978}.
+Cascade models appear in \textcite{banerjee1992} and \textcite{bikhchandani1992}.
+The concept of doxonomic equilibrium as a fixed point connects to \textcite{north1990} on institutional equilibria.
+
+\section{Exercises}
+
+\begin{exercise}
+Compute the doxonomic multiplier $(\bm{I} - \bm{A})^{-1}$ for a system with three channels and the matrix
+\[
+  \bm{A} = \begin{pmatrix} 0 & 0.3 & 0.1 \\ 0.2 & 0 & 0.2 \\ 0.1 & 0.1 & 0 \end{pmatrix}
+\]
+Interpret the off-diagonal elements of the multiplier.
+\end{exercise}
+
+\begin{exercise}
+Show that if the reproduction operator $\mathcal{R}$ is continuous and the composed map $\bpc: K \to K$ for a compact convex set $K \subset \R^m_{\geq 0}$, then a doxonomic equilibrium exists (use Brouwer's fixed-point theorem).
+\end{exercise}
+
+\begin{exercise}
+Consider two competing belief production chains---one promoting ``human nature is selfish,'' the other promoting ``human nature is cooperative''---sharing the same population.
+Model this as a two-player game over funding allocations and characterize the Nash equilibrium.
+\end{exercise}
+
+\begin{exercise}
+Design a disruption strategy that breaks a self-reinforcing doxonomic equilibrium.
+At which stage of the chain is intervention most cost-effective?
+Argue formally.
+\end{exercise}

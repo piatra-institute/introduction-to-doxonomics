@@ -1,0 +1,184 @@
+% === Preamble for Introduction to Doxonomics ===
+
+% --- Encoding and fonts ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% --- Mathematics ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}              % bold math symbols
+\usepackage{mathrsfs}         % \mathscr
+\usepackage{stmaryrd}         % additional math symbols
+
+% --- Graphics and diagrams ---
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta,
+  calc,
+  positioning,
+  shapes.geometric,
+  shapes.misc,
+  fit,
+  backgrounds,
+  decorations.markings,
+  decorations.pathreplacing,
+  matrix,
+  chains,
+  graphs,
+  quotes,
+}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% --- Colors ---
+\usepackage{xcolor}
+\definecolor{doxoblue}{RGB}{31, 78, 121}
+\definecolor{doxogray}{RGB}{88, 88, 88}
+\definecolor{doxored}{RGB}{153, 42, 42}
+\definecolor{doxogreen}{RGB}{42, 111, 63}
+
+% --- Bibliography ---
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxbibnames=99,
+  maxcitenames=2,
+  giveninits=true,
+  uniquename=init,
+  dashed=false,
+]{biblatex}
+\addbibresource{bibliography/references.bib}
+
+% --- Cross-references and links ---
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=doxoblue,
+  citecolor=doxogreen,
+  urlcolor=doxored,
+}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+% --- Indexing ---
+\usepackage{makeidx}
+\makeindex
+
+% --- Epigraphs ---
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.7\textwidth}
+
+% --- Miscellaneous ---
+\usepackage{enumitem}
+\usepackage{microtype}
+
+% === Theorem-like environments ===
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{model}[theorem]{Model}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}[chapter]
+
+% === Doxonomics-specific notation ===
+
+% Belief strength
+\newcommand{\belief}[1]{B_{#1}}
+\newcommand{\beliefvec}{\bm{B}}
+
+% Funding flow
+\newcommand{\funding}[1]{F_{#1}}
+\newcommand{\fundingvec}{\bm{F}}
+
+% Channel credibility
+\newcommand{\credibility}[1]{C_{#1}}
+
+% Population reach
+\newcommand{\reach}[1]{P_{#1}}
+
+% Temporal persistence
+\newcommand{\persistence}[1]{T_{#1}}
+
+% Relevance
+\newcommand{\relevance}[2]{R_{#1,#2}}
+
+% Countervailing force
+\newcommand{\counter}[1]{X_{#1}}
+
+% Epistemic capital
+\newcommand{\ecap}{\mathcal{E}}
+
+% Narrative infrastructure
+\newcommand{\narr}{\mathcal{N}}
+
+% Doxonomic system
+\newcommand{\doxsys}{\mathfrak{D}}
+
+% Belief production chain
+\newcommand{\bpc}{\mathcal{B}}
+
+% Institutional ecology
+\newcommand{\insteco}{\mathcal{I}}
+
+% Epistemic concentration (Herfindahl-like)
+\newcommand{\ehhi}{\mathrm{EHI}}
+
+% Ideological ROI
+\newcommand{\iroi}{\mathrm{IROI}}
+
+% Doxa operator (maps resources to beliefs)
+\newcommand{\doxop}{\mathbf{D}}
+
+% Sheaf of local beliefs
+\newcommand{\sheaf}{\mathscr{F}}
+
+% Category of institutions
+\newcommand{\instcat}{\mathbf{Inst}}
+
+% Spaces
+\newcommand{\beliefspace}{\mathcal{B}}
+\newcommand{\narspace}{\mathcal{N}}
+\newcommand{\agentspace}{\mathcal{A}}
+
+% Operators
+\newcommand{\E}{\mathbb{E}}     % expectation
+\newcommand{\R}{\mathbb{R}}     % reals
+\newcommand{\N}{\mathbb{N}}     % naturals
+\newcommand{\Prob}{\mathbb{P}}  % probability
+
+% === Memoir adjustments ===
+
+% Chapter style
+\chapterstyle{veelo}
+
+% Page headers
+\pagestyle{headings}
+
+% Part page style
+\renewcommand{\partnamefont}{\normalfont\Large\scshape}
+\renewcommand{\partnumfont}{\normalfont\Large\scshape}
+\renewcommand{\parttitlefont}{\normalfont\Huge\bfseries}
+
+% Section depths
+\setsecnumdepth{subsection}
+\settocdepth{subsection}

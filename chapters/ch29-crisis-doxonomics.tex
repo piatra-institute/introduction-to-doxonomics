@@ -1,0 +1,87 @@
+\chapter{Crisis Doxonomics}
+\label{ch:crisis-doxonomics}
+
+\epigraph{In a crisis, the old world is dying and the new world struggles to be born. Now is the time of monsters.}{Antonio Gramsci (paraphrased)}
+
+\noindent
+Crises---wars, pandemics, economic collapses, ecological disasters---are periods of accelerated belief change.
+The normal inertia of common sense is temporarily suspended.
+This chapter analyzes the doxonomics of crisis: how fear amplifies narrative capture, how emergencies expand the Overton window, and how the aftermath determines which new common sense is installed.
+
+\section{Crisis as Phase Transition}
+\label{sec:ch29-phase}
+
+\begin{model}[Crisis Belief Dynamics]
+\label{mod:crisis}
+\index{crisis doxonomics}
+In normal times, belief changes slowly:
+\[
+  \frac{d\beliefvec}{dt} = \varepsilon \cdot f(\fundingvec, \beliefvec) \qquad \varepsilon \ll 1
+\]
+During a crisis, the time constant accelerates:
+\[
+  \frac{d\beliefvec}{dt} = f(\fundingvec, \beliefvec) \qquad (\varepsilon \to 1)
+\]
+The crisis does not change the structure of doxonomic dynamics; it changes their \emph{speed}.
+Beliefs that would take decades to shift can shift in months.
+\end{model}
+
+\section{Fear as Amplifier}
+\label{sec:ch29-fear}
+
+\begin{proposition}[Fear and Credibility Weighting]
+\label{prop:fear}
+\index{fear}
+Under conditions of threat, agents increase the credibility weight assigned to authority sources:
+\[
+  \credibility{k}^{\text{crisis}} = \credibility{k} + \eta \cdot \text{threat}(t)
+\]
+for institutional channels (government, experts, legacy media), while decreasing weights for unfamiliar or non-authoritative sources.
+This concentrates doxonomic power in established institutions during crises.
+\end{proposition}
+
+\section{Overton Window Shifts}
+\label{sec:ch29-overton}
+
+\begin{definition}[Overton Window]
+\label{def:overton}
+\index{Overton window}
+The \emph{Overton window} is the set of propositions $W \subset \narspace$ that are perceived as politically viable at time $t$.
+Propositions outside $W$ are ``unthinkable'' regardless of their merit.
+A crisis can shift $W$ dramatically, making previously unthinkable policies (surveillance, nationalization, border closure, universal basic income) temporarily thinkable.
+\end{definition}
+
+The doxonomic contest during a crisis is over which direction $W$ shifts.
+The group that captures the post-crisis narrative determines the new Overton window.
+
+\section{Notes and References}
+\label{sec:ch29-notes}
+
+On crisis and belief change, see \textcite{klein2007}.
+Gramsci's concept of interregnum connects to \textcite{gramsci1971}.
+The Overton window concept is from Joseph Overton (Mackinac Center, 2003).
+On emergency governance and narrative, see \textcite{lippmann1922} and \textcite{herman1988}.
+
+\section{Exercises}
+
+\begin{exercise}
+Using Model~\ref{mod:crisis}, analyze the COVID-19 pandemic as a doxonomic event.
+Which beliefs shifted rapidly?
+Which institutions captured the narrative?
+What new common sense was installed?
+\end{exercise}
+
+\begin{exercise}
+Estimate the Overton window before and after the 2008 financial crisis.
+Which propositions entered or exited the window?
+\end{exercise}
+
+\begin{exercise}
+Design a ``doxonomic preparedness'' framework for progressive movements.
+What narratives should be ready for deployment when the next crisis opens the Overton window?
+\end{exercise}
+
+\begin{exercise}
+Model two competing groups racing to capture the post-crisis narrative.
+Formalize as a game and identify the Nash equilibrium investment levels.
+\end{exercise}

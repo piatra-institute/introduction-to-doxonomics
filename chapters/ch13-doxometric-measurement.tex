@@ -1,0 +1,97 @@
+\chapter{Doxometric Measurement}
+\label{ch:doxometric-measurement}
+
+\epigraph{Not everything that counts can be counted, and not everything that can be counted counts.}{William Bruce Cameron}
+
+\noindent
+Doxonomics requires measurement.
+This chapter develops the theory of \emph{doxometrics}\index{doxometrics}: the quantitative measurement of public belief, its intensity, distribution, and institutional embeddedness.
+
+\section{What Counts as a Measurable Belief?}
+\label{sec:ch13-operationalization}
+
+\begin{definition}[Operationalized Belief]
+\label{def:operationalized}
+\index{operationalized belief}
+A belief $p$ is \emph{doxometrically operationalized} when there exists a measurement function $m: \text{Pop} \to [0,1]$ such that $m(j)$ approximates $\pi_j(p)$ with known reliability and validity.
+The population-level measure is $\hat{\mu}(p) = \frac{1}{N}\sum_{j=1}^N m(j)$.
+\end{definition}
+
+The central challenge: beliefs are latent variables.
+We observe responses (survey answers, behaviors, choices) and must infer the underlying credence.
+
+\section{Indicators and Proxies}
+\label{sec:ch13-indicators}
+
+Direct measurement of $\pi_j(p)$ is rarely possible.
+We distinguish:
+
+\begin{itemize}[nosep]
+  \item \textbf{Stated belief}: direct survey response (``Do you agree that human nature is selfish?'').
+  \item \textbf{Behavioral marker}: observed action consistent with $p$ (e.g., defection rates in public goods games as a proxy for selfishness belief).
+  \item \textbf{Revealed preference}: choices that imply $p$ (e.g., voting for policies consistent with $p$).
+  \item \textbf{Textual indicator}: frequency and framing of $p$ in media, social media, or institutional documents.
+\end{itemize}
+
+\begin{proposition}[Divergence of Indicators]
+\label{prop:divergence}
+Stated belief and behavioral markers may diverge systematically.
+A population may report cooperative values while behaving competitively (or vice versa).
+The gap $|m_{\text{stated}}(p) - m_{\text{behavioral}}(p)|$ is itself a doxonomic observable, measuring the depth of internalization.
+\end{proposition}
+
+\section{Latent Variable Models}
+\label{sec:ch13-latent}
+
+\begin{model}[Factor Model for Belief]
+\label{mod:factor}
+\index{latent variable model}
+Let $\bm{y}_j = (y_{j1}, \ldots, y_{jK})$ be $K$ observable indicators for agent $j$.
+The latent belief $\pi_j$ generates observables via
+\[
+  y_{jk} = \lambda_k \pi_j + \varepsilon_{jk}
+\]
+where $\lambda_k$ is the factor loading for indicator $k$ and $\varepsilon_{jk} \sim \mathcal{N}(0, \sigma_k^2)$ is measurement error.
+The latent belief is recovered as
+\[
+  \hat{\pi}_j = \frac{\sum_k \lambda_k y_{jk} / \sigma_k^2}{\sum_k \lambda_k^2 / \sigma_k^2}
+\]
+\end{model}
+
+\section{Composite Indices of Belief Dominance}
+\label{sec:ch13-composite}
+
+\begin{definition}[Doxonomic Dominance Index]
+\label{def:dominance-index}
+\index{dominance index}
+The \emph{doxonomic dominance index} for belief $p$ is
+\[
+  \mathrm{DDI}(p) = \alpha_1 \hat{\mu}(p) + \alpha_2 \cdot (1 - \mathrm{Var}(\hat{\pi})) + \alpha_3 \cdot \mathrm{InstEmbed}(p) + \alpha_4 \cdot \mathrm{MediaFreq}(p)
+\]
+where $\mathrm{InstEmbed}(p)$ measures how many institutions treat $p$ as operational truth and $\mathrm{MediaFreq}(p)$ is the normalized frequency of $p$ in public discourse.
+The weights $\alpha_i$ satisfy $\sum \alpha_i = 1$.
+\end{definition}
+
+\section{Notes and References}
+\label{sec:ch13-notes}
+
+Measurement theory for social science draws on \textcite{king1994}.
+Latent variable models are standard in psychometrics; see also \textcite{blei2003} for topic models as latent belief measurement.
+Behavioral measures of beliefs about cooperation are developed in \textcite{fischbacher2001} and \textcite{henrich2001}.
+Survey methodology for belief measurement connects to \textcite{salganik2018}.
+On the divergence between stated and revealed preferences, see \textcite{kahneman2011}.
+
+\section{Exercises}
+
+\begin{exercise}
+Design a five-item survey instrument to measure belief in selfish human nature.
+Specify the response format, argue for content validity, and describe how you would assess reliability.
+\end{exercise}
+
+\begin{exercise}
+Using the factor model, show that the reliability of the latent belief estimate $\hat{\pi}_j$ increases with the number of indicators $K$ and decreases with measurement error variance $\sigma_k^2$.
+\end{exercise}
+
+\begin{exercise}
+Compute the DDI for the belief ``markets are efficient'' using plausible estimates for each component.
+\end{exercise}

@@ -1,0 +1,113 @@
+\chapter{Text, Media, and Discourse Analysis}
+\label{ch:text-media}
+
+\epigraph{Language is not merely a tool for communication but a medium in which we live.}{Hans-Georg Gadamer}
+
+\noindent
+Narratives are made of text, images, and speech.
+Computational methods allow us to measure their frequency, framing, drift, and concentration at scale.
+This chapter introduces the text-as-data methods most relevant to doxonomics.
+
+\section{Corpus Construction}
+\label{sec:ch17-corpus}
+
+\begin{definition}[Doxonomic Corpus]
+\label{def:corpus}
+\index{corpus}
+A \emph{doxonomic corpus} for belief $p$ is a collection of documents $\mathcal{D} = \{d_1, \ldots, d_N\}$ drawn from the narrative infrastructure, annotated with metadata: source institution, date, channel, estimated audience, and funding source (where traceable).
+\end{definition}
+
+Corpus construction is not neutral.
+What you include determines what you can measure.
+A corpus of newspaper editorials captures elite narrative production; a corpus of social media posts captures peer-level circulation.
+Both are needed for a complete doxonomic analysis.
+
+\section{Framing Analysis}
+\label{sec:ch17-framing}
+
+\begin{definition}[Frame]
+\label{def:frame}
+\index{frame}
+A \emph{frame} for proposition $p$ is a function $f: p \to (C, N, S)$ mapping the proposition to a causal story $C$, a normative valence $N \in \{-1, 0, +1\}$, and a subject position $S$.
+Different frames for the same proposition can produce opposite doxonomic effects.
+\end{definition}
+
+\begin{example}
+The proposition ``unemployment is at 8\%'' can be framed as:
+\begin{itemize}[nosep]
+  \item $f_1$: ``the economy is recovering'' ($C$: trend is improving, $N = +1$),
+  \item $f_2$: ``millions remain without work'' ($C$: structural failure, $N = -1$).
+\end{itemize}
+Same fact, different doxonomic force.
+\end{example}
+
+\section{Topic Models}
+\label{sec:ch17-topic-models}
+
+\begin{model}[LDA for Doxonomic Analysis]
+\label{mod:lda}
+\index{topic model}
+Latent Dirichlet Allocation \autocite{blei2003} models each document $d$ as a mixture of topics $\theta_d \sim \mathrm{Dir}(\alpha)$, and each topic $k$ as a distribution over words $\phi_k \sim \mathrm{Dir}(\beta)$.
+In doxonomic application, topics correspond to narrative themes.
+Changes in topic prevalence $\theta_k(t)$ over time reveal which narratives are gaining or losing institutional support.
+\end{model}
+
+\section{Semantic Drift}
+\label{sec:ch17-drift}
+
+\begin{definition}[Narrative Drift]
+\label{def:drift}
+\index{semantic drift}
+The \emph{semantic drift} of a term or concept $w$ over period $[t_1, t_2]$ is
+\[
+  D(w) = 1 - \cos(\bm{v}_w(t_1), \bm{v}_w(t_2))
+\]
+where $\bm{v}_w(t)$ is the word embedding vector trained on the corpus from period $t$.
+High drift indicates that the meaning or connotation of $w$ has shifted---a potential marker of doxonomic intervention.
+\end{definition}
+
+\section{Information-Theoretic Measures}
+\label{sec:ch17-info-theory}
+
+\begin{definition}[Narrative Entropy]
+\label{def:narrative-entropy}
+\index{narrative entropy}
+The \emph{narrative entropy} of a discourse at time $t$ is
+\[
+  H(t) = -\sum_{k=1}^{K} p_k(t) \log p_k(t)
+\]
+where $p_k(t)$ is the prevalence of narrative frame $k$.
+Low entropy indicates narrative concentration (a few frames dominate); high entropy indicates pluralism \autocite{shannon1948}.
+\end{definition}
+
+\begin{proposition}[Entropy and Capture]
+\label{prop:entropy-capture}
+Common-sense capture (Definition~\ref{def:capture}) implies $H(t) < H^*$ for a critical threshold $H^*$: the narrative space has collapsed to a small number of dominant frames.
+Monitoring $H(t)$ over time provides an early warning of doxonomic capture.
+\end{proposition}
+
+\section{Notes and References}
+\label{sec:ch17-notes}
+
+Text-as-data methods are surveyed in \textcite{grimmer2013} and \textcite{gentzkow2019}.
+LDA is introduced in \textcite{blei2003}.
+Media slant measurement is developed in \textcite{gentzkow2010}.
+Information-theoretic approaches to discourse draw on \textcite{shannon1948}.
+For corpus-based social science, see \textcite{salganik2018}.
+
+\section{Exercises}
+
+\begin{exercise}
+Construct a small corpus of 20 editorials on a topic of your choice from two newspapers with different editorial stances.
+Apply framing analysis to identify the dominant frames in each.
+\end{exercise}
+
+\begin{exercise}
+Compute the narrative entropy $H(t)$ for U.S.\ media coverage of ``human nature'' using LDA topic proportions from a suitable corpus.
+How has entropy changed over the past 30 years?
+\end{exercise}
+
+\begin{exercise}
+Using word embeddings, measure the semantic drift of the term ``freedom'' between 1950 and 2020 in American political discourse.
+Interpret the drift doxonomically.
+\end{exercise}

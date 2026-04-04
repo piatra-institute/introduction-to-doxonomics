@@ -1,0 +1,123 @@
+\chapter{Causal Inference in Doxonomics}
+\label{ch:causal-inference}
+
+\epigraph{Correlation is not causation, but it sure is a hint.}{Edward Tufte}
+
+\noindent
+Doxonomics makes causal claims: funding \emph{causes} belief, institutions \emph{produce} narratives, exposure \emph{changes} behavior.
+These claims require rigorous causal methods.
+This chapter adapts the modern causal inference toolkit to the doxonomic setting.
+
+\section{The Potential Outcomes Framework}
+\label{sec:ch16-potential}
+
+\begin{definition}[Doxonomic Treatment Effect]
+\label{def:treatment-effect}
+\index{treatment effect}
+Let $Y_j(1)$ be agent $j$'s belief under exposure to narrative treatment and $Y_j(0)$ under control.
+The \emph{individual doxonomic treatment effect} is $\tau_j = Y_j(1) - Y_j(0)$.
+The \emph{average doxonomic treatment effect} is
+\[
+  \mathrm{ADTE} = \E[Y_j(1) - Y_j(0)]
+\]
+The fundamental problem: we observe either $Y_j(1)$ or $Y_j(0)$, never both \autocite{rubin2005}.
+\end{definition}
+
+\section{Natural Experiments}
+\label{sec:ch16-natural}
+
+Doxonomic natural experiments arise when narrative exposure varies for reasons unrelated to individual characteristics:
+\begin{itemize}[nosep]
+  \item media market boundaries that split otherwise similar populations \autocite{gentzkow2010},
+  \item the introduction or removal of a media outlet,
+  \item policy changes affecting advertising or educational content,
+  \item platform algorithm changes that alter exposure distributions.
+\end{itemize}
+
+\section{Difference-in-Differences}
+\label{sec:ch16-did}
+
+\begin{model}[Doxonomic DiD]
+\label{mod:did}
+\index{difference-in-differences}
+Let a new think tank begin operating in region $A$ but not in region $B$ at time $t_0$.
+The doxonomic effect is
+\[
+  \hat{\tau} = (\bar{Y}_{A,\text{post}} - \bar{Y}_{A,\text{pre}}) - (\bar{Y}_{B,\text{post}} - \bar{Y}_{B,\text{pre}})
+\]
+under the parallel trends assumption: absent treatment, beliefs in $A$ and $B$ would have evolved identically.
+\end{model}
+
+\section{Instrumental Variables}
+\label{sec:ch16-iv}
+
+\begin{definition}[Doxonomic Instrument]
+\label{def:instrument}
+\index{instrumental variable}
+An \emph{instrument} $Z$ for doxonomic exposure is a variable that:
+\begin{enumerate}[nosep]
+  \item is correlated with narrative exposure (relevance),
+  \item affects belief only through exposure (exclusion restriction),
+  \item is not correlated with unobserved confounders (independence).
+\end{enumerate}
+Example: distance to a university (affects exposure to academic narratives but not directly to beliefs about human nature).
+\end{definition}
+
+\section{Causal DAGs for Doxonomics}
+\label{sec:ch16-dags}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=2cm,
+  every node/.style={draw, circle, thick, minimum size=1.2cm, font=\small},
+  arrow/.style={-Stealth, thick}
+]
+  \node (F) {$F$};
+  \node[right=of F] (E) {$E$};
+  \node[right=of E] (B) {$B$};
+  \node[above=1cm of E] (U) {$U$};
+  \node[right=of B] (X) {$X$};
+
+  \draw[arrow] (F) -- (E) node[midway, below, draw=none, font=\footnotesize] {funding};
+  \draw[arrow] (E) -- (B) node[midway, below, draw=none, font=\footnotesize] {exposure};
+  \draw[arrow] (B) -- (X) node[midway, below, draw=none, font=\footnotesize] {belief};
+  \draw[arrow, dashed] (U) -- (E);
+  \draw[arrow, dashed] (U) -- (B);
+\end{tikzpicture}
+\end{center}
+
+Here $F$ is funding, $E$ is exposure, $B$ is belief, $X$ is behavior, and $U$ represents unobserved confounders (e.g., pre-existing ideology that affects both media choice and beliefs).
+The confounding path $E \leftarrow U \to B$ means naive regression of $B$ on $E$ is biased.
+An instrument that affects $E$ but not $U$ identifies the causal effect \autocite{pearl2009, angrist2009}.
+
+\section{Notes and References}
+\label{sec:ch16-notes}
+
+The potential outcomes framework is developed in \textcite{rubin2005} and \textcite{imbens2015}.
+Difference-in-differences is covered in \textcite{angrist2009}.
+DAGs and structural causal models are in \textcite{pearl2009}.
+Media market instruments for causal identification are used in \textcite{gentzkow2010}.
+Synthetic control methods are introduced in \textcite{abadie2010}.
+For an overview of modern causal methods, see \textcite{athey2017} and \textcite{morgan2015}.
+
+\section{Exercises}
+
+\begin{exercise}
+Design a difference-in-differences study to estimate the effect of a new cable news channel on beliefs about immigration.
+State the parallel trends assumption and discuss its plausibility.
+\end{exercise}
+
+\begin{exercise}
+Draw a causal DAG for the relationship between economics education, belief in selfish human nature, and cooperative behavior.
+Identify all confounding paths and propose an identification strategy.
+\end{exercise}
+
+\begin{exercise}
+Propose an instrumental variable for the effect of social media exposure on political beliefs.
+Verify the three IV conditions.
+\end{exercise}
+
+\begin{exercise}
+Using synthetic control, design a study to estimate the doxonomic effect of a country banning political advertising.
+What donor pool would you use?
+\end{exercise}

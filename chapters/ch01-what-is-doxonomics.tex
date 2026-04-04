@@ -1,0 +1,372 @@
+\chapter{What Is Doxonomics?}
+\label{ch:what-is-doxonomics}
+
+\epigraph{The most potent weapon in the hands of the oppressor is the mind of the oppressed.}{Steve Biko}
+
+\noindent
+Human beings do not merely inhabit economies and legal systems.
+They inhabit interpretive worlds: shared assumptions about what people are, what is possible, what is deserved, and what cannot be changed.
+These assumptions are rarely spontaneous.
+They are funded, repeated, institutionalized, and defended.
+
+\textbf{Doxonomics}\index{doxonomics} is the study of how material power shapes public belief.
+The term derives from the Greek \textit{doxa}---opinion, common belief, public orthodoxy---and denotes the systematic investigation of how beliefs become socially normal.
+Its central question is not whether a belief is true, but:
+
+\begin{quote}
+\textit{What did it cost to make this belief appear self-evident?}
+\end{quote}
+
+This question is not rhetorical.
+It is a research question with empirical content.
+Global advertising expenditure surpassed one trillion dollars in 2024.
+U.S.\ lobbying and political spending exceed tens of billions annually.
+Philanthropic grants to policy-oriented think tanks run into hundreds of millions per year, channeled through networks of foundations whose 990 filings are public record.
+University curricula shape the foundational assumptions of millions of students per decade.
+Platform algorithms determine which narratives reach which audiences at what frequency.
+Each of these is a measurable flow of resources into the production of belief---and none of them is systematically tracked by any existing discipline as a \emph{unified} phenomenon.
+
+Doxonomics proposes to track them.
+
+
+\section{The Object of Study}
+\label{sec:ch1-object}
+
+Modern societies devote enormous resources to the production of goods, laws, and infrastructures.
+They also devote immense resources to the production of legitimacy, resignation, aspiration, and moral common sense.
+A society does not only distribute wealth; it distributes interpretations of the world.
+Some interpretations are amplified until they appear obvious.
+Others are starved of attention until they appear unrealistic or unintelligible.
+
+Doxonomics studies this process.
+It asks how money becomes belief, how institutions become credibility, how repetition becomes reality, and how narratives become embedded in everyday life \autocite{bourdieu1991, herman1988}.
+
+Consider a concrete example.
+The proposition ``human nature is selfish'' is not merely a philosophical claim.
+It is an anthropological assumption embedded in economics curricula (taught to over ten million students per decade in the United States alone), management theory (principal-agent models presuppose worker self-interest), policy design (incentive-based regulation assumes that agents will not cooperate without material reward), advertising (which addresses the consumer as an isolated desire-maximizer), and popular culture (which narrates life as competition).
+Each of these institutional sites has a budget.
+Each produces narrative output.
+Each reaches an audience.
+The combined effect is an interpretive environment in which ``selfishness is natural'' operates as background reality rather than as a contestable claim.
+
+Is this belief \emph{true}?
+That is an empirical question---and the experimental evidence is considerably more nuanced than the institutional consensus suggests (Chapter~\ref{ch:human-nature}).
+But the doxonomic question is different: \emph{what institutional apparatus sustains this belief, at what cost, through which channels, and with what social effects?}
+
+\begin{definition}[Doxonomic System]
+\label{def:doxonomic-system}
+\index{doxonomic system}
+A \emph{doxonomic system} is a tuple
+\[
+  \doxsys = (\agentspace, \insteco, \narr, \beliefspace, \Phi, \Psi)
+\]
+where:
+\begin{itemize}[nosep]
+  \item $\agentspace$ is a set of agents (funders, intermediaries, audiences),
+  \item $\insteco$ is an institutional ecology (the ensemble of belief-processing institutions),
+  \item $\narr$ is a narrative space (the set of available narratives and framings),
+  \item $\beliefspace$ is a belief space (the space of possible population-level belief configurations),
+  \item $\Phi: \R^m_{\geq 0} \times \insteco \to \narr$ is the \emph{production function} mapping funding and institutions to narrative outputs,
+  \item $\Psi: \narr \times \beliefspace \to \beliefspace$ is the \emph{internalization function} mapping narrative exposure and prior beliefs to updated beliefs.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+This definition is deliberately abstract.
+It does not specify the internal structure of agents, the topology of the institutional ecology, or the dimensionality of the belief space.
+These are specified in later chapters as needed.
+The purpose of the tuple is to establish that doxonomics has a \emph{formal object}---not just a topic of conversation, but a mathematical structure that can be analyzed, compared, and measured.
+\end{remark}
+
+The aim is not conspiracy thinking.
+A doxonomic system need not have a single controller.
+Coordination may be deliberate, distributed, emergent, or structural.
+A belief can dominate because many institutions, each acting locally and rationally, produce the same directional effect.
+\textcite{herman1988} demonstrated this for media: five structural filters---ownership, advertising dependence, sourcing, flak, and ideological convergence---produce systematic bias without requiring any explicit coordination.
+Doxonomics generalizes this insight beyond media to the full institutional landscape of belief production.
+
+In this respect, doxonomics is closer to epidemiology than to melodrama.
+Epidemiology does not require a single villain who spreads disease.
+It maps transmission pathways, identifies risk factors, measures incidence, and designs interventions.
+Doxonomics does the same for belief.
+
+
+\section{The Core Conversion Problem}
+\label{sec:ch1-conversion}
+
+The foundational problem of doxonomics is the \textbf{conversion problem}\index{conversion problem}:
+
+\begin{quote}
+\textit{How are resources converted into durable public belief?}
+\end{quote}
+
+This conversion is never one-to-one.
+One million dollars spent on direct advertising is not equivalent to one million dollars spent on textbooks, academic chairs, or platform placement.
+Different channels have different reach, credibility, persistence, and downstream effects.
+A think-tank report that shapes a government white paper that shapes a curriculum guideline that shapes twenty years of classroom instruction has a different doxonomic trajectory than a viral social media post that is forgotten in a week.
+
+\begin{model}[First-Order Belief Equation]
+\label{mod:first-order}
+\index{belief equation}
+As a first approximation, the social strength of belief $i$ at time $t$ is
+\begin{equation}
+\label{eq:first-order}
+  \belief{i}(t) = \sum_{k=1}^{m} \funding{k}(t) \cdot \credibility{k} \cdot \relevance{k}{i} \cdot \reach{k} \cdot \persistence{k} - \counter{i}(t)
+\end{equation}
+where $\funding{k}(t)$ is funding through channel $k$, $\credibility{k}$ is the credibility weight of that channel, $\relevance{k}{i}$ is the relevance of channel $k$ to belief $i$, $\reach{k}$ is the population fraction reached, $\persistence{k}$ is the temporal persistence factor, and $\counter{i}(t)$ is the aggregate countervailing pressure against belief $i$.
+\end{model}
+
+This equation is a conceptual scaffold, not a mature model.
+It is linear, static, and treats parameters as exogenous constants when in reality they are endogenous, time-varying, and interdependent.
+Its purpose is to formalize a basic claim: beliefs are not just argued; they are \emph{financed exposures mediated by institutions}.
+Later chapters will replace this linear approximation with dynamical models (Chapter~\ref{ch:formal-models}), threshold effects (Chapter~\ref{ch:common-sense-capture}), and network diffusion (Chapter~\ref{ch:network-analysis}).
+
+Even in its crude form, the equation reveals something important.
+Consider two beliefs:
+\begin{itemize}[nosep]
+  \item $p_1$: ``human nature is selfish'' --- promoted through economics curricula ($\credibility{} \approx 0.9$, $\persistence{} \approx 30$ years), management training, advertising, and entertainment.
+  \item $p_2$: ``humans are conditional cooperators'' --- supported by experimental evidence but with minimal institutional infrastructure ($\funding{} \approx 0$, $\persistence{} \approx 0$).
+\end{itemize}
+The first-order model predicts $\belief{1} \gg \belief{2}$ regardless of the evidential merits of $p_1$ versus $p_2$.
+This is the asymmetry that doxonomics studies.
+
+\begin{remark}
+The equation should not be read as claiming that \emph{only} money matters.
+Evidence, lived experience, peer discussion, and individual reasoning all contribute to belief formation.
+But the equation identifies a structural advantage: beliefs with institutional support have a baseline ``subsidy'' that beliefs without institutional support lack.
+The playing field of ideas is not level; doxonomics measures the tilt.
+\end{remark}
+
+
+\section{The Belief Production Chain}
+\label{sec:ch1-chain}
+
+The full process from expenditure to social consequence is the \textbf{belief production chain}\index{belief production chain}.
+It consists of seven stages, each with its own logic, costs, and failure modes:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Funding}: resources are allocated to belief-production channels.
+  \item \textbf{Institutional processing}: institutions (universities, think tanks, media, PR firms) transform funding into credentialed narrative.
+  \item \textbf{Narrative output}: the processed material takes the form of research papers, op-eds, textbooks, films, curricula, advertisements, policy briefs.
+  \item \textbf{Circulation}: narratives reach audiences through media, education, social networks, and platform algorithms.
+  \item \textbf{Internalization}: audiences update their beliefs, norms, and practical dispositions in response to narrative exposure.
+  \item \textbf{Behavioral consequence}: internalized beliefs alter behavior---cooperation, voting, consumption, labor compliance, tolerance of inequality.
+  \item \textbf{Reproduction}: behavioral changes generate new institutional demands, electoral outcomes, and philanthropic priorities that feed back into the funding stage.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.8cm,
+  every node/.style={draw, rounded corners, minimum height=1cm, minimum width=2.2cm, align=center, font=\small},
+  arrow/.style={-Stealth, thick}
+]
+  \node (F) {Funding};
+  \node (I) [right=of F] {Institutional\\Processing};
+  \node (N) [right=of I] {Narrative\\Output};
+  \node (C) [right=of N] {Circulation};
+  \node (Int) [below=1.2cm of C] {Internalization};
+  \node (B) [left=of Int] {Behavioral\\Consequence};
+  \node (R) [left=of B] {Reproduction};
+
+  \draw[arrow] (F) -- (I);
+  \draw[arrow] (I) -- (N);
+  \draw[arrow] (N) -- (C);
+  \draw[arrow] (C) -- (Int);
+  \draw[arrow] (Int) -- (B);
+  \draw[arrow] (B) -- (R);
+  \draw[arrow, dashed] (R) -- (F) node[midway, draw=none, minimum height=0pt, minimum width=0pt, above, font=\footnotesize\itshape] {feedback};
+\end{tikzpicture}
+\end{center}
+
+The dashed feedback arrow is critical.
+When the chain closes---when the beliefs produced by the system generate exactly the behaviors and institutions that sustain those beliefs---the system reaches a \emph{doxonomic equilibrium}.
+At equilibrium, the belief appears to reproduce itself spontaneously, without visible effort.
+This is the condition that Bourdieu called \textit{doxa}: a belief so deeply embedded that it is no longer experienced as a belief at all.
+
+Chapter~\ref{ch:belief-production-chain} formalizes each stage as a mathematical operator and the full chain as their composition.
+
+\begin{example}[The Neoliberal Belief Production Chain]
+\label{ex:neoliberal-chain}
+The belief ``markets are the most efficient allocators of resources'' can be traced through a concrete chain:
+\begin{enumerate}[nosep]
+  \item \textbf{Funding}: Koch, Scaife, Olin, and Bradley foundations directed hundreds of millions of dollars into free-market intellectual infrastructure from the 1970s onward \autocite{mayer2016}.
+  \item \textbf{Institutional processing}: Heritage Foundation, Cato Institute, American Enterprise Institute, and Mont P\`{e}lerin Society produced research, policy briefs, and expert testimony \autocite{mirowski2009}.
+  \item \textbf{Narrative output}: op-eds, books (\textit{Free to Choose}, \textit{The Road to Serfdom}), textbooks (Mankiw's \textit{Principles of Economics}), and television programs.
+  \item \textbf{Circulation}: editorial pages of \textit{Wall Street Journal}, \textit{Financial Times}; economics curricula at thousands of universities; cable news; social media.
+  \item \textbf{Internalization}: generations of students, policymakers, journalists, and voters absorbed market-efficiency assumptions as common sense.
+  \item \textbf{Behavioral consequence}: deregulation, privatization, austerity, reduced union membership, increased tolerance for inequality.
+  \item \textbf{Reproduction}: beneficiaries of deregulation and low taxation reinvested in the same think tanks and foundations, closing the loop.
+\end{enumerate}
+This is not a conspiracy theory.
+It is a documented institutional history with named actors, traceable funding, and measurable outcomes.
+The doxonomic contribution is to treat it as a \emph{system} with formal structure, not merely as a sequence of political events.
+\end{example}
+
+
+\section{What Doxonomics Is Not}
+\label{sec:ch1-is-not}
+
+Several misreadings should be preempted.
+
+\textbf{Doxonomics is not a claim that all beliefs are manufactured.}
+Many beliefs arise from direct experience, logical inference, or scientific investigation.
+Doxonomics studies the \emph{differential amplification} of beliefs---the fact that some beliefs receive vastly more institutional support than others---not the claim that evidence is irrelevant.
+
+\textbf{Doxonomics is not a claim that truth is reducible to power.}
+A belief can be both true and heavily funded, or false and poorly funded, or any combination.
+The doxonomic audit reveals the material scaffolding of belief; the epistemic evaluation remains a separate task.
+Chapter~\ref{ch:ontology-belief} develops this distinction in detail.
+
+\textbf{Doxonomics is not a claim that people are passive.}
+Audiences interpret, resist, reinterpret, ignore, and subvert the narratives they encounter.
+A doxonomic system that spends billions may still fail to achieve capture---and understanding why it fails is as important as understanding why it succeeds.
+The field studies production, not automatic absorption.
+
+\textbf{Doxonomics is not conspiracy theory.}
+Conspiracy theories posit secret coordination by a small group.
+Doxonomic systems can operate through open, legal, well-documented institutional processes.
+The funding is often on public record (IRS 990 filings, lobbying disclosures, advertising expenditure reports).
+The coordination is often structural (shared incentives, overlapping networks, common training) rather than secret.
+The analogy is market competition: firms in the same industry produce similar products not because they conspire, but because they face similar incentives.
+
+
+\section{Scope and Limits}
+\label{sec:ch1-scope}
+
+\begin{principle}[Scope of Doxonomics]
+\label{prin:scope}
+Doxonomics studies the \emph{differential amplification} of beliefs: the mechanisms by which some beliefs receive vastly more institutional support, repetition, and prestige than others, and the social consequences of this asymmetry.
+\end{principle}
+
+The scope is deliberately limited.
+Doxonomics does not attempt to explain all belief formation.
+It does not replace psychology (which studies individual cognition), epistemology (which studies the conditions for justified belief), or political theory (which studies the legitimacy of institutional arrangements).
+It adds something that none of these fields provides: a systematic accounting of the material infrastructure of public belief.
+
+A society that can estimate inflation, unemployment, and carbon intensity, but cannot estimate the industrial production of its own common sense, remains partially blind to itself.
+Doxonomics seeks to reduce that blindness.
+
+
+\section{Neighboring Fields and the Distinctive Contribution}
+\label{sec:ch1-neighbors}
+
+Doxonomics draws on and extends several existing disciplines, but is identical to none of them.
+
+\begin{center}
+\begin{tikzpicture}[
+  field/.style={draw, rounded corners, minimum width=3.5cm, minimum height=0.7cm, align=center, font=\small},
+  note/.style={font=\small, text width=6cm, align=left},
+]
+\matrix[row sep=0.5cm, column sep=0.4cm] {
+  \node[field] {Political Economy}; &
+  \node[note] {Studies material power but not its conversion into common sense.}; \\
+  \node[field] {Sociology of Knowledge}; &
+  \node[note] {Studies social formation of ideas but rarely performs financial accounting.}; \\
+  \node[field] {Media Studies}; &
+  \node[note] {Analyzes representation but not which representations are subsidized.}; \\
+  \node[field] {Propaganda Studies}; &
+  \node[note] {Maps persuasion techniques but often lacks formal models.}; \\
+  \node[field] {Social Epistemology}; &
+  \node[note] {Studies collective knowledge but not its material infrastructure.}; \\
+  \node[field] {Behavioral Economics}; &
+  \node[note] {Studies cognitive bias but not the institutional environment that exploits it.}; \\
+  \node[field, fill=doxoblue!15] {\textbf{Doxonomics}}; &
+  \node[note] {\textbf{Integrates all of the above around explicit accounting of material support, institutional routing, and measurable belief effects.}}; \\
+};
+\end{tikzpicture}
+\end{center}
+
+The distinctive contribution is the insistence on \emph{accounting}: tracing specific dollar amounts through specific institutions to specific narrative outputs with measurable effects on specific populations.
+This is what makes doxonomics a potential science rather than a critical commentary.
+
+
+\section{The Structure of This Book}
+\label{sec:ch1-structure}
+
+The book proceeds in five parts.
+
+\textbf{Part~I (Foundations)} establishes the conceptual base: the ontology of belief, the intellectual prehistory, the core units of analysis, and the belief production chain.
+
+\textbf{Part~II (Concepts and Models)} develops the formal apparatus: epistemic capital, narrative infrastructure, common-sense capture, doxonomic power, the economics of belief production, dynamical models, and sheaf-theoretic coherence.
+
+\textbf{Part~III (Methods)} introduces the empirical toolkit: doxometric measurement, belief-flow accounting, network analysis, causal inference, text analysis, historical methods, experimental design, and model validation.
+
+\textbf{Part~IV (Applications)} applies the machinery to specific domains: selfish-human-nature narratives, meritocracy, consumerism, inequality, race and coloniality, austerity, work discipline, national myth, technology, and crisis.
+
+\textbf{Part~V (Resistance, Repair, and Reconstruction)} turns to counter-strategies, epistemic democracy, belief ecology design, ethics, and open problems.
+
+Throughout, interactive \emph{playgrounds} allow the reader to manipulate funding parameters, simulate diffusion, and test model sensitivity.
+These are available at the Piatra Institute's companion site.
+
+
+\section{Notes and References}
+\label{sec:ch1-notes}
+
+The concept of belief as a social product has deep roots.
+\textcite{marx1846} argued that the ruling ideas of any epoch are the ideas of the ruling class.
+\textcite{gramsci1971} developed this into a theory of hegemony---the production of consent through civil society rather than through coercion alone.
+\textcite{bourdieu1984} introduced the concept of \textit{doxa} as the unquestioned background of social life, extended in \textcite{bourdieu1991} to the analysis of language and symbolic power.
+\textcite{berger1966} provided the foundational account of reality as a social construction.
+\textcite{mannheim1936} developed the sociology of knowledge as a systematic discipline.
+\textcite{althusser1970} formalized the concept of ideological state apparatuses.
+
+On the media side, \textcite{lippmann1922} pioneered the analysis of how media manufactures public opinion.
+\textcite{herman1988} provided the most systematic media-level account with the propaganda model.
+\textcite{ellul1965} analyzed propaganda as a total social phenomenon, not merely a state tool.
+The conversion problem connects to \textcite{bernays1928} on the engineering of consent.
+For the economic logic of belief subsidies, see \textcite{coase1974} and \textcite{stigler1961}.
+
+On the institutional history of specific belief production systems, \textcite{mirowski2009} traces the Mont P\`{e}lerin Society and the construction of neoliberal common sense.
+\textcite{mayer2016} documents the dark-money networks behind American conservative ideology.
+\textcite{oreskes2010} details the manufacture of doubt about climate science and tobacco harms.
+\textcite{slobodian2018} provides a complementary genealogy of neoliberal internationalism.
+
+
+\section{Exercises}
+
+\begin{exercise}
+\label{ex:ch1-identify}
+Identify three widely held beliefs in your society that present themselves as descriptions of human nature or social reality (e.g., ``competition drives excellence,'' ``there is no alternative to the market'').
+For each, list two institutions that regularly repeat them and estimate (order of magnitude) the annual budget of those institutions.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch1-equation}
+Using the first-order belief equation~\eqref{eq:first-order}, argue qualitatively why a belief can persist even when the underlying evidence shifts against it, provided $\funding{k}$ and $\persistence{k}$ remain high.
+Give a real-world example.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch1-chain}
+Consider the belief ``markets are self-correcting.''
+Map it onto the belief production chain, identifying at least one concrete actor or institution at each stage.
+Where is the chain strongest?
+Where is it most vulnerable to disruption?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch1-tuple}
+Extend Definition~\ref{def:doxonomic-system} to include a \emph{resistance function} $\Omega: \beliefspace \to \R^m_{\geq 0}$ that models how population beliefs generate counter-pressure on funding channels.
+Write down a fixed-point condition for equilibrium and discuss what it would mean for a society to be at such a fixed point.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch1-comparison}
+Choose a belief that has \emph{lost} institutional support over the past century (e.g., the divine right of kings, explicit racial hierarchy as scientific consensus, the gold standard as natural law).
+Trace its decline through the belief production chain.
+At which stage did the chain break first?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch1-nonmonetary}
+Identify a doxonomic system that operates primarily through non-monetary channels---for example, family socialization, religious ritual, or architectural design.
+How would you modify Definition~\ref{def:doxonomic-system} to accommodate non-monetary resource flows?
+What does this reveal about the limits of a funding-centered framework?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch1-epidemiology}
+The text compares doxonomics to epidemiology.
+Push the analogy further: what would the doxonomic equivalents of ``pathogen,'' ``transmission vector,'' ``incubation period,'' ``herd immunity,'' and ``vaccination'' be?
+Where does the analogy break down?
+\end{exercise}

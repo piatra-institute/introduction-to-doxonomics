@@ -1,0 +1,113 @@
+\chapter{Model Validation and Epistemic Humility}
+\label{ch:model-validation}
+
+\epigraph{The only useful function of a statistician is to make predictions, and thus to provide a basis for action.}{W.\ Edwards Deming}
+
+\noindent
+Doxonomics makes strong claims about the causal structure of belief.
+These claims must be testable, falsifiable, and honest about their limitations.
+This chapter develops the tools for validating doxonomic models and the discipline to admit when they fail.
+
+\section{Uncertainty Quantification}
+\label{sec:ch20-uncertainty}
+
+\begin{principle}[Doxonomic Uncertainty]
+\label{prin:uncertainty}
+Every doxonomic estimate---of funding, belief prevalence, causal effects---must be accompanied by a quantified uncertainty.
+Point estimates without confidence intervals are not doxonomic science.
+\end{principle}
+
+\begin{definition}[Doxonomic Uncertainty Interval]
+\label{def:uncertainty-interval}
+A $100(1-\alpha)\%$ uncertainty interval for a doxonomic parameter $\theta$ can be constructed in two frameworks:
+\begin{itemize}[nosep]
+  \item \textbf{Frequentist (confidence interval)}: the procedure $[\hat{\theta}_L, \hat{\theta}_U]$ is calibrated so that, over repeated sampling, the interval contains the true $\theta$ at least $100(1-\alpha)\%$ of the time.
+  The probability statement is about the procedure, not about $\theta$ lying in any particular realized interval.
+  \item \textbf{Bayesian (credible interval)}: given a prior $\pi(\theta)$ and data $y$, the interval $[\theta_L, \theta_U]$ satisfies $\Prob(\theta_L \leq \theta \leq \theta_U \mid y) \geq 1 - \alpha$ under the posterior.
+  The probability statement is about $\theta$ conditional on the observed data.
+\end{itemize}
+Doxonomic research should specify which framework is in use.
+Given the typically small samples and strong prior information in doxonomic studies, Bayesian credible intervals are often more appropriate.
+\end{definition}
+
+\section{Overfitting Ideological Explanations}
+\label{sec:ch20-overfitting}
+
+\begin{definition}[Doxonomic Overfitting]
+\label{def:overfitting}
+\index{overfitting}
+A doxonomic model \emph{overfits} if it explains observed patterns in a specific dataset (e.g., media coverage correlates with funding) but fails to predict out-of-sample---because the apparent pattern reflects noise, selection, or post hoc rationalization rather than genuine causal structure.
+\end{definition}
+
+Doxonomics is especially vulnerable to overfitting because:
+\begin{itemize}[nosep]
+  \item the dependent variable (public belief) is influenced by many factors beyond doxonomic investment,
+  \item funding data is incomplete, introducing measurement error,
+  \item the analyst's own priors may favor ideological explanations.
+\end{itemize}
+
+\section{Robustness Checks}
+\label{sec:ch20-robustness}
+
+\begin{model}[Sensitivity Analysis]
+\label{mod:sensitivity}
+\index{sensitivity analysis}
+Following \textcite{rosenbaum2002}, a sensitivity analysis asks: how large would an unobserved confounder $U$ have to be to explain away the estimated doxonomic effect?
+Define the sensitivity parameter $\Gamma$ as the maximum ratio of treatment odds due to $U$:
+\[
+  \frac{1}{\Gamma} \leq \frac{\Prob(T=1 \mid x, U=1) / \Prob(T=0 \mid x, U=1)}{\Prob(T=1 \mid x, U=0) / \Prob(T=0 \mid x, U=0)} \leq \Gamma
+\]
+The doxonomic conclusion is robust if it holds for $\Gamma$ up to a plausible range.
+\end{model}
+
+\section{Triangulation}
+\label{sec:ch20-triangulation}
+
+\begin{principle}[Doxonomic Triangulation]
+\label{prin:triangulation}
+\index{triangulation}
+A doxonomic claim is strengthened when it is supported by multiple independent methods: accounting evidence (money was spent), network evidence (institutional connections exist), causal evidence (exposure changes beliefs), textual evidence (narratives shifted), and historical evidence (the timing fits).
+No single method is sufficient.
+\end{principle}
+
+\section{When Not to Claim Causality}
+\label{sec:ch20-limits}
+
+\begin{principle}[Epistemic Humility]
+\label{prin:humility}
+\index{epistemic humility}
+A doxonomic analysis should explicitly state:
+\begin{enumerate}[nosep]
+  \item what it has shown (e.g., correlation between funding and belief prevalence),
+  \item what it assumes (e.g., no unobserved confounders, stable structural relationships),
+  \item what it has \emph{not} shown (e.g., that the funding caused the belief shift rather than the reverse).
+\end{enumerate}
+Over-claiming undermines the field's credibility---its own epistemic capital.
+\end{principle}
+
+\section{Notes and References}
+\label{sec:ch20-notes}
+
+Model selection and validation are covered in \textcite{freedman2009}.
+Sensitivity analysis is developed in \textcite{rosenbaum2002}.
+On the limits of causal inference in social science, see \textcite{manski1993}.
+Bayesian model comparison is treated in standard references.
+For triangulation methodology, see \textcite{king1994} and \textcite{morgan2015}.
+
+\section{Exercises}
+
+\begin{exercise}
+Take a published claim of the form ``think-tank funding increased public support for deregulation'' and design a sensitivity analysis.
+For what values of $\Gamma$ does the claim survive?
+\end{exercise}
+
+\begin{exercise}
+Describe a doxonomic hypothesis that is unfalsifiable in practice.
+Why is unfalsifiability a problem for the field?
+How would you reformulate the hypothesis to make it testable?
+\end{exercise}
+
+\begin{exercise}
+Design a triangulation strategy for the claim that economics education increases belief in selfish human nature.
+Identify at least four independent lines of evidence.
+\end{exercise}

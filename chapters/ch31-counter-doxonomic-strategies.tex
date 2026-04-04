@@ -1,0 +1,87 @@
+\chapter{Counter-Doxonomic Strategies}
+\label{ch:counter-doxonomic}
+
+\epigraph{The master's tools will never dismantle the master's house.}{Audre Lorde}
+
+\noindent
+If beliefs can be produced, they can also be contested.
+This chapter analyzes strategies for resisting, disrupting, and replacing dominant doxonomic regimes.
+
+\section{Alternative Media and Parallel Institutions}
+\label{sec:ch31-alternatives}
+
+\begin{definition}[Counter-Doxonomic Institution]
+\label{def:counter-institution}
+\index{counter-doxonomics}
+A \emph{counter-doxonomic institution} is an organization that produces narratives opposing the dominant regime, operating through alternative channels with independent funding.
+\end{definition}
+
+The challenge: counter-doxonomic institutions typically have orders-of-magnitude less funding than the systems they oppose.
+This asymmetry demands efficiency---maximizing $\iroi$ per dollar.
+
+\section{Pedagogical Interventions}
+\label{sec:ch31-pedagogy}
+
+\textcite{freire1968} developed ``critical pedagogy'': education designed to reveal the social construction of common sense.
+In doxonomic terms, Freire's method attacks the internalization stage of the belief production chain by making the chain itself visible.
+
+\section{Optimal Allocation of Counter-Resources}
+\label{sec:ch31-optimal}
+
+\begin{model}[Counter-Doxonomic Optimization]
+\label{mod:counter-optimal}
+\index{counter-doxonomics!optimization}
+Given a total counter-doxonomic budget $F_C \ll F_D$ (much less than the dominant regime's budget), the counter-movement solves:
+\[
+  \max_{\fundingvec_C} \; \Delta\belief{C} = \sum_k \funding{k}^C \cdot \credibility{k}^C \cdot \reach{k}^C \cdot \persistence{k}^C
+\]
+subject to $\sum_k \funding{k}^C = F_C$.
+The optimal strategy typically concentrates resources on high-credibility, high-persistence channels (education, community organizations) rather than competing directly on reach with the dominant regime's mass media.
+\end{model}
+
+\begin{proposition}[Asymmetric Warfare in Belief Space]
+\label{prop:asymmetric}
+Counter-doxonomic movements are most effective when they:
+\begin{enumerate}[nosep]
+  \item target the \emph{weakest link} in the dominant belief production chain,
+  \item exploit credibility asymmetries (authentic experience vs.\ corporate messaging),
+  \item invest in persistence over reach (deep education vs.\ viral campaigns),
+  \item build parallel institutional infrastructure rather than only critiquing existing infrastructure.
+\end{enumerate}
+\end{proposition}
+
+\section{Narrative Inoculation}
+\label{sec:ch31-inoculation}
+
+\begin{definition}[Narrative Inoculation]
+\label{def:inoculation}
+\index{narrative inoculation}
+\emph{Narrative inoculation} is preemptive exposure to a weakened form of a dominant narrative, accompanied by refutation, so that subsequent full-strength exposure is less effective.
+Formally, it reduces the susceptibility parameter $\alpha$ in the SIR model (Model~\ref{mod:sir-belief}).
+\end{definition}
+
+\section{Notes and References}
+\label{sec:ch31-notes}
+
+Critical pedagogy draws on \textcite{freire1968} and \textcite{illich1971}.
+On alternative media, see \textcite{benkler2006}.
+Counter-hegemonic strategy is theorized in \textcite{gramsci1971}.
+Narrative inoculation is studied in psychology \autocite{mcguire1964, vanderlinden2022}.
+For utopian institution-building, see \textcite{wright2010}.
+
+\section{Exercises}
+
+\begin{exercise}
+Given a counter-doxonomic budget of \$5M/year, design an allocation strategy across education, media, and community organizing to shift belief in selfish human nature.
+Justify your allocation using the IROI framework.
+\end{exercise}
+
+\begin{exercise}
+Design a narrative inoculation program for high school students to build resistance to advertising-driven consumerism.
+Specify the curriculum and predict the effect on subsequent consumer behavior.
+\end{exercise}
+
+\begin{exercise}
+Analyze a historical counter-doxonomic movement (e.g., the labor movement's challenge to laissez-faire ideology).
+What strategies succeeded and why?
+\end{exercise}

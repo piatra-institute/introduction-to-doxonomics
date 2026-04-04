@@ -1,0 +1,132 @@
+\chapter{Human Nature as a Managed Narrative}
+\label{ch:human-nature}
+
+\epigraph{It is not that people are either good or bad by nature, but that they can be made more selfish or more cooperative by the stories they are told about themselves.}{Samuel Bowles}
+
+\noindent
+This is the signature chapter of the book.
+The belief that ``human nature is selfish'' is among the most consequential doxonomic products of the modern era: an anthropological regime reinforced through centuries of institutional investment, whose self-fulfilling properties make it appear to confirm itself.
+Whether it is \emph{the} most consequential---more than racial hierarchy, national myth, or religious cosmology---is a comparative question this chapter does not attempt to settle.
+What it does attempt is a detailed doxonomic analysis of one regime whose mechanisms are well-documented and whose effects are measurable.
+
+\section{The Claim and the Evidence}
+\label{sec:ch21-evidence}
+
+The dominant anthropological regime in Western market societies holds that:
+\begin{enumerate}[nosep]
+  \item humans are fundamentally self-interested,
+  \item cooperation requires external enforcement (contracts, laws, incentives),
+  \item altruism is either disguised self-interest or evolutionarily marginal.
+\end{enumerate}
+
+The experimental evidence does not support these claims as a complete anthropology, though it does not deny that self-interest, status competition, and opportunism are real human tendencies.
+\textcite{fischbacher2001} showed that the majority of participants in public goods games are \emph{conditional cooperators}: they cooperate when they expect others to cooperate.
+Only about 30\% behave as consistent free riders.
+\textcite{henrich2001} demonstrated cross-cultural generosity in ultimatum and dictator games---people in diverse societies routinely reject pure self-interest, though the degree varies with institutional context.
+\textcite{bowles2011} synthesized evidence that cooperation is a fundamental, evolved human capacity, coexisting with competition and conflict rather than replacing them.
+\textcite{ostrom1990} documented communities successfully managing commons without external enforcement for centuries.
+
+The doxonomic point is not that humans are ``fundamentally cooperative'' (which would be an equal and opposite oversimplification) but that the dominant regime selectively amplifies one real tendency while suppressing evidence of others.
+The best available anthropology is that humans are \emph{conditionally cooperative}: capable of both selfishness and solidarity, with the balance depending heavily on institutional design, narrative environment, and perceived norms \autocite{gintis2005}.
+
+\section{The Doxonomic Construction of Homo Economicus}
+\label{sec:ch21-homo-economicus}
+
+\begin{definition}[Homo Economicus as Anthropological Regime]
+\label{def:homo-economicus}
+\index{homo economicus}
+\emph{Homo economicus} is the anthropological regime $\alpha_{\text{HE}}$ defined by:
+motivational theory = rational self-interest,
+social ontology = isolated individuals,
+capacity claim = collective action requires external incentives.
+\end{definition}
+
+This regime did not become dominant through evidence.
+It became dominant through institutional investment:
+\begin{itemize}[nosep]
+  \item economics curricula teach self-interest as the behavioral foundation (over 10 million students per decade in the U.S.\ alone),
+  \item management theory adopts principal-agent models premised on worker selfishness,
+  \item policy design assumes self-interest (incentive-based regulation, privatization),
+  \item popular culture reinforces competition narratives (``survival of the fittest'').
+\end{itemize}
+
+\section{The Self-Fulfilling Prophecy}
+\label{sec:ch21-self-fulfilling}
+
+\begin{theorem}[Doxonomic Self-Fulfillment]
+\label{thm:self-fulfilling}
+\index{self-fulfilling prophecy}
+Let agents be conditional cooperators who cooperate when $\hat{\mu}_j(\text{cooperate}) > \tau_j$.
+If a doxonomic intervention reduces $\hat{\mu}_j(\text{cooperate})$ by shifting perceived norms, then:
+\begin{enumerate}[nosep]
+  \item fewer agents cooperate,
+  \item this confirms the narrative (``see, people are selfish''),
+  \item which further reduces $\hat{\mu}_j(\text{cooperate})$,
+  \item producing a downward spiral until the low-cooperation equilibrium is reached.
+\end{enumerate}
+Formally, the dynamics satisfy $\mu^{(t+1)}_{\text{coop}} = G(\hat{\mu}^{(t)}_{\text{coop}})$ where $G$ is increasing and $\hat{\mu}^{(t)}$ is biased downward by the doxonomic intervention.
+\end{theorem}
+
+This is the most dangerous property of selfishness narratives: they generate the evidence for their own truth.
+
+\section{Two Competing Regimes}
+\label{sec:ch21-competition}
+
+\begin{model}[Anthropological Regime Competition]
+\label{mod:regime-competition}
+\index{anthropological regime!competition}
+Let $\belief{S}(t)$ be the prevalence of the selfish regime and $\belief{C}(t) = 1 - \belief{S}(t)$ the cooperative alternative.
+The dynamics are:
+\begin{align}
+  \frac{d\belief{S}}{dt} &= \belief{S}\bigl(\alpha_S \phi_S - \gamma_S - \beta_{SC}\belief{C}\bigr) \\
+  \frac{d\belief{C}}{dt} &= \belief{C}\bigl(\alpha_C \phi_C - \gamma_C - \beta_{CS}\belief{S}\bigr)
+\end{align}
+where $\phi_S \gg \phi_C$ reflects the massive funding asymmetry.
+Even if the cooperative regime has lower intrinsic decay ($\gamma_C < \gamma_S$) and stronger peer reinforcement ($\beta_{CS} < \beta_{SC}$), the funding advantage can ensure selfish-regime dominance.
+\end{model}
+
+\begin{proposition}[Funding Threshold for Regime Change]
+\label{prop:funding-threshold}
+The cooperative regime displaces the selfish regime if and only if
+\[
+  \alpha_C \phi_C > \gamma_C + \beta_{CS} \cdot \belief{S}^*
+\]
+where $\belief{S}^*$ is the current selfish-regime prevalence.
+This gives a concrete estimate of the \emph{counter-doxonomic investment} required for regime change.
+\end{proposition}
+
+\section{Notes and References}
+\label{sec:ch21-notes}
+
+This chapter draws heavily on \textcite{bowles2011}, \textcite{fischbacher2001}, \textcite{henrich2001}, and \textcite{ostrom1990}.
+On the indoctrination effect of economics education, see \textcite{frank2020} and \textcite{baier2023}.
+The institutional history of homo economicus is traced in \textcite{mirowski2009}.
+Self-fulfilling beliefs are modeled in \textcite{schelling1978}.
+On the alternative cooperative anthropology, see \textcite{gintis2005} and \textcite{nowak2006}.
+
+\section{Exercises}
+
+\begin{exercise}
+Using Proposition~\ref{prop:funding-threshold}, estimate the annual counter-doxonomic investment needed to shift the U.S.\ anthropological regime from selfish to cooperative.
+State your assumptions explicitly.
+\end{exercise}
+
+\begin{exercise}
+Design an experiment to test the self-fulfilling prophecy of selfishness narratives.
+Randomly expose groups to different anthropological narratives and measure cooperation in subsequent public goods games.
+\end{exercise}
+
+\begin{exercise}
+Construct a doxonomic account (Chapter~\ref{ch:belief-flow-accounting}) for the belief ``human nature is selfish,'' identifying at least five funding channels and estimating their annual expenditure.
+\end{exercise}
+
+\begin{exercise}
+Argue that the self-fulfilling property of selfishness beliefs creates a \emph{doxonomic trap}: a locally stable equilibrium that is globally suboptimal.
+Under what conditions can the trap be escaped?
+\end{exercise}
+
+\begin{exercise}
+Compare the doxonomic investment in ``humans are selfish'' with the investment in ``humans are cooperative.''
+What is the funding ratio?
+What does this imply about the epistemic status of the dominant regime?
+\end{exercise}

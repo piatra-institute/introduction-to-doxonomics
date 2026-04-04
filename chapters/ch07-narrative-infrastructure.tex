@@ -1,0 +1,122 @@
+\chapter{Narrative Infrastructure}
+\label{ch:narrative-infrastructure}
+
+\epigraph{Who controls the past controls the future. Who controls the present controls the past.}{George Orwell, \textit{Nineteen Eighty-Four}}
+
+\noindent
+Beliefs do not float freely.
+They travel through infrastructure: schools, media organizations, platforms, think tanks, entertainment industries, and professional training systems.
+This chapter models narrative infrastructure as a network of transformation functions with measurable capacity, throughput, and concentration.
+
+\section{Infrastructure as Transformation}
+\label{sec:ch7-transformation}
+
+\begin{definition}[Narrative Infrastructure]
+\label{def:narrative-infrastructure}
+\index{narrative infrastructure}
+A \emph{narrative infrastructure} $\narr$ is a directed graph $G = (V, E)$ where:
+\begin{itemize}[nosep]
+  \item each vertex $v \in V$ is an institution with processing function $\iota_v: \R_{\geq 0} \times \narspace \to \narspace$,
+  \item each edge $(u, v) \in E$ carries a flow weight $w_{uv} \in [0,1]$ representing the fraction of $u$'s output that serves as input to $v$,
+  \item the network has source nodes (funders) and sink nodes (audience segments).
+\end{itemize}
+\end{definition}
+
+\begin{example}
+\label{ex:think-tank-pipeline}
+A typical narrative pipeline:
+\[
+  \text{Donor} \xrightarrow{w_1} \text{Think tank} \xrightarrow{w_2} \text{Op-ed pages} \xrightarrow{w_3} \text{TV panels} \xrightarrow{w_4} \text{Public}
+\]
+Each arrow is weighted by the fraction of output that propagates to the next stage.
+The end-to-end doxonomic effect is the product $\prod_i w_i$ times the credibility chain $\prod_i \credibility{i}$.
+\end{example}
+
+\section{Institutional Types}
+\label{sec:ch7-types}
+
+Different institutions occupy different positions in the infrastructure, with characteristic properties.
+
+\begin{center}
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  box/.style={draw, thick, rounded corners, minimum width=3cm, minimum height=0.8cm, align=center}
+]
+\matrix[row sep=0.6cm, column sep=0.3cm] {
+  \node[box] (edu) {Education}; &
+  \node[font=\small, text width=7cm] {High persistence, high credibility, low throughput. Shapes priors for decades.}; \\
+  \node[box] (media) {Mass Media}; &
+  \node[font=\small, text width=7cm] {Medium persistence, medium credibility, high throughput. Sets the daily agenda.}; \\
+  \node[box] (social) {Social Media}; &
+  \node[font=\small, text width=7cm] {Low persistence, low credibility, very high throughput. Amplifies and fragments.}; \\
+  \node[box] (think) {Think Tanks}; &
+  \node[font=\small, text width=7cm] {High credibility (in policy circles), low direct reach. Produces expert legitimacy.}; \\
+  \node[box] (ent) {Entertainment}; &
+  \node[font=\small, text width=7cm] {High reach, low perceived persuasive intent. Normalizes through representation.}; \\
+};
+\end{tikzpicture}
+\end{center}
+
+\section{Throughput and Capacity}
+\label{sec:ch7-throughput}
+
+\begin{definition}[Narrative Throughput]
+\label{def:throughput}
+\index{narrative throughput}
+The \emph{throughput} of an institution $v$ is the quantity
+\[
+  \Theta(v) = \funding{v} \cdot \reach{v} \cdot \persistence{v}
+\]
+measuring the total belief-exposure-hours produced per unit time.
+The \emph{capacity} $\Theta^{\max}(v)$ is the maximum throughput achievable given institutional constraints.
+\end{definition}
+
+\section{Concentration Metrics}
+\label{sec:ch7-concentration}
+
+\begin{definition}[Epistemic Herfindahl Index]
+\label{def:ehhi-infra}
+\index{epistemic Herfindahl index}
+The \emph{epistemic Herfindahl index} for narrative infrastructure is
+\[
+  \ehhi = \sum_{v \in V} \left(\frac{\Theta(v)}{\sum_{u \in V} \Theta(u)}\right)^2
+\]
+Values near $1$ indicate monopoly in narrative production; values near $1/|V|$ indicate deconcentration.
+\end{definition}
+
+\begin{conjecture}[Concentration and Capture]
+\label{conj:concentration-capture}
+If $\ehhi > \bar{h}$ for a critical threshold $\bar{h}$, then a single institution or small coalition has the \emph{capacity} to achieve common-sense capture (Definition~\ref{def:common-sense}) on propositions within its narrative domain, provided sufficient funding and absent strong counter-institutions, resistant audiences, or contradicting lived experience.
+The threshold $\bar{h}$ is not a universal constant; it depends on audience receptivity, competing credibility structures, and proposition-content fit.
+\end{conjecture}
+
+\section{Notes and References}
+\label{sec:ch7-notes}
+
+Media concentration is studied in \textcite{bagdikian2004} and \textcite{mcchesney1999}.
+The role of think tanks in narrative production is documented in \textcite{mayer2016} and \textcite{mirowski2009}.
+Platform infrastructure is analyzed in \textcite{zuboff2019}.
+The network model of media draws on \textcite{jackson2008}.
+The Herfindahl index originates in \textcite{herfindahl1950}.
+For public-interest alternatives, see \textcite{benkler2006}.
+
+\section{Exercises}
+
+\begin{exercise}
+Compute $\ehhi$ for U.S.\ national television news using publicly available audience share data.
+Is the market concentrated by doxonomic standards?
+\end{exercise}
+
+\begin{exercise}
+Model the narrative pipeline from the Atlas Network to public opinion on regulation.
+Estimate the flow weights $w_{uv}$ at each stage.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\ehhi \geq 1/|V|$ with equality if and only if all institutions have equal throughput.
+\end{exercise}
+
+\begin{exercise}
+A new social media platform enters the narrative infrastructure with $\reach{} = 0.4$, $\credibility{} = 0.15$, $\persistence{} = 0.05$.
+How does this change the overall $\ehhi$ and the conditions for common-sense capture?
+\end{exercise}

@@ -1,0 +1,92 @@
+\chapter{Experimental Doxonomics}
+\label{ch:experimental}
+
+\epigraph{The great tragedy of science---the slaying of a beautiful hypothesis by an ugly fact.}{Thomas Henry Huxley}
+
+\noindent
+Observational methods identify correlations; experiments identify causes.
+This chapter develops experimental designs for testing doxonomic hypotheses in the laboratory and the field.
+
+\section{Cooperation Games as Belief Measurement}
+\label{sec:ch19-games}
+
+\begin{definition}[Doxonomic Game]
+\label{def:doxonomic-game}
+\index{doxonomic game}
+A \emph{doxonomic game} is an experimental economic game (public goods, dictator, trust, ultimatum) administered after exposure to a doxonomic treatment (narrative about human nature, institutional framing, etc.).
+The outcome variable is the degree of cooperative or self-interested behavior, interpreted as a \emph{behavioral proxy} for internalized belief.
+\end{definition}
+
+\textcite{fischbacher2001} found that most people are conditional cooperators---not the selfish maximizers predicted by standard economic models.
+\textcite{henrich2001} showed this holds cross-culturally.
+The doxonomic question is: does exposure to selfishness narratives \emph{reduce} cooperation?
+
+\section{Priming and Framing Experiments}
+\label{sec:ch19-priming}
+
+\begin{model}[Narrative Priming]
+\label{mod:priming}
+\index{priming experiment}
+Randomly assign subjects to:
+\begin{itemize}[nosep]
+  \item \textbf{Treatment}: read a text asserting that human nature is fundamentally self-interested,
+  \item \textbf{Control}: read a neutral text or one asserting cooperative human nature.
+\end{itemize}
+Then measure behavior in a public goods game.
+The treatment effect $\hat{\tau} = \bar{Y}_{\text{treat}} - \bar{Y}_{\text{control}}$ estimates the causal effect of a single narrative exposure on cooperative behavior.
+\end{model}
+
+\section{Norm Perception Studies}
+\label{sec:ch19-norms}
+
+\begin{definition}[Perceived Social Norm]
+\label{def:perceived-norm}
+\index{perceived norm}
+The \emph{perceived social norm} for behavior $x$ is agent $j$'s belief about the population's behavior: $\hat{\mu}_j(x)$.
+Doxonomic systems can shift behavior by shifting norm perceptions---making people think others are more selfish than they actually are.
+\end{definition}
+
+\begin{proposition}[Norm Misperception Effect]
+\label{prop:norm-misperception}
+If agents are conditional cooperators (cooperate when they believe others cooperate), then a doxonomic intervention that increases $\hat{\mu}_j(\text{selfish})$ without changing actual behavior will reduce cooperation in subsequent interactions.
+The belief becomes self-fulfilling.
+\end{proposition}
+
+\section{Ethical Limits}
+\label{sec:ch19-ethics}
+
+Experimental doxonomics faces distinctive ethical constraints:
+\begin{itemize}[nosep]
+  \item exposing subjects to false narratives about human nature may have lasting effects,
+  \item deception about the social environment may erode trust,
+  \item experiments that increase selfishness ``work'' by making people worse off.
+\end{itemize}
+
+These constraints limit the scope of laboratory doxonomics but do not eliminate it.
+Natural experiments and field studies with minimal deception remain viable.
+
+\section{Notes and References}
+\label{sec:ch19-notes}
+
+Public goods experiments are reviewed in \textcite{fischbacher2001}.
+Cross-cultural behavioral games are in \textcite{henrich2001}.
+Priming effects on economic behavior are studied in the behavioral economics literature; see \textcite{kahneman2011} for an overview.
+On norm misperception, see \textcite{cialdini2006}.
+Experimental ethics in social science is discussed in \textcite{salganik2018}.
+
+\section{Exercises}
+
+\begin{exercise}
+Design a priming experiment to test whether exposure to ``greed is good'' narratives increases defection in a public goods game.
+Specify sample size, treatment arms, and outcome measures.
+\end{exercise}
+
+\begin{exercise}
+A norm perception study finds that 80\% of people believe ``most people are selfish,'' but behavioral games show only 30\% defect.
+Compute the norm misperception gap and predict its doxonomic consequences.
+\end{exercise}
+
+\begin{exercise}
+Discuss the ethics of an experiment that exposes children to competing anthropological narratives (selfish vs.\ cooperative) and measures long-term behavioral effects.
+Under what conditions (if any) would this be justifiable?
+\end{exercise}

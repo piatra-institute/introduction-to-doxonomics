@@ -1,0 +1,56 @@
+\chapter{Mathematical Notation and Basic Models}
+\label{app:math-notation}
+
+This appendix collects all mathematical notation and summarizes the core models developed in the text.
+
+\section*{Complete Symbol Table}
+
+See the Notation chapter in the frontmatter for the full symbol table.
+
+\section*{Core Models}
+
+\subsection*{Model 1: First-Order Belief Equation (Model~\ref{mod:first-order})}
+\[
+  \belief{i}(t) = \sum_{k=1}^{m} \funding{k}(t) \cdot \credibility{k} \cdot \relevance{k}{i} \cdot \reach{k} \cdot \persistence{k} - \counter{i}(t)
+\]
+
+\subsection*{Model 2: Stock-and-Flow Dynamics (Definition~\ref{def:stock-flow})}
+\[
+  \frac{d\belief{i}}{dt} = \alpha \cdot \phi_i(t) \cdot (1 - \belief{i}(t)) - \delta \cdot \belief{i}(t) + \beta \cdot \belief{i}(t)(1 - \belief{i}(t))
+\]
+
+\subsection*{Model 3: SIR Belief Diffusion (Model~\ref{mod:sir-belief})}
+\begin{align*}
+  \frac{dS}{dt} &= -\beta S I - \alpha \phi(t) S \\
+  \frac{dI}{dt} &= \beta S I + \alpha \phi(t) S - \gamma I \\
+  \frac{dR}{dt} &= \gamma I
+\end{align*}
+Doxonomic reproduction number: $R_0 = (\beta + \alpha\phi)/\gamma$.
+
+\subsection*{Model 4: Doxonomic Input-Output (Model~\ref{mod:input-output})}
+\[
+  \bm{n} = (\bm{I} - \bm{A})^{-1}\bm{d}
+\]
+where $\bm{A}$ is the inter-institutional narrative flow matrix and $\bm{d}$ is the exogenous injection.
+
+\subsection*{Model 5: Granovetter-Schelling Threshold (Model~\ref{mod:granovetter})}
+\[
+  \mu^* = G(\mu^*)
+\]
+where $G$ is the CDF of individual adoption thresholds.
+
+\section*{Key Equations}
+
+\begin{longtable}{p{4cm} p{9cm}}
+\toprule
+\textbf{Equation} & \textbf{Reference} \\
+\midrule
+\endhead
+Optimal allocation & $\credibility{k} \cdot \relevance{k}{i} \cdot c_k'(\funding{k}) \cdot \persistence{k} = \lambda$ (Prop.~\ref{prop:optimal-allocation}) \\
+Epistemic HI & $\ehhi = \sum_k s_k^2$ (Def.~\ref{def:ehhi}) \\
+Welfare loss & $\int_{\mu^{**}}^{\mu^*} [D'(\mu) - c'(\mu)] \, d\mu$ (Thm.~\ref{thm:welfare-loss}) \\
+Polarization & $\pi_A^{(T)} \to 1$, $\pi_B^{(T)} \to 0$ under asymmetric exposure (Thm.~\ref{thm:polarization}) \\
+Legitimation & $L(I, \phi_L) = \phi_L / (\phi_L + \kappa(I-I_0)^+)$ (Def.~\ref{def:legitimation}) \\
+Fixed point & $\fundingvec^* = \bpc(\fundingvec^*)$ (Def.~\ref{def:doxonomic-equilibrium}) \\
+\bottomrule
+\end{longtable}

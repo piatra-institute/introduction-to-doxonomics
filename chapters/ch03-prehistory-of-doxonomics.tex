@@ -1,0 +1,161 @@
+\chapter{A Brief Prehistory of Doxonomics}
+\label{ch:prehistory}
+
+\epigraph{The philosophers have only interpreted the world, in various ways; the point is to change it.}{Karl Marx, \textit{Theses on Feuerbach} (1845)}
+
+\noindent
+Doxonomics is new as a named discipline.
+But the insight that beliefs are shaped by material power is ancient.
+This chapter traces the intellectual lineage, extracting from each predecessor the formal insight that doxonomics inherits.
+
+\section{Sophists and the Market for Persuasion}
+\label{sec:ch3-sophists}
+
+The Greek sophists were, in effect, the first consultants in belief production.
+They sold rhetorical skill---the capacity to make the weaker argument appear stronger.
+Plato attacked them for it.
+But the doxonomic insight is structural: persuasion has a price, and those who can pay for it shape public reality.
+
+\begin{remark}
+The sophists reveal the first doxonomic principle: \emph{the ability to shape belief is an economic good with a market price}.
+In modern notation, there exists a market-clearing price $p^*$ for persuasion services, which implies that wealthier actors can purchase more credibility---a precursor to the concept of epistemic capital ($\ecap$).
+\end{remark}
+
+\section{Hobbes, Mandeville, and Selfish Anthropology}
+\label{sec:ch3-hobbes}
+
+\textcite{hobbes1651} proposed that the natural condition of humanity is a war of all against all, requiring absolute sovereignty to impose order.
+\textcite{mandeville1714} argued that private vices produce public benefits---selfishness is not only natural but socially productive.
+
+These are not merely philosophical positions.
+They are anthropological regimes (Definition~\ref{def:anthropological-regime}) whose institutional installation required centuries of work: in political theory, in economics curricula, in management doctrine.
+The doxonomic question is not whether Hobbes was right, but what it cost to make his anthropology the default assumption of modern governance \autocite{bowles2011}.
+
+\section{Marx: Ideology as Material Production}
+\label{sec:ch3-marx}
+
+\textcite{marx1846} proposed that the ruling ideas of any epoch are the ideas of the ruling class, produced not by the force of argument alone but by control over the means of mental production.
+
+\begin{principle}[Marxian Doxonomic Principle]
+\label{prin:marx}
+\index{Marx}
+The class that controls the means of material production simultaneously controls the means of intellectual production.
+In doxonomic terms: the funding vector $\fundingvec$ is not exogenous but is determined by the distribution of economic power.
+\end{principle}
+
+Marx's limitation, from a doxonomic standpoint, was insufficient formalization.
+He identified the mechanism but did not build measurement tools.
+
+\section{Gramsci: Hegemony}
+\label{sec:ch3-gramsci}
+
+\textcite{gramsci1971} introduced \emph{hegemony}\index{hegemony}: the process by which a ruling group secures consent not through coercion but through cultural and intellectual leadership.
+Hegemony operates through civil society---schools, churches, media, professional associations---rather than through the state alone.
+
+In doxonomic terms, Gramsci's contribution is the recognition that $\insteco$ (the institutional ecology) is the primary site of belief production, and that durable power requires not just force but narrative infrastructure $\narr$.
+
+\section{Bernays: Engineering Consent}
+\label{sec:ch3-bernays}
+
+\textcite{bernays1928} made the conversion problem explicit.
+Drawing on his uncle Freud's psychology, Bernays developed techniques for converting corporate funding into public opinion: the staged event, the third-party endorsement, the appeal to unconscious desire.
+
+\begin{remark}
+Bernays is the first explicit \emph{doxonomic engineer}: a practitioner who understood and optimized the production function $\Phi: \R^m_{\geq 0} \times \insteco \to \narr$.
+Public relations, as he conceived it, is applied doxonomics.
+\end{remark}
+
+\section{Foucault: Discourse and Power}
+\label{sec:ch3-foucault}
+
+\textcite{foucault1971} shifted attention from who speaks to the \emph{rules of discourse}: the conditions under which a statement counts as knowledge, who is authorized to make it, and what institutional apparatus validates it.
+
+In doxonomic terms, Foucault's contribution is the insight that $\credibility{k}$ is not a fixed property of a channel but is itself socially produced.
+The rules determining what counts as expertise, evidence, or common sense are themselves objects of doxonomic investment.
+
+\section{Bourdieu: Symbolic Power and Doxa}
+\label{sec:ch3-bourdieu}
+
+\textcite{bourdieu1984, bourdieu1991} provided the richest pre-doxonomic framework.
+His concept of \textit{symbolic capital} prefigures epistemic capital $\ecap$.
+His concept of \textit{doxa} prefigures common-sense capture.
+His analysis of the educational system as a reproduction mechanism prefigures the belief production chain.
+
+\begin{definition}[Bourdieu's Doxa, Formalized]
+\label{def:bourdieu-doxa}
+\index{doxa!Bourdieu}
+In the framework of Chapter~\ref{ch:ontology-belief}, Bourdieu's doxa corresponds to a belief $p$ such that $\mu(p) > \theta$, $\mathrm{Var}(\pi_j(p)) \approx 0$, and $p$ is not represented in public discourse as a contestable claim.
+\end{definition}
+
+What Bourdieu lacked was the accounting machinery.
+He showed that symbolic power reproduces itself through institutions but did not build the input-output tables.
+Doxonomics inherits his sociology and adds the ledger.
+
+\section{Colonial Knowledge Production}
+\label{sec:ch3-colonial}
+
+The most large-scale doxonomic operations in history were not conducted by think tanks or advertising agencies.
+They were conducted by colonial empires, which invested enormous resources in producing knowledge systems---racial taxonomies, civilizational hierarchies, linguistic classifications, legal codes---that justified extraction and governance.
+
+\textcite{said1978} showed that ``Orientalism'' was not merely prejudice but an institutionally sustained body of knowledge: chairs, journals, government offices, and training programs dedicated to producing authoritative accounts of the colonized world.
+\textcite{fanon1961} analyzed how colonial education systems replaced indigenous knowledge with the colonizer's worldview, producing subjects who internalized their own subordination.
+
+In doxonomic terms, colonialism built the most extensive narrative infrastructure $\narr$ in pre-digital history, reaching hundreds of millions through missionary schools, colonial administration, and restructured legal systems.
+Any prehistory of doxonomics that omits this is a prehistory of European thought about European thought.
+
+\section{A Timeline}
+
+\begin{center}
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  year/.style={font=\small\bfseries, anchor=north},
+  desc/.style={anchor=north west, text width=5cm, font=\small}
+]
+  \draw[thick, -Stealth] (0,0) -- (14,0);
+
+  \foreach \x/\y/\t in {
+    0.5/1651/Hobbes,
+    2.0/1714/Mandeville,
+    3.5/1846/Marx,
+    5.5/1928/Bernays,
+    7.0/1971a/Gramsci,
+    8.5/1971b/Foucault,
+    10.0/1984/Bourdieu,
+    12.0/1988/Herman--Chomsky,
+    13.5/now/Doxonomics
+  } {
+    \draw (\x, 0.15) -- (\x, -0.15);
+    \node[year] at (\x, -0.3) {\t};
+  }
+\end{tikzpicture}
+\end{center}
+
+\section{Notes and References}
+\label{sec:ch3-notes}
+
+On the sophists and rhetoric, see Plato's \textit{Gorgias}.
+\textcite{hobbes1651} and \textcite{mandeville1714} establish the selfish anthropology.
+\textcite{marx1846} is the foundational text on ideology as material production.
+\textcite{gramsci1971} develops hegemony.
+\textcite{bernays1928} codifies propaganda technique.
+\textcite{foucault1971} restructures the analysis of discourse.
+\textcite{bourdieu1984, bourdieu1991} provide the symbolic-power framework.
+\textcite{herman1988} extends these ideas into a testable media model.
+\textcite{lippmann1922} anticipated much of this in his analysis of public opinion manufacture.
+
+\section{Exercises}
+
+\begin{exercise}
+For each thinker in this chapter, state the corresponding doxonomic concept from the formal framework of Chapter~\ref{ch:what-is-doxonomics} (e.g., Marx $\to$ endogenous $\fundingvec$).
+\end{exercise}
+
+\begin{exercise}
+Bernays staged the ``Torches of Freedom'' campaign (1929) to associate women's smoking with feminist liberation.
+Analyze this as a doxonomic operation: identify $\funding{k}$, $\credibility{k}$, $\relevance{k}{i}$, $\reach{k}$, and $\persistence{k}$.
+\end{exercise}
+
+\begin{exercise}
+Compare Foucault's ``order of discourse'' with the concept of credibility weights $\credibility{k}$.
+In what sense does Foucault's analysis go beyond the first-order model?
+What would a second-order model---where $\credibility{k}$ is itself endogenous---look like?
+\end{exercise}

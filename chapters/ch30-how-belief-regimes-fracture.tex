@@ -1,0 +1,65 @@
+\chapter{How Belief Regimes Fracture}
+\label{ch:how-belief-regimes-fracture}
+
+\epigraph{There are decades where nothing happens; and there are weeks where decades happen.}{Vladimir Lenin (attr.)}
+
+\noindent
+Doxonomic equilibria are stable but not permanent.
+This chapter analyzes the mechanisms by which dominant belief regimes fracture: contradictions, scandals, economic shocks, institutional failure, and the loss of elite credibility.
+
+\section{Regime Fracture as Bifurcation}
+\label{sec:ch30-bifurcation}
+
+\begin{model}[Bifurcation Model of Regime Fracture]
+\label{mod:bifurcation}
+\index{bifurcation}
+Let $\belief{}(t)$ be the strength of the dominant belief and $\sigma(t)$ a stress parameter (accumulating contradictions, declining legitimacy).
+The dynamics are:
+\[
+  \frac{d\belief{}}{dt} = \belief{}(\alpha\phi - \delta - \sigma(t)) + \beta\belief{}^2(1 - \belief{})
+\]
+As $\sigma$ increases past a critical value $\sigma^*$, the high-$\belief{}$ equilibrium disappears through a saddle-node bifurcation.
+The system drops to a low-$\belief{}$ state---regime fracture.
+\end{model}
+
+\begin{definition}[Credibility Collapse]
+\label{def:credibility-collapse}
+\index{credibility collapse}
+A \emph{credibility collapse} occurs when the credibility $\credibility{k}$ of a central institution drops rapidly, typically due to a scandal, failure, or exposure of deception.
+Because credibility compounds through the network, a single collapse can cascade.
+\end{definition}
+
+\section{Sources of Stress}
+\label{sec:ch30-stress}
+
+\begin{enumerate}[nosep]
+  \item \textbf{Contradictions}: the belief system predicts $X$ but reality delivers $\neg X$ (e.g., ``markets self-correct'' during a crash).
+  \item \textbf{Scandals}: institutional hypocrisy is exposed (e.g., a think tank's hidden funding revealed).
+  \item \textbf{Economic shocks}: material conditions deteriorate, undermining narrative plausibility.
+  \item \textbf{Memetic overload}: the narrative space becomes saturated with competing frames, raising entropy.
+  \item \textbf{Generational turnover}: new cohorts arrive without the same formative exposure.
+\end{enumerate}
+
+\section{Notes and References}
+\label{sec:ch30-notes}
+
+On the dynamics of regime change, see \textcite{gramsci1971} on interregnum.
+Threshold and cascade dynamics are in \textcite{granovetter1978} and \textcite{watts2002}.
+On economic shocks and ideological change, see \textcite{polanyi1944} and \textcite{klein2007}.
+
+\section{Exercises}
+
+\begin{exercise}
+For the bifurcation model, compute $\sigma^*$ as a function of $\alpha$, $\phi$, $\delta$, and $\beta$.
+Interpret: what makes a regime more or less resilient to stress?
+\end{exercise}
+
+\begin{exercise}
+Analyze the 2008 financial crisis as a partial fracture of the ``efficient markets'' belief regime.
+Why was the fracture incomplete?
+\end{exercise}
+
+\begin{exercise}
+Model a credibility cascade in which the exposure of one institution's deception reduces credibility of connected institutions.
+Use network contagion dynamics.
+\end{exercise}

@@ -1,0 +1,111 @@
+\chapter{Doxonomic Power}
+\label{ch:doxonomic-power}
+
+\epigraph{The most effective way to destroy people is to deny and obliterate their own understanding of their history.}{George Orwell}
+
+\noindent
+Power in doxonomics is not the capacity to coerce but the capacity to set the conditions under which people form their beliefs.
+This chapter formalizes doxonomic power, extends Lukes' three dimensions, and shows how distributed systems can produce coordinated ideological effects without central planning.
+
+\section{Three Dimensions, Extended}
+\label{sec:ch9-lukes}
+
+\textcite{lukes2005} distinguished three faces of power.
+We extend each to the doxonomic domain.
+
+\begin{definition}[Dimensions of Doxonomic Power]
+\label{def:doxonomic-power}
+\index{doxonomic power}
+\begin{enumerate}[nosep]
+  \item \textbf{First dimension}: the capacity to win arguments in public debate (persuasion within existing frames).
+  \item \textbf{Second dimension}: the capacity to control which arguments reach public debate (agenda-setting, narrative infrastructure control).
+  \item \textbf{Third dimension}: the capacity to shape what people want, expect, and consider possible (prior formation, anthropological regime installation).
+  \item \textbf{Fourth dimension} (doxonomic extension): the capacity to determine the \emph{epistemic rules}---what counts as evidence, who counts as an expert, which methods are legitimate.
+\end{enumerate}
+\end{definition}
+
+The fourth dimension is the distinctively doxonomic contribution.
+It is power over the \emph{meta-level}: not just shaping beliefs, but shaping the processes by which beliefs are evaluated.
+
+\begin{proposition}[Power Ordering]
+\label{prop:power-ordering}
+The dimensions form a hierarchy of cost-effectiveness.
+Fourth-dimensional power is the most cost-effective because it shapes all subsequent belief formation:
+\[
+  \iroi_4 > \iroi_3 > \iroi_2 > \iroi_1
+\]
+where $\iroi_d$ is the ideological return on investment at dimension $d$.
+\end{proposition}
+
+\section{Distributed Coordination Without Conspiracy}
+\label{sec:ch9-distributed}
+
+A common objection to doxonomic analysis is that it requires conspiracy: a secret group deliberately coordinating belief production.
+This is a misunderstanding.
+
+\begin{principle}[Structural Alignment]
+\label{prin:structural-alignment}
+\index{structural alignment}
+A doxonomic system can produce coordinated ideological output without centralized planning if:
+\begin{enumerate}[nosep]
+  \item funders share material interests (e.g., reduced regulation),
+  \item institutions face similar incentive structures (e.g., dependence on the same funding sources),
+  \item professional norms align outputs (e.g., economics training produces a shared worldview),
+  \item feedback loops reward convergence (e.g., media outlets that deviate lose audience or advertisers).
+\end{enumerate}
+\end{principle}
+
+\textcite{herman1988} demonstrated this with the propaganda model: five structural filters---ownership, advertising, sourcing, flak, and ideology---produce systematic media bias without requiring any explicit coordination.
+
+\begin{model}[Emergent Alignment]
+\label{mod:emergent}
+Let $n$ institutions each independently choose a narrative position $n_k \in \narspace$ to maximize revenue $r_k(n_k, \bm{n}_{-k})$ given the positions of others.
+If revenue functions are correlated (because funders, advertisers, and audiences overlap), the Nash equilibrium $\bm{n}^*$ will cluster in a narrow region of $\narspace$---producing apparent coordination from independent profit maximization.
+\end{model}
+
+\section{Power as Prior-Setting}
+\label{sec:ch9-priors}
+
+The deepest form of doxonomic power is the ability to set the \emph{prior distribution} from which a population evaluates new information.
+
+\begin{definition}[Prior-Setting Power]
+\label{def:prior-setting}
+\index{prior-setting power}
+An agent $a$ has \emph{prior-setting power} over a population if $a$ can influence the initial distribution $\pi_j^{(0)}$ for agents $j$ in the population, typically through control of educational institutions, childhood media, or cultural narratives.
+\end{definition}
+
+Prior-setting power is the most durable form of doxonomic power because Bayesian agents with different priors will interpret the same evidence differently, and prior formation occurs early in life when resistance is lowest.
+
+\section{Epistemic Injustice as Doxonomic Power}
+\label{sec:ch9-epistemic-injustice}
+
+\textcite{fricker2007} identified a form of power closely related to the fourth dimension: \emph{epistemic injustice}\index{epistemic injustice}, in which certain speakers are systematically denied credibility due to their social identity.
+In doxonomic terms, epistemic injustice is a mechanism by which the credibility weights $\credibility{k}$ are allocated not by evidence quality but by the speaker's position in hierarchies of race, gender, class, or nationality.
+
+This means that some agents face a structural credibility deficit: their testimony about lived experience is discounted, their counter-narratives are dismissed as ``anecdotal,'' and their epistemic labor is uncompensated.
+Epistemic injustice is a doxonomic power that operates through the fourth dimension: it does not merely suppress specific beliefs but shapes the rules of whose evidence counts.
+
+\section{Notes and References}
+\label{sec:ch9-notes}
+
+\textcite{lukes2005} provides the three-dimensional framework.
+The propaganda model is in \textcite{herman1988}.
+Structural power without conspiracy is analyzed in \textcite{gramsci1971} and formalized in network terms by \textcite{jackson2008}.
+On the role of economics in shaping priors, see \textcite{bowles2011} and \textcite{mirowski2009}.
+On epistemic injustice, see \textcite{fricker2007} and \textcite{medina2013}.
+On colonial knowledge production as an exercise of doxonomic power, see \textcite{said1978}.
+
+\section{Exercises}
+
+\begin{exercise}
+Classify the following exercises of power by dimension: (a)~a pharmaceutical company funding a medical journal, (b)~a government classifying documents, (c)~an economics curriculum teaching rational self-interest as human nature, (d)~a platform algorithm determining what counts as ``trending.''
+\end{exercise}
+
+\begin{exercise}
+Using Model~\ref{mod:emergent}, show that if all institutions depend on the same advertising market, the equilibrium narrative range is narrower than if institutions have diverse funding sources.
+\end{exercise}
+
+\begin{exercise}
+Formalize the claim that prior-setting power compounds over generations.
+If each generation's priors are a function of the previous generation's posteriors and the institutional environment, write the recurrence relation and identify conditions for convergence.
+\end{exercise}

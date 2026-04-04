@@ -1,0 +1,94 @@
+\chapter{Belief-Flow Accounting}
+\label{ch:belief-flow-accounting}
+
+\epigraph{Follow the money.}{Deep Throat (attr.)}
+
+\noindent
+If doxonomics is to be a science rather than a commentary, it needs accounting.
+This chapter develops the framework for tracing financial flows into narrative outputs: the doxonomic ledger.
+
+\section{The Accounting Framework}
+\label{sec:ch14-framework}
+
+\begin{definition}[Doxonomic Account]
+\label{def:doxonomic-account}
+\index{belief-flow accounting}
+A \emph{doxonomic account} for belief $p$ in period $[0, T]$ is a table
+\[
+  \mathcal{L}_p = \{(s_k, \iota_k, c_k, \funding{k}, \Theta_k)\}_{k=1}^{m}
+\]
+where $s_k$ is the funding source, $\iota_k$ is the processing institution, $c_k$ is the channel, $\funding{k}$ is the expenditure, and $\Theta_k$ is the estimated doxonomic throughput.
+The \emph{total doxonomic investment} in $p$ is $F_p = \sum_k \funding{k}$.
+\end{definition}
+
+\section{Source Identification}
+\label{sec:ch14-sources}
+
+Tracing funding to belief requires navigating layers of intermediation.
+A typical chain:
+\[
+  \text{Corporation} \to \text{Foundation} \to \text{Donor-advised fund} \to \text{Think tank} \to \text{Publication}
+\]
+
+Each intermediary adds opacity.
+Doxonomic accounting requires penetrating these layers using:
+\begin{itemize}[nosep]
+  \item IRS Form 990 filings (for U.S.\ nonprofits),
+  \item corporate disclosure reports,
+  \item investigative journalism databases,
+  \item lobbying registration records.
+\end{itemize}
+
+\section{Ideological Input-Output Tables}
+\label{sec:ch14-leontief}
+
+\begin{model}[Doxonomic Input-Output Table]
+\label{mod:io-table}
+\index{input-output table}
+Extending Model~\ref{mod:input-output}, let sectors be narrative-producing institutions.
+The input-output matrix $\bm{A}$ has entries $a_{ij}$ representing the fraction of institution $j$'s narrative output consumed as input by institution $i$ (e.g., a think tank's report cited by a newspaper).
+The total output vector is
+\[
+  \bm{n} = (\bm{I} - \bm{A})^{-1} \bm{d}
+\]
+where $\bm{d}$ is the exogenous injection.
+The Leontief inverse $(\bm{I} - \bm{A})^{-1}$ reveals the \emph{multiplier effect}: how a dollar of direct investment amplifies through the narrative ecosystem.
+\end{model}
+
+\section{Accounting Identities}
+\label{sec:ch14-identities}
+
+\begin{principle}[Doxonomic Accounting Identity]
+\label{prin:accounting-identity}
+For a closed doxonomic system in steady state:
+\[
+  \text{Total funding in} = \text{Narrative output} \times \text{Unit cost} + \text{Institutional overhead}
+\]
+Or in symbols: $F = \Theta \cdot c_{\text{unit}} + O$.
+The \emph{doxonomic efficiency} is $\eta = \Theta / F = 1 - O/F$.
+\end{principle}
+
+\section{Notes and References}
+\label{sec:ch14-notes}
+
+The accounting approach draws on national income accounting methods \autocite{stiglitz2012}.
+Dark money flows are documented in \textcite{mayer2016}.
+The Leontief model is standard in economics; its application to narrative flows is original to this text.
+For lobbying data, see OpenSecrets; for think-tank funding, see InfluenceWatch.
+On media ownership structures, see \textcite{bagdikian2004}.
+
+\section{Exercises}
+
+\begin{exercise}
+Using publicly available IRS 990 data, construct a partial doxonomic account for the belief ``regulation harms economic growth'' by tracing funding from three major foundations to think tanks to publications.
+\end{exercise}
+
+\begin{exercise}
+Compute the Leontief inverse for a three-institution system and interpret the multiplier for a \$1M injection into the first institution.
+\end{exercise}
+
+\begin{exercise}
+Estimate the doxonomic efficiency $\eta$ of a university vs.\ a social media campaign.
+Which has higher overhead?
+Which has higher long-run throughput per dollar?
+\end{exercise}

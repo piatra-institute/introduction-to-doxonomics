@@ -1,0 +1,106 @@
+\documentclass[11pt,a4paper,openright,twoside]{memoir}
+
+\input{preamble}
+
+\begin{document}
+
+% === Front Matter ===
+\frontmatter
+
+\input{frontmatter/titlepage}
+
+\cleardoublepage
+\tableofcontents
+
+\cleardoublepage
+\input{frontmatter/preface}
+
+\cleardoublepage
+\input{frontmatter/notation}
+
+% === Main Matter ===
+\mainmatter
+
+% --- Part I: Foundations ---
+\part{Foundations}
+\label{part:foundations}
+
+\input{chapters/ch01-what-is-doxonomics}
+\input{chapters/ch02-ontology-of-public-belief}
+\input{chapters/ch03-prehistory-of-doxonomics}
+\input{chapters/ch04-core-units-of-analysis}
+\input{chapters/ch05-belief-production-chain}
+
+% --- Part II: Concepts and Models ---
+\part{Concepts and Models}
+\label{part:concepts}
+
+\input{chapters/ch06-epistemic-capital}
+\input{chapters/ch07-narrative-infrastructure}
+\input{chapters/ch08-common-sense-capture}
+\input{chapters/ch09-doxonomic-power}
+\input{chapters/ch10-economics-of-belief-production}
+\input{chapters/ch11-formal-models}
+\input{chapters/ch12-contradiction-and-coherence}
+
+% --- Part III: Methods ---
+\part{Methods}
+\label{part:methods}
+
+\input{chapters/ch13-doxometric-measurement}
+\input{chapters/ch14-belief-flow-accounting}
+\input{chapters/ch15-network-analysis}
+\input{chapters/ch16-causal-inference}
+\input{chapters/ch17-text-media-discourse}
+\input{chapters/ch18-historical-archival}
+\input{chapters/ch19-experimental-doxonomics}
+\input{chapters/ch20-model-validation}
+
+% --- Part IV: Domains of Application ---
+\part{Domains of Application}
+\label{part:applications}
+
+\input{chapters/ch21-human-nature-narrative}
+\input{chapters/ch22-meritocracy}
+\input{chapters/ch23-consumerism}
+\input{chapters/ch24-inequality-legitimacy}
+\input{chapters/ch24b-race-coloniality-gender}
+\input{chapters/ch25-austerity}
+\input{chapters/ch26-work-discipline}
+\input{chapters/ch27-nation-myth}
+\input{chapters/ch28-technology-inevitability}
+\input{chapters/ch29-crisis-doxonomics}
+
+% --- Part V: Resistance, Repair, and Reconstruction ---
+\part{Resistance, Repair, and Reconstruction}
+\label{part:resistance}
+
+\input{chapters/ch30-how-belief-regimes-fracture}
+\input{chapters/ch31-counter-doxonomic-strategies}
+\input{chapters/ch32-epistemic-democracy}
+\input{chapters/ch33-better-belief-ecologies}
+\input{chapters/ch34-ethics-of-doxonomics}
+\input{chapters/ch35-toward-social-self-understanding}
+
+% === Back Matter ===
+\backmatter
+
+% --- Appendices ---
+\appendix
+
+\input{appendices/appA-glossary}
+\input{appendices/appB-math-notation}
+\input{appendices/appC-data-sources}
+\input{appendices/appD-survey-instruments}
+\input{appendices/appE-network-templates}
+\input{appendices/appF-datasets}
+\input{appendices/appG-replication}
+\input{appendices/appH-reading}
+
+% --- Bibliography ---
+\printbibliography[heading=bibintoc,title={References}]
+
+% --- Index ---
+\printindex
+
+\end{document}

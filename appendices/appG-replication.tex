@@ -1,0 +1,78 @@
+\chapter{Replication Exercises}
+\label{app:replication}
+
+These exercises guide the reader through replicating key doxonomic analyses using real data.
+
+\section*{Exercise 1: Epistemic Herfindahl Index for U.S.\ Cable News}
+
+\textbf{Goal}: Compute $\ehhi$ for the U.S.\ cable news market.
+
+\textbf{Data}: Nielsen audience share data (available from Pew Research Center's annual ``State of the News Media'' reports).
+
+\textbf{Steps}:
+\begin{enumerate}[nosep]
+  \item Obtain average primetime viewership for CNN, Fox News, MSNBC, and other cable news channels.
+  \item Compute market shares $s_k = \text{viewership}_k / \text{total viewership}$.
+  \item Compute $\ehhi = \sum_k s_k^2$.
+  \item Interpret: is the cable news market concentrated by doxonomic standards ($\ehhi > 0.25$)?
+  \item Repeat for 2005, 2010, 2015, 2020. Plot the trend.
+\end{enumerate}
+
+\section*{Exercise 2: Donor Network of Free-Market Think Tanks}
+
+\textbf{Goal}: Construct a donor-institution network for U.S.\ free-market think tanks.
+
+\textbf{Data}: IRS 990 filings via ProPublica Nonprofit Explorer; InfluenceWatch profiles.
+
+\textbf{Steps}:
+\begin{enumerate}[nosep]
+  \item Select 10 major think tanks (Heritage Foundation, Cato Institute, AEI, Hoover, Manhattan Institute, etc.).
+  \item For each, identify the top 5 foundation donors from 990 filings.
+  \item Construct a bipartite network (donors $\times$ institutions) with edge weights = grant amounts.
+  \item Compute eigenvector centrality for all nodes.
+  \item Identify narrative clusters using modularity maximization.
+\end{enumerate}
+
+\section*{Exercise 3: Semantic Drift of ``Freedom''}
+
+\textbf{Goal}: Measure how the word ``freedom'' has changed meaning in American political discourse.
+
+\textbf{Data}: Google Ngrams or a corpus of presidential speeches.
+
+\textbf{Steps}:
+\begin{enumerate}[nosep]
+  \item Train word embeddings (Word2Vec or GloVe) on decade-specific subcorpora.
+  \item Extract the embedding vector for ``freedom'' in each decade.
+  \item Compute cosine distance between consecutive decades.
+  \item Identify the decade with maximum drift.
+  \item Examine nearest neighbors of ``freedom'' in each period to interpret the drift.
+\end{enumerate}
+
+\section*{Exercise 4: Meritocratic Belief Across Countries}
+
+\textbf{Goal}: Compare meritocratic belief across 20 countries.
+
+\textbf{Data}: World Values Survey (items on effort, success, fairness).
+
+\textbf{Steps}:
+\begin{enumerate}[nosep]
+  \item Select relevant items from WVS Wave 7.
+  \item Construct a meritocratic belief index (factor analysis or simple sum).
+  \item Plot country-level means against Gini coefficients.
+  \item Test the hypothesis: does higher inequality correlate with stronger meritocratic belief (legitimation function)?
+\end{enumerate}
+
+\section*{Exercise 5: Narrative Entropy of Climate Discourse}
+
+\textbf{Goal}: Measure narrative diversity in media coverage of climate change over time.
+
+\textbf{Data}: Media Cloud or GDELT.
+
+\textbf{Steps}:
+\begin{enumerate}[nosep]
+  \item Collect climate-related articles from 2000--2024.
+  \item Apply LDA topic modeling with $K = 10$ topics.
+  \item Compute narrative entropy $H(t) = -\sum_k p_k(t) \log p_k(t)$ for each year.
+  \item Plot $H(t)$ over time. Identify periods of low entropy (narrative capture).
+  \item Correlate entropy changes with known doxonomic events (e.g., fossil fuel campaign spending).
+\end{enumerate}

@@ -1,0 +1,56 @@
+\chapter{Network and Accounting Templates}
+\label{app:templates}
+
+This appendix provides templates for constructing doxonomic networks and accounting tables.
+
+\section*{Template 1: Donor-Institution Adjacency Matrix}
+
+\begin{center}
+\begin{tabular}{l|cccc}
+\toprule
+ & Institution 1 & Institution 2 & Institution 3 & $\cdots$ \\
+\midrule
+Donor A & \$\_\_\_\_ & \$\_\_\_\_ & \$\_\_\_\_ & \\
+Donor B & \$\_\_\_\_ & \$\_\_\_\_ & \$\_\_\_\_ & \\
+Donor C & \$\_\_\_\_ & \$\_\_\_\_ & \$\_\_\_\_ & \\
+$\vdots$ & & & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Instructions}: Fill in annual grant amounts from each donor to each institution. Data sources: IRS 990 filings, foundation annual reports, InfluenceWatch.
+
+\section*{Template 2: Doxonomic Input-Output Table}
+
+\begin{center}
+\begin{tabular}{l|cccc|c}
+\toprule
+\textbf{To $\downarrow$ / From $\to$} & Think tanks & Media & Universities & Gov't & Final output \\
+\midrule
+Think tanks & --- & $a_{12}$ & $a_{13}$ & $a_{14}$ & $d_1$ \\
+Media & $a_{21}$ & --- & $a_{23}$ & $a_{24}$ & $d_2$ \\
+Universities & $a_{31}$ & $a_{32}$ & --- & $a_{34}$ & $d_3$ \\
+Gov't & $a_{41}$ & $a_{42}$ & $a_{43}$ & --- & $d_4$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Instructions}: $a_{ij}$ is the fraction of institution $j$'s narrative output used as input by institution $i$. Estimate from citation patterns, sourcing data, and content analysis. Compute the Leontief inverse $(\bm{I} - \bm{A})^{-1}$ to find multiplier effects.
+
+\section*{Template 3: Belief-Flow Account}
+
+\begin{center}
+\begin{tabular}{lllrr}
+\toprule
+\textbf{Source} & \textbf{Institution} & \textbf{Channel} & \textbf{Amount (\$)} & \textbf{Throughput ($\Theta$)} \\
+\midrule
+ & & & & \\
+ & & & & \\
+ & & & & \\
+\midrule
+\textbf{Total} & & & \$\_\_\_\_ & \_\_\_\_ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Instructions}: For a specific belief $p$, trace all identifiable funding flows from source through institution to channel. Estimate throughput as $\Theta_k = \funding{k} \cdot \credibility{k} \cdot \reach{k}$.

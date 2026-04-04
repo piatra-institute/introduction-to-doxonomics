@@ -1,0 +1,121 @@
+\chapter{Common-Sense Capture}
+\label{ch:common-sense-capture}
+
+\epigraph{The smart way to keep people passive and obedient is to strictly limit the spectrum of acceptable opinion, but allow very lively debate within that spectrum.}{Noam Chomsky}
+
+\noindent
+The most powerful doxonomic achievement is not persuading people to hold a belief.
+It is making a belief so pervasive that it ceases to be recognized as a belief at all.
+This chapter formalizes \emph{common-sense capture}\index{common-sense capture}: the phase transition by which a funded narrative becomes invisible infrastructure.
+
+\section{Capture as Phase Transition}
+\label{sec:ch8-phase-transition}
+
+\begin{definition}[Common-Sense Capture]
+\label{def:capture}
+\index{common-sense capture!formal definition}
+A belief $p$ is \emph{captured} in a population if:
+\begin{enumerate}[nosep]
+  \item $\mu(p) > \theta$ for a high threshold $\theta$ (widespread adoption),
+  \item $\mathrm{Var}(\pi_j(p)) < \varepsilon$ for small $\varepsilon$ (tight concentration),
+  \item the proposition $p$ is not salient as a \emph{claim}---it is experienced as a feature of reality.
+\end{enumerate}
+Conditions (1) and (2) are measurable. Condition (3) is the distinctively doxonomic condition: $p$ has exited the space of contestation.
+\end{definition}
+
+The transition from ``widely held opinion'' to ``common sense'' is not gradual.
+It exhibits threshold behavior analogous to phase transitions in physics.
+
+\section{Threshold Models}
+\label{sec:ch8-thresholds}
+
+Following \textcite{granovetter1978} and \textcite{schelling1978}, we model adoption as a threshold process.
+
+\begin{model}[Granovetter-Schelling Belief Adoption]
+\label{mod:granovetter}
+\index{threshold model}
+Each agent $j$ has a threshold $\tau_j \in [0,1]$ drawn from a distribution $G(\tau)$.
+Agent $j$ adopts belief $p$ if and only if the fraction of the population already holding $p$ exceeds $\tau_j$:
+\[
+  \pi_j(p) = 1 \iff \mu(p) \geq \tau_j
+\]
+The equilibrium population fraction is a fixed point of
+\[
+  \mu^* = G(\mu^*)
+\]
+\end{model}
+
+\begin{theorem}[Tipping Point]
+\label{thm:tipping}
+\index{tipping point}
+If $G$ is continuous and $G(0) > 0$ (some agents adopt unconditionally), then there exists at least one stable equilibrium $\mu^*$.
+A doxonomic investment that shifts $G$ downward (lowering thresholds by increasing social pressure or reducing the cost of adoption) can cause a discontinuous jump in $\mu^*$---a \emph{tipping point}.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The function $h(\mu) = G(\mu) - \mu$ is continuous with $h(0) = G(0) > 0$ and $h(1) = G(1) - 1 \leq 0$.
+By the intermediate value theorem, $h$ has a zero.
+Stability requires $G'(\mu^*) < 1$.
+A downward shift in $G$ (uniform reduction in thresholds) raises $G(\mu)$ for all $\mu$, which can push $\mu^*$ past a saddle-node bifurcation.
+\end{proof}
+
+\section{Path Dependence and Lock-In}
+\label{sec:ch8-lock-in}
+
+Once a belief crosses the tipping point, it becomes self-reinforcing through mechanisms described in Chapter~\ref{ch:belief-production-chain}: the belief generates behaviors that generate institutions that generate funding that generates more of the same belief.
+
+\begin{definition}[Doxonomic Lock-In]
+\label{def:lock-in}
+\index{lock-in}
+A belief $p$ is \emph{locked in} if the doxonomic equilibrium $\mu^*(p)$ is locally asymptotically stable and the basin of attraction is large---meaning that small perturbations (counter-narratives, contrary evidence, temporary funding cuts) do not dislodge it.
+\end{definition}
+
+\begin{proposition}[Lock-In Condition]
+\label{prop:lock-in}
+Lock-in occurs when the self-reinforcement gain exceeds the natural decay rate:
+\[
+  \frac{\partial \mu^{(t+1)}}{\partial \mu^{(t)}} \bigg|_{\mu = \mu^*} > 1 - \delta
+\]
+where $\delta$ is the rate at which belief decays absent reinforcement.
+\end{proposition}
+
+\section{Saturation and Diminishing Returns}
+\label{sec:ch8-saturation}
+
+\begin{proposition}[Diminishing Returns Post-Capture]
+\label{prop:diminishing}
+Once common-sense capture is achieved ($\mu(p) > \theta$), the marginal belief change per additional dollar of funding approaches zero:
+\[
+  \lim_{\mu \to 1} \frac{\partial \mu}{\partial F} = 0
+\]
+Post-capture, doxonomic spending shifts from persuasion to \emph{maintenance}: preventing erosion rather than producing new converts.
+\end{proposition}
+
+This has an important practical implication: the cost of maintaining a captured belief is typically much lower than the cost of capturing it.
+This asymmetry explains why dominant narratives persist long after the original funding rationale has changed.
+
+\section{Notes and References}
+\label{sec:ch8-notes}
+
+Threshold models originate with \textcite{granovetter1978} and \textcite{schelling1978}.
+Cascade and herding models appear in \textcite{banerjee1992} and \textcite{bikhchandani1992}.
+Path dependence in institutional contexts is treated in \textcite{north1990}.
+The concept of lock-in from technology economics \autocite{arthur1989} transfers to the belief domain.
+On the invisibility of dominant frames, see \textcite{lukes2005}.
+
+\section{Exercises}
+
+\begin{exercise}
+Given a threshold distribution $G(\tau) = \tau^2$ on $[0,1]$, find all fixed points of $\mu^* = G(\mu^*)$.
+Determine their stability.
+What is the minimum uniform threshold reduction $\Delta$ needed to eliminate the low-adoption equilibrium?
+\end{exercise}
+
+\begin{exercise}
+Estimate the maintenance cost of the belief ``economic growth is always desirable'' by identifying two institutions that continuously reinforce it and estimating their budgets.
+\end{exercise}
+
+\begin{exercise}
+Design a formal test to distinguish a belief that is common sense (Definition~\ref{def:common-sense}) from one that is captured (Definition~\ref{def:capture}).
+What empirical evidence would differentiate the two?
+\end{exercise}

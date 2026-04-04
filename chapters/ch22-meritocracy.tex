@@ -1,0 +1,133 @@
+\chapter{Meritocracy}
+\label{ch:meritocracy}
+
+\epigraph{The more a society proclaims its meritocracy, the more its winners can justify their position and the more its losers blame themselves.}{Michael Sandel, \textit{The Tyranny of Merit}}
+
+\noindent
+Meritocracy is the belief that outcomes reflect effort and talent.
+It is also one of the most heavily subsidized narratives in modern capitalism, functioning as the legitimation mechanism for inequality.
+
+\section{The Meritocratic Belief System}
+\label{sec:ch22-system}
+
+\begin{definition}[Meritocratic Regime]
+\label{def:meritocratic-regime}
+\index{meritocracy}
+The \emph{meritocratic regime} is an ideology $\mathcal{P}_M$ containing:
+\begin{enumerate}[nosep]
+  \item success reflects ability and effort ($p_1$),
+  \item opportunity is broadly equal ($p_2$),
+  \item failure reflects personal deficiency ($p_3$),
+  \item inequality is therefore justified ($p_4$).
+\end{enumerate}
+These propositions are mutually reinforcing: high credence in $p_1$ raises credence in $p_3$ and $p_4$.
+\end{definition}
+
+\section{Institutional Repetition}
+\label{sec:ch22-repetition}
+
+The meritocratic regime is reinforced through:
+\begin{itemize}[nosep]
+  \item educational systems (grading, ranking, credentialing),
+  \item corporate hiring and promotion (``talent management''),
+  \item media (rags-to-riches narratives, billionaire hagiography),
+  \item policy (means-testing, workfare, individual responsibility discourse).
+\end{itemize}
+
+Each institution treats meritocratic assumptions as operational truth, creating the conditions under which the assumptions appear self-evident.
+
+\section{Credential Systems as Epistemic Capital Laundering}
+\label{sec:ch22-credentials}
+
+\begin{proposition}[Credential Laundering]
+\label{prop:credential}
+\index{credential laundering}
+Credential systems (degrees, certifications, rankings) convert inherited advantage into apparent merit.
+If access to credentials correlates with parental wealth ($r > 0$), then the credential $c_j$ for agent $j$ satisfies
+\[
+  c_j = f(\text{ability}_j, \text{effort}_j) + g(\text{wealth}_j) + \varepsilon_j
+\]
+The meritocratic narrative claims $g \equiv 0$.
+The doxonomic analysis estimates $g$ and reveals the laundering function.
+\end{proposition}
+
+\section{A Model of Meritocratic Belief}
+\label{sec:ch22-model}
+
+\begin{model}[Meritocratic Belief Production]
+\label{mod:meritocracy}
+The strength of meritocratic belief $\belief{M}$ is a function of inequality visibility $V$ and narrative investment $\phi_M$:
+\[
+  \belief{M} = \frac{\phi_M}{\phi_M + \kappa \cdot V}
+\]
+where $\kappa > 0$ measures the sensitivity of belief to visible inequality.
+High investment $\phi_M$ can sustain meritocratic belief even at high inequality, but the required investment grows with $V$.
+\end{model}
+
+\section{The Doxonomic Genealogy of Meritocracy}
+\label{sec:ch22-genealogy}
+
+The term ``meritocracy'' was coined satirically by Michael Young in \textit{The Rise of the Meritocracy} (1958) as a \emph{warning}, not a recommendation.
+Its transformation into a term of praise is itself a doxonomic achievement.
+
+Key institutional channels:
+\begin{itemize}[nosep]
+  \item \textbf{Standardized testing} (SAT, GRE, IQ tests): created the appearance of objective merit measurement while correlating heavily with parental income and educational investment.
+  \item \textbf{Business schools}: propagated the idea that managerial success reflects personal talent, justified executive compensation, and trained a professional class that internalized meritocratic assumptions.
+  \item \textbf{Self-help and motivational industry}: annual revenues exceeding \$10 billion in the U.S., reinforcing the belief that success is a matter of mindset and effort.
+  \item \textbf{Rags-to-riches media narratives}: disproportionate coverage of exceptional upward mobility, creating availability bias about its frequency.
+  \item \textbf{Policy design}: means-testing, workfare, and conditional welfare systems that operationalize the assumption that poverty reflects insufficient effort.
+\end{itemize}
+
+\section{Negative Cases: When Meritocratic Belief Fails}
+\label{sec:ch22-negative}
+
+Not all investments in meritocratic narrative succeed.
+Doxonomic analysis requires attention to failure:
+\begin{itemize}[nosep]
+  \item In highly visible economic crises (2008, COVID-19), meritocratic belief temporarily declines as structural causes become salient.
+  \item In societies with strong labor movements or social-democratic traditions, meritocratic belief is weaker despite similar media exposure.
+  \item When inequality becomes extreme enough that the gap between narrative and lived experience is too large, the legitimation function (Definition~\ref{def:legitimation}) breaks down.
+\end{itemize}
+
+These negative cases constrain the model: doxonomic investment is necessary but not sufficient for common-sense capture.
+Lived experience, counter-institutions, and competing narratives limit the reach of any regime.
+
+\section{Racial and Gender Dimensions}
+\label{sec:ch22-racial}
+
+Meritocratic belief is not distributed uniformly.
+It intersects with racial and gender regimes (Chapter~\ref{ch:race-coloniality-gender}) in specific ways:
+\begin{itemize}[nosep]
+  \item White respondents in the U.S.\ consistently score higher on meritocratic belief scales than Black respondents---the people for whom the narrative is most evidently contradicted by structural barriers are least persuaded.
+  \item Meritocratic narratives often implicitly assume a subject who is male, able-bodied, and free of caregiving responsibilities.
+  \item The ``model minority'' narrative applies meritocratic logic selectively to Asian Americans, using their achievements to delegitimize structural claims by other racialized groups.
+\end{itemize}
+
+These patterns confirm that doxonomic capture is partial and contested, not total.
+
+\section{Notes and References}
+\label{sec:ch22-notes}
+
+On meritocracy as ideology, see \textcite{sandel2012} and \textcite{bourdieu1984}.
+Inequality and its legitimation are analyzed in \textcite{piketty2014} and \textcite{stiglitz2012}.
+The role of education in reproducing class structure is central to \textcite{bourdieu1984} and \textcite{bowles1976}.
+On credentialism, see Collins (1979).
+On the racial dimensions of meritocratic belief, see \textcite{hochschild2016}.
+The self-help industry as a doxonomic channel connects to \textcite{ehrenreich2009}.
+
+\section{Exercises}
+
+\begin{exercise}
+Using Model~\ref{mod:meritocracy}, compute the narrative investment $\phi_M$ required to maintain $\belief{M} = 0.7$ when inequality doubles.
+\end{exercise}
+
+\begin{exercise}
+Design a doxometric survey to measure meritocratic belief across socioeconomic groups.
+Predict which groups will score highest and explain why doxonomically.
+\end{exercise}
+
+\begin{exercise}
+Analyze the genre of ``billionaire biography'' as a doxonomic product.
+Identify the belief production chain from publisher to reader.
+\end{exercise}

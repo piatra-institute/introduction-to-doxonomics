@@ -1,0 +1,67 @@
+\chapter{Designing Better Belief Ecologies}
+\label{ch:better-belief-ecologies}
+
+\epigraph{Another world is not only possible, she is on her way. On a quiet day, I can hear her breathing.}{Arundhati Roy}
+
+\noindent
+Doxonomics is not only diagnostic.
+It can also be constructive: guiding the design of institutional environments that produce more accurate, diverse, and socially beneficial belief ecologies.
+
+\section{Design Principles}
+\label{sec:ch33-principles}
+
+\begin{principle}[Belief Ecology Design]
+\label{prin:ecology-design}
+\index{belief ecology}
+A well-designed belief ecology satisfies:
+\begin{enumerate}[nosep]
+  \item \textbf{Diversity}: narrative entropy $H > H_{\min}$ (no single frame dominates),
+  \item \textbf{Accuracy}: beliefs track evidence (mean error $\E[|\belief{i} - p_i|]$ is minimized),
+  \item \textbf{Trust}: institutions maintain credibility through transparency, not through funding advantages,
+  \item \textbf{Responsiveness}: new evidence changes beliefs (the system is not locked in),
+  \item \textbf{Equity}: no group's beliefs are systematically distorted by asymmetric exposure.
+\end{enumerate}
+\end{principle}
+
+\section{Cooperative Anthropologies}
+\label{sec:ch33-cooperative}
+
+If the selfish-human-nature regime is a doxonomic product (Chapter~\ref{ch:human-nature}), what would a cooperative anthropological regime look like---and what institutional infrastructure would support it?
+
+The evidence from \textcite{bowles2011}, \textcite{ostrom1990}, and \textcite{nowak2006} supports an anthropology in which humans are \emph{conditional cooperators}: capable of both selfishness and cooperation, with the balance depending heavily on institutional context.
+A belief ecology designed around this evidence would teach cooperation as a default, provide institutions that reward it, and design incentive structures that assume reciprocity rather than defection.
+
+\section{Policy Implications}
+\label{sec:ch33-policy}
+
+\begin{model}[Optimal Belief Ecology]
+\label{mod:optimal-ecology}
+The social planner minimizes total doxonomic harm:
+\[
+  \min_{\narr, \insteco} \sum_i D_i(\belief{i}) + \lambda \cdot (H_{\max} - H(\narr))
+\]
+subject to budget constraints, where $D_i$ is the social damage from belief $i$ and $\lambda$ weights the penalty for low diversity.
+\end{model}
+
+\section{Notes and References}
+\label{sec:ch33-notes}
+
+On real utopias, see \textcite{wright2010}.
+Cooperative institutional design draws on \textcite{ostrom1990}.
+The capabilities approach to social design is in \textcite{sen1999} and \textcite{nussbaum2011}.
+On post-capitalist imagination, see \textcite{mason2015} and \textcite{srnicek2015}.
+
+\section{Exercises}
+
+\begin{exercise}
+Design a belief ecology for a school system.
+Specify the anthropological regime, the diversity level, and the feedback mechanisms that maintain accuracy.
+\end{exercise}
+
+\begin{exercise}
+Using Model~\ref{mod:optimal-ecology}, argue that the socially optimal belief about human nature is ``conditional cooperator'' rather than either ``pure selfish'' or ``pure altruist.''
+\end{exercise}
+
+\begin{exercise}
+Propose three policy interventions that would increase narrative entropy in a media system currently dominated by five corporations.
+\end{exercise}

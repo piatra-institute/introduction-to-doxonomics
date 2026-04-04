@@ -1,0 +1,136 @@
+\chapter{The Economics of Belief Production}
+\label{ch:economics-belief}
+
+\epigraph{There is no such thing as a free market.}{Ha-Joon Chang}
+
+\noindent
+Belief production has costs, returns, market structures, and welfare effects.
+This chapter applies economic analysis to the doxonomic system itself, asking: what does belief cost, who earns the returns, and what are the welfare consequences of concentrated reality production?
+
+\section{Cost Functions for Narrative Repetition}
+\label{sec:ch10-costs}
+
+\begin{model}[Stylized Doxonomic Cost Function]
+\label{mod:cost-function}
+\index{cost function}
+A simple candidate cost function for achieving belief level $\mu$ for proposition $p$ through channel $k$ is
+\[
+  c_k(\mu) = \frac{-\ln(1-\mu)}{\credibility{k} \cdot \reach{k}}
+\]
+This is a heuristic, not an empirically derived function.
+Its justification is qualitative: the last few percentage points of adoption are exponentially more expensive than the first, because holdouts are more resistant, more isolated, or more committed to alternatives.
+The functional form is chosen for tractability.
+Empirical estimation of actual cost curves is an open problem for the field.
+\end{model}
+
+The total cost of achieving population-level belief $\mu(p) = \bar{\mu}$ using $m$ channels is the solution to
+\[
+  \min_{\mu_1, \ldots, \mu_m} \sum_{k=1}^m c_k(\mu_k) \quad \text{subject to} \quad \sum_k w_k \mu_k = \bar{\mu}
+\]
+where $w_k$ is the population weight of group $k$.
+
+\section{Ideological Return on Investment}
+\label{sec:ch10-iroi}
+
+\begin{definition}[Ideological ROI]
+\label{def:iroi}
+\index{ideological ROI}
+The \emph{ideological return on investment} for belief $p$ through channel $k$ is
+\[
+  \iroi_k(p) = \frac{\Delta \belief{p}}{\Delta \funding{k}} = \frac{\credibility{k} \cdot \relevance{k}{p} \cdot \reach{k} \cdot \persistence{k}}{c_k'(\mu)}
+\]
+evaluated at the current belief level.
+The aggregate $\iroi$ is the weighted average across all active channels.
+\end{definition}
+
+\begin{proposition}[Decreasing IROI]
+\label{prop:decreasing-iroi}
+$\iroi_k(p)$ is decreasing in $\mu(p)$: beliefs that are already widely held offer lower marginal returns to additional investment.
+This creates an incentive to diversify across beliefs or to shift from persuasion to maintenance once capture is achieved.
+\end{proposition}
+
+\section{Belief as Public Good or Public Bad}
+\label{sec:ch10-public-good}
+
+Beliefs are non-excludable (you cannot prevent someone from adopting a freely circulating narrative) and partially non-rival (one person's belief does not deplete the narrative).
+This gives beliefs the structure of a \emph{public good}---or, when harmful, a \emph{public bad}.
+
+\begin{definition}[Doxonomic Externality]
+\label{def:doxonomic-externality}
+\index{doxonomic externality}
+A \emph{doxonomic externality} arises when a subsidized belief $p$ imposes costs on agents who did not choose to produce or receive it.
+Examples include: reduced social trust from selfishness narratives, increased tolerance for inequality from meritocratic myths, or reduced collective action capacity from individualist anthropologies.
+\end{definition}
+
+\begin{theorem}[Welfare Loss from Doxonomic Externalities]
+\label{thm:welfare-loss}
+If the social cost of belief $p$ is $D(\mu(p))$ (increasing and convex in adoption level) and private funders do not internalize this cost, the equilibrium adoption level $\mu^*$ exceeds the social optimum $\mu^{**}$:
+\[
+  \mu^* > \mu^{**} \quad \text{where} \quad \mu^{**} = \arg\min_{\mu} \left[ c(\mu) + D(\mu) \right]
+\]
+The welfare loss is $\int_{\mu^{**}}^{\mu^*} [D'(\mu) - c'(\mu)] \, d\mu > 0$.
+\end{theorem}
+
+\section{Epistemic Herfindahl Index}
+\label{sec:ch10-ehhi}
+
+\begin{definition}[EHI]
+\label{def:ehhi}
+\index{epistemic Herfindahl index!formal}
+The \emph{epistemic Herfindahl index} is
+\[
+  \ehhi = \sum_{k=1}^{m} s_k^2 \qquad \text{where} \qquad s_k = \frac{\Theta_k}{\sum_{j} \Theta_j}
+\]
+and $\Theta_k = \funding{k} \cdot \credibility{k} \cdot \reach{k}$ is the effective doxonomic throughput of channel $k$.
+\end{definition}
+
+High $\ehhi$ indicates a concentrated market for reality production, in which a small number of institutions control most of the population's narrative exposure.
+In standard antitrust economics, $\mathrm{HHI} > 0.25$ signals high concentration.
+Whether the same threshold applies to belief production is an empirical question---narrative markets differ from commodity markets in credibility dynamics, network effects, and audience resistance.
+We adopt $\ehhi > 0.25$ as a provisional warning indicator, not as a settled regulatory standard.
+
+\section{Subsidy Structures}
+\label{sec:ch10-subsidies}
+
+Much doxonomic spending is invisible because it is structured as tax-exempt philanthropy, corporate sponsorship, or institutional cross-subsidy.
+
+\begin{model}[Hidden Doxonomic Transfer]
+\label{mod:hidden-transfer}
+Let a corporation spend $S$ on think-tank funding.
+The effective doxonomic transfer is $S \cdot (1 - t)$ where $t$ is the tax rate on the deduction.
+Society effectively co-finances the doxonomic investment through foregone tax revenue.
+The net public cost is $S \cdot t$ for a narrative chosen by the funder.
+\end{model}
+
+\section{Notes and References}
+\label{sec:ch10-notes}
+
+The economics of public goods and externalities draws on \textcite{stiglitz2012} and \textcite{arrow1963}.
+The market for ideas framework is from \textcite{coase1974}.
+Media market concentration is analyzed in \textcite{bagdikian2004}.
+The Herfindahl index originates in \textcite{herfindahl1950}.
+On manipulation as an economic phenomenon, see \textcite{akerlof2015}.
+The political economy of think-tank funding is documented in \textcite{mayer2016}.
+
+\section{Exercises}
+
+\begin{exercise}
+Compute $\ehhi$ for the following hypothetical market: three channels with throughputs $\Theta_1 = 50$, $\Theta_2 = 30$, $\Theta_3 = 20$.
+Is this market concentrated by doxonomic standards?
+\end{exercise}
+
+\begin{exercise}
+A funder can invest \$10M in advertising ($\credibility{} = 0.2$, $\reach{} = 0.6$) or in university research ($\credibility{} = 0.85$, $\reach{} = 0.05$).
+Compute $\iroi$ for each.
+Under what conditions is the university investment more effective despite lower reach?
+\end{exercise}
+
+\begin{exercise}
+Model the welfare loss from the belief ``poverty reflects personal failure'' using a specific damage function $D(\mu) = \alpha \mu^2$.
+Find the socially optimal belief level and the deadweight loss.
+\end{exercise}
+
+\begin{exercise}
+Estimate the hidden public subsidy to ideological production through the U.S.\ 501(c)(3) tax exemption.
+What total doxonomic spending does this structure enable?
+\end{exercise}
