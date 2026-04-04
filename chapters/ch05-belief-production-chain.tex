@@ -7,6 +7,11 @@
 The previous chapters introduced the components.
 This chapter assembles them into the central object of doxonomic theory: the \emph{belief production chain}\index{belief production chain}, formalized as a composition of operators.
 
+The belief production chain is to doxonomics what the supply chain is to manufacturing, what the food chain is to ecology, and what the epidemiological chain of infection is to public health.
+It is the structured sequence through which raw resources become durable public belief.
+Understanding its stages, their interconnections, and their failure modes is the core analytical task of the field.
+
+
 \section{The Chain as Operator Composition}
 \label{sec:ch5-composition}
 
@@ -30,6 +35,15 @@ where:
 The full chain maps an initial funding allocation to a new funding allocation via beliefs and behavior.
 When $\bpc$ has a fixed point, the doxonomic system is in equilibrium: belief reproduces the conditions of its own production.
 
+\begin{remark}
+Each operator is itself a complex process with internal structure.
+The production function $\mathcal{P}$ is not a single equation but an ensemble of institutions each with its own logic (Chapter~\ref{ch:core-units}).
+The internalization operator $\mathcal{I}$ involves Bayesian updating, motivated reasoning, identity protection, and social conformity simultaneously (Chapter~\ref{ch:ontology-belief}).
+The composition notation $\bpc = \mathcal{R} \circ \cdots \circ \mathcal{F}$ is a deliberate abstraction: it allows us to reason about the chain's global properties (fixed points, stability, multiplier effects) without specifying the internal structure of each stage.
+The internal structure is developed in subsequent chapters.
+\end{remark}
+
+
 \section{Stage 1: Funding Allocation}
 \label{sec:ch5-funding}
 
@@ -41,6 +55,28 @@ The funding allocation operator $\mathcal{F}$ distributes total resources $F$ ac
 The strategy $\sigma$ may be the solution to the optimization problem in Proposition~\ref{prop:optimal-allocation}, or it may reflect institutional inertia, path dependence, or donor ideology.
 In practice, most doxonomic funding is not optimally allocated; it follows organizational routines.
 
+\begin{example}[Funding Strategies]
+\label{ex:funding-strategies}
+Consider three funders, each with \$10M/year, pursuing the same belief:
+\begin{itemize}[nosep]
+  \item \textbf{Optimizer}: allocates using the equimarginal principle, concentrating on high-$\credibility{} \times \persistence{}$ channels. Expected belief impact: high.
+  \item \textbf{Inertia funder}: allocates the same proportions as last year, regardless of changed conditions. Common in large foundations with entrenched grantmaking patterns.
+  \item \textbf{Ideological funder}: allocates based on personal conviction (``I believe in education'') rather than cost-effectiveness analysis. May over-invest in a favored channel and under-invest in others.
+\end{itemize}
+The gap between the optimizer and the other two is the \emph{allocative inefficiency} of the doxonomic system.
+Real doxonomic systems are typically far from optimal---which, depending on one's normative position, may be a relief.
+\end{example}
+
+\begin{remark}[The Dark Budget]
+\label{rem:dark-budget}
+Not all doxonomic funding is visible.
+``Dark money''\index{dark money}---funding channeled through intermediaries that do not disclose their donors---is a significant fraction of total doxonomic investment in some countries.
+\textcite{mayer2016} estimates that hundreds of millions of dollars flow annually through donor-advised funds and pass-through foundations in the United States alone, with the ultimate source legally obscured.
+The funding allocation operator $\mathcal{F}$ is thus partially unobservable, complicating the doxonomic audit.
+Chapter~\ref{ch:belief-flow-accounting} develops methods for inferring hidden funding from observable outputs.
+\end{remark}
+
+
 \section{Stage 2: Institutional Processing}
 \label{sec:ch5-processing}
 
@@ -50,6 +86,10 @@ Each institution $\iota_k$ transforms funding and raw material into credentialed
 \]
 where $n_k \in \narspace$ is the narrative output and $\credibility{k} \in [0,1]$ is its credibility weight.
 
+The processing stage is where raw money becomes persuasive content.
+A donor's preference for deregulation enters Heritage Foundation as a grant; it exits as a policy brief with citations, data tables, and expert endorsement.
+The \emph{content} may not change much, but the \emph{form} is transformed from private preference to public-facing knowledge claim.
+
 \begin{proposition}[Credibility Premium]
 \label{prop:credibility-premium}
 If two channels produce the same narrative $n$ but with credibility weights $\credibility{1} > \credibility{2}$, then the doxonomic effect satisfies
@@ -57,15 +97,40 @@ If two channels produce the same narrative $n$ but with credibility weights $\cr
   \Delta\belief{i}(\text{channel } 1) = \frac{\credibility{1}}{\credibility{2}} \cdot \Delta\belief{i}(\text{channel } 2)
 \]
 under the first-order model.
-High-credibility institutions thus provide a \emph{credibility premium}: the same narrative, laundered through a prestigious institution, has proportionally greater doxonomic force.
+High-credibility institutions thus provide a \emph{credibility premium}\index{credibility premium}: the same narrative, processed through a prestigious institution, has proportionally greater doxonomic force.
 \end{proposition}
+
+\begin{example}[The Credibility Premium in Practice]
+\label{ex:credibility-practice}
+In 2010, Carmen Reinhart and Kenneth Rogoff published a paper claiming that government debt exceeding 90\% of GDP leads to sharply lower growth.
+The paper was processed through high-credibility channels: Harvard affiliation ($\credibility{} \approx 0.9$), NBER working paper series, prestigious journal publication.
+It was cited in congressional testimony, European Commission policy documents, and IMF reports.
+It justified austerity programs affecting hundreds of millions of people.
+
+In 2013, a graduate student discovered a spreadsheet error that materially changed the results.
+The corrected analysis showed no sharp threshold at 90\%.
+But by then, the narrative had been internalized: three years of high-credibility circulation had made ``90\% debt threshold'' into policy common sense.
+The \emph{correction} circulated through lower-credibility channels (a working paper from UMass Amherst) and took years to propagate.
+
+This episode illustrates the credibility premium's asymmetry: high-credibility errors propagate faster and stick longer than lower-credibility corrections.
+\end{example}
+
+\begin{definition}[Processing Loss]
+\label{def:processing-loss}
+\index{processing loss}
+The \emph{processing loss} of an institution is the difference between the funder's intended message and the institution's actual output.
+Formally, if the funder intends narrative $n_{\text{in}}$ and the institution produces $n_{\text{out}}$, the loss is $d(n_{\text{in}}, n_{\text{out}})$ in the narrative distance metric (Definition~\ref{def:narrative-distance}).
+Institutions with high autonomy (Remark~\ref{rem:autonomy}) have higher processing loss; institutions with low autonomy (PR firms) have near-zero processing loss.
+Processing loss is not necessarily undesirable from a social perspective: it is one mechanism by which institutional norms can resist funder capture.
+\end{definition}
+
 
 \section{Stage 3: Circulation}
 \label{sec:ch5-circulation}
 
 The circulation operator models how narratives reach populations.
 Let $e_{jk} \in \{0,1\}$ indicate whether individual $j$ is exposed to channel $k$.
-The exposure matrix $E = (e_{jk})$ determines who hears what.
+The exposure matrix $E = (e_{jk})_{N \times m}$ determines who hears what.
 
 \begin{definition}[Exposure Distribution]
 \label{def:exposure}
@@ -77,16 +142,46 @@ The \emph{exposure distribution} for belief $i$ is the vector $\bm{v}_i \in [0,1
 is the probability that individual $j$ encounters at least one narrative relevant to belief $i$.
 \end{definition}
 
+The exposure matrix $E$ is the most consequential object in the circulation stage.
+It determines the information environment of every individual---and in the platform era, it is increasingly determined by algorithms rather than by editorial judgment or audience choice.
+
+\begin{definition}[Exposure Asymmetry]
+\label{def:exposure-asymmetry}
+\index{exposure asymmetry}
+The \emph{exposure asymmetry} for belief $i$ and its negation $\neg i$ is
+\[
+  A_j(i) = v_{i,j} - v_{\neg i, j}
+\]
+measuring the degree to which individual $j$'s information environment is skewed toward $i$.
+If $A_j(i) > 0$ for most $j$, the population is in an asymmetric information environment favoring $i$---the precondition for Bayesian divergence (Proposition~\ref{prop:unequal-updating}).
+\end{definition}
+
+\begin{remark}[Algorithmic Circulation]
+\label{rem:algorithmic}
+In pre-digital media systems, the exposure matrix $E$ was determined by geography (which newspapers were available), economics (who could afford a subscription), and editorial decisions (what was published).
+These factors produced systematic asymmetries, but they were relatively stable and partially observable.
+
+In platform-mediated circulation, $E$ is determined by engagement-maximizing algorithms that personalize exposure at the individual level.
+The matrix is no longer stable, observable, or uniform across the population.
+Each user receives a different information environment, optimized not for truth or public welfare but for attention capture.
+This makes the exposure asymmetry $A_j(i)$ both larger (more personalized skew) and harder to measure (proprietary algorithms).
+Chapter~\ref{ch:text-media} discusses methods for partially reconstructing algorithmic exposure.
+\end{remark}
+
+
 \section{Stage 4: Internalization}
 \label{sec:ch5-internalization}
 
 Internalization is the process by which exposure becomes credence.
-We model it as Bayesian updating with bounded attention:
+It is the stage where the doxonomic system meets the individual mind---and where the simplifying assumptions of formal models are most strained.
 
-\[
+\subsection{The Bayesian Baseline}
+
+As a first approximation, we model internalization as Bayesian updating:
+\begin{equation}
+\label{eq:bayes-update}
   \pi_j^{(t+1)}(p_i) = \frac{\pi_j^{(t)}(p_i) \cdot L_j(e_j \mid p_i)}{\pi_j^{(t)}(p_i) \cdot L_j(e_j \mid p_i) + (1 - \pi_j^{(t)}(p_i)) \cdot L_j(e_j \mid \neg p_i)}
-\]
-
+\end{equation}
 where $L_j$ is the likelihood function shaped by $j$'s exposure.
 When exposure is heavily skewed---when $j$ sees many more arguments for $p_i$ than against---the posterior converges toward $p_i$ regardless of the prior.
 
@@ -99,13 +194,52 @@ Then $\pi_j^{(t)}(p_i) \to 1$ almost surely as $t \to \infty$, regardless of the
 \end{conjecture}
 
 \begin{remark}
-The assumptions matter.
+The assumptions are strong and worth stating explicitly: conditional independence, well-specified likelihoods, no source discounting, no model revision, no endogenous stopping.
 In practice, agents discount unfamiliar sources, update models, experience motivated reasoning, and face correlated rather than independent signals.
 The conjecture identifies an idealized mechanism---asymmetric exposure can overwhelm priors---not a universal law.
 Repetition alone does not mathematically guarantee capture; it does so only under conditions that doxonomic systems are designed to approximate.
 \end{remark}
 
-This is the formal basis of common-sense capture through repetition: sufficiently asymmetric exposure, under favorable conditions, overwhelms any prior.
+\subsection{Beyond Bayes: How Real People Internalize}
+
+The Bayesian model is a useful benchmark, but real internalization involves several additional mechanisms:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Motivated reasoning}\index{motivated reasoning}: agents update asymmetrically, weighting evidence that confirms identity-consistent beliefs more heavily than evidence that threatens them \autocite{kahan2012}.
+  In doxonomic terms, motivated reasoning amplifies the effect of identity-aligned narratives and attenuates the effect of identity-threatening ones.
+
+  \item \textbf{Source credibility weighting}: agents do not treat all sources equally.
+  A message from a trusted in-group member has higher effective $\credibility{}$ than the same message from an out-group source, regardless of content.
+  This means the credibility weight is not a property of the channel alone but of the \emph{channel $\times$ audience} interaction.
+
+  \item \textbf{Social proof}\index{social proof}: agents use perceived peer behavior as evidence.
+  If ``everyone seems to believe $p$,'' this is treated as independent evidence for $p$---even when it is not independent but is itself the product of shared doxonomic exposure \autocite{cialdini2006}.
+  Social proof creates a positive feedback loop: doxonomic production increases expressed belief, which increases perceived consensus, which increases genuine belief.
+
+  \item \textbf{Repetition and mere exposure}: repeated exposure to a claim increases its perceived truth, independent of evidential content---the ``illusory truth effect'' \autocite{kahneman2011}.
+  This is the most direct mechanism of doxonomic production: sheer volume of exposure substitutes for evidence.
+
+  \item \textbf{Narrative coherence}: agents are more likely to internalize a proposition that fits into an existing narrative structure (Chapter~\ref{ch:ontology-belief}, Definition~\ref{def:ideology}).
+  An ideologically bundled proposition benefits from the coherence of the surrounding ideology: accepting one element lowers the threshold for accepting others.
+
+  \item \textbf{Non-propositional internalization}: at layers 3--5 of the ontology (Principle~\ref{prin:layered-ontology}), internalization does not involve conscious belief updating at all.
+  Practical schemas are shaped by prolonged immersion, affective orientations by repeated association, identity commitments by social belonging.
+  These processes are slower than propositional updating but more durable.
+\end{enumerate}
+
+\begin{model}[Augmented Internalization]
+\label{mod:augmented-internalization}
+\index{internalization!augmented model}
+Combining the Bayesian baseline with the mechanisms above, the effective update rule is:
+\begin{equation}
+\label{eq:augmented-update}
+  \pi_j^{(t+1)}(p_i) = \pi_j^{(t)}(p_i) + \underbrace{\alpha_{\text{Bayes}} \cdot \Delta_{\text{Bayes}}}_{\text{evidence}} + \underbrace{\alpha_{\text{social}} \cdot (\hat{\mu}_j^{(t)} - \pi_j^{(t)})}_{\text{social proof}} + \underbrace{\alpha_{\text{rep}} \cdot v_{i,j}}_{\text{repetition}} - \underbrace{\rho_j(n_i) \cdot |\Delta|}_{\text{resistance}}
+\end{equation}
+where $\Delta_{\text{Bayes}}$ is the Bayesian update, $\hat{\mu}_j^{(t)}$ is the perceived social norm, $v_{i,j}$ is exposure intensity, and $\rho_j$ is resistance.
+The relative weights $\alpha$ determine whether internalization is primarily evidence-driven, socially driven, or repetition-driven.
+In most real-world settings, $\alpha_{\text{social}}$ and $\alpha_{\text{rep}}$ dominate $\alpha_{\text{Bayes}}$.
+\end{model}
+
 
 \section{Stage 5: Behavioral Consequence}
 \label{sec:ch5-behavior}
@@ -117,7 +251,27 @@ We model behavior as a function of beliefs:
   x_j = \arg\max_{x \in \mathcal{X}} \, u_j(x, \pi_j)
 \]
 
-When the population internalizes the belief that humans are selfish, cooperation declines, which appears to confirm the belief---a self-fulfilling prophecy \autocite{fischbacher2001, henrich2001}.
+The behavioral consequences of doxonomic production are diverse:
+\begin{itemize}[nosep]
+  \item \textbf{Voting}: belief in meritocracy reduces support for redistributive policy.
+  \item \textbf{Consumption}: belief in consumer identity drives purchasing decisions.
+  \item \textbf{Cooperation}: belief in selfish human nature reduces cooperative behavior in public goods settings \autocite{fischbacher2001}.
+  \item \textbf{Labor compliance}: belief in the moral value of work increases tolerance for poor working conditions.
+  \item \textbf{Tolerance of inequality}: belief that wealth reflects merit reduces demand for redistribution \autocite{piketty2014}.
+  \item \textbf{Resistance}: belief that ``there is no alternative'' reduces engagement with counter-narratives.
+\end{itemize}
+
+\begin{definition}[Self-Fulfilling Belief]
+\label{def:self-fulfilling}
+\index{self-fulfilling belief}
+A belief $p$ is \emph{self-fulfilling} if the behavioral consequences of holding $p$ generate evidence that appears to confirm $p$.
+Formally, $p$ is self-fulfilling if the mapping $\pi \mapsto \text{evidence}(\mathcal{B}(\pi))$ is such that $\text{evidence}(\mathcal{B}(\pi))$ is more consistent with $p$ when $\pi(p)$ is high.
+\end{definition}
+
+Self-fulfilling beliefs are the most dangerous doxonomic products because they generate their own evidence.
+The belief that ``people are selfish'' leads to institutions designed around selfishness (incentive contracts, competitive structures, monitoring systems), which elicit selfish behavior, which appears to confirm the belief.
+Breaking a self-fulfilling cycle requires intervening at the \emph{institutional design} level, not just at the narrative level.
+
 
 \section{Stage 6: Reproduction}
 \label{sec:ch5-reproduction}
@@ -135,12 +289,57 @@ A \emph{doxonomic equilibrium} is a fixed point of the belief production chain:
 At equilibrium, the beliefs produced by the system generate exactly the behaviors and institutions that sustain those beliefs.
 \end{definition}
 
+\begin{theorem}[Existence of Equilibrium]
+\label{thm:existence}
+If each operator in the chain is continuous and the composed map $\bpc: K \to K$ for a compact convex set $K \subset \R^m_{\geq 0}$, then at least one doxonomic equilibrium exists.
+\end{theorem}
+
+\begin{proof}
+By Brouwer's fixed-point theorem, every continuous map from a compact convex set to itself has a fixed point.
+The continuity assumption requires that small changes in funding produce small changes in narrative output, exposure, belief, behavior, and reproduction---reasonable for aggregate quantities, though potentially violated at phase transitions.
+The compactness assumption requires bounded funding ($K \subset [0, F_{\max}]^m$), which is physically realistic.
+\end{proof}
+
 \begin{conjecture}[Multiplicity of Equilibria]
 \label{conj:multiplicity}
-For most doxonomic systems, multiple equilibria exist.
+For most doxonomic systems with nonlinear internalization (thresholds, social proof, self-fulfilling dynamics), multiple equilibria exist.
 A society may be locked into a ``selfish human nature'' equilibrium or a ``cooperative human nature'' equilibrium, each self-sustaining.
 Transitions between equilibria require coordinated disruption of the belief production chain at multiple stages simultaneously.
 \end{conjecture}
+
+\begin{remark}[Equilibrium Selection]
+\label{rem:selection}
+When multiple equilibria exist, the question becomes: which one does a society end up in?
+This is the \emph{equilibrium selection problem}\index{equilibrium selection}.
+History, path dependence, and the timing of doxonomic investments determine selection.
+A society that happened to receive large early investments in selfish-anthropology institutions (e.g., through the Mont P\`{e}lerin network in the 1950s--1970s) may be locked into that equilibrium, even if a cooperative equilibrium would be stable too, had the initial investment gone the other way.
+This is the doxonomic version of ``history matters.''
+\end{remark}
+
+
+\section{Generational Reproduction as a Fixed-Point Problem}
+\label{sec:ch5-generational}
+
+The most powerful form of reproduction is generational.
+Each generation's beliefs are partly determined by the institutional environment they grow up in---which was built by the previous generation's beliefs.
+
+\begin{model}[Generational Fixed Point]
+\label{mod:generational}
+\index{generational reproduction}
+Let $\beliefvec_t$ be the belief distribution of generation $t$ and $\insteco_t$ the institutional ecology inherited from the previous generation.
+The dynamics are:
+\begin{align}
+  \insteco_{t+1} &= h(\beliefvec_t, \insteco_t) \quad \text{(institutions reflect current beliefs + inertia)} \\
+  \beliefvec_{t+1} &= \Psi(\Phi(\insteco_{t+1}), \beliefvec_0^{(t+1)}) \quad \text{(new generation's beliefs shaped by inherited institutions)}
+\end{align}
+where $\beliefvec_0^{(t+1)}$ is the prior distribution of the incoming generation (partly shaped by family, partly by innate tendencies).
+A \emph{generational equilibrium} satisfies $\beliefvec^* = \Psi(\Phi(h(\beliefvec^*, \insteco^*)), \beliefvec_0)$: the beliefs that institutions transmit to the new generation are the same beliefs that sustain those institutions.
+\end{model}
+
+Generational reproduction is why doxonomic equilibria can persist for centuries.
+The belief that ``monarchy is divinely ordained'' persisted for a thousand years not because each generation was independently persuaded but because each generation grew up in institutions (churches, courts, feudal structures) built on that assumption.
+When the institutional environment changed (print revolution, rising merchant class, Enlightenment universities), the generational fixed point shifted.
+
 
 \section{Comparison with Input-Output Models}
 \label{sec:ch5-leontief}
@@ -152,6 +351,7 @@ In Leontief's framework, each sector's output is an input to other sectors, and 
 \label{mod:input-output}
 \index{input-output model}
 Let $\bm{A}$ be a matrix where $A_{ij}$ represents the fraction of channel $j$'s output that serves as input to channel $i$.
+For example, $A_{21} = 0.3$ means 30\% of think tank output ($j=1$) is picked up by media ($i=2$) as source material.
 The total narrative output vector $\bm{n}$ satisfies
 \[
   \bm{n} = \bm{A}\bm{n} + \bm{d}
@@ -161,8 +361,45 @@ The solution, when $(\bm{I} - \bm{A})$ is invertible, is
 \[
   \bm{n} = (\bm{I} - \bm{A})^{-1}\bm{d}
 \]
-The matrix $(\bm{I} - \bm{A})^{-1}$ is the \emph{doxonomic multiplier}: it shows how a unit injection of narrative through one channel amplifies through the system.
+The matrix $(\bm{I} - \bm{A})^{-1}$ is the \emph{doxonomic multiplier}\index{doxonomic multiplier}: it shows how a unit injection of narrative through one channel amplifies through the system.
 \end{model}
+
+\begin{example}[Multiplier Interpretation]
+\label{ex:multiplier}
+Consider a three-channel system: think tanks ($k=1$), media ($k=2$), education ($k=3$).
+Suppose
+\[
+  \bm{A} = \begin{pmatrix} 0 & 0.1 & 0 \\ 0.4 & 0 & 0.1 \\ 0.2 & 0.3 & 0 \end{pmatrix}
+\]
+This means: 40\% of think-tank output is picked up by media; 20\% eventually enters education; 30\% of media output enters education; and so on.
+The Leontief inverse $(\bm{I} - \bm{A})^{-1}$ reveals that a \$1 injection into think tanks produces more than \$1 of total narrative output, because the think-tank output amplifies through media and education.
+The $(3,1)$ entry of the inverse gives the \emph{total} effect on education of a unit injection into think tanks---including all indirect pathways.
+\end{example}
+
+
+\section{Where Chains Break: Failure Modes}
+\label{sec:ch5-failure}
+
+Not every doxonomic investment succeeds.
+The chain can break at any stage:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Funding failure}: insufficient resources, donor fatigue, or political change cuts funding.
+  \item \textbf{Processing failure}: the institution produces low-quality output, is caught fabricating evidence, or faces internal rebellion (researchers refuse to produce the desired conclusion).
+  \item \textbf{Circulation failure}: the narrative fails to reach the target audience (gatekeepers block it, algorithms deprioritize it, counter-narratives dominate attention).
+  \item \textbf{Internalization failure}: the audience rejects the narrative (identity resistance, lived experience contradicts the claim, counter-inoculation is effective).
+  \item \textbf{Behavioral failure}: the belief is internalized but does not produce the expected behavior (people believe meritocracy but vote for redistribution anyway, because material self-interest overrides).
+  \item \textbf{Reproduction failure}: behavioral changes do not feed back into funding (the beneficiaries of the belief do not reinvest in its production).
+\end{enumerate}
+
+\begin{principle}[Weakest Link]
+\label{prin:weakest-link}
+\index{weakest link}
+The effectiveness of a belief production chain is determined by its weakest stage.
+A brilliantly funded and processed narrative that cannot circulate (Stage 3 failure) is as ineffective as a well-circulated narrative that the audience rejects (Stage 4 failure).
+Counter-doxonomic strategy (Chapter~\ref{ch:counter-doxonomic}) should target the weakest link of the dominant chain.
+\end{principle}
+
 
 \section{The Full Chain Diagram}
 
@@ -189,37 +426,76 @@ The matrix $(\bm{I} - \bm{A})^{-1}$ is the \emph{doxonomic multiplier}: it shows
 \end{tikzpicture}
 \end{center}
 
+
 \section{Notes and References}
 \label{sec:ch5-notes}
 
 The operator-composition framework is original to this text.
-The Leontief input-output analogy draws on standard economic input-output analysis \autocite{stiglitz2012}.
+The Leontief input-output analogy draws on standard economic input-output analysis; for the original framework, see Leontief (1941).
 Self-fulfilling beliefs in cooperation are documented in \textcite{fischbacher2001} and \textcite{henrich2001}.
 Threshold models of collective behavior originate with \textcite{granovetter1978} and \textcite{schelling1978}.
 Cascade models appear in \textcite{banerjee1992} and \textcite{bikhchandani1992}.
 The concept of doxonomic equilibrium as a fixed point connects to \textcite{north1990} on institutional equilibria.
+Brouwer's fixed-point theorem is standard; for social science applications, see \textcite{jackson2008}.
+
+On motivated reasoning and identity-protective cognition, see \textcite{kahan2012} and \textcite{mercier2017}.
+The illusory truth effect is reviewed in \textcite{kahneman2011}.
+Social proof as a persuasion mechanism is analyzed in \textcite{cialdini2006}.
+The Reinhart-Rogoff episode is documented in Herndon, Ash, and Pollin (2014).
+On dark money and funding opacity, see \textcite{mayer2016}.
+Generational reproduction of belief through institutional transmission draws on \textcite{bourdieu1984} and \textcite{bowles1976}.
+On performativity---models that reshape the reality they describe---see \textcite{mackenzie2006}.
+
+Equilibrium selection in games with multiple equilibria is a deep problem in economic theory; see \textcite{schelling1978} for focal-point selection and \textcite{north1990} for path-dependent institutional selection.
+
 
 \section{Exercises}
 
 \begin{exercise}
-Compute the doxonomic multiplier $(\bm{I} - \bm{A})^{-1}$ for a system with three channels and the matrix
-\[
-  \bm{A} = \begin{pmatrix} 0 & 0.3 & 0.1 \\ 0.2 & 0 & 0.2 \\ 0.1 & 0.1 & 0 \end{pmatrix}
-\]
-Interpret the off-diagonal elements of the multiplier.
+Compute the doxonomic multiplier $(\bm{I} - \bm{A})^{-1}$ for the three-channel system in Example~\ref{ex:multiplier}.
+Interpret the $(2,1)$ and $(3,1)$ entries: how much total media output and education output results from a unit injection into think tanks?
 \end{exercise}
 
 \begin{exercise}
-Show that if the reproduction operator $\mathcal{R}$ is continuous and the composed map $\bpc: K \to K$ for a compact convex set $K \subset \R^m_{\geq 0}$, then a doxonomic equilibrium exists (use Brouwer's fixed-point theorem).
+\label{ex:ch5-existence}
+Verify the conditions of Theorem~\ref{thm:existence} for a specific two-channel system.
+Define explicit operators $\mathcal{F}$, $\mathcal{P}$, $\mathcal{C}$, $\mathcal{I}$, $\mathcal{B}$, $\mathcal{R}$ with concrete functional forms, verify continuity and compactness, and conclude that an equilibrium exists.
 \end{exercise}
 
 \begin{exercise}
 Consider two competing belief production chains---one promoting ``human nature is selfish,'' the other promoting ``human nature is cooperative''---sharing the same population.
 Model this as a two-player game over funding allocations and characterize the Nash equilibrium.
+Under what conditions does the better-funded chain always win?
+Under what conditions can the less-funded chain prevail?
+\end{exercise}
+
+\begin{exercise}
+For the augmented internalization model~\eqref{eq:augmented-update}, show that if $\alpha_{\text{social}} > \alpha_{\text{Bayes}}$, a doxonomic system can maintain high $\belief{i}$ even when new evidence against $p_i$ is available, provided the perceived social norm $\hat{\mu}_j$ remains high.
+Interpret: when does social proof override evidence?
 \end{exercise}
 
 \begin{exercise}
 Design a disruption strategy that breaks a self-reinforcing doxonomic equilibrium.
 At which stage of the chain is intervention most cost-effective?
-Argue formally.
+Argue formally using the weakest-link principle and the relative costs of intervening at each stage.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch5-self-fulfilling}
+The text defines self-fulfilling beliefs (Definition~\ref{def:self-fulfilling}).
+Give three examples of beliefs that are self-fulfilling and three that are self-undermining (holding them generates evidence against them).
+What determines which type a belief is?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch5-generational}
+Using Model~\ref{mod:generational}, consider a society where the current generation believes strongly in meritocracy ($\beliefvec_t = 0.8$).
+They build institutions (schools, labor markets) around this belief.
+Under what conditions does the next generation inherit the same belief level?
+Under what conditions does generational reproduction fail (the next generation's beliefs diverge from the previous generation's)?
+\end{exercise}
+
+\begin{exercise}
+Identify a historical case where a belief production chain broke at each of the six failure modes listed in Section~\ref{sec:ch5-failure}.
+For each case, explain what caused the failure and what happened to the belief afterward.
 \end{exercise}

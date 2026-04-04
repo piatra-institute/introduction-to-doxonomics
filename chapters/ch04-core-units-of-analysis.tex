@@ -5,7 +5,11 @@
 
 \noindent
 Doxonomics requires a precise vocabulary of parts.
-This chapter defines the core units---agents, institutions, channels, budgets, narratives, audiences, and feedback loops---and gives each a mathematical specification.
+Before we can model how beliefs are produced, we need formal definitions of the entities involved: who produces belief, through what institutional machinery, via which channels, with what resources, carrying what content, reaching which audiences, and feeding back into what structures.
+
+This chapter defines seven core units---agents, institutions, channels, budgets, narratives, audiences, and feedback loops---and gives each a mathematical specification.
+Together they constitute the component library from which doxonomic systems are assembled.
+
 
 \section{Agents}
 \label{sec:ch4-agents}
@@ -13,18 +17,64 @@ This chapter defines the core units---agents, institutions, channels, budgets, n
 \begin{definition}[Doxonomic Agent]
 \label{def:agent}
 \index{agent}
-A \emph{doxonomic agent} is an entity $a \in \agentspace$ characterized by a type $\tau(a) \in \{\text{funder}, \text{institution}, \text{intermediary}, \text{audience}\}$, a resource endowment $r(a) \in \R_{\geq 0}$, a belief state $\pi_a \in \Delta(\Omega)$ (a probability distribution over propositions), and a strategic objective $u_a: \beliefspace \to \R$.
+A \emph{doxonomic agent} is an entity $a \in \agentspace$ characterized by:
+\begin{itemize}[nosep]
+  \item a \emph{type} $\tau(a) \in \{\text{funder}, \text{institution}, \text{intermediary}, \text{audience member}\}$,
+  \item a \emph{resource endowment} $r(a) \in \R_{\geq 0}$,
+  \item a \emph{belief state} $\pi_a \in \Delta(\Omega)$ (a probability distribution over propositions),
+  \item a \emph{strategic objective} $u_a: \beliefspace \to \R$ (a utility function over population-level belief states).
+\end{itemize}
 \end{definition}
 
-Funders allocate resources to channels.
-Institutions process funding into narrative outputs.
-Intermediaries amplify, filter, or repackage narratives.
-Audiences receive, interpret, and may resist or adopt them.
+The four types play structurally different roles:
 
-The key asymmetry is that funders optimize over $\beliefspace$---they have preferences about what the population believes---while audiences are typically modeled as updating agents without strategic control over the information environment.
+\textbf{Funders} allocate resources to channels.
+They have preferences about what the population believes---preferences that may be ideological (a foundation promoting free-market ideas), commercial (a corporation promoting consumerism), or governmental (a state promoting national identity).
+Their strategic problem is: given budget $r(a)$, how to allocate across channels to maximize $u_a(\beliefvec)$.
+
+\textbf{Institutions} process funding into narrative outputs.
+They are the factories of belief production: universities, think tanks, media organizations, PR firms, religious organizations, government agencies.
+Their output depends not only on funding but on their internal norms, personnel, accumulated credibility, and organizational culture.
+
+\textbf{Intermediaries} amplify, filter, translate, or repackage narratives as they move through the system.
+A journalist who writes up a think-tank report, a social media influencer who popularizes an academic finding, a textbook author who translates research into pedagogical material---each is an intermediary who transforms the narrative in the process of transmitting it.
+
+\textbf{Audience members} receive, interpret, and may resist or adopt narratives.
+They are not passive.
+They bring prior beliefs, identity commitments, lived experience, and cognitive resources to the encounter with any narrative.
+The same narrative may persuade one audience segment and provoke backlash in another.
+
+\begin{remark}
+\label{rem:agent-dual-roles}
+In practice, agents often occupy multiple roles simultaneously.
+A university professor is both an institution (producing research) and an intermediary (translating it for students) and an audience member (consuming media).
+The type classification is analytical, not existential: it describes the \emph{role} an agent plays in a specific doxonomic transaction, not a permanent identity.
+\end{remark}
+
+The key structural asymmetry is that funders optimize over $\beliefspace$---they have preferences about what the population believes and resources to act on those preferences---while audience members are typically modeled as updating agents without strategic control over the information environment.
+This asymmetry is the source of doxonomic power.
+
+\begin{example}[Agent Asymmetry in Climate Discourse]
+\label{ex:climate-agents}
+In the climate-belief system:
+\begin{itemize}[nosep]
+  \item \textbf{Funders}: fossil fuel companies (ExxonMobil, Koch Industries) invested hundreds of millions in climate-doubt production \autocite{oreskes2010}.
+  \item \textbf{Institutions}: think tanks (Heartland Institute, Global Warming Policy Foundation) processed funding into contrarian research, op-eds, and congressional testimony.
+  \item \textbf{Intermediaries}: cable news producers, op-ed editors, and social media algorithms amplified doubt narratives.
+  \item \textbf{Audience}: the general public, which by 2010 was significantly more skeptical about climate change than the scientific consensus warranted.
+\end{itemize}
+The funding asymmetry: the fossil fuel industry's doxonomic budget for climate doubt dwarfed the combined science-communication budgets of all climate research institutions.
+This did not make the doubt narrative \emph{true}; it made it \emph{ubiquitous}.
+\end{example}
+
 
 \section{Institutions as Belief-Processing Functions}
 \label{sec:ch4-institutions}
+
+Institutions are the central machinery of doxonomic production.
+They are not mere conduits; they \emph{transform} inputs.
+A think tank does not simply relay its donor's wishes.
+It translates them into credentialed, publishable, quotable form---adding the epistemic capital that makes the output persuasive.
 
 \begin{definition}[Institutional Processing Function]
 \label{def:institution-function}
@@ -37,37 +87,105 @@ mapping a funding level and input narrative material to an output narrative and 
 The credibility multiplier reflects the institution's accumulated epistemic capital $\ecap(\iota)$.
 \end{definition}
 
-A university, a newspaper, a think tank, and an advertising agency all process inputs into narrative outputs, but with different credibility profiles.
-The credibility of the output depends not only on its content but on the institutional brand attached to it.
+The processing function captures three things:
+\begin{enumerate}[nosep]
+  \item \textbf{Content transformation}: the input (a donor's policy preference) becomes output (a research paper, a textbook chapter, an op-ed). The content may be identical, but the form is different---and form determines doxonomic force.
+  \item \textbf{Credibility attachment}: the institutional brand is affixed to the output. ``A study by the Heritage Foundation'' and ``a study by Harvard'' carry different credibility weights, even if the methodology is identical.
+  \item \textbf{Audience routing}: different institutions have access to different distribution networks. A think tank's output reaches policymakers and journalists; a university's output reaches students and academics; an advertising agency's output reaches consumers.
+\end{enumerate}
 
-\begin{example}
-\label{ex:think-tank}
+\begin{example}[Credibility Differential]
+\label{ex:think-tank-credibility}
 A think tank $\iota$ receives funding $\funding{k} = \$2\text{M/year}$ and raw policy positions from its donors.
 It outputs research papers, op-eds, and expert testimony.
 Its credibility multiplier $\credibility{\iota} = 0.7$ reflects its reputation among journalists and policymakers.
 A university economics department performing similar work might have $\credibility{\iota'} = 0.9$.
 The difference in $\credibility{}$ means the same proposition, backed by the same evidence, has different doxonomic force depending on its institutional origin.
+
+This credibility differential is what makes \emph{credibility laundering}\index{credibility laundering} possible: a low-credibility funder channels money through a high-credibility institution, gaining the credibility premium without producing the underlying quality.
+The institution's brand is the product being purchased.
 \end{example}
+
+\begin{definition}[Institutional Capacity]
+\label{def:capacity}
+\index{institutional capacity}
+The \emph{capacity} of an institution $\iota$ is the maximum narrative throughput it can produce per unit time:
+\[
+  \Theta^{\max}(\iota) = \max_{\funding{}} \left\{ \reach{\iota}(\funding{}) \cdot \credibility{\iota} \cdot \persistence{\iota} \right\}
+\]
+Capacity depends on staffing, infrastructure, accumulated expertise, and institutional reputation.
+It cannot be created instantly: building a credible institution takes years or decades, which is why doxonomic systems exhibit strong path dependence.
+\end{definition}
+
+\begin{remark}[Institutional Autonomy]
+\label{rem:autonomy}
+Institutions are not perfectly obedient to their funders.
+A university department funded by a corporation may produce research that contradicts the funder's preferences.
+A media outlet owned by a billionaire may employ journalists who resist editorial direction.
+This relative autonomy is an important feature, not a bug, of the model: it means the production function $\iota$ has its own internal logic that may partially resist the input signal.
+The degree of institutional autonomy varies: a PR firm has near-zero autonomy (it produces what the client wants); a tenured university department has considerable autonomy (funding affects what is studied, not necessarily what is concluded).
+\end{remark}
+
 
 \section{Channels}
 \label{sec:ch4-channels}
+
+Channels are the transmission media through which institutional outputs reach audiences.
+Each channel has characteristic properties that determine its doxonomic profile.
 
 \begin{definition}[Doxonomic Channel]
 \label{def:channel}
 \index{channel}
 A \emph{channel} is a medium of narrative transmission characterized by:
 \begin{itemize}[nosep]
-  \item reach $\reach{k} \in [0,1]$ (fraction of population exposed),
-  \item credibility $\credibility{k} \in [0,1]$ (weight assigned to messages by the audience),
-  \item persistence $\persistence{k} \in \R_{>0}$ (half-life of the narrative in audience memory),
-  \item cost $c_k: \R_{\geq 0} \to [0,1]$ (mapping from funding to effective reach, typically concave).
+  \item \emph{reach} $\reach{k} \in [0,1]$: the fraction of the population exposed per unit time,
+  \item \emph{credibility} $\credibility{k} \in [0,1]$: the weight audiences assign to messages from this channel,
+  \item \emph{persistence} $\persistence{k} \in \R_{>0}$: the half-life of the narrative in audience memory,
+  \item \emph{cost function} $c_k: \R_{\geq 0} \to [0,1]$: the mapping from funding to effective reach (typically concave---diminishing returns to spending).
 \end{itemize}
 \end{definition}
 
-Channels include mass media, social media, education systems, entertainment, peer networks, and platform algorithms.
-Each has a characteristic cost-reach curve.
-Education has low reach per unit time but very high persistence.
-Social media has high reach but low persistence and variable credibility.
+Different channels occupy different regions of the reach-credibility-persistence space:
+
+\begin{center}
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  ch/.style={draw, thick, rounded corners, minimum width=2.8cm, minimum height=0.7cm, align=center, fill=doxoblue!8},
+]
+\matrix[row sep=0.4cm, column sep=0.3cm] {
+  \node[ch] {Education}; &
+  \node[font=\small, text width=8.5cm] {Low reach/time, high credibility ($\sim0.85$), very high persistence ($\sim$decades). Shapes foundational priors. Most expensive per-person but most durable.}; \\
+  \node[ch] {Prestige Media}; &
+  \node[font=\small, text width=8.5cm] {Medium reach, high credibility ($\sim0.7$), medium persistence ($\sim$months). Sets the daily agenda for elites and opinion leaders.}; \\
+  \node[ch] {Broadcast Media}; &
+  \node[font=\small, text width=8.5cm] {High reach, medium credibility ($\sim0.5$), low persistence ($\sim$days). Mass exposure with high turnover.}; \\
+  \node[ch] {Social Media}; &
+  \node[font=\small, text width=8.5cm] {Very high reach, low credibility ($\sim0.2$), very low persistence ($\sim$hours). Amplifies, fragments, and accelerates.}; \\
+  \node[ch] {Think Tanks}; &
+  \node[font=\small, text width=8.5cm] {Low direct reach, high credibility in policy circles ($\sim0.75$), medium persistence. Produces expert legitimacy for policy narratives.}; \\
+  \node[ch] {Entertainment}; &
+  \node[font=\small, text width=8.5cm] {High reach, low perceived persuasive intent, medium persistence. Operates at layers 3--5: normalizes through representation and affect.}; \\
+  \node[ch] {Peer Networks}; &
+  \node[font=\small, text width=8.5cm] {Variable reach (local), high credibility ($\sim0.8$), high persistence. Most resistant to top-down manipulation but most responsive to social proof.}; \\
+};
+\end{tikzpicture}
+\end{center}
+
+\begin{remark}[The Credibility-Reach Tradeoff]
+\label{rem:tradeoff}
+There is a general tradeoff between credibility and reach.
+Channels with high credibility (education, peer networks) tend to have limited reach per unit time.
+Channels with high reach (broadcast, social media) tend to have lower credibility.
+This tradeoff shapes doxonomic strategy: a funder seeking deep belief change (common-sense capture) must invest in high-credibility, high-persistence channels; a funder seeking temporary opinion shifts (e.g., before an election) can rely on high-reach, low-persistence channels.
+\end{remark}
+
+\begin{definition}[Channel Portfolio]
+\label{def:portfolio}
+\index{channel portfolio}
+A \emph{channel portfolio} for belief $i$ is the set of channels through which funding is directed, together with the allocation across them: $\{(k, \funding{k})\}_{k \in K_i}$ where $K_i \subseteq \{1, \ldots, m\}$.
+A diversified portfolio spreads investment across multiple channel types to exploit different reach-credibility-persistence profiles simultaneously.
+\end{definition}
+
 
 \section{Budgets as Resource Allocation Vectors}
 \label{sec:ch4-budgets}
@@ -76,7 +194,7 @@ Social media has high reach but low persistence and variable credibility.
 \label{def:budget}
 \index{budget}
 A \emph{doxonomic budget} for belief $i$ is a vector $\fundingvec_i = (\funding{1}, \ldots, \funding{m}) \in \R^m_{\geq 0}$ specifying the resource allocation across $m$ channels directed at promoting belief $i$.
-The total doxonomic expenditure on $i$ is $F_i = \sum_k \funding{k}$.
+The total doxonomic expenditure on $i$ is $F_i = \|\fundingvec_i\|_1 = \sum_k \funding{k}$.
 \end{definition}
 
 The budget allocation problem is: given a total expenditure $F_i$, how should a funder allocate across channels to maximize $\belief{i}$?
@@ -84,38 +202,102 @@ This is a constrained optimization problem whose solution depends on the relativ
 
 \begin{proposition}[Optimal Allocation]
 \label{prop:optimal-allocation}
-Under the first-order model~\eqref{eq:first-order} with concave cost-reach functions $c_k$, the optimal allocation satisfies
+Under the first-order model~\eqref{eq:first-order} with concave cost-reach functions $c_k$, the optimal allocation satisfies the equimarginal condition:
 \[
   \credibility{k} \cdot \relevance{k}{i} \cdot c_k'(\funding{k}) \cdot \persistence{k} = \lambda \quad \text{for all } k \text{ with } \funding{k} > 0
 \]
 where $\lambda$ is the Lagrange multiplier on the budget constraint $\sum_k \funding{k} = F_i$.
 \end{proposition}
 
+\begin{proof}
+The funder maximizes $\belief{i} = \sum_k \funding{k} \cdot \credibility{k} \cdot \relevance{k}{i} \cdot c_k(\funding{k}) / \funding{k} \cdot \persistence{k}$ subject to $\sum_k \funding{k} = F_i$ and $\funding{k} \geq 0$.
+Replacing $\reach{k}$ with $c_k(\funding{k})$ (the cost-to-reach function) and forming the Lagrangian $\mathcal{L} = \sum_k \credibility{k} \cdot \relevance{k}{i} \cdot c_k(\funding{k}) \cdot \persistence{k} - \lambda(\sum_k \funding{k} - F_i)$, the first-order condition for interior solutions is $\credibility{k} \cdot \relevance{k}{i} \cdot c_k'(\funding{k}) \cdot \persistence{k} = \lambda$.
+Concavity of $c_k$ ensures the second-order conditions are satisfied.
+\end{proof}
+
 This is the doxonomic analogue of the equimarginal principle in economics: at the optimum, the marginal belief return per dollar is equalized across all active channels.
+Channels where the marginal return exceeds $\lambda$ should receive more funding; channels where it falls below $\lambda$ should be cut.
+
+\begin{example}[Budget Allocation: Think Tank vs.\ Advertising]
+\label{ex:allocation}
+A funder with $F = \$5\text{M}$ considers two channels:
+\begin{itemize}[nosep]
+  \item Think tank: $\credibility{1} = 0.75$, $\persistence{1} = 10$ years, $c_1(f) = 0.02\sqrt{f}$ (low reach, high credibility).
+  \item Social media advertising: $\credibility{2} = 0.2$, $\persistence{2} = 0.1$ years, $c_2(f) = 0.5\sqrt{f}$ (high reach, low credibility).
+\end{itemize}
+The marginal return at funding level $f$ is $\credibility{k} \cdot \persistence{k} \cdot c_k'(f)$.
+For the think tank: $0.75 \cdot 10 \cdot 0.01 / \sqrt{f} = 0.075/\sqrt{f}$.
+For advertising: $0.2 \cdot 0.1 \cdot 0.25/\sqrt{f} = 0.005/\sqrt{f}$.
+The think tank's marginal return is 15 times higher.
+At the optimum, the funder should invest almost entirely in the think tank---a non-obvious result that reflects the enormous premium of credibility $\times$ persistence over raw reach.
+\end{example}
+
+\begin{remark}[Why Doxonomic Budgets Are Hard to Measure]
+\label{rem:budget-opacity}
+In practice, doxonomic budgets are difficult to estimate because:
+\begin{itemize}[nosep]
+  \item much funding flows through intermediaries (foundations, donor-advised funds) that obscure the ultimate source,
+  \item institutional overhead blurs the distinction between doxonomic spending and general operations,
+  \item some channels (education, entertainment) have doxonomic effects that are side effects of their primary function, not their explicit purpose,
+  \item non-monetary resources (volunteer labor, social media sharing, cultural prestige) contribute to belief production but are not captured in financial accounting.
+\end{itemize}
+Chapter~\ref{ch:belief-flow-accounting} develops methods for addressing these measurement challenges.
+\end{remark}
+
 
 \section{Narratives}
 \label{sec:ch4-narratives}
+
+Narratives are the \emph{content} of doxonomic systems---what institutions produce, channels transmit, and audiences process.
 
 \begin{definition}[Narrative]
 \label{def:narrative}
 \index{narrative}
 A \emph{narrative} $n \in \narspace$ is a structured proposition or set of propositions equipped with:
 \begin{enumerate}[nosep]
-  \item a \emph{causal claim} (``$X$ because $Y$''),
-  \item a \emph{normative framing} (``this is good/bad/natural/inevitable''),
-  \item a \emph{subject position} (who the audience is invited to identify with).
+  \item a \emph{causal claim} (``$X$ because $Y$''): poverty exists because people don't work hard enough; markets crashed because of government interference; crime rises because of immigration,
+  \item a \emph{normative framing} (``this is good/bad/natural/inevitable''): inequality is natural; growth is progress; austerity is responsible,
+  \item a \emph{subject position} (who the audience is invited to identify with): the hardworking taxpayer, the innovative entrepreneur, the responsible citizen.
 \end{enumerate}
 \end{definition}
 
-Narratives are the currency of doxonomic systems.
-They are what institutions produce, channels transmit, and audiences internalize.
-The narrative space $\narspace$ can be formalized as a vector space (using embeddings), a discrete set, or a more structured object depending on the application.
+The same factual content can be embedded in radically different narratives.
+``Unemployment is at 8\%'' becomes:
+\begin{itemize}[nosep]
+  \item $n_1$: ``The economy is recovering---unemployment has fallen from 10\% to 8\%.'' (Causal: recovery. Frame: progress. Subject: optimistic citizen.)
+  \item $n_2$: ``Eight million people cannot find work, and the government has failed them.'' (Causal: policy failure. Frame: injustice. Subject: abandoned worker.)
+  \item $n_3$: ``Welfare dependency keeps people from seeking employment.'' (Causal: moral failure. Frame: personal responsibility. Subject: taxpayer.)
+\end{itemize}
+Same statistic, three different doxonomic effects.
+The narrative---not the fact---is the doxonomic product.
+
+\begin{definition}[Narrative Distance]
+\label{def:narrative-distance}
+\index{narrative distance}
+Given a vector-space representation of narratives (e.g., via document embeddings), the \emph{narrative distance} between two narratives $n_1, n_2 \in \narspace$ is
+\[
+  d(n_1, n_2) = 1 - \frac{\langle \bm{v}_{n_1}, \bm{v}_{n_2} \rangle}{\|\bm{v}_{n_1}\| \cdot \|\bm{v}_{n_2}\|}
+\]
+where $\bm{v}_n$ is the embedding vector of narrative $n$.
+Large narrative distance between the dominant frame and an alternative frame indicates that the alternative is not merely a different opinion but a \emph{different way of seeing}---harder to reach by incremental argument, requiring more doxonomic investment to install.
+\end{definition}
+
+\begin{remark}[Narratives vs.\ Propositions]
+\label{rem:narrative-proposition}
+A narrative is more than a proposition.
+The proposition ``inequality is increasing'' has a truth value.
+The narrative ``inequality is increasing because the lazy are being rewarded'' has a truth value, a moral judgment, a causal attribution, and a subject position.
+Doxonomic systems rarely produce naked propositions; they produce narratives---because narratives engage identity, emotion, and action in ways that propositions alone cannot.
+This is why doxonomic production operates at multiple layers of the ontology simultaneously (Principle~\ref{prin:layered-ontology}).
+\end{remark}
+
 
 \section{Audiences and Prior Distributions}
 \label{sec:ch4-audiences}
 
 Audiences are not homogeneous.
-A population consists of subgroups $\{G_1, \ldots, G_L\}$ with different prior belief distributions $\mu_{G_l}$, different media exposure patterns, and different resistance profiles.
+A population consists of subgroups $\{G_1, \ldots, G_L\}$ with different prior belief distributions $\mu_{G_l}$, different media exposure patterns, different resistance profiles, and different identity commitments.
+Effective doxonomic strategy requires targeting: knowing which audiences are persuadable and through which channels.
 
 \begin{definition}[Audience Heterogeneity]
 \label{def:audience-heterogeneity}
@@ -128,11 +310,40 @@ where $w_l$ is the population share of group $l$ and $\belief{i}^{(l)}$ is the a
 A doxonomic system may target some groups more than others.
 \end{definition}
 
+\begin{definition}[Audience Resistance]
+\label{def:resistance}
+\index{audience resistance}
+The \emph{resistance} of audience group $G_l$ to narrative $n$ is a function $\rho_l(n) \in [0,1]$ reflecting the degree to which the group's prior beliefs, identity commitments, lived experience, and critical resources reduce the narrative's doxonomic effect.
+The effective belief change in group $l$ from exposure to $n$ through channel $k$ is
+\[
+  \Delta\belief{i}^{(l)} = (1 - \rho_l(n)) \cdot \credibility{k} \cdot \relevance{k}{i} \cdot \persistence{k}
+\]
+High resistance ($\rho_l \to 1$) means the group is effectively immune to the narrative; low resistance ($\rho_l \to 0$) means full susceptibility.
+\end{definition}
+
+Resistance is not random.
+It is shaped by:
+\begin{itemize}[nosep]
+  \item \textbf{Lived experience}: a worker who has been laid off despite ``working hard'' is more resistant to meritocratic narratives than a comfortably employed professional.
+  \item \textbf{Counter-institutions}: groups with access to alternative information sources (unions, community organizations, alternative media) have higher resistance.
+  \item \textbf{Identity}: narratives that threaten core identity commitments provoke backlash rather than persuasion \autocite{kahan2012}.
+  \item \textbf{Prior exposure}: groups that have been ``inoculated'' against a narrative (Chapter~\ref{ch:counter-doxonomic}) show elevated resistance to subsequent exposure.
+\end{itemize}
+
+\begin{example}[Differential Resistance to Meritocratic Narratives]
+\label{ex:resistance}
+Survey data consistently shows that belief in meritocracy is negatively correlated with direct experience of structural barriers.
+Black Americans score lower on meritocratic belief scales than white Americans; women in male-dominated workplaces are more skeptical of ``effort determines success'' than men in the same workplaces; first-generation college students are less convinced of equal opportunity than their legacy peers.
+In doxonomic terms, lived experience of structural disadvantage raises $\rho_l$ for meritocratic narratives---a form of experiential resistance that no amount of doxonomic investment can fully overcome.
+\end{example}
+
+
 \section{Feedback Loops}
 \label{sec:ch4-feedback}
 
 The belief production chain is not unidirectional.
 Beliefs, once internalized, alter behavior, which alters institutions, which alters funding.
+This feedback structure is what makes doxonomic systems self-sustaining---and what makes them so difficult to disrupt.
 
 \begin{definition}[Doxonomic Feedback]
 \label{def:feedback}
@@ -143,36 +354,132 @@ A \emph{doxonomic feedback loop} is a dynamical coupling in which the belief sta
 \]
 for some function $g$.
 The system is \emph{self-reinforcing} if $\partial g_k / \partial \belief{i} > 0$ for the belief $i$ that channel $k$ promotes.
+The system is \emph{self-undermining} if $\partial g_k / \partial \belief{i} < 0$ (success reduces future investment).
 \end{definition}
 
+\begin{example}[Self-Reinforcing: The Tax Cut Cycle]
+\label{ex:tax-cycle}
+\begin{enumerate}[nosep]
+  \item Think tanks promote the belief that tax cuts stimulate growth ($\belief{T}$ increases).
+  \item Population supports tax-cutting politicians (behavioral consequence).
+  \item Tax cuts are enacted; wealthy beneficiaries gain additional disposable income.
+  \item Beneficiaries donate to the same think tanks (funding increases).
+  \item Think tanks produce more tax-cut advocacy ($\belief{T}$ increases further).
+\end{enumerate}
+This is a self-reinforcing loop: $\partial g_k / \partial \belief{T} > 0$.
+Each iteration strengthens the cycle.
+\end{example}
+
+\begin{example}[Self-Undermining: The Backlash Effect]
+\label{ex:backlash}
+\begin{enumerate}[nosep]
+  \item A corporation promotes the belief that its product is environmentally friendly (``greenwashing'').
+  \item The population initially accepts the claim ($\belief{G}$ increases).
+  \item Investigative journalists or activists expose the deception.
+  \item Public trust in the corporation's claims collapses ($\credibility{k}$ drops).
+  \item Further spending on the same message becomes counterproductive.
+\end{enumerate}
+This is a self-undermining loop: success (increased scrutiny) reduces future effectiveness.
+\end{example}
+
 Self-reinforcing feedback is the mechanism by which temporary doxonomic investments become permanent features of a society's common sense.
+Self-undermining feedback is the mechanism by which doxonomic systems can fail---a topic developed in Chapter~\ref{ch:how-belief-regimes-fracture}.
+
+\begin{definition}[Doxonomic Stability]
+\label{def:stability}
+\index{doxonomic stability}
+A doxonomic system is \emph{locally stable} at belief state $\beliefvec^*$ if small perturbations (temporary counter-narratives, one-time contrary evidence) are absorbed by the feedback structure and the system returns to $\beliefvec^*$.
+Formally, $\beliefvec^*$ is a stable fixed point of the composed dynamical system:
+\[
+  \beliefvec^* = \Psi(\Phi(g(\beliefvec^*, \fundingvec^*)), \beliefvec^*)
+\]
+where $\Phi$ is the production function, $\Psi$ is the internalization function, and $g$ is the feedback function.
+\end{definition}
+
+
+\section{Assembling the Units: A Toy Model}
+\label{sec:ch4-toy}
+
+To see how the units work together, consider a minimal doxonomic system with one funder, one institution, one channel, and a homogeneous audience.
+
+\begin{model}[Minimal Doxonomic System]
+\label{mod:minimal}
+\begin{itemize}[nosep]
+  \item Funder: budget $F$, objective $\max \belief{}$.
+  \item Institution: processing function $\iota(F) = (n, \credibility{})$ where $\credibility{} = 0.8$.
+  \item Channel: reach $c(F) = 1 - e^{-F/F_0}$ (saturating), persistence $T = 5$ years.
+  \item Audience: $N = 1000$ agents, prior $\pi_j^{(0)} = 0.3$, Bayesian updating.
+  \item Feedback: $F(t+1) = F_0 + \beta \belief{}(t)$ (self-reinforcing with rate $\beta$).
+\end{itemize}
+The dynamics are:
+\[
+  \belief{}(t+1) = \belief{}(t) + \alpha \cdot \credibility{} \cdot c(F(t)) \cdot T \cdot (1 - \belief{}(t)) - \delta \cdot \belief{}(t)
+\]
+where $\alpha$ is the persuasion rate and $\delta$ is natural decay.
+
+This system has at most two stable fixed points: a low-belief equilibrium (the narrative fails to take hold) and a high-belief equilibrium (common-sense capture).
+The basin of attraction depends on the initial funding $F_0$ and the feedback strength $\beta$.
+\end{model}
+
+This toy model is developed into a full dynamical framework in Chapters~\ref{ch:formal-models} and~\ref{ch:belief-production-chain}.
+
 
 \section{Notes and References}
 \label{sec:ch4-notes}
 
 Agent-based models of belief formation draw on \textcite{jackson2008} and \textcite{granovetter1978}.
-The institutional processing framework extends \textcite{north1990}.
+The institutional processing framework extends \textcite{north1990} on institutions as ``rules of the game.''
+On institutional autonomy and the relative independence of cultural production, see \textcite{bourdieu1984}.
 Optimal allocation of persuasion resources connects to \textcite{downs1957} and \textcite{tullock1967}.
-Audience heterogeneity models are treated in \textcite{manski1993}.
+Audience heterogeneity models are treated in \textcite{manski1993}; on identity-protective cognition, see \textcite{kahan2012}.
 Feedback loops in social systems are central to \textcite{schelling1978}.
+The climate-doubt example draws on \textcite{oreskes2010}.
+On the economics of attention as a scarce resource, see \textcite{kahneman2011}.
+Credibility laundering through institutional intermediaries is documented in \textcite{mayer2016}.
+Narrative as a structured object with causal, normative, and identity components draws on framing theory; see \textcite{stanley2015} for a philosophical treatment.
+
 
 \section{Exercises}
 
 \begin{exercise}
-Classify the following as agents, institutions, channels, or narratives: (a)~the Koch Foundation, (b)~the \textit{New York Times}, (c)~Twitter/X, (d)~``free markets create prosperity,'' (e)~a university economics department.
+Classify the following as agents, institutions, channels, or narratives: (a)~the Koch Foundation, (b)~the \textit{New York Times}, (c)~Twitter/X, (d)~``free markets create prosperity,'' (e)~a university economics department, (f)~a YouTube algorithm, (g)~a public school curriculum, (h)~``hard work is its own reward.''
+Note cases where an entity plays multiple roles.
 \end{exercise}
 
 \begin{exercise}
-Compute the optimal budget allocation for a funder with $F_i = \$10\text{M}$ across two channels with $\credibility{1} = 0.9$, $\credibility{2} = 0.5$, and cost-reach functions $c_1(f) = \sqrt{f}$, $c_2(f) = 2\sqrt{f}$.
+\label{ex:ch4-allocation}
+Compute the optimal budget allocation for a funder with $F_i = \$10\text{M}$ across two channels with $\credibility{1} = 0.9$, $\credibility{2} = 0.5$, and cost-reach functions $c_1(f) = \sqrt{f/10^6}$, $c_2(f) = 2\sqrt{f/10^6}$.
 Assume $\relevance{k}{i} = \persistence{k} = 1$ for both.
+How does the allocation change if $\persistence{1} = 20$ and $\persistence{2} = 0.5$?
 \end{exercise}
 
 \begin{exercise}
 Model a self-reinforcing feedback loop in which belief in meritocracy increases tolerance for inequality, which increases political donations from wealthy actors, which increases funding for meritocratic narratives.
-Write the system as a pair of coupled difference equations.
+Write the system as a pair of coupled difference equations and identify the conditions for a stable high-meritocracy equilibrium.
 \end{exercise}
 
 \begin{exercise}
-Consider a population with two groups: $G_1$ (30\% of population, high media exposure, low prior credence in $p$) and $G_2$ (70\%, low media exposure, high prior credence in $p$).
+Consider a population with two groups: $G_1$ (30\% of population, high media exposure, low prior credence in $p$, low resistance $\rho_1 = 0.2$) and $G_2$ (70\%, low media exposure, high prior credence in $p$, high resistance $\rho_2 = 0.8$).
 Under what conditions does a doxonomic investment targeting $G_1$ change the population-level $\belief{i}$ more than one targeting $G_2$?
+\end{exercise}
+
+\begin{exercise}
+For the minimal doxonomic system (Model~\ref{mod:minimal}), find the fixed points of the dynamics as a function of $\alpha$, $\delta$, $\beta$, $F_0$, and $\credibility{}$.
+Under what conditions does only one fixed point exist (inevitable capture or inevitable failure)?
+Under what conditions do two stable fixed points coexist?
+\end{exercise}
+
+\begin{exercise}
+Design a doxonomic system from scratch: choose a belief $p$, specify funders, institutions, channels, narratives, target audiences, and feedback structure.
+Estimate plausible values for $\credibility{k}$, $\reach{k}$, $\persistence{k}$, and $\rho_l$.
+Compute the expected $\belief{i}$ using the first-order model.
+Then identify the weakest link in your system---the point where counter-doxonomic intervention would be most effective.
+\end{exercise}
+
+\begin{exercise}
+The chapter notes that entertainment operates at layers 3--5 of the ontology.
+Choose a popular television series or film franchise and analyze it as a doxonomic channel.
+What anthropological regime does it normalize?
+What subject positions does it offer?
+Estimate its $\reach{}$, $\credibility{}$ (noting that entertainment credibility works differently from news credibility), and $\persistence{}$.
 \end{exercise}
