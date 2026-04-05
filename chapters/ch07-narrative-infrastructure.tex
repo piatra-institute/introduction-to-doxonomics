@@ -5,57 +5,104 @@
 
 \noindent
 Beliefs do not float freely.
-They travel through infrastructure: schools, media organizations, platforms, think tanks, entertainment industries, and professional training systems.
-This chapter models narrative infrastructure as a network of transformation functions with measurable capacity, throughput, and concentration.
+They travel through infrastructure: schools, media organizations, platforms, think tanks, entertainment industries, professional training systems, and religious institutions.
+Just as an economy requires physical infrastructure (roads, ports, power grids) to move goods, a doxonomic system requires \emph{narrative infrastructure} to move beliefs from production to population.
 
-\section{Infrastructure as Transformation}
+This chapter models narrative infrastructure as a directed network of transformation functions with measurable capacity, throughput, concentration, and vulnerability.
+The infrastructure is not neutral: its topology determines which narratives can travel far and which are stillborn.
+
+
+\section{Infrastructure as Transformation Network}
 \label{sec:ch7-transformation}
 
 \begin{definition}[Narrative Infrastructure]
 \label{def:narrative-infrastructure}
 \index{narrative infrastructure}
-A \emph{narrative infrastructure} $\narr$ is a directed graph $G = (V, E)$ where:
+A \emph{narrative infrastructure} $\narr$ is a directed weighted graph $G = (V, E, w)$ where:
 \begin{itemize}[nosep]
   \item each vertex $v \in V$ is an institution with processing function $\iota_v: \R_{\geq 0} \times \narspace \to \narspace$,
-  \item each edge $(u, v) \in E$ carries a flow weight $w_{uv} \in [0,1]$ representing the fraction of $u$'s output that serves as input to $v$,
-  \item the network has source nodes (funders) and sink nodes (audience segments).
+  \item each directed edge $(u, v) \in E$ carries a flow weight $w_{uv} \in [0,1]$ representing the fraction of $u$'s output that serves as input to $v$,
+  \item the network has source nodes (funders injecting resources) and sink nodes (audience segments absorbing narratives).
 \end{itemize}
 \end{definition}
 
-\begin{example}
-\label{ex:think-tank-pipeline}
-A typical narrative pipeline:
+The key insight is that narrative infrastructure is not a flat landscape.
+It has topology: some paths are wide and well-maintained (the pipeline from elite think tanks through prestige media to policy debate), while others are narrow or blocked (the path from grassroots organizations to national attention).
+The infrastructure determines \emph{which} narratives are structurally advantaged, independent of their truth or popularity.
+
+\begin{example}[The Conservative Narrative Pipeline]
+\label{ex:conservative-pipeline}
+\index{narrative pipeline}
+The American conservative movement built one of the most effective narrative pipelines in modern history, documented in \textcite{mayer2016} and \textcite{mirowski2009}:
 \[
-  \text{Donor} \xrightarrow{w_1} \text{Think tank} \xrightarrow{w_2} \text{Op-ed pages} \xrightarrow{w_3} \text{TV panels} \xrightarrow{w_4} \text{Public}
+  \text{Donors} \xrightarrow{0.8} \text{Foundations} \xrightarrow{0.9} \text{Think tanks} \xrightarrow{0.5} \text{Op-ed pages} \xrightarrow{0.6} \text{Cable news} \xrightarrow{0.7} \text{Public}
 \]
-Each arrow is weighted by the fraction of output that propagates to the next stage.
-The end-to-end doxonomic effect is the product $\prod_i w_i$ times the credibility chain $\prod_i \credibility{i}$.
+The flow weights indicate the estimated fraction of output that propagates to the next stage.
+The end-to-end propagation probability is $\prod_i w_i = 0.8 \times 0.9 \times 0.5 \times 0.6 \times 0.7 \approx 0.15$---seemingly low, but applied to hundreds of reports per year across dozens of institutions, it produces a constant stream of narrative output reaching the public through high-credibility channels.
+
+A parallel pipeline runs through academia:
+\[
+  \text{Donors} \xrightarrow{0.7} \text{Endowed programs} \xrightarrow{0.6} \text{Textbooks} \xrightarrow{0.8} \text{Curricula} \xrightarrow{0.95} \text{Students}
+\]
+This pipeline has lower throughput per year but vastly higher persistence ($\persistence{} \sim$ decades).
 \end{example}
 
-\section{Institutional Types}
+\begin{remark}[Infrastructure vs.\ Content]
+\label{rem:infra-content}
+A crucial distinction: narrative infrastructure is about the \emph{channels}, not the \emph{messages}.
+The same infrastructure that carries ``markets are efficient'' could, in principle, carry ``markets are prone to failure.''
+But infrastructure is not neutral: institutions built to produce one type of narrative develop staff, expertise, donor relationships, and organizational culture that make producing alternative narratives costly.
+A think tank funded for 30 years to argue against regulation does not easily pivot to arguing for it.
+Infrastructure has inertia.
+\end{remark}
+
+
+\section{Institutional Types and Their Infrastructure Roles}
 \label{sec:ch7-types}
 
-Different institutions occupy different positions in the infrastructure, with characteristic properties.
+Different institutions occupy structurally different positions in the narrative infrastructure.
+Their roles can be classified by where they sit in the production chain and what transformation they perform.
+
+\begin{definition}[Infrastructure Role Taxonomy]
+\label{def:role-taxonomy}
+\index{infrastructure roles}
+\begin{description}[nosep]
+  \item[Generators] produce original narrative content: research universities, think tanks, investigative journalists, research labs.
+  \item[Amplifiers] increase the reach of existing narratives without substantially transforming them: broadcast media, social media platforms, wire services, syndication networks.
+  \item[Translators] transform narratives from one register to another: textbook authors (research $\to$ pedagogy), popularizers (academic $\to$ public), lobbyists (policy research $\to$ legislative language).
+  \item[Validators] attach credibility to narratives: peer review systems, professional associations, credentialing bodies, editorial boards.
+  \item[Gatekeepers] control access to high-value channels: editors, algorithm designers, curriculum committees, conference organizers.
+\end{description}
+\end{definition}
+
+A single institution may perform multiple roles.
+The \textit{New York Times} is simultaneously a generator (original reporting), an amplifier (wire service redistribution), a translator (making complex events accessible), a validator (the prestige of publication implies quality), and a gatekeeper (deciding what is ``fit to print'').
+This multi-role character gives major media institutions outsized structural power.
 
 \begin{center}
 \begin{tikzpicture}[
   every node/.style={font=\small},
-  box/.style={draw, thick, rounded corners, minimum width=3cm, minimum height=0.8cm, align=center}
+  box/.style={draw, thick, rounded corners, minimum width=3cm, minimum height=0.8cm, align=center},
 ]
-\matrix[row sep=0.6cm, column sep=0.3cm] {
-  \node[box] (edu) {Education}; &
-  \node[font=\small, text width=7cm] {High persistence, high credibility, low throughput. Shapes priors for decades.}; \\
-  \node[box] (media) {Mass Media}; &
-  \node[font=\small, text width=7cm] {Medium persistence, medium credibility, high throughput. Sets the daily agenda.}; \\
-  \node[box] (social) {Social Media}; &
-  \node[font=\small, text width=7cm] {Low persistence, low credibility, very high throughput. Amplifies and fragments.}; \\
-  \node[box] (think) {Think Tanks}; &
-  \node[font=\small, text width=7cm] {High credibility (in policy circles), low direct reach. Produces expert legitimacy.}; \\
-  \node[box] (ent) {Entertainment}; &
-  \node[font=\small, text width=7cm] {High reach, low perceived persuasive intent. Normalizes through representation.}; \\
+\matrix[row sep=0.5cm, column sep=0.3cm] {
+  \node[box, fill=doxoblue!8] {Education}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Generator + Translator + Validator.} High persistence ($\sim$decades), high credibility, low throughput per unit time. Shapes foundational priors. Most consequential long-run infrastructure.}; \\
+  \node[box, fill=doxoblue!8] {Prestige Media}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Generator + Amplifier + Gatekeeper.} Medium persistence ($\sim$months), high credibility, medium throughput. Sets the daily agenda and frames for elites and opinion leaders.}; \\
+  \node[box, fill=doxoblue!8] {Social Media}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Amplifier + (sometimes) Generator.} Very low persistence ($\sim$hours), low credibility, very high throughput. Amplifies, fragments, and accelerates. Algorithms act as invisible gatekeepers.}; \\
+  \node[box, fill=doxoblue!8] {Think Tanks}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Generator + Validator.} High credibility in policy circles, low direct public reach. Produces the ``studies show'' citations that legitimate policy narratives.}; \\
+  \node[box, fill=doxoblue!8] {Entertainment}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Translator + Amplifier.} High reach, low perceived persuasive intent. Normalizes through narrative representation, not argument. Operates at layers 3--5.}; \\
+  \node[box, fill=doxoblue!8] {Religious Institutions}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Generator + Validator + Community.} Very high persistence, high credibility within congregations, medium reach. Unique access to moral framing and identity formation.}; \\
+  \node[box, fill=doxoblue!8] {Professional Training}; &
+  \node[font=\small, text width=7.5cm] {\textbf{Translator + Validator.} Converts academic knowledge into operational assumptions. MBA programs, law schools, medical training embed anthropological regimes into professional practice.}; \\
 };
 \end{tikzpicture}
 \end{center}
+
 
 \section{Throughput and Capacity}
 \label{sec:ch7-throughput}
@@ -68,8 +115,78 @@ The \emph{throughput} of an institution $v$ is the quantity
   \Theta(v) = \funding{v} \cdot \reach{v} \cdot \persistence{v}
 \]
 measuring the total belief-exposure-hours produced per unit time.
-The \emph{capacity} $\Theta^{\max}(v)$ is the maximum throughput achievable given institutional constraints.
+The \emph{capacity} $\Theta^{\max}(v)$ is the maximum throughput achievable given institutional constraints (staffing, infrastructure, brand).
 \end{definition}
+
+Throughput combines three dimensions: how much is spent, how many people are reached, and how long the effect lasts.
+This composite measure allows comparison across radically different channel types.
+
+\begin{example}[Throughput Comparison]
+\label{ex:throughput-comparison}
+Consider three channels, each receiving \$1M/year:
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Channel} & $\reach{}$ & $\persistence{}$ (years) & $\Theta$ (M\$·person·yr) \\
+\midrule
+University economics course & 0.001 & 30 & 0.03 \\
+Cable news segment & 0.05 & 0.02 & 0.001 \\
+Textbook chapter & 0.005 & 20 & 0.1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+The textbook has 100 times the throughput of cable news, despite reaching far fewer people per day, because its persistence is three orders of magnitude higher.
+This is why doxonomic strategists who understand the mathematics invest in education and publishing, not just media.
+\end{example}
+
+\begin{remark}[Why Throughput Is Not Impact]
+\label{rem:throughput-impact}
+Throughput measures exposure, not belief change.
+A high-throughput channel with low credibility (social media) may produce less actual belief change than a low-throughput channel with high credibility (a mentor's advice).
+The full impact depends on the internalization operator $\mathcal{I}$ (Chapter~\ref{ch:belief-production-chain}), which weights exposure by credibility, resistance, and audience characteristics.
+Throughput is a necessary but not sufficient condition for doxonomic effect.
+\end{remark}
+
+
+\section{Network Topology and Structural Advantage}
+\label{sec:ch7-topology}
+
+The topology of narrative infrastructure creates structural advantages and disadvantages for different narratives.
+
+\begin{definition}[Narrative Pathway]
+\label{def:pathway}
+\index{narrative pathway}
+A \emph{narrative pathway} from source $s$ to audience segment $t$ is a directed path $s = v_0, v_1, \ldots, v_l = t$ in the infrastructure graph $G$.
+The \emph{pathway efficiency} is
+\[
+  \eta(s \to t) = \prod_{i=0}^{l-1} w_{v_i, v_{i+1}} \cdot \credibility{v_i}
+\]
+measuring the fraction of the original narrative that reaches the audience, weighted by the credibility accumulated along the way.
+\end{definition}
+
+\begin{proposition}[Structural Advantage]
+\label{prop:structural-advantage}
+\index{structural advantage}
+A narrative $n_1$ has a \emph{structural advantage} over narrative $n_2$ if the maximum pathway efficiency from any source to the target audience is higher for $n_1$:
+\[
+  \max_{s} \eta_{n_1}(s \to t) > \max_{s} \eta_{n_2}(s \to t)
+\]
+Structural advantage arises from the infrastructure, not from the content.
+A narrative with better-connected institutional sponsors, more pathways to high-credibility amplifiers, and shorter routes to the target audience has a structural advantage regardless of its truth value.
+\end{proposition}
+
+\begin{example}[Structural Advantage: Deregulation vs.\ Public Ownership]
+\label{ex:structural-advantage}
+The narrative ``deregulation promotes efficiency'' has extensive infrastructure: well-funded think tanks (Heritage, Cato, AEI) connected to prestigious op-ed pages (\textit{WSJ}, \textit{FT}), cable news panels, congressional testimony channels, and economics curricula.
+The maximum pathway efficiency to U.S.\ policymakers is high.
+
+The narrative ``public ownership can be efficient'' has minimal infrastructure: a few academic advocates, limited think-tank support, almost no connections to major op-ed pages or cable news.
+The maximum pathway efficiency to the same policymakers is low.
+
+This structural difference exists \emph{independently} of the empirical merits of either claim.
+It is a property of the infrastructure, not of the evidence.
+\end{example}
+
 
 \section{Concentration Metrics}
 \label{sec:ch7-concentration}
@@ -90,26 +207,157 @@ If $\ehhi > \bar{h}$ for a critical threshold $\bar{h}$, then a single instituti
 The threshold $\bar{h}$ is not a universal constant; it depends on audience receptivity, competing credibility structures, and proposition-content fit.
 \end{conjecture}
 
+\begin{example}[Concentration in U.S.\ Media]
+\label{ex:us-concentration}
+As of 2020, five companies (Comcast/NBCUniversal, Disney, ViacomCBS, WarnerMedia, News Corp/Fox) controlled approximately 90\% of U.S.\ media consumption \autocite{bagdikian2004}.
+If we weight by throughput (reach $\times$ persistence), the $\ehhi$ for U.S.\ national media is approximately 0.20--0.25, near the threshold typically associated with high concentration in market economics.
+
+But this understates doxonomic concentration, because the five companies share substantial overlap in:
+\begin{itemize}[nosep]
+  \item advertising dependence (same advertisers, same incentive structure),
+  \item sourcing patterns (same wire services, same government press conferences),
+  \item professional culture (journalism schools produce a shared worldview),
+  \item ownership class interests (all publicly traded, all dependent on deregulatory environment).
+\end{itemize}
+Effective doxonomic concentration is higher than $\ehhi$ alone suggests, because the ``competing'' outlets share structural filters (Chapter~\ref{ch:prehistory}, Section~\ref{sec:ch3-herman-chomsky}).
+\end{example}
+
+\begin{definition}[Effective Concentration]
+\label{def:effective-concentration}
+\index{effective concentration}
+The \emph{effective concentration} adjusts $\ehhi$ for narrative correlation:
+\[
+  \ehhi_{\text{eff}} = \ehhi + (1 - \ehhi) \cdot \bar{\rho}
+\]
+where $\bar{\rho} \in [0,1]$ is the average pairwise narrative correlation between outlets (measured by text similarity, framing overlap, or source sharing).
+When all outlets produce identical narratives ($\bar{\rho} = 1$), $\ehhi_{\text{eff}} = 1$ regardless of market structure: a perfectly correlated oligopoly is doxonomically equivalent to a monopoly.
+\end{definition}
+
+
+\section{Infrastructure Resilience and Vulnerability}
+\label{sec:ch7-resilience}
+
+\begin{definition}[Infrastructure Vulnerability]
+\label{def:vulnerability}
+\index{infrastructure vulnerability}
+A narrative infrastructure is \emph{vulnerable} at node $v$ if removing $v$ significantly reduces the maximum pathway efficiency for a class of narratives.
+The \emph{vulnerability index} of $v$ is
+\[
+  \nu(v) = 1 - \frac{\max_s \eta_{-v}(s \to t)}{\max_s \eta(s \to t)}
+\]
+where $\eta_{-v}$ is the pathway efficiency with $v$ removed.
+High $\nu(v)$ means $v$ is a critical bottleneck.
+\end{definition}
+
+\begin{example}[Bottleneck Institutions]
+\label{ex:bottleneck}
+In many countries, a small number of editorial gatekeepers control access to the prestige media pipeline.
+If three editors at major newspapers decide that a topic is not newsworthy, the pathway from think-tank research to public attention is effectively blocked.
+These editors have high vulnerability indices---removing them from the network (or changing their editorial stance) would significantly alter which narratives reach the public.
+
+Similarly, a curriculum committee that approves textbooks for a state with millions of students is a high-vulnerability node.
+Texas's State Board of Education, which approves textbooks used by 5.5 million students, has historically been a bottleneck node with outsized doxonomic influence on national textbook content (publishers produce one version for Texas and sell it nationally).
+\end{example}
+
+\begin{proposition}[Infrastructure Fragility Under Concentration]
+\label{prop:fragility-concentration}
+Highly concentrated infrastructure ($\ehhi$ high) is more efficient for narrative transmission but more fragile: disruption of a single high-throughput node has a larger system-wide effect.
+Formally, if $\Theta(v) / \sum_u \Theta(u) > 1/2$ for some $v$, then $\nu(v) > 1/2$ and the infrastructure is critically dependent on $v$.
+\end{proposition}
+
+This creates a design tension: concentrated infrastructure is powerful but fragile; distributed infrastructure is resilient but less efficient.
+Chapter~\ref{ch:epistemic-democracy} considers what institutional design best balances efficiency and resilience.
+
+
+\section{Infrastructure Construction and Path Dependence}
+\label{sec:ch7-construction}
+
+Narrative infrastructure does not appear overnight.
+Building it requires sustained investment over years or decades.
+
+\begin{example}[Building Conservative Infrastructure]
+\label{ex:building-infrastructure}
+The conservative narrative infrastructure in the United States was consciously constructed over 40 years \autocite{mayer2016, phillipsfein2009}:
+\begin{itemize}[nosep]
+  \item \textbf{1947}: Mont P\`{e}lerin Society founded (intellectual seed).
+  \item \textbf{1971}: Lewis Powell memo urges American business to invest in ideological infrastructure.
+  \item \textbf{1973}: Heritage Foundation founded (\$250K initial; \$80M+ budget by 2020).
+  \item \textbf{1977}: Cato Institute founded.
+  \item \textbf{1980s}: Olin, Scaife, and Bradley foundations dramatically increase grants to conservative law-and-economics programs at universities.
+  \item \textbf{1990s}: Fox News launched (1996), completing the broadcast amplification layer.
+  \item \textbf{2000s}: Digital expansion (Daily Wire, Turning Point USA, PragerU).
+\end{itemize}
+Total estimated investment: several billion dollars over four decades.
+The result: a vertically integrated pipeline from academic seed-planting through policy production, media amplification, and political mobilization.
+
+No comparable left-of-center infrastructure was built during the same period \autocite{mudge2018}.
+This infrastructure asymmetry---not a difference in the quality of ideas---explains much of the rightward shift in American policy common sense between 1980 and 2020.
+\end{example}
+
+\begin{principle}[Infrastructure Path Dependence]
+\label{prin:path-dependence}
+\index{path dependence!infrastructure}
+Once built, narrative infrastructure is self-reinforcing: institutions produce alumni who staff other institutions, generate citations that boost credibility, create demand for their own output, and develop donor relationships that ensure continued funding.
+Replicating an established infrastructure from scratch requires investment of comparable scale---which is why infrastructure asymmetries persist across decades.
+\end{principle}
+
+
+\section{Platform Infrastructure: The Algorithmic Layer}
+\label{sec:ch7-platforms}
+
+Digital platforms add a new layer to narrative infrastructure: the algorithmic layer, which sits between institutional production and audience reception.
+
+\begin{model}[Algorithmic Infrastructure]
+\label{mod:algorithmic-infra}
+\index{algorithmic infrastructure}
+A platform algorithm is a function $A: \narspace \times \mathcal{U} \to [0,1]$ mapping each narrative-user pair $(n, j)$ to a display probability $A(n, j)$.
+The algorithm determines the effective exposure matrix:
+\[
+  e_{jk}^{\text{eff}} = e_{jk} \cdot A(n_k, j)
+\]
+The platform's objective function (typically engagement maximization) determines $A$ endogenously:
+\[
+  A^* = \arg\max_A \sum_{j,k} A(n_k, j) \cdot \text{engagement}(n_k, j)
+\]
+Because high-engagement content tends toward moral outrage, identity threat, and simplistic narratives, engagement maximization systematically distorts the effective narrative infrastructure \autocite{zuboff2019}.
+\end{model}
+
+\begin{remark}[Platforms as Invisible Gatekeepers]
+\label{rem:invisible-gatekeepers}
+Traditional gatekeepers (editors, curriculum committees) are visible and accountable.
+Algorithmic gatekeepers are invisible and optimized for a private objective (engagement/revenue).
+This means the most consequential infrastructure decisions---which narratives reach which audiences---are made by systems that are neither transparent nor democratically accountable.
+From a doxonomic perspective, platform algorithms may be the single most powerful gatekeeper institution in the contemporary information environment, yet they are the least understood and least regulated.
+\end{remark}
+
+
 \section{Notes and References}
 \label{sec:ch7-notes}
 
 Media concentration is studied in \textcite{bagdikian2004} and \textcite{mcchesney1999}.
-The role of think tanks in narrative production is documented in \textcite{mayer2016} and \textcite{mirowski2009}.
-Platform infrastructure is analyzed in \textcite{zuboff2019}.
+Comparative media systems analysis is developed in \textcite{hallin2004}.
+The role of think tanks in narrative production is documented in \textcite{mayer2016}, \textcite{mirowski2009}, and \textcite{phillipsfein2009}.
+Platform infrastructure is analyzed in \textcite{zuboff2019} and \textcite{benkler2018}.
 The network model of media draws on \textcite{jackson2008}.
 The Herfindahl index originates in \textcite{herfindahl1950}.
 For public-interest alternatives, see \textcite{benkler2006}.
+On the propaganda model's structural filters as infrastructure properties, see \textcite{herman1988}.
+The concept of narrative correlation adjusting effective concentration is new to this text but draws on the literature on media parallelism in \textcite{hallin2004}.
+On the construction of conservative intellectual infrastructure, see \textcite{mayer2016} and \textcite{phillipsfein2009}; on the absence of a comparable left infrastructure, see \textcite{mudge2018}.
+
 
 \section{Exercises}
 
 \begin{exercise}
 Compute $\ehhi$ for U.S.\ national television news using publicly available audience share data.
-Is the market concentrated by doxonomic standards?
+Then estimate the average narrative correlation $\bar{\rho}$ (using a qualitative assessment of framing similarity) and compute $\ehhi_{\text{eff}}$.
+How much does the correction change the concentration assessment?
 \end{exercise}
 
 \begin{exercise}
-Model the narrative pipeline from the Atlas Network to public opinion on regulation.
-Estimate the flow weights $w_{uv}$ at each stage.
+Model the narrative pipeline from the Atlas Network to public opinion on regulation in a specific country.
+Draw the infrastructure graph, estimate the flow weights $w_{uv}$ at each stage, and compute the end-to-end pathway efficiency.
+Where is the pipeline most likely to fail?
 \end{exercise}
 
 \begin{exercise}
@@ -118,5 +366,33 @@ Prove that $\ehhi \geq 1/|V|$ with equality if and only if all institutions have
 
 \begin{exercise}
 A new social media platform enters the narrative infrastructure with $\reach{} = 0.4$, $\credibility{} = 0.15$, $\persistence{} = 0.05$.
-How does this change the overall $\ehhi$ and the conditions for common-sense capture?
+How does this change the overall $\ehhi$?
+Does it increase or decrease the conditions for common-sense capture?
+(Consider both the direct effect on concentration and the indirect effect on narrative correlation.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch7-bottleneck}
+Identify the three highest-vulnerability nodes in the narrative infrastructure of your country (using the vulnerability index $\nu(v)$).
+For each, describe what would happen if that node were captured by a single funder or if it ceased to function.
+\end{exercise}
+
+\begin{exercise}
+Compare the conservative narrative pipeline (Example~\ref{ex:building-infrastructure}) with the infrastructure available to labor movements or environmental movements.
+Draw both pipeline graphs.
+Where are the structural asymmetries?
+What would it cost to close the infrastructure gap?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch7-algorithm}
+Model a platform algorithm that maximizes engagement.
+Show that if outrage-inducing content generates higher engagement, the algorithm will systematically amplify narratives with high emotional valence and low nuance.
+What does this imply for the narrative entropy $H$ (Definition~\ref{def:narrative-entropy}) of the platform's output?
+\end{exercise}
+
+\begin{exercise}
+The throughput comparison (Example~\ref{ex:throughput-comparison}) suggests that textbooks are 100 times more cost-effective than cable news.
+Why, then, do doxonomic funders invest heavily in cable news?
+Give at least three reasons why the throughput calculation does not capture the full strategic picture.
 \end{exercise}

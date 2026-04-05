@@ -5,20 +5,156 @@
 
 \noindent
 If concentrated doxonomic power distorts public belief, the remedy is the democratization of belief production.
-This chapter explores what epistemic democracy means, whether it is achievable, and what institutional designs might support it.
+But what does that mean in practice?
+This chapter explores what epistemic democracy means, whether it is achievable, what institutional designs might support it, and what tradeoffs it entails.
+
+The problem is fundamental: democratic governance presupposes informed citizens, but the information environment is itself shaped by power.
+If the ``marketplace of ideas'' is dominated by a few well-funded sellers, the resulting common sense reflects purchasing power rather than evidence or deliberation.
+Epistemic democracy is the attempt to design institutions that produce a more pluralistic, evidence-responsive, and democratically accountable belief environment.
 
 \section{The Problem}
 \label{sec:ch32-problem}
+
+\subsection{Epistemic concentration and democratic failure}
 
 \begin{definition}[Epistemic Democracy]
 \label{def:epistemic-democracy}
 \index{epistemic democracy}
 An \emph{epistemic democracy} is a social arrangement in which the production, circulation, and evaluation of public belief is not dominated by a narrow set of funders or institutions.
-Formally, $\ehhi < \bar{h}$ for a low threshold $\bar{h}$, and the narrative infrastructure $\narr$ is responsive to diverse inputs.
+Formally, epistemic democracy requires:
+\begin{enumerate}[nosep]
+  \item $\ehhi < \bar{h}$: epistemic concentration is below a threshold that would allow a small number of actors to determine common sense.
+  \item Narrative pluralism: multiple competing frames for any important public question are institutionally supported and accessible.
+  \item Accountability: narrative-producing institutions are transparent about their funding, methods, and interests.
+  \item Responsiveness: the belief environment is responsive to evidence, deliberation, and democratic input, not just to funding levels.
+\end{enumerate}
 \end{definition}
+
+The current situation in most democracies falls far short of this ideal.
+The preceding chapters documented epistemic concentration ratios of 100:1 or higher in multiple narrative domains (selfishness, meritocracy, consumerism, austerity).
+This concentration is not compatible with the democratic principle that citizens should form their beliefs through free and equal deliberation.
+
+\subsection{Three failure modes}
+
+Current democracies exhibit three related epistemic failures:
+
+\begin{enumerate}
+  \item \textbf{Plutocratic capture}: wealthy actors dominate narrative production through think-tank funding, media ownership, and lobbying.
+  The beliefs that become common sense disproportionately reflect the interests of funders.
+
+  \item \textbf{Algorithmic distortion}: platform algorithms optimize for engagement rather than truth or democratic deliberation, producing information environments that amplify outrage, simplification, and polarization.
+
+  \item \textbf{Institutional sclerosis}: educational curricula, professional norms, and policy frameworks lag behind evidence, reproducing outdated beliefs through institutional inertia even when the evidence has shifted.
+\end{enumerate}
+
+\section{Normative Foundations}
+\label{sec:ch32-normative}
+
+\subsection{The deliberative ideal}
+
+\textcite{habermas1962} proposed an ``ideal speech situation'' in which all participants have equal opportunity to make claims, challenge claims, and express needs---free from domination.
+In doxonomic terms, this requires:
+\[
+  \credibility{k} = \credibility{k}(\text{evidence quality, argument strength}) \quad \text{not} \quad \credibility{k}(\text{funding level, institutional prestige}).
+\]
+
+The ideal is unrealizable in its pure form---credibility will always be influenced by institutional position---but it provides a benchmark against which actual epistemic arrangements can be evaluated.
+
+\subsection{The agonistic alternative}
+
+\textcite{mouffe2005} argues that the deliberative ideal is not only unrealizable but undesirable: genuine politics involves irreducible conflict between incompatible values, and attempts to reduce politics to rational consensus suppress this conflict rather than resolving it.
+
+In doxonomic terms, the agonistic view suggests that the goal is not consensus but \emph{fair competition}: multiple narrative-producing institutions with roughly equal resources competing to persuade a critically engaged public.
+The problem is not that different groups produce different narratives; the problem is that one group's narrative dominates because of \emph{funding} rather than \emph{argument}.
+
+\begin{proposition}[Agonistic Epistemic Democracy]
+\label{prop:agonistic}
+\index{agonistic democracy}
+An agonistic epistemic democracy requires not consensus but \emph{competitive pluralism}: multiple institutionally supported narratives contesting for public adherence, with no single narrative dominating through resource advantage rather than persuasive quality.
+The metric is not low entropy (consensus) but \emph{fair entropy}: $H(t)$ is neither so low that one narrative monopolizes (capture) nor so high that no shared framework exists for collective action (fragmentation), and the distribution of narrative resources is roughly proportional to the diversity of genuinely held positions in the population.
+\end{proposition}
+
+\section{Institutional Designs}
+\label{sec:ch32-designs}
+
+\subsection{Public-interest media}
+
+\begin{model}[Public Media as Epistemic Infrastructure]
+\label{mod:public-media}
+\index{public media}
+Public-interest media---funded by taxation or public endowment, editorially independent, and free from advertising pressure---provides a baseline of information quality that commercial media need not match.
+
+Design principles:
+\begin{enumerate}[nosep]
+  \item \textbf{Funding independence}: endowment or hypothecated tax, insulated from annual budget negotiations that create political leverage.
+  \item \textbf{Editorial autonomy}: governance by independent boards with fixed terms, not by government appointment.
+  \item \textbf{Universal access}: free at point of use, available across all platforms and regions.
+  \item \textbf{Mandate for diversity}: explicit requirement to represent diverse perspectives, not just the perspectives of the educated metropolitan class.
+\end{enumerate}
+\end{model}
+
+\begin{example}
+\label{ex:public-media-comparison}
+Comparison of public media models:
+
+\begin{center}
+\begin{tabular}{p{2cm}p{3cm}p{3cm}p{3.5cm}}
+\toprule
+Country & Funding & Independence & Doxonomic assessment \\
+\midrule
+UK (BBC) & License fee (\pounds3.7B) & Moderate (Royal Charter, but government sets fee) & Substantial epistemic infrastructure but vulnerable to political pressure \\[4pt]
+Germany (ARD/ZDF) & Household levy (\texteuro8.4B) & High (interstate treaty, independent fee commission) & Strong independence; highest per-capita public media investment \\[4pt]
+US (PBS/NPR) & Mixed (15\% federal, rest private) & Low (dependent on donations and corporate sponsorship) & Weak epistemic infrastructure; commercial pressures dominate \\[4pt]
+Scandinavia & License fee / tax & High & High-trust information environment \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Countries with stronger public media consistently show higher levels of political knowledge, lower susceptibility to misinformation, and more moderate political polarization---consistent with the hypothesis that public media reduces epistemic concentration.
+\end{example}
+
+\subsection{Open curricula}
+
+Educational content developed through transparent, participatory processes with input from educators, researchers, communities, and students:
+\begin{itemize}[nosep]
+  \item \textbf{Transparent development}: curriculum-writing processes that are publicly documented, with input from diverse stakeholders.
+  \item \textbf{Evidence-based revision}: mandatory periodic review of curricula against current evidence (addressing the textbook-evidence gaps documented in Chapter~\ref{ch:human-nature}).
+  \item \textbf{Critical thinking}: explicit instruction in identifying narrative sources, evaluating evidence, and recognizing doxonomic influence (the doxonomic literacy of Chapter~\ref{ch:counter-doxonomic}).
+\end{itemize}
+
+\subsection{Institutional pluralism}
+
+\begin{definition}[Epistemic Pluralism Requirement]
+\label{def:pluralism}
+\index{epistemic pluralism}
+An \emph{epistemic pluralism requirement} is a regulatory framework ensuring that no single funding source dominates any narrative domain.
+Analogous to antitrust regulation in economic markets, it limits the concentration of narrative-production capacity.
+Formal condition: $\ehhi_{\text{domain}} < \bar{h}$ for each major narrative domain (economics, health, environment, education, etc.).
+\end{definition}
+
+Implementation mechanisms:
+\begin{itemize}[nosep]
+  \item caps on single-source funding of think tanks (e.g., no more than 20\% of budget from one funder),
+  \item media ownership limits (maximum share of national audience),
+  \item public matching funds for narrative-producing institutions that meet transparency standards,
+  \item antitrust review of mergers that would increase epistemic concentration.
+\end{itemize}
+
+\subsection{Transparency requirements}
+
+Mandatory disclosure of funding for all narrative-producing institutions:
+\begin{itemize}[nosep]
+  \item think tanks and policy institutes: full donor lists above a threshold,
+  \item academic research: comprehensive conflict-of-interest disclosure,
+  \item media outlets: ownership structure and major advertising clients,
+  \item political advertising: source, funding, and targeting criteria,
+  \item platform algorithms: public auditing of content-recommendation systems.
+\end{itemize}
 
 \section{Mechanism Design for Belief Production}
 \label{sec:ch32-mechanism}
+
+\subsection{The design problem}
 
 \begin{model}[Democratic Belief Production]
 \label{mod:democratic-belief}
@@ -26,46 +162,169 @@ Formally, $\ehhi < \bar{h}$ for a low threshold $\bar{h}$, and the narrative inf
 Treating belief production as a mechanism design problem:
 \begin{itemize}[nosep]
   \item agents have private preferences over beliefs and narratives,
-  \item a social planner seeks to design institutions that aggregate preferences without allowing wealthy agents to dominate,
+  \item a social planner seeks to design institutions that aggregate information and preferences without allowing wealthy agents to dominate,
   \item the mechanism must be incentive-compatible (agents cannot profit by misrepresenting preferences) and individually rational.
 \end{itemize}
 The impossibility results of \textcite{arrow1963} apply: no perfect mechanism exists.
-But approximate mechanisms---public media, deliberative assemblies, open curricula---can reduce epistemic concentration.
+But approximate mechanisms---public media, deliberative assemblies, citizen juries, open curricula, transparency requirements---can reduce epistemic concentration below the capture threshold.
 \end{model}
 
-\section{Institutional Designs}
-\label{sec:ch32-designs}
+\subsection{Deliberative mini-publics}
 
+\begin{definition}[Deliberative Mini-Public]
+\label{def:mini-public}
+\index{deliberative mini-public}
+A \emph{deliberative mini-public} is a randomly selected group of citizens who are given time, information, and facilitation to deliberate on a specific policy question.
+Examples: citizens' assemblies, consensus conferences, deliberative polls.
+\end{definition}
+
+Mini-publics bypass doxonomic concentration by:
 \begin{itemize}[nosep]
-  \item \textbf{Public-interest media}: funded by taxation, independent of advertising, with editorial autonomy \autocite{mcchesney1999}.
-  \item \textbf{Open curricula}: educational content developed through transparent, participatory processes.
-  \item \textbf{Institutional pluralism}: ensuring that no single funding source dominates any narrative domain.
-  \item \textbf{Transparency requirements}: mandatory disclosure of funding for all narrative-producing institutions.
+  \item random selection (not self-selection or wealth-selection),
+  \item balanced information provision (curated by neutral facilitators, not by interested parties),
+  \item structured deliberation (ensuring that all voices are heard, not just the loudest or most funded),
+  \item protected time (participants are compensated for their time, removing the wealth barrier to participation).
 \end{itemize}
+
+Evidence from citizens' assemblies (Ireland's constitutional convention on abortion, France's Citizens' Convention on Climate, British Columbia's electoral reform assembly) suggests that deliberative mini-publics produce more nuanced, evidence-responsive, and less polarized recommendations than standard democratic processes.
+
+\subsection{Epistemic public goods}
+
+\begin{proposition}[Belief Quality as Public Good]
+\label{prop:epistemic-public-good}
+\index{epistemic public good}
+High-quality public belief is a public good: it is non-rivalrous (one person's accurate belief does not diminish another's) and non-excludable (everyone benefits from a well-informed electorate, not just the well-informed individuals themselves).
+Like all public goods, it is under-provided by market mechanisms because individual consumers of information bear the full cost but capture only a fraction of the benefit.
+Public investment in epistemic infrastructure (public media, education, research) is justified on the same grounds as public investment in physical infrastructure (roads, bridges, sanitation): the market alone will not provide the socially optimal level.
+\end{proposition}
+
+\section{The Diversity-Coordination Tradeoff}
+\label{sec:ch32-tradeoff}
+
+\subsection{The optimal entropy problem}
+
+\begin{model}[Optimal Narrative Entropy]
+\label{mod:optimal-entropy}
+\index{optimal entropy}
+Epistemic democracy faces a fundamental tradeoff between diversity and coordination:
+\begin{itemize}[nosep]
+  \item Too little diversity ($H$ low): common-sense capture; one narrative dominates, suppressing alternatives.
+  \item Too much diversity ($H$ high): fragmentation; no shared framework exists for collective action, mutual understanding, or democratic deliberation.
+\end{itemize}
+The optimal entropy $H^*$ satisfies:
+\[
+  H^* = \arg\max_H \; W(H) = \underbrace{\alpha \cdot D(H)}_{\text{diversity benefit}} - \underbrace{\beta \cdot F(H)}_{\text{fragmentation cost}}
+\]
+where $D(H)$ increases with entropy (more diverse perspectives improves collective decision-making) and $F(H)$ increases with entropy (more fragmentation makes collective action harder).
+The optimum balances these: enough diversity to prevent capture, enough coherence to sustain cooperation.
+\end{model}
+
+This tradeoff is not merely theoretical.
+The current moment in many democracies may involve \emph{too much} entropy (post-truth fragmentation) rather than too little (common-sense capture by a single narrative).
+Epistemic democracy requires not just challenging dominant narratives but building \emph{shared epistemic infrastructure}---common reference points, trusted institutions, agreed-upon methods of evaluation---that can sustain democratic deliberation without collapsing into either capture or chaos.
+
+\section{Limitations and Risks}
+\label{sec:ch32-limits}
+
+\subsection{Who guards the guardians?}
+
+Any institutional design for epistemic democracy creates new concentrations of power: who selects the facilitators for citizens' assemblies? Who designs the transparency requirements? Who governs the public media?
+These questions do not have perfect answers---they are variants of the ancient problem of \emph{quis custodiet ipsos custodes?}---but they can be mitigated through:
+\begin{itemize}[nosep]
+  \item layered accountability (each institution overseen by a different body),
+  \item term limits and rotation for governance positions,
+  \item sunset clauses requiring periodic renewal and review,
+  \item constitutional protections for editorial independence.
+\end{itemize}
+
+\subsection{The risk of epistemic paternalism}
+
+\begin{principle}[Anti-Paternalism Constraint]
+\label{prin:anti-paternalism}
+\index{epistemic paternalism}
+Epistemic democracy aims to democratize belief \emph{production}, not to determine belief \emph{content}.
+The goal is an information environment in which citizens can form beliefs through free and informed deliberation---not an environment in which the ``correct'' beliefs are pre-selected by experts.
+Any institutional design that empowers a specific group to determine what the public ``should'' believe has replaced plutocratic doxonomic power with technocratic doxonomic power, which is not an improvement.
+\end{principle}
+
+The line between providing information and shaping belief is not always clear.
+But the principle provides a guide: epistemic-democratic institutions should increase the diversity and quality of available information, not select the conclusions that citizens should draw from it.
 
 \section{Notes and References}
 \label{sec:ch32-notes}
 
-On epistemic democracy, see \textcite{dewey1927} and \textcite{habermas1962}.
-Public media is analyzed in \textcite{mcchesney1999}.
-Mechanism design draws on \textcite{arrow1963}.
+On epistemic democracy, see \textcite{dewey1927}, \textcite{habermas1962}, and Landemore (2012).
+Public media is analyzed in \textcite{mcchesney1999} and Cushion (2012).
+Mechanism design draws on \textcite{arrow1963} and Myerson (1981).
 On participatory governance, see \textcite{ostrom1990} and \textcite{wright2010}.
+
 For democratic theory and agonistic pluralism, see \textcite{mouffe2005}.
+Deliberative mini-publics are surveyed in Fishkin (2009) and Landemore (2020).
+On epistemic public goods, see Anderson (2006) and Kitcher (2011).
+Media ownership and epistemic concentration are analyzed in Baker (2007).
+
+For the diversity-coordination tradeoff, see Page (2007) on the diversity prediction theorem and Sunstein (2002) on the risks of group polarization.
+On epistemic paternalism, see Goldman (1999).
 
 \section{Exercises}
 
 \begin{exercise}
 Design a transparency regime for think-tank funding.
-What information should be disclosed?
-How would this affect the $\ehhi$?
+\begin{enumerate}[nosep]
+  \item What information should be disclosed (donor identity, amounts, strings attached)?
+  \item At what threshold should disclosure be required?
+  \item How would you enforce compliance?
+  \item Estimate the effect on $\ehhi$ if full transparency were achieved.
+  \item What resistance to transparency would you expect, and from whom?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Compare the epistemic concentration ($\ehhi$) of a country with strong public media (e.g., BBC model) vs.\ one with purely commercial media.
-What are the doxonomic consequences?
+Compare the epistemic concentration ($\ehhi$) of a country with strong public media (e.g., Germany) vs.\ one with primarily commercial media (e.g., the US).
+\begin{enumerate}[nosep]
+  \item Estimate $\ehhi$ for each using available data on media ownership and think-tank funding.
+  \item Compare levels of political knowledge, misinformation susceptibility, and polarization.
+  \item Does the data support the hypothesis that public media reduces epistemic concentration?
+  \item What confounding factors might explain the differences?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Formalize the trade-off between epistemic diversity (high $H$) and social coordination (shared beliefs are needed for collective action).
-Is there an optimal level of narrative entropy?
+Formalize the diversity-coordination tradeoff (Model~\ref{mod:optimal-entropy}).
+\begin{enumerate}[nosep]
+  \item Specify functional forms for $D(H)$ and $F(H)$.
+  \item Compute $H^*$ analytically.
+  \item Is the current entropy in your country above or below $H^*$?
+  \item What institutional changes would move entropy toward the optimum?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design a deliberative mini-public (Definition~\ref{def:mini-public}) to address a doxonomically contested question (e.g., ``Is economic inequality too high?'' or ``Should social media algorithms be regulated?'').
+\begin{enumerate}[nosep]
+  \item How would you select participants?
+  \item What information would you provide, and how would you ensure balance?
+  \item How would you structure the deliberation?
+  \item How would you connect the mini-public's recommendations to actual policy?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply the anti-paternalism constraint (Principle~\ref{prin:anti-paternalism}) to a specific epistemic-democratic proposal.
+\begin{enumerate}[nosep]
+  \item Choose a proposal (e.g., public media reform, curriculum revision, platform regulation).
+  \item Identify the point at which the proposal risks crossing from ``democratizing information'' to ``determining beliefs.''
+  \item Design institutional safeguards to stay on the right side of the line.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the optimal entropy model:
+\begin{enumerate}[nosep]
+  \item Define $D(H) = a\sqrt{H}$ (diversity benefit, concave) and $F(H) = bH^2$ (fragmentation cost, convex).
+  \item Compute $H^*$ analytically for $a = 2$, $b = 0.5$.
+  \item Simulate a society with 20 narrative frames and varying institutional arrangements (monopoly, duopoly, public media + commercial, fully fragmented).
+  \item Measure $H$ under each arrangement. Which comes closest to $H^*$?
+  \item What institutional design parameters (number of public media outlets, funding levels, transparency requirements) most effectively move $H$ toward $H^*$?
+\end{enumerate}
 \end{exercise}

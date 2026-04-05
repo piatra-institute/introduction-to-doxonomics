@@ -5,27 +5,61 @@
 
 \noindent
 Power in doxonomics is not the capacity to coerce but the capacity to set the conditions under which people form their beliefs.
-This chapter formalizes doxonomic power, extends Lukes' three dimensions, and shows how distributed systems can produce coordinated ideological effects without central planning.
+A state that rules by force is fragile; a state whose citizens genuinely believe that the existing order is natural, just, or inevitable barely needs force at all.
+Doxonomic power is this second kind: the power to shape what appears thinkable, reasonable, and real.
 
-\section{Three Dimensions, Extended}
+This chapter formalizes doxonomic power in four dimensions, shows how distributed systems produce coordinated ideological effects without central planning, analyzes prior-setting as the deepest form of doxonomic power, and connects the framework to epistemic injustice and the structural production of ignorance.
+
+
+\section{Four Dimensions of Power}
 \label{sec:ch9-lukes}
 
 \textcite{lukes2005} distinguished three faces of power.
-We extend each to the doxonomic domain.
+We extend his framework to four dimensions, each operating at a deeper level than the last.
 
 \begin{definition}[Dimensions of Doxonomic Power]
 \label{def:doxonomic-power}
 \index{doxonomic power}
 \begin{enumerate}[nosep]
-  \item \textbf{First dimension}: the capacity to win arguments in public debate (persuasion within existing frames).
-  \item \textbf{Second dimension}: the capacity to control which arguments reach public debate (agenda-setting, narrative infrastructure control).
-  \item \textbf{Third dimension}: the capacity to shape what people want, expect, and consider possible (prior formation, anthropological regime installation).
-  \item \textbf{Fourth dimension} (doxonomic extension): the capacity to determine the \emph{epistemic rules}---what counts as evidence, who counts as an expert, which methods are legitimate.
+  \item \textbf{First dimension} (persuasion): the capacity to win arguments in public debate---to prevail within existing frames using evidence, rhetoric, or authority.
+  \item \textbf{Second dimension} (agenda-setting): the capacity to control which arguments \emph{reach} public debate---deciding what is discussed and what is excluded, which questions are asked and which are not.
+  \item \textbf{Third dimension} (preference formation): the capacity to shape what people want, expect, and consider possible---installing anthropological regimes, forming aspirations, calibrating the sense of what is ``realistic.''
+  \item \textbf{Fourth dimension} (epistemic rule-setting): the capacity to determine the \emph{rules of the epistemic game}---what counts as evidence, who counts as an expert, which methods are legitimate, which forms of knowledge are ``serious.''
 \end{enumerate}
 \end{definition}
 
-The fourth dimension is the distinctively doxonomic contribution.
-It is power over the \emph{meta-level}: not just shaping beliefs, but shaping the processes by which beliefs are evaluated.
+Each dimension operates at a deeper level and is harder to detect:
+
+\begin{center}
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  dim/.style={draw, thick, rounded corners, minimum width=4.5cm, minimum height=0.7cm, align=center},
+]
+\matrix[row sep=0.4cm, column sep=0.3cm] {
+  \node[dim, fill=doxoblue!10] {1. Persuasion}; &
+  \node[font=\small, text width=7cm] {Visible. Operates in public debate. Contestable. ``I have better arguments.''}; \\
+  \node[dim, fill=doxoblue!25] {2. Agenda-setting}; &
+  \node[font=\small, text width=7cm] {Partially visible. Controls what is debated. ``This topic is not on the agenda.''}; \\
+  \node[dim, fill=doxoblue!40] {3. Preference formation}; &
+  \node[font=\small, text width=7cm] {Largely invisible. Shapes wants and expectations. ``I never thought to question this.''}; \\
+  \node[dim, fill=doxoblue!60, text=white] {4. Epistemic rule-setting}; &
+  \node[font=\small, text width=7cm] {Invisible. Determines what counts as knowledge. ``That's not a serious question.''}; \\
+};
+\end{tikzpicture}
+\end{center}
+
+\begin{example}[Four Dimensions in Climate Policy]
+\label{ex:four-dimensions-climate}
+\index{doxonomic power!climate example}
+\begin{description}[nosep]
+  \item[First dimension:] The fossil fuel industry funds scientists and commentators who argue against climate action in public debates, op-eds, and congressional hearings.
+  \item[Second dimension:] Lobbying ensures that carbon taxation and fossil fuel subsidy reform are not placed on the legislative agenda; media gatekeepers frame climate as ``both sides'' issue rather than scientific consensus.
+  \item[Third dimension:] Decades of consumer-culture narratives have installed the expectation that cheap energy and unlimited mobility are normal, making any policy that raises energy costs feel like deprivation rather than correction.
+  \item[Fourth dimension:] The definition of ``sound economics'' has been shaped to require cost-benefit analyses that discount future damages heavily, treat GDP growth as the primary welfare metric, and classify ecological limits as ``externalities''---framing assumptions that structurally disadvantage climate action regardless of the evidence.
+\end{description}
+The first dimension is visible and contestable.
+The fourth dimension is invisible: it determines the framework within which all subsequent debates occur.
+\end{example}
 
 \begin{proposition}[Power Ordering]
 \label{prop:power-ordering}
@@ -37,31 +71,106 @@ Fourth-dimensional power is the most cost-effective because it shapes all subseq
 where $\iroi_d$ is the ideological return on investment at dimension $d$.
 \end{proposition}
 
+\begin{remark}[Why the Ordering Holds]
+\label{rem:ordering}
+First-dimensional power (persuasion) must be exercised argument by argument, proposition by proposition.
+Second-dimensional power (agenda-setting) controls which propositions enter the debate, multiplying the effect across all excluded topics.
+Third-dimensional power (preference formation) shapes the priors from which all arguments are evaluated, tilting every debate simultaneously.
+Fourth-dimensional power (epistemic rule-setting) determines which \emph{types of evidence} are admissible, affecting not just one domain but the entire epistemic landscape.
+A dollar invested in changing the definition of ``rigorous evidence'' shapes every future debate; a dollar invested in winning a single argument shapes only that one.
+\end{remark}
+
+\begin{example}[Fourth-Dimensional Power: Economics as Epistemic Rule-Setting]
+\label{ex:econ-rules}
+\index{epistemic rule-setting!economics}
+The discipline of economics exercises fourth-dimensional doxonomic power not primarily through its specific conclusions but through its \emph{methods and definitions}:
+\begin{itemize}[nosep]
+  \item defining welfare as preference satisfaction (rather than capabilities, flourishing, or equality),
+  \item requiring cost-benefit analysis as the standard of policy evaluation (rather than rights-based, precautionary, or democratic deliberation),
+  \item treating GDP as the default measure of social performance (rather than inequality, sustainability, health, or social cohesion),
+  \item assuming rational self-interest as the behavioral baseline (rather than conditional cooperation, reciprocity, or social identity),
+  \item classifying non-market values as ``externalities'' (linguistically framing them as outside the core of economic reality).
+\end{itemize}
+Each of these is a \emph{rule}, not a conclusion.
+They shape what counts as a legitimate question, what counts as evidence, and what counts as a serious policy proposal.
+An alternative policy framework that does not express itself in the language of cost-benefit analysis, GDP effects, and incentive-compatible mechanisms is not refuted; it is \emph{not recognized as policy analysis at all} \autocite{mirowski2009}.
+\end{example}
+
+
 \section{Distributed Coordination Without Conspiracy}
 \label{sec:ch9-distributed}
 
 A common objection to doxonomic analysis is that it requires conspiracy: a secret group deliberately coordinating belief production.
-This is a misunderstanding.
+This objection misunderstands the mechanism.
+Doxonomic coordination typically arises not from conspiracy but from \emph{structural alignment}: independent actors facing similar incentives produce similar outputs, just as firms in a competitive market converge on similar products without colluding.
 
 \begin{principle}[Structural Alignment]
 \label{prin:structural-alignment}
 \index{structural alignment}
 A doxonomic system can produce coordinated ideological output without centralized planning if:
 \begin{enumerate}[nosep]
-  \item funders share material interests (e.g., reduced regulation),
-  \item institutions face similar incentive structures (e.g., dependence on the same funding sources),
-  \item professional norms align outputs (e.g., economics training produces a shared worldview),
-  \item feedback loops reward convergence (e.g., media outlets that deviate lose audience or advertisers).
+  \item funders share material interests (e.g., all major donors benefit from reduced regulation),
+  \item institutions face similar incentive structures (e.g., dependence on the same funding sources, same advertising markets, same professional norms),
+  \item professional training aligns outputs (e.g., economics PhD programs produce graduates with a shared worldview who then staff think tanks, media, and government),
+  \item feedback loops reward convergence (e.g., media outlets that deviate from the consensus lose audience, advertisers, or elite access).
 \end{enumerate}
+When all four conditions hold, the system produces highly coordinated output from entirely decentralized decision-making.
 \end{principle}
 
 \textcite{herman1988} demonstrated this with the propaganda model: five structural filters---ownership, advertising, sourcing, flak, and ideology---produce systematic media bias without requiring any explicit coordination.
+No editor needs to receive instructions from a corporate headquarters.
+The filters are \emph{structural}: they shape the incentive environment in which editorial decisions are made, and the aggregate result is predictable bias.
 
 \begin{model}[Emergent Alignment]
 \label{mod:emergent}
+\index{emergent alignment}
 Let $n$ institutions each independently choose a narrative position $n_k \in \narspace$ to maximize revenue $r_k(n_k, \bm{n}_{-k})$ given the positions of others.
 If revenue functions are correlated (because funders, advertisers, and audiences overlap), the Nash equilibrium $\bm{n}^*$ will cluster in a narrow region of $\narspace$---producing apparent coordination from independent profit maximization.
 \end{model}
+
+\begin{proposition}[Narrative Range Under Structural Alignment]
+\label{prop:narrative-range}
+\index{narrative range}
+Let the \emph{narrative range} $R = \max_{k,l} d(n_k^*, n_l^*)$ be the diameter of the equilibrium narrative positions.
+If all institutions share the same primary funder ($r_k$ depends on the same dominant revenue source), then $R \to 0$: all institutions converge on the same narrative.
+If institutions have diverse, independent funding sources, $R$ can be large: genuine narrative pluralism emerges.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Each institution maximizes $r_k(n_k, \bm{n}_{-k})$.
+If the dominant revenue source prefers narrative $n^*$, the first-order condition for each institution yields $n_k^* \approx n^*$ (small deviations are punished by revenue loss).
+With diverse funding, different institutions face different revenue gradients, pulling them toward different optima.
+The narrative range $R$ is increasing in the diversity of funding sources.
+\end{proof}
+
+\begin{remark}[The Policy Implication]
+\label{rem:policy-implication}
+This result has a direct policy implication: \emph{funding diversity is a structural condition for narrative pluralism}.
+A media system funded entirely by advertising from the same corporate base will produce narrow narrative range, regardless of how many outlets exist.
+A media system with diverse funding (public funding, subscriber revenue, foundation support, advertising from diverse sources) will produce wider narrative range.
+The number of outlets matters less than the diversity of their revenue structures.
+This is why media ownership rules and public broadcasting mandates are doxonomically significant.
+\end{remark}
+
+\begin{example}[Structural Alignment in Practice]
+\label{ex:structural-alignment}
+Consider U.S.\ cable news in the 2000s--2020s.
+Fox News, CNN, and MSNBC appear to offer diverse perspectives.
+But all three:
+\begin{itemize}[nosep]
+  \item depend on advertising revenue from the same corporate base,
+  \item are owned by large media conglomerates with interlocking board memberships,
+  \item draw on the same Washington think-tank ecosystem for expert commentary,
+  \item hire from the same journalism school pipeline,
+  \item compete for the same audience demographic using engagement-maximizing formats.
+\end{itemize}
+The result: vigorous debate within a narrow narrative range.
+The channels disagree intensely about whether the tax rate should be 35\% or 28\%.
+They do not debate whether the tax system should exist in its current form, whether wage labor is the only viable economic arrangement, or whether GDP growth is the right objective.
+The spectrum of ``acceptable opinion'' is lively; the spectrum of \emph{thinkable} opinion is constrained.
+This is structural alignment in action.
+\end{example}
+
 
 \section{Power as Prior-Setting}
 \label{sec:ch9-priors}
@@ -71,10 +180,88 @@ The deepest form of doxonomic power is the ability to set the \emph{prior distri
 \begin{definition}[Prior-Setting Power]
 \label{def:prior-setting}
 \index{prior-setting power}
-An agent $a$ has \emph{prior-setting power} over a population if $a$ can influence the initial distribution $\pi_j^{(0)}$ for agents $j$ in the population, typically through control of educational institutions, childhood media, or cultural narratives.
+An agent $a$ has \emph{prior-setting power} over a population if $a$ can influence the initial belief distribution $\pi_j^{(0)}$ for agents $j$, typically through control of educational institutions, childhood media, religious instruction, or early-life cultural narratives.
 \end{definition}
 
-Prior-setting power is the most durable form of doxonomic power because Bayesian agents with different priors will interpret the same evidence differently, and prior formation occurs early in life when resistance is lowest.
+Prior-setting power is the most durable form of doxonomic power for three reasons:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Bayesian persistence}: agents with different priors interpret the same evidence differently.
+  A person who enters adulthood with the prior ``people are fundamentally selfish'' will interpret cooperative behavior as strategic and selfish behavior as natural.
+  The same evidence that would persuade a neutral observer is absorbed into the existing framework.
+
+  \item \textbf{Formative timing}: prior formation occurs during childhood and early education, when critical resistance is lowest, identity is still forming, and the institutional environment is most controlled (family, school, religious institution).
+
+  \item \textbf{Compounding over generations}: if generation $t$'s priors shape the institutions that form generation $t+1$'s priors, the effect compounds.
+  A single generation of prior-setting can lock in an anthropological regime for decades (Model~\ref{mod:generational}).
+\end{enumerate}
+
+\begin{model}[Prior-Setting Dynamics]
+\label{mod:prior-setting}
+\index{prior-setting power!dynamics}
+Let $\pi_0^{(t)}$ be the average prior of generation $t$ and $\insteco^{(t)}$ the institutional ecology inherited from the previous generation.
+The prior-setting dynamics are:
+\begin{align}
+  \insteco^{(t)} &= h(\pi^{(t-1)}, \insteco^{(t-1)}) \label{eq:inst-update} \\
+  \pi_0^{(t)} &= \gamma \cdot \pi_{\text{family}}^{(t)} + (1-\gamma) \cdot \Phi(\insteco^{(t)}) \label{eq:prior-formation}
+\end{align}
+where $\gamma \in [0,1]$ weights family socialization versus institutional exposure, $\pi_{\text{family}}^{(t)}$ reflects parental transmission (itself a function of the previous generation's posteriors), and $\Phi(\insteco^{(t)})$ is the prior produced by the educational and media environment.
+\end{model}
+
+\begin{proposition}[Generational Compounding]
+\label{prop:compounding}
+If $\gamma < 1$ (institutions have some influence over prior formation) and the institutional update $h$ is self-reinforcing ($\partial h / \partial \pi > 0$), then a one-time doxonomic investment in institutional design can shift priors for multiple generations without further investment.
+The effective multiplier is $1/(1-\rho)$ where $\rho = (1-\gamma) \cdot \partial\Phi/\partial\insteco \cdot \partial h/\partial\pi$ is the generational transmission rate.
+\end{proposition}
+
+\begin{example}[Prior-Setting: The Cold War and Economics Education]
+\label{ex:cold-war-priors}
+During the Cold War, the U.S.\ government and allied foundations invested heavily in economics education as a bulwark against socialism \autocite{mirowski2009}.
+The result: two generations of students whose foundational economic intuitions---markets allocate efficiently, government intervention distorts, self-interest is the reliable behavioral assumption---were formed during formative years.
+These priors persist in the population long after the Cold War ended, because the institutional infrastructure (economics curricula, textbooks, professional norms) continues to transmit them.
+This is prior-setting power in action: a generation of investment in educational institutions produced priors that have compounded across three subsequent generations.
+\end{example}
+
+
+\section{The Production of Ignorance}
+\label{sec:ch9-ignorance}
+
+Doxonomic power operates not only by producing beliefs but by producing \emph{ignorance}: systematically preventing certain questions from being asked, certain evidence from being generated, and certain connections from being made.
+
+\begin{definition}[Agnotology]
+\label{def:agnotology}
+\index{agnotology}
+\emph{Agnotology} is the study of the deliberate production of ignorance.
+In doxonomic terms, it is the investment in \emph{not knowing}: funding designed to prevent the generation or circulation of inconvenient knowledge.
+\end{definition}
+
+\textcite{oreskes2010} documented the most systematic case: the tobacco and fossil fuel industries' decades-long campaigns to manufacture doubt about the health effects of smoking and the reality of climate change.
+The strategy was not to produce an alternative scientific consensus (too expensive, too difficult) but to produce \emph{uncertainty}---enough doubt that policymakers could justify inaction.
+
+\begin{model}[Doubt Production]
+\label{mod:doubt}
+\index{doubt production}
+Let $\belief{p}(t)$ be the public's credence in a scientific consensus $p$.
+The doubt-production strategy invests in reducing $\belief{p}$ not by producing evidence for $\neg p$ but by:
+\begin{enumerate}[nosep]
+  \item funding a small number of credentialed contrarians ($\Delta\ecap_{\text{cred}}^{\neg p}$),
+  \item demanding impossible standards of proof (``we need more research before acting''),
+  \item amplifying natural scientific uncertainty beyond its actual magnitude,
+  \item framing the issue as ``both sides'' in media coverage.
+\end{enumerate}
+The effect on public belief is:
+\[
+  \belief{p}(t+1) = \belief{p}(t) - \alpha_{\text{doubt}} \cdot F_{\text{doubt}}(t) \cdot \frac{\credibility{\text{contrarian}}}{\credibility{\text{consensus}}}
+\]
+Because $\credibility{\text{contrarian}} > 0$ (they hold genuine credentials) and $F_{\text{doubt}}$ can be substantial, the doubt production function can maintain $\belief{p} < \theta_{\text{action}}$ (the credence threshold for policy action) indefinitely---even when the scientific consensus is overwhelming.
+\end{model}
+
+\begin{remark}
+The doubt-production strategy is doxonomically efficient because it exploits an asymmetry: science produces conclusions with quantified uncertainty (``95\% confidence''), while the public interprets any uncertainty as grounds for doubt.
+The doxonomic investment needed to \emph{amplify perceived uncertainty} is far smaller than the investment needed to \emph{shift the scientific consensus}.
+This is the agnotological analogue of the destruction-construction asymmetry (Proposition~\ref{prop:asymmetry}).
+\end{remark}
+
 
 \section{Epistemic Injustice as Doxonomic Power}
 \label{sec:ch9-epistemic-injustice}
@@ -82,30 +269,153 @@ Prior-setting power is the most durable form of doxonomic power because Bayesian
 \textcite{fricker2007} identified a form of power closely related to the fourth dimension: \emph{epistemic injustice}\index{epistemic injustice}, in which certain speakers are systematically denied credibility due to their social identity.
 In doxonomic terms, epistemic injustice is a mechanism by which the credibility weights $\credibility{k}$ are allocated not by evidence quality but by the speaker's position in hierarchies of race, gender, class, or nationality.
 
+Fricker distinguished two forms:
+
+\begin{definition}[Forms of Epistemic Injustice]
+\label{def:epistemic-injustice-forms}
+\index{epistemic injustice!forms}
+\begin{description}[nosep]
+  \item[Testimonial injustice:] a speaker's testimony is given less credibility than it deserves due to prejudice against their social identity.
+  In doxonomic terms: $\credibility{k}$ is reduced by an identity penalty $\delta_{\text{id}}$, so that $\credibility{k}^{\text{eff}} = \credibility{k} - \delta_{\text{id}}(k)$.
+  \item[Hermeneutical injustice:] a gap in collective interpretive resources prevents a group from making sense of their own experience in a way that would be communicable to others.
+  In doxonomic terms: the narrative space $\narspace$ lacks the concepts needed to articulate certain forms of experience (e.g., ``sexual harassment'' before the term was coined; ``structural racism'' before the concept was developed).
+\end{description}
+\end{definition}
+
 This means that some agents face a structural credibility deficit: their testimony about lived experience is discounted, their counter-narratives are dismissed as ``anecdotal,'' and their epistemic labor is uncompensated.
-Epistemic injustice is a doxonomic power that operates through the fourth dimension: it does not merely suppress specific beliefs but shapes the rules of whose evidence counts.
+Epistemic injustice is fourth-dimensional doxonomic power: it does not merely suppress specific beliefs but shapes the rules of whose evidence counts and which experiences are nameable.
+
+\begin{example}[Hermeneutical Injustice and the Delay of Concepts]
+\label{ex:hermeneutical}
+Workers in the early industrial period experienced exploitation but lacked the conceptual vocabulary to articulate it as \emph{exploitation} (a systematic extraction of surplus value) rather than as personal misfortune.
+The development of Marxian economic vocabulary provided hermeneutical resources that made collective experience communicable---and therefore politically actionable.
+Similarly, the concept of ``emotional labor'' (Hochschild, 1983) gave service workers a way to name an experience that had been structurally invisible.
+In doxonomic terms, concept creation is an investment in expanding $\narspace$: it makes previously unspeakable experiences articulable, which is a precondition for any counter-narrative.
+\end{example}
+
+
+\section{Measuring Doxonomic Power}
+\label{sec:ch9-measuring}
+
+Power is notoriously difficult to measure.
+Doxonomic power is no exception, but several proxies are available.
+
+\begin{definition}[Doxonomic Power Index]
+\label{def:dpi}
+\index{doxonomic power index}
+The \emph{doxonomic power index} of agent $a$ is
+\[
+  \mathrm{DPI}(a) = \sum_{d=1}^{4} \omega_d \cdot P_d(a)
+\]
+where $P_d(a)$ is $a$'s capacity at dimension $d$ and $\omega_d$ are weights reflecting the relative effectiveness of each dimension ($\omega_4 > \omega_3 > \omega_2 > \omega_1$).
+Component proxies:
+\begin{itemize}[nosep]
+  \item $P_1$: funding for direct advocacy and persuasion campaigns.
+  \item $P_2$: control over editorial positions, curriculum committees, and algorithmic curation.
+  \item $P_3$: investment in educational institutions, childhood media, and cultural production.
+  \item $P_4$: control over professional norms, research funding allocation, and epistemic gatekeeping positions.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+The doxonomic power index is a heuristic, not a validated metric.
+Its components are difficult to measure independently, and the weights $\omega_d$ are not empirically determined.
+It is included here as a framework for thinking about power comparisons, not as a tool ready for deployment.
+Developing reliable measurement of doxonomic power is an open problem (Chapter~\ref{ch:toward}).
+\end{remark}
+
+
+\section{Power and Resistance}
+\label{sec:ch9-resistance}
+
+Doxonomic power is never total.
+Every exercise of power generates potential resistance, and the relationship between power and resistance is dynamic.
+
+\begin{principle}[Power-Resistance Dialectic]
+\label{prin:dialectic}
+\index{power-resistance dialectic}
+Doxonomic power generates its own opposition through at least three mechanisms:
+\begin{enumerate}[nosep]
+  \item \textbf{Experiential contradiction}: when the lived experience of a population systematically contradicts the dominant narrative, the gap generates skepticism, frustration, and counter-narrative demand.
+  \item \textbf{Reflexive awareness}: doxonomic analysis itself (including this textbook) can make the mechanisms of power visible, reducing their effectiveness. Power that is seen as power loses the appearance of naturalness.
+  \item \textbf{Counter-institutional building}: subordinate groups build their own narrative infrastructure (labor unions, community organizations, alternative media, religious communities) that partially insulates their members from dominant narrative exposure.
+\end{enumerate}
+\end{principle}
+
+\begin{remark}
+This dialectic does not guarantee that resistance succeeds.
+The outcome depends on the relative resources, infrastructure, and strategic competence of the dominant and counter-doxonomic forces.
+But it does mean that doxonomic equilibria are never perfectly stable: they require continuous maintenance investment (the maintenance cost of capture, Chapter~\ref{ch:common-sense-capture}).
+\end{remark}
+
 
 \section{Notes and References}
 \label{sec:ch9-notes}
 
-\textcite{lukes2005} provides the three-dimensional framework.
+\textcite{lukes2005} provides the three-dimensional framework; the fourth dimension is original to this text but draws on Foucault's analysis of power/knowledge \autocite{foucault1971}.
 The propaganda model is in \textcite{herman1988}.
 Structural power without conspiracy is analyzed in \textcite{gramsci1971} and formalized in network terms by \textcite{jackson2008}.
 On the role of economics in shaping priors, see \textcite{bowles2011} and \textcite{mirowski2009}.
 On epistemic injustice, see \textcite{fricker2007} and \textcite{medina2013}.
-On colonial knowledge production as an exercise of doxonomic power, see \textcite{said1978}.
+On colonial knowledge production as an exercise of doxonomic power, see \textcite{said1978} and \textcite{fanon1961}.
+
+The production of ignorance (agnotology) is documented in \textcite{oreskes2010}.
+On the strategic manufacture of doubt, see also Proctor (2011), \textit{Golden Holocaust}.
+For the economics profession as an exercise of epistemic rule-setting, see \textcite{mirowski2009} and \textcite{mudge2018}.
+On performativity---how economic models reshape the reality they claim to describe---see \textcite{mackenzie2006}.
+The narrative range result (Proposition~\ref{prop:narrative-range}) is related to the Hotelling model of product differentiation; see also \textcite{hallin2004} on media system variation.
+Comparative media systems provide natural experiments for testing the relationship between funding diversity and narrative range \autocite{hallin2004}.
+
 
 \section{Exercises}
 
 \begin{exercise}
-Classify the following exercises of power by dimension: (a)~a pharmaceutical company funding a medical journal, (b)~a government classifying documents, (c)~an economics curriculum teaching rational self-interest as human nature, (d)~a platform algorithm determining what counts as ``trending.''
+Classify the following exercises of power by dimension: (a)~a pharmaceutical company funding a medical journal, (b)~a government classifying documents as secret, (c)~an economics curriculum teaching rational self-interest as human nature, (d)~a platform algorithm determining what counts as ``trending,'' (e)~a professional association defining the requirements for ``evidence-based'' practice, (f)~a religious institution teaching children that a particular social hierarchy is divinely ordained.
+For each, explain why you placed it at that dimension.
 \end{exercise}
 
 \begin{exercise}
-Using Model~\ref{mod:emergent}, show that if all institutions depend on the same advertising market, the equilibrium narrative range is narrower than if institutions have diverse funding sources.
+Using Model~\ref{mod:emergent}, show that if all institutions depend on the same advertising market, the equilibrium narrative range $R$ is narrower than if institutions have diverse funding sources.
+Compute $R$ for two scenarios: (a)~one dominant advertiser, (b)~ten equally sized advertisers with diverse preferences.
 \end{exercise}
 
 \begin{exercise}
 Formalize the claim that prior-setting power compounds over generations.
-If each generation's priors are a function of the previous generation's posteriors and the institutional environment, write the recurrence relation and identify conditions for convergence.
+Using equations~\eqref{eq:inst-update}--\eqref{eq:prior-formation} with specific functional forms (e.g., linear), compute the generational multiplier $1/(1-\rho)$.
+For what value of $\gamma$ (family vs.\ institutional weight) does a single generation of institutional investment shift priors by more than 50\% permanently?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch9-doubt}
+Using the doubt-production model (Model~\ref{mod:doubt}), estimate the investment needed to maintain public doubt about a scientific consensus.
+Assume the consensus has $\credibility{\text{consensus}} = 0.9$, the contrarian has $\credibility{\text{contrarian}} = 0.3$, and the action threshold is $\belief{p} > 0.7$.
+How much doubt investment $F_{\text{doubt}}$ is needed to keep $\belief{p}$ below 0.7?
+How does this change if $\credibility{\text{contrarian}}$ rises to 0.5 (e.g., by funding the contrarian through a prestigious institution)?
+\end{exercise}
+
+\begin{exercise}
+Identify three examples of hermeneutical injustice: cases where a group lacked the conceptual vocabulary to name their experience.
+For each, describe: (a)~the experience that was unnamed, (b)~the concept that was eventually developed, (c)~the doxonomic effect of having vs.\ not having the concept.
+\end{exercise}
+
+\begin{exercise}
+Compute the doxonomic power index $\mathrm{DPI}$ for three actors of your choice (e.g., a major foundation, a social media platform, a national curriculum authority).
+Justify your estimates for each component $P_d$.
+Which actor has the highest total power?
+Which has the most concentrated power (highest $P_d$ at a single dimension)?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch9-structural}
+The chapter argues that U.S.\ cable news exhibits structural alignment despite apparent diversity.
+Test this claim: choose three cable news networks and analyze a week of coverage on a specific policy topic.
+Measure the narrative range $R$ (how different are their framings?) and compare it to the narrative range across, say, U.S.\ cable news vs.\ BBC vs.\ Al Jazeera on the same topic.
+Is the within-system range narrower than the between-system range?
+\end{exercise}
+
+\begin{exercise}
+The power-resistance dialectic (Principle~\ref{prin:dialectic}) claims that doxonomic power generates its own opposition.
+Give a historical example where this dialectic played out.
+Was the resistance successful?
+What determined the outcome?
 \end{exercise}

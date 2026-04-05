@@ -9,8 +9,12 @@ Each involves the large-scale production and institutional stabilization of beli
 A field that claims to study how power shapes belief cannot treat these as optional examples.
 They are central cases---arguably the cases where doxonomic production has been most systematic, most durable, and most materially consequential.
 
+This chapter extends the doxonomic framework to analyze these systems, revealing both the framework's strengths (it provides precise tools for tracing funded narrative production) and its limitations (some of the most durable belief systems are reproduced through unpaid labor, embodied practice, and institutional routine rather than through the explicit funding flows that doxonomic accounting tracks most naturally).
+
 \section{Race as Manufactured Social Ontology}
 \label{sec:ch24b-race}
+
+\subsection{Definition and mechanism}
 
 \begin{definition}[Racial Regime]
 \label{def:racial-regime}
@@ -18,14 +22,35 @@ They are central cases---arguably the cases where doxonomic production has been 
 A \emph{racial regime} is a doxonomic system that produces and maintains a categorical division of humanity into hierarchically ordered groups based on perceived phenotypic or ancestral characteristics, where:
 \begin{enumerate}[nosep]
   \item the categories are presented as natural rather than constructed,
-  \item differential treatment is legitimated by attributed group capacities,
-  \item the institutional infrastructure (law, education, media, science) continuously reproduces the classification.
+  \item differential treatment is legitimated by attributed group capacities or deficiencies,
+  \item the institutional infrastructure (law, education, media, science) continuously reproduces the classification,
+  \item the material consequences of classification (segregation, differential wealth, differential health) generate ``evidence'' that appears to confirm the classification.
 \end{enumerate}
 \end{definition}
 
+The fourth criterion is distinctively doxonomic: the racial regime produces the conditions that make it appear true.
+Segregation produces differential educational outcomes; differential education produces differential economic outcomes; differential economics produces differential health outcomes; and all of these differentials are then cited as evidence that racial categories correspond to genuine differences in ability, motivation, or culture.
+
+\subsection{The institutional genealogy of scientific racism}
+
 The history of race is a history of doxonomic production.
 Scientific racism in the 18th--20th centuries was not a marginal pseudoscience; it was a heavily funded, institutionally embedded research program that produced the ``common sense'' of racial hierarchy \autocite{dubois1903}.
-Colonial administrations invested enormously in racial classification systems---census categories, legal codes, educational tracks---that made race appear as a natural fact rather than an administrative construction \autocite{said1978, fanon1961}.
+
+\paragraph{The production chain.}
+The institutional infrastructure of scientific racism included:
+\begin{itemize}[nosep]
+  \item \textbf{Universities and research institutes}: craniometry, phrenology, eugenics institutes at leading universities (Cold Spring Harbor, Kaiser Wilhelm Institute, UCL's Galton Laboratory). The Eugenics Record Office (US, 1910--1939) received substantial Rockefeller and Carnegie funding.
+  \item \textbf{Census bureaus}: the racial categories of national censuses (which varied dramatically between countries) reified administrative classifications as natural kinds.
+  \item \textbf{Legal systems}: anti-miscegenation laws, Jim Crow, apartheid, colonial legal codes---all requiring precise racial classification and producing an institutional apparatus for maintaining it.
+  \item \textbf{Educational institutions}: racially segregated schools, textbooks presenting racial hierarchy as scientific fact, curricula omitting the achievements of non-European civilizations.
+  \item \textbf{Popular science and media}: National Geographic's century of racial representation, IQ testing popularization, the ``bell curve'' discourse.
+\end{itemize}
+
+\paragraph{The funding dimension.}
+Unlike many doxonomic systems, early racial regime production was funded directly by the state (colonial administrations, census bureaus, segregated school systems) and by major philanthropies (Carnegie, Rockefeller, and Harriman foundations funded eugenics research).
+The total institutional investment in producing and maintaining racial categories over the period 1800--2000 is difficult to estimate but clearly enormous---encompassing the entire apparatus of colonial governance, segregated institutions, and racialized law enforcement.
+
+\subsection{The racial belief production model}
 
 \begin{model}[Racial Belief Production]
 \label{mod:racial-production}
@@ -34,30 +59,104 @@ The strength of racial-hierarchy belief $\belief{R}$ is sustained by:
 \[
   \frac{d\belief{R}}{dt} = \alpha_{\text{inst}} \phi_{\text{inst}} + \alpha_{\text{seg}} S(t) + \beta \belief{R}(1-\belief{R}) - \delta \belief{R} - \gamma E(t)
 \]
-where $\phi_{\text{inst}}$ is institutional investment in racial classification (curricula, media, law), $S(t)$ is the degree of residential and economic segregation (which generates ``evidence'' for racial difference through differential outcomes), $\beta$ is peer reinforcement, $\delta$ is natural decay, and $E(t)$ represents counter-evidence (interracial cooperation, anti-racist education, disconfirming experience).
+where:
+\begin{itemize}[nosep]
+  \item $\phi_{\text{inst}}$ is institutional investment in racial classification (curricula, media, law),
+  \item $S(t)$ is the degree of residential and economic segregation (which generates ``evidence'' for racial difference through differential outcomes),
+  \item $\beta$ captures peer reinforcement and social transmission,
+  \item $\delta$ is natural decay (generational replacement, individual updating),
+  \item $E(t)$ represents counter-evidence (interracial cooperation, anti-racist education, disconfirming experience).
+\end{itemize}
 \end{model}
 
 The segregation term $S(t)$ is crucial: spatial and economic separation produces the differential outcomes that appear to confirm the racial narrative, creating a self-fulfilling loop analogous to the selfishness trap of Chapter~\ref{ch:human-nature}.
 
+\begin{proposition}[Segregation as Doxonomic Feedback]
+\label{prop:segregation-feedback}
+\index{segregation!doxonomic feedback}
+If segregation $S(t)$ is itself a function of racial belief ($S(t) = h(\belief{R}(t))$ with $h' > 0$---stronger racial belief leads to more segregation through housing discrimination, white flight, school district formation), then the system has a positive feedback loop:
+\[
+  \belief{R} \uparrow \;\Rightarrow\; S \uparrow \;\Rightarrow\; \text{differential outcomes} \;\Rightarrow\; \text{``evidence'' for racial hierarchy} \;\Rightarrow\; \belief{R} \uparrow
+\]
+This loop can sustain racial hierarchy belief \emph{even after the explicit institutional investment} $\phi_{\text{inst}}$ \emph{is withdrawn} (e.g., after the formal end of Jim Crow or apartheid), because segregation continues to generate confirming ``evidence.''
+Breaking the loop requires intervening on segregation directly, not merely on belief.
+\end{proposition}
+
+\subsection{The post-civil-rights transformation}
+
+The explicit institutional investment in racial hierarchy ($\phi_{\text{inst}}$) declined substantially after the civil rights movement (US), anti-apartheid movement (South Africa), and decolonization (Global South).
+But racial belief did not decline proportionally, because:
+\begin{enumerate}[nosep]
+  \item the segregation feedback loop ($S(t)$ term) continued operating,
+  \item new narrative forms emerged: ``colorblind racism'' (denying the relevance of race while maintaining racial structures), ``cultural deficit'' explanations (attributing racial inequality to cultural rather than biological differences, but with the same doxonomic function), and ``reverse racism'' narratives (reframing anti-racist policy as the ``real'' racism),
+  \item the institutional infrastructure of racial classification (census categories, residential patterns, educational tracking, criminal justice disparities) remained largely intact.
+\end{enumerate}
+
+The doxonomic insight: the racial regime \emph{transformed} rather than disappeared.
+The explicit belief ``race X is biologically inferior'' was replaced by the implicit belief ``racial inequality reflects cultural or behavioral differences''---a narrative shield (Definition~\ref{def:narrative-shield}) that achieves the same legitimation function through different discursive means.
+
 \section{Colonial Civilizational Narratives}
 \label{sec:ch24b-coloniality}
+
+\subsection{Colonialism as doxonomic operation}
 
 Colonialism was, among other things, a massive doxonomic operation: the production of beliefs about civilizational hierarchy that justified extraction, governance, and violence.
 \textcite{said1978} showed how ``Orientalism''---a systematic body of knowledge about the East produced by Western institutions---functioned as epistemic infrastructure for colonial rule.
 
 The belief production chain for colonial narratives ran through:
 \begin{itemize}[nosep]
-  \item missionary education (replacing indigenous knowledge systems),
-  \item colonial administration (legal and census categories imposing European classifications),
-  \item academic disciplines (anthropology, geography, linguistics producing ``scientific'' accounts of hierarchy),
-  \item media and literature (representing colonized peoples as requiring guidance),
-  \item economic institutions (structuring labor markets around racial categories).
+  \item \textbf{Missionary education}: replacing indigenous knowledge systems with European curricula, languages, and religious frameworks.
+  \item \textbf{Colonial administration}: legal and census categories imposing European classifications on diverse populations; the creation of ``tribes'' and ``castes'' as administrative units that then became social identities.
+  \item \textbf{Academic disciplines}: anthropology (classifying ``primitive'' societies), geography (mapping ``empty'' lands for settlement), linguistics (ranking languages by ``complexity''), history (narrating progress as a European monopoly).
+  \item \textbf{Museums and exhibitions}: world's fairs, natural history museums, and ethnographic displays that presented non-European peoples as specimens for study rather than agents of history.
+  \item \textbf{Economic institutions}: structuring labor markets, land tenure, and trade around racial and civilizational categories.
 \end{itemize}
+
+\subsection{Coloniality after colonialism}
 
 The persistence of these narratives after formal decolonization---what decolonial theorists call \emph{coloniality}---is a doxonomic phenomenon: the institutional infrastructure outlasts the political regime that built it.
 
+\begin{definition}[Doxonomic Coloniality]
+\label{def:coloniality}
+\index{coloniality}
+\emph{Doxonomic coloniality} is the persistence of colonial belief structures after formal decolonization, sustained by:
+\begin{enumerate}[nosep]
+  \item educational institutions that still teach from colonial-era curricula or frameworks (European-centered history, English/French as languages of prestige),
+  \item academic disciplines whose categories were shaped by colonial needs (``development economics'' as the study of why non-Western countries are ``behind''),
+  \item international institutions (IMF, World Bank) whose policy prescriptions reproduce colonial-era assumptions about governance and economic organization,
+  \item media representations that continue to frame the Global South as a site of crisis, backwardness, or exoticism.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+\label{ex:development-economics}
+``Development economics'' is a doxonomically interesting field: its very existence presupposes a civilizational narrative (some countries are ``developed,'' others are ``developing'') that maps onto colonial hierarchy.
+The field's institutional infrastructure---World Bank research departments, USAID, bilateral development agencies, academic programs---produces knowledge that tends to frame non-Western economies as deficient versions of Western ones, requiring Western-style reforms to ``catch up.''
+This is not to deny that poverty is real or that economic analysis is useful; it is to note that the framing of the problem already contains the colonial assumption of a single developmental path.
+\end{example}
+
+\subsection{Epistemic violence and knowledge erasure}
+
+\begin{definition}[Epistemic Violence]
+\label{def:epistemic-violence}
+\index{epistemic violence}
+\emph{Epistemic violence} is the systematic destruction, suppression, or devaluation of a community's knowledge systems through doxonomic means.
+It includes:
+\begin{enumerate}[nosep]
+  \item the destruction of indigenous knowledge repositories (libraries, oral traditions, medicinal practices),
+  \item the delegitimation of non-Western epistemologies as ``superstition'' or ``pre-scientific,''
+  \item the imposition of colonial languages as the medium of education and governance, rendering indigenous knowledge inaccessible to subsequent generations,
+  \item the extraction and appropriation of indigenous knowledge without attribution (biopiracy, appropriation of agricultural techniques, adoption of medicinal compounds without crediting their sources).
+\end{enumerate}
+\end{definition}
+
+Epistemic violence is the destructive counterpart of doxonomic production: where doxonomic production builds beliefs, epistemic violence destroys them.
+The two operate in tandem during colonization: the colonizer's knowledge system is institutionally amplified while the colonized's knowledge system is institutionally suppressed.
+
 \section{Gender as Doxonomic Construction}
 \label{sec:ch24b-gender}
+
+\subsection{The gender regime}
 
 \begin{definition}[Gender Regime]
 \label{def:gender-regime}
@@ -66,64 +165,237 @@ A \emph{gender regime} is a doxonomic system producing and maintaining beliefs a
 \begin{enumerate}[nosep]
   \item natural differences between men and women in capacity, temperament, and social role,
   \item the complementarity or hierarchy of these roles,
-  \item the unnaturalness of deviations from prescribed gender behavior.
+  \item the unnaturalness of deviations from prescribed gender behavior,
+  \item the naturalness of the sexual division of labor (productive vs.\ reproductive work).
 \end{enumerate}
 \end{definition}
 
+\subsection{The distinctive features of gender doxonomics}
+
 Gender regimes are sustained through family socialization, religious institutions, educational tracking, media representation, workplace norms, and legal codes.
 Their doxonomic cost is distributed across many institutions, making them difficult to account for with the funding-tracing methods of Chapter~\ref{ch:belief-flow-accounting}.
-Much gender-regime maintenance happens through unpaid labor: mothers teaching daughters, communities enforcing norms, cultures producing representations.
+Three features distinguish gender doxonomics from the funding-centered models of earlier chapters:
 
-This highlights a limitation of the money-centric framing: some of the most durable doxonomic systems are reproduced through institutional routine, social pressure, and embodied practice rather than through direct financial investment.
-The belief production chain for gender passes heavily through layers 3--5 of the layered ontology (Principle~\ref{prin:layered-ontology}): practical schemas, identity commitments, and affective orientations, not just propositional beliefs.
+\begin{enumerate}
+  \item \textbf{Reproduction through unpaid labor.}
+  Much gender-regime maintenance happens through unpaid labor: parents socializing children, communities enforcing norms, cultures producing representations.
+  The ``funding'' is not monetary but temporal and emotional.
+  This means that the doxonomic accounting framework must be extended to include non-monetary investment.
 
-\section{Intersections}
+  \item \textbf{Embodied belief.}
+  Gender beliefs operate heavily through layers 3--5 of the layered ontology (Principle~\ref{prin:layered-ontology}): practical schemas (how one moves, speaks, presents oneself), identity commitments (``being a man/woman''), and affective orientations (what feels natural or disgusting).
+  These layers are more resistant to discursive counter-evidence than propositional beliefs.
+
+  \item \textbf{Biological anchoring.}
+  Gender regimes anchor themselves to real biological differences (reproductive anatomy, average physical size differences, hormonal variation) while vastly overgeneralizing what those differences imply for social roles.
+  The doxonomic operation is not the invention of difference from nothing but the \emph{amplification} of modest biological variation into comprehensive social hierarchy.
+\end{enumerate}
+
+\subsection{The gender belief production chain}
+
+\begin{model}[Gender Regime Production]
+\label{mod:gender-production}
+\index{gender regime!production model}
+Gender beliefs are produced through a multi-channel pipeline:
+\begin{enumerate}[nosep]
+  \item \textbf{Family} (ages 0--5): gendered names, clothing, toys, differential parental behavior (studies show parents talk to daughters more about emotions and to sons more about achievement).
+  \item \textbf{Education} (ages 5--22): gendered expectations in classrooms, differential encouragement in STEM, sex-segregated sports, gendered career counseling.
+  \item \textbf{Media} (all ages): the Geena Davis Institute found that female characters are underrepresented 2:1 in film, more likely to be shown in domestic or romantic contexts, and less likely to be shown in professional or leadership roles.
+  \item \textbf{Religion} (all ages): many religious traditions produce explicit gender-role prescriptions backed by the credibility of divine authority.
+  \item \textbf{Workplace} (ages 18--65): gendered job descriptions, differential evaluation standards, mommy-track career penalties, sexual harassment as norm enforcement.
+  \item \textbf{Law and policy}: historical coverture laws, ongoing gaps in parental leave policy, differential criminal sentencing.
+\end{enumerate}
+The combined effect is a total-institution doxonomic environment: the gender regime is encountered in every institutional setting from birth to death.
+\end{model}
+
+\subsection{Feminist counter-doxonomics}
+
+Feminist movements constitute the most sustained counter-doxonomic campaign in history.
+Over two centuries, feminist organizations have:
+\begin{itemize}[nosep]
+  \item challenged the naturalization of gender hierarchy through theoretical critique,
+  \item built counter-institutions (women's studies programs, feminist media, advocacy organizations),
+  \item achieved legal reforms that reduced the gender regime's institutional enforcement (suffrage, equal pay legislation, anti-discrimination law),
+  \item shifted norm perceptions measurably: beliefs about women's capabilities have changed dramatically in survey data over 50 years.
+\end{itemize}
+
+Yet the gender regime remains partially intact, especially at the embodied and affective levels.
+This illustrates a general doxonomic principle: propositional beliefs are the most responsive to counter-narrative, while practical schemas and identity commitments change more slowly.
+
+\section{Intersections and Compound Systems}
 \label{sec:ch24b-intersections}
 
 Race, gender, and class regimes do not operate independently.
 They intersect, reinforce, and sometimes contradict each other.
-A full doxonomic analysis must attend to how:
+
+\subsection{The interaction structure}
+
+\begin{proposition}[Doxonomic Intersection]
+\label{prop:intersection}
+\index{intersectionality}
+When multiple doxonomic regimes (racial, gender, class) operate simultaneously on agent $j$, the combined belief effect is not additive but interactive:
+\[
+  \belief{j}^{\text{total}} \neq \belief{j}^{\text{race}} + \belief{j}^{\text{gender}} + \belief{j}^{\text{class}}.
+\]
+Rather, the regimes modulate each other: racial narratives are gendered (stereotypes differ for men and women of the same racialized group), class narratives are racialized (the ``deserving poor'' is often implicitly white), and gender narratives are class-inflected (the ``ideal worker'' presupposes a wife managing domestic labor).
+\end{proposition}
+
+\begin{example}
+\label{ex:intersection}
+The narrative ``welfare queen'' (US political discourse, 1976--present) operates at the intersection of race, gender, and class:
 \begin{itemize}[nosep]
-  \item racial narratives are gendered (stereotypes differ for men and women of the same racialized group),
-  \item class narratives are racialized (the ``deserving poor'' is often implicitly white),
-  \item gender narratives are class-inflected (the ``ideal worker'' presupposes a wife at home).
+  \item \emph{Racial}: the image is implicitly (and sometimes explicitly) Black.
+  \item \emph{Gender}: the image is female, violating prescriptions about maternal self-sacrifice and sexual restraint.
+  \item \emph{Class}: the image is poor, violating the meritocratic narrative of self-sufficiency.
+\end{itemize}
+No single-axis analysis captures the narrative's doxonomic function.
+Its power comes from activating all three regimes simultaneously, producing a figure that concentrates the stigma of racial, gender, and class deviance in a single image.
+This compound stigma was deployed to justify welfare reform in the 1990s---a policy change with measurable effects on millions of people, driven in significant part by a doxonomic construction.
+\end{example}
+
+\subsection{Sheaf-theoretic intersectionality}
+
+In the sheaf-theoretic framework of Chapter~\ref{ch:contradiction-coherence}, the local belief systems for race, gender, and class may have different gluing obstructions depending on the institutional context.
+
+\begin{example}
+\label{ex:sheaf-intersection}
+Consider the local belief systems:
+\begin{itemize}[nosep]
+  \item $U_{\text{workplace}}$: ``women are less competent in leadership'' (gender regime) + ``minorities are less qualified'' (racial regime) + ``pay reflects productivity'' (meritocratic regime).
+  \item $U_{\text{home}}$: ``women are natural caregivers'' (gender regime) + ``family is private'' (class regime shields domestic labor from economic analysis).
+  \item $U_{\text{political}}$: ``all citizens are equal before the law'' (democratic regime) + ``affirmative action is reverse discrimination'' (meritocratic regime applied selectively).
+\end{itemize}
+The transition maps between these local systems are inconsistent: the ``natural caregiver'' of $U_{\text{home}}$ contradicts the ``equal citizen'' of $U_{\text{political}}$, but the contradiction is managed by keeping the two domains institutionally separate.
+The sheaf obstruction is nonzero ($H^1 \neq 0$), but the social system manages the inconsistency through domain segregation rather than resolution.
+\end{example}
+
+\section{Limitations of the Doxonomic Framework for Identity Systems}
+\label{sec:ch24b-limitations}
+
+\subsection{What the framework captures}
+
+The doxonomic framework captures well:
+\begin{itemize}[nosep]
+  \item the role of funded institutions in producing and circulating racial, colonial, and gender narratives,
+  \item the self-fulfilling mechanisms by which these narratives generate confirming evidence,
+  \item the material interests served by specific narratives,
+  \item the formal dynamics of belief production, competition, and regime change.
 \end{itemize}
 
-In sheaf-theoretic terms (Chapter~\ref{ch:contradiction-coherence}), the local belief systems for race, gender, and class may have different gluing obstructions depending on the institutional context.
+\subsection{What it risks missing}
+
+\begin{enumerate}
+  \item \textbf{Agency and resistance.}
+  The doxonomic framework, with its emphasis on institutional production, can understate the agency of those subjected to oppressive regimes.
+  People are not blank slates on which doxonomic systems write; they resist, reinterpret, subvert, and transform the narratives directed at them.
+  Any adequate doxonomic analysis of race, coloniality, or gender must include the counter-doxonomic activity of the oppressed.
+
+  \item \textbf{Lived experience.}
+  The formal models treat belief as a numerical variable $\belief{}(t)$.
+  But racial identity, gender identity, and colonial subjectivity are not reducible to belief intensities---they involve lived experience, embodied practice, community belonging, and existential meaning.
+  The doxonomic framework provides partial insight, not total comprehension.
+
+  \item \textbf{Non-monetary reproduction.}
+  As noted above, gender and racial regimes are reproduced substantially through unpaid labor and institutional routine.
+  The funding-tracing methodology that works well for think-tank-produced narratives is less well-suited to regimes maintained through family socialization, peer pressure, and cultural tradition.
+
+  \item \textbf{The positionality problem.}
+  The analyst's own position within racial, gender, and class regimes affects what they can see and how they frame the analysis.
+  The symmetry obligation (Principle~\ref{prin:symmetry}) is necessary but not sufficient: a white researcher studying racial doxonomics should be aware that their analysis is itself shaped by the racial regime they are analyzing.
+\end{enumerate}
+
+These limitations do not invalidate the doxonomic analysis of identity systems; they define its scope.
+Doxonomics provides one lens---the institutional-material lens---among several that are needed for a complete understanding.
+It should be used alongside, not in place of, phenomenological, ethnographic, and literary approaches to race, coloniality, and gender.
 
 \section{Notes and References}
 \label{sec:ch24b-notes}
 
 On race as a social construction with material effects, see \textcite{dubois1903} and \textcite{fanon1961}.
+The history of scientific racism is documented in Gould (1981) and Kendi (2016).
 Colonial knowledge production is analyzed in \textcite{said1978}.
+On coloniality as persisting beyond formal colonialism, see Quijano (2000) and Mignolo (2011).
+
 On the doxonomic function of education in reproducing class and racial hierarchy, see \textcite{bowles1976} and \textcite{bourdieu1984}.
 For epistemic injustice and its relation to social identity, see \textcite{fricker2007} and \textcite{medina2013}.
-The concept of coloniality as persisting beyond formal colonialism draws on Quijano (2000) and Mignolo (2011).
+On epistemic violence, see Spivak (1988).
+
 On gender as a performed and institutionally sustained category, see Butler (1990) and Connell (1987).
+On media representation and gender, see the Geena Davis Institute reports.
+For the ``welfare queen'' as a doxonomic construction, see Gilens (1999).
+
+The intersectionality framework originates with Crenshaw (1989).
+System justification in the context of racial hierarchy is analyzed in \textcite{jost2004}.
+On the ``wages of whiteness,'' see \textcite{du-bois2007}.
 
 \section{Exercises}
 
 \begin{exercise}
 Construct a doxonomic account for racial hierarchy in a specific national context.
-Identify at least four institutional channels and estimate their relative contribution to $\belief{R}$.
+\begin{enumerate}[nosep]
+  \item Identify at least four institutional channels that produce or reproduce racial belief.
+  \item For each channel, estimate whether the investment is primarily monetary, temporal (unpaid labor), or institutional (routine practices).
+  \item Estimate the relative contribution of each channel to $\belief{R}$.
+  \item How has the balance among channels changed over the past 50 years?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Compare the doxonomic production of racial categories in two colonial contexts (e.g., British India and French West Africa).
-What institutional differences led to different racial classification systems?
+\begin{enumerate}[nosep]
+  \item What institutional differences led to different racial classification systems?
+  \item How do these differences persist in the post-colonial period?
+  \item Apply Model~\ref{mod:racial-production} to both cases: which terms differ?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Using the model of racial belief production, argue that residential segregation functions as a self-reinforcing doxonomic feedback loop.
-Under what conditions can the loop be broken?
+Using the model of racial belief production (Model~\ref{mod:racial-production}), argue that residential segregation functions as a self-reinforcing doxonomic feedback loop.
+\begin{enumerate}[nosep]
+  \item Write $S(t) = h(\belief{R}(t))$ with a specific functional form for $h$.
+  \item Show that the coupled system $(\belief{R}, S)$ has two stable equilibria (high-segregation/high-belief and low-segregation/low-belief).
+  \item Under what conditions can the system be moved from the high to the low equilibrium?
+  \item What policy intervention is implied (intervening on belief, on segregation, or on both)?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Analyze the doxonomic infrastructure maintaining gender complementarity beliefs in a religious institutional context of your choice.
-How does this infrastructure differ from the funding-driven models of earlier chapters?
+\begin{enumerate}[nosep]
+  \item Map the production chain (texts, sermons, schools, family practices).
+  \item How does this infrastructure differ from the funding-driven models of earlier chapters?
+  \item What is the ``return on investment'' when much of the investment is unpaid labor?
+  \item How would you measure the doxonomic output of this system using the tools of Chapters~\ref{ch:doxometric-measurement}--\ref{ch:text-media}?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Analyze the ``welfare queen'' narrative (Example~\ref{ex:intersection}) as an intersectional doxonomic product.
+\begin{enumerate}[nosep]
+  \item Trace the production chain: who coined the term, which institutions amplified it, through which media channels?
+  \item Apply framing analysis (Chapter~\ref{ch:text-media}) to characterize its causal story, normative valence, subject position, and prescribed action.
+  \item What policy outcomes did the narrative enable?
+  \item What would a counter-narrative look like, and what institutional infrastructure would be needed to circulate it?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Apply the sheaf framework of Chapter~\ref{ch:contradiction-coherence} to the intersection of racial and meritocratic beliefs.
-Where do the local belief systems cohere, and where do gluing obstructions arise?
+\begin{enumerate}[nosep]
+  \item Define local belief systems for at least three institutional contexts.
+  \item Identify the transition maps between them.
+  \item Compute whether the gluing obstruction $H^1$ is zero (the beliefs are globally consistent) or nonzero (they are inconsistent).
+  \item How does the social system manage the inconsistency?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Assess the limitations of the doxonomic framework (Section~\ref{sec:ch24b-limitations}) by comparing its analysis of a specific case with an analysis from a different tradition (phenomenological, ethnographic, or literary).
+\begin{enumerate}[nosep]
+  \item Choose a specific instance of racial, colonial, or gender belief production.
+  \item Analyze it using the doxonomic framework (funding, institutions, formal model).
+  \item Analyze it using an alternative framework (lived experience, cultural meaning, literary representation).
+  \item What does each framework reveal that the other misses?
+  \item How could the two be productively combined?
+\end{enumerate}
 \end{exercise}

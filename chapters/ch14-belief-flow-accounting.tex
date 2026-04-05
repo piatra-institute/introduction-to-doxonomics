@@ -5,7 +5,13 @@
 
 \noindent
 If doxonomics is to be a science rather than a commentary, it needs accounting.
-This chapter develops the framework for tracing financial flows into narrative outputs: the doxonomic ledger.
+The claim that ``beliefs are funded'' is empty without a ledger: who spent how much, through which institutions, producing which narratives, reaching which audiences, with what measurable effects.
+This chapter develops the framework for tracing financial flows into narrative outputs---the doxonomic ledger.
+
+Belief-flow accounting is to doxonomics what national income accounting is to macroeconomics: a systematic method for measuring aggregate flows.
+Just as GDP accounting tracks the flow of goods and services through an economy, doxonomic accounting tracks the flow of resources through the belief production chain.
+The analogy is not perfect---narrative production is harder to measure than automobile production---but the aspiration is the same: replace impressionistic claims with documented flows.
+
 
 \section{The Accounting Framework}
 \label{sec:ch14-framework}
@@ -21,6 +27,49 @@ where $s_k$ is the funding source, $\iota_k$ is the processing institution, $c_k
 The \emph{total doxonomic investment} in $p$ is $F_p = \sum_k \funding{k}$.
 \end{definition}
 
+A complete doxonomic account answers five questions:
+\begin{enumerate}[nosep]
+  \item \textbf{Who paid?} (source identification)
+  \item \textbf{Who processed?} (institutional intermediation)
+  \item \textbf{What was produced?} (narrative output)
+  \item \textbf{Who was reached?} (audience and exposure)
+  \item \textbf{What was the effect?} (belief change, behavioral consequence)
+\end{enumerate}
+
+In practice, complete accounts are rarely achievable.
+Funding opacity, institutional complexity, and the difficulty of measuring belief effects mean that most doxonomic accounts are partial---but partial accounting is vastly better than no accounting.
+
+\begin{example}[Partial Account: Climate Doubt]
+\label{ex:climate-account}
+\index{belief-flow accounting!climate example}
+A partial doxonomic account for the belief ``climate science is uncertain'' in the U.S., 1990--2010 \autocite{oreskes2010}:
+
+\begin{center}
+\begin{tabular}{p{2.3cm}p{2.5cm}p{2.5cm}rp{1.5cm}}
+\toprule
+\textbf{Source} & \textbf{Institution} & \textbf{Channel} & \textbf{\$ (est.)} & \textbf{Reach} \\
+\midrule
+ExxonMobil & Heartland Inst. & Reports, op-eds & \$8M & Policy \\
+Koch Industries & Americans for Prosperity & TV ads, rallies & \$50M+ & Mass \\
+Coal industry & Global Climate Coalition & Lobbying, PR & \$13M & Congress \\
+Multiple & George C. Marshall Inst. & Congressional testimony & \$2M & Elite \\
+Multiple & Competitive Enterprise Inst. & Media appearances & \$5M & Broadcast \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is a fragment of the total.
+\textcite{oreskes2010} and subsequent investigations (Frumhoff et al., 2015; Supran and Oreskes, 2017) have documented hundreds of millions in total spending across dozens of institutions.
+The account is partial because:
+\begin{itemize}[nosep]
+  \item not all funding is traceable (dark money, donor-advised funds),
+  \item institutional overhead is not separated from narrative production,
+  \item throughput estimates are rough (how many people were actually reached and influenced?),
+  \item the causal link from spending to belief change is not established by the account alone (that requires Chapter~\ref{ch:causal-inference}).
+\end{itemize}
+\end{example}
+
+
 \section{Source Identification}
 \label{sec:ch14-sources}
 
@@ -31,64 +80,329 @@ A typical chain:
 \]
 
 Each intermediary adds opacity.
-Doxonomic accounting requires penetrating these layers using:
+The corporation may be legally required to disclose its contributions to the foundation, but the foundation may route grants through a donor-advised fund (which does not disclose the ultimate recipient), and the think tank may not disclose its funders.
+
+\begin{definition}[Funding Chain]
+\label{def:funding-chain}
+\index{funding chain}
+A \emph{funding chain} for belief $p$ is a directed path in the financial network:
+\[
+  s_0 \xrightarrow{f_1} s_1 \xrightarrow{f_2} \cdots \xrightarrow{f_l} \iota \xrightarrow{\text{produces}} n_p
+\]
+where $s_0$ is the ultimate source, $s_1, \ldots, s_{l-1}$ are intermediaries, $\iota$ is the narrative-producing institution, and $f_i$ is the flow at each stage.
+The \emph{chain length} $l$ measures the number of intermediation layers.
+Longer chains are more opaque.
+\end{definition}
+
+\subsection{Data Sources for Source Identification}
+
 \begin{itemize}[nosep]
-  \item IRS Form 990 filings (for U.S.\ nonprofits),
-  \item corporate disclosure reports,
-  \item investigative journalism databases,
-  \item lobbying registration records.
+  \item \textbf{IRS Form 990 filings} (U.S.): tax-exempt organizations must file annual returns listing revenues, expenditures, and grants made.
+  Available through ProPublica Nonprofit Explorer and Guidestar.
+  \textit{Limitation}: does not require disclosure of donors to 501(c)(4) organizations; donor-advised funds disclose the fund sponsor but not the donor.
+
+  \item \textbf{Lobbying disclosure records}: the U.S.\ Lobbying Disclosure Act requires registration of lobbyists and quarterly reports of expenditures.
+  Available through OpenSecrets.
+  \textit{Limitation}: covers only direct lobbying, not grassroots campaigns, astroturfing, or think-tank-mediated advocacy.
+
+  \item \textbf{Corporate annual reports and SEC filings}: publicly traded companies disclose political spending and trade-association memberships.
+  \textit{Limitation}: disclosure requirements vary; many expenditures are classified as ``education,'' ``research,'' or ``community engagement'' without specifying ideological content.
+
+  \item \textbf{Investigative journalism databases}: ProPublica, InfluenceWatch, LittleSis, SourceWatch.
+  \textit{Limitation}: coverage is selective (focused on controversial or politically salient cases); data quality varies.
+
+  \item \textbf{Academic forensic accounting}: scholars have reconstructed funding networks through painstaking archival work.
+  \textcite{mayer2016} traced Koch network funding; \textcite{oreskes2010} traced fossil fuel funding of doubt.
+  \textit{Limitation}: labor-intensive, not systematic, not reproducible at scale.
 \end{itemize}
+
+\begin{definition}[Funding Opacity]
+\label{def:opacity}
+\index{funding opacity}
+The \emph{opacity} of a funding chain is a measure of how difficult it is to trace the chain from narrative output back to ultimate source.
+We define:
+\[
+  \text{Opacity}(\text{chain}) = 1 - \prod_{i=1}^{l} d_i
+\]
+where $d_i \in [0,1]$ is the disclosure probability at intermediary $i$ (the probability that the flow $f_i$ is publicly documented).
+A fully transparent chain (all $d_i = 1$) has opacity 0.
+A chain with one perfectly opaque intermediary ($d_i = 0$ for some $i$) has opacity 1.
+\end{definition}
+
+\begin{remark}[The Opacity Arms Race]
+\label{rem:opacity-arms-race}
+As doxonomic accounting improves, funders develop more sophisticated opacity mechanisms: pass-through entities, foreign intermediaries, anonymized cryptocurrency transfers, and corporate structures designed to frustrate tracing.
+Doxonomic accounting is therefore an adversarial exercise: the accounting methodology must evolve in response to evasion strategies, much as tax enforcement evolves in response to tax avoidance.
+\end{remark}
+
 
 \section{Ideological Input-Output Tables}
 \label{sec:ch14-leontief}
 
+The belief production chain involves institutions that are both producers and consumers of narrative.
+A think tank produces reports that are consumed by media; media produces coverage that is consumed by politicians; politicians produce policies that are consumed by think tanks as evidence for their next round of reports.
+This circular flow is captured by the input-output framework.
+
 \begin{model}[Doxonomic Input-Output Table]
 \label{mod:io-table}
 \index{input-output table}
-Extending Model~\ref{mod:input-output}, let sectors be narrative-producing institutions.
-The input-output matrix $\bm{A}$ has entries $a_{ij}$ representing the fraction of institution $j$'s narrative output consumed as input by institution $i$ (e.g., a think tank's report cited by a newspaper).
-The total output vector is
+Let $n$ institutional sectors produce narrative output.
+The input-output matrix $\bm{A}$ has entries $a_{ij} \in [0,1]$ representing the fraction of institution $j$'s narrative output consumed as input by institution $i$.
+The total output vector $\bm{n}$ satisfies
 \[
-  \bm{n} = (\bm{I} - \bm{A})^{-1} \bm{d}
+  \bm{n} = \bm{A}\bm{n} + \bm{d}
 \]
-where $\bm{d}$ is the exogenous injection.
-The Leontief inverse $(\bm{I} - \bm{A})^{-1}$ reveals the \emph{multiplier effect}: how a dollar of direct investment amplifies through the narrative ecosystem.
+where $\bm{d}$ is the exogenous injection (direct funder input).
+The solution, when $(\bm{I} - \bm{A})$ is invertible and the spectral radius of $\bm{A}$ is less than 1, is
+\[
+  \bm{n} = (\bm{I} - \bm{A})^{-1}\bm{d}
+\]
+The matrix $(\bm{I} - \bm{A})^{-1}$ is the \emph{doxonomic multiplier}\index{doxonomic multiplier}: it shows how a unit injection of narrative through one sector amplifies through the system.
 \end{model}
+
+\begin{example}[Constructing an Input-Output Table]
+\label{ex:io-construction}
+Consider four sectors: think tanks ($T$), prestige media ($M$), broadcast news ($B$), and education ($E$).
+Estimating the inter-sector flows from citation patterns, sourcing data, and content analysis:
+
+\begin{center}
+\begin{tabular}{l|cccc|c}
+\toprule
+\textbf{To $\downarrow$ / From $\to$} & $T$ & $M$ & $B$ & $E$ & Exog.\ $\bm{d}$ \\
+\midrule
+Think tanks $T$ & 0 & 0.05 & 0.02 & 0.10 & \$50M \\
+Prestige media $M$ & 0.30 & 0 & 0.10 & 0.05 & \$20M \\
+Broadcast news $B$ & 0.15 & 0.40 & 0 & 0.02 & \$10M \\
+Education $E$ & 0.20 & 0.10 & 0.05 & 0 & \$30M \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Reading the table: 30\% of think-tank output is picked up by prestige media ($a_{MT} = 0.30$); 40\% of prestige media output is recycled into broadcast news ($a_{BM} = 0.40$); 20\% of think-tank output eventually enters educational materials ($a_{ET} = 0.20$).
+
+The Leontief inverse $(\bm{I} - \bm{A})^{-1}$ reveals:
+\begin{itemize}[nosep]
+  \item a \$1M injection into think tanks produces approximately \$1.5M in total narrative output (50\% amplification through the system),
+  \item the largest multiplier path is $T \to M \to B$: think-tank research is picked up by prestige media, which is then amplified by broadcast news,
+  \item the education sector is a ``slow amplifier'': it absorbs think-tank and media output and releases it over decades through curricula.
+\end{itemize}
+\end{example}
+
+\begin{remark}[Estimating the $\bm{A}$ Matrix]
+\label{rem:estimating-A}
+The inter-institutional flow coefficients $a_{ij}$ are not directly observable.
+They must be estimated from:
+\begin{itemize}[nosep]
+  \item \textbf{Citation analysis}: how often does institution $i$ cite or reference institution $j$'s outputs?
+  \item \textbf{Sourcing studies}: content analyses of media output identifying the institutional origins of claims, data, and expert quotes.
+  \item \textbf{Network analysis}: co-membership, co-citation, and personnel-flow networks that trace idea movement between institutions (Chapter~\ref{ch:network-analysis}).
+  \item \textbf{Survey of practitioners}: journalists report which sources they rely on; policymakers report which think-tank outputs influence their thinking.
+\end{itemize}
+All methods are imprecise.
+The input-output table should be accompanied by uncertainty bounds on each coefficient.
+\end{remark}
+
 
 \section{Accounting Identities}
 \label{sec:ch14-identities}
 
 \begin{principle}[Doxonomic Accounting Identity]
 \label{prin:accounting-identity}
-For a closed doxonomic system in steady state:
+\index{accounting identity}
+For each institution $\iota$ in steady state:
 \[
   \text{Total funding in} = \text{Narrative output} \times \text{Unit cost} + \text{Institutional overhead}
 \]
-Or in symbols: $F = \Theta \cdot c_{\text{unit}} + O$.
-The \emph{doxonomic efficiency} is $\eta = \Theta / F = 1 - O/F$.
+In symbols: $\funding{\iota} = \Theta_{\iota} \cdot c_{\text{unit}} + O_{\iota}$.
+The \emph{doxonomic efficiency} is $\eta_{\iota} = \Theta_{\iota} / \funding{\iota} = 1 - O_{\iota}/\funding{\iota}$.
 \end{principle}
+
+Doxonomic efficiency varies widely across institution types:
+\begin{itemize}[nosep]
+  \item \textbf{High efficiency} ($\eta > 0.6$): small advocacy organizations, online media outlets, social media campaigns.
+  Low overhead, direct narrative output.
+  \item \textbf{Medium efficiency} ($\eta \approx 0.3$--$0.5$): think tanks, PR firms.
+  Moderate overhead (buildings, staff, credibility maintenance), substantial narrative output.
+  \item \textbf{Low efficiency} ($\eta < 0.2$): universities, government agencies.
+  High overhead (research infrastructure, administration, teaching, non-doxonomic functions), but the doxonomic output has very high credibility and persistence.
+\end{itemize}
+
+\begin{remark}[Efficiency vs.\ Effectiveness]
+\label{rem:efficiency-effectiveness}
+Low doxonomic efficiency does not mean low doxonomic effectiveness.
+A university with $\eta = 0.1$ spends 90\% of its budget on non-doxonomic functions (research, teaching, administration), but the 10\% that produces belief effects has $\credibility{} \approx 0.9$ and $\persistence{} \approx 30$ years.
+A social media campaign with $\eta = 0.8$ converts most of its budget to reach, but with $\credibility{} = 0.15$ and $\persistence{} = 0.01$ years.
+The long-run doxonomic impact (throughput $\times$ persistence $\times$ credibility) may be higher for the university despite its lower efficiency.
+This is why the equimarginal principle (Proposition~\ref{prop:optimal-allocation}) and the IROI calculation (Definition~\ref{def:iroi}) account for credibility and persistence, not just efficiency.
+\end{remark}
+
+
+\section{Uncertainty in Doxonomic Accounting}
+\label{sec:ch14-uncertainty}
+
+Doxonomic accounts are never precise.
+Every entry involves estimation, and honest accounting must report the uncertainty.
+
+\begin{definition}[Account Uncertainty]
+\label{def:account-uncertainty}
+\index{accounting uncertainty}
+For each line in a doxonomic account, the uncertainty is characterized by:
+\begin{itemize}[nosep]
+  \item \textbf{Source uncertainty}: the ultimate funder may be unknown or partially traced (opacity $> 0$).
+  Report as a confidence interval: $s_k \in \{$known sources$\}$ with probability $p_s$, or ``unknown'' with probability $1-p_s$.
+  \item \textbf{Amount uncertainty}: the expenditure $\funding{k}$ is often estimated from partial data (e.g., grant totals that include both doxonomic and non-doxonomic spending).
+  Report as $\funding{k} \in [F_L, F_U]$ with 90\% confidence.
+  \item \textbf{Throughput uncertainty}: the estimated doxonomic throughput $\Theta_k$ depends on reach, credibility, and persistence estimates, each with its own error.
+  Report the propagated uncertainty.
+  \item \textbf{Attribution uncertainty}: the fraction of an institution's output attributable to belief $p$ (vs.\ other beliefs or non-doxonomic functions) is a judgment call.
+  Report the sensitivity of $F_p$ to this attribution fraction.
+\end{itemize}
+\end{definition}
+
+\begin{principle}[Honest Accounting]
+\label{prin:honest-accounting}
+A doxonomic account without uncertainty bounds is not a doxonomic account.
+It is advocacy with numbers.
+The field's credibility---its own epistemic capital---depends on honest reporting of what is known, what is estimated, and what is guessed.
+\end{principle}
+
+
+\section{A Worked Example: Accounting for Austerity Belief}
+\label{sec:ch14-austerity}
+
+To illustrate the full accounting framework, consider a partial account for the belief ``government debt is dangerous and austerity is necessary'' in the UK, 2009--2013.
+
+\textbf{Step 1: Source identification.}
+The austerity narrative was promoted by:
+\begin{itemize}[nosep]
+  \item Centre for Policy Studies (CPS): founded by Thatcher and Keith Joseph, annual budget $\sim$\pounds2M.
+  \item Institute of Economic Affairs (IEA): annual budget $\sim$\pounds3M.
+  \item Taxpayers' Alliance: annual budget $\sim$\pounds1M.
+  \item The Treasury itself: the largest single source of austerity framing, but with public rather than private funding.
+  \item Financial press (\textit{Financial Times}, \textit{Economist}): editorial stances aligned with austerity, funded by subscriptions and advertising from the financial sector.
+\end{itemize}
+
+\textbf{Step 2: Processing.}
+Think tanks produced policy briefs, opinion pieces, and parliamentary testimony.
+The Treasury produced budget documents, forecasts, and press conferences.
+Financial media produced daily coverage framing debt as crisis.
+
+\textbf{Step 3: Throughput estimation.}
+\begin{center}
+\begin{tabular}{lrrcc}
+\toprule
+\textbf{Source} & \textbf{\pounds/yr} & \textbf{Reach} & \textbf{Credibility} & \textbf{$\Theta$} \\
+\midrule
+CPS & \pounds2M & 0.01 & 0.6 & 12K \\
+IEA & \pounds3M & 0.01 & 0.7 & 21K \\
+Taxpayers' Alliance & \pounds1M & 0.05 & 0.3 & 15K \\
+Treasury (austerity share) & \pounds10M est. & 0.3 & 0.8 & 2.4M \\
+Financial press & \pounds50M est. & 0.2 & 0.7 & 7M \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Step 4: Total.}
+The private think-tank investment was modest ($\sim$\pounds6M/year), but the amplification through the Treasury and financial press produced throughput orders of magnitude larger.
+The multiplier effect (Model~\ref{mod:io-table}) was enormous: a small think-tank injection was amplified by the most credible institutions in the system.
+
+\textbf{Step 5: Uncertainty.}
+The Treasury's ``austerity share'' is an estimate (what fraction of Treasury communication was devoted to the austerity narrative vs.\ other policy); the financial press estimate is rough (advertising revenue is not doxonomic spending, but editorial alignment is).
+The total investment is somewhere in the range \pounds50M--\pounds100M/year, with enormous amplification from institutional credibility.
+
+\begin{remark}
+This example illustrates a general pattern: private doxonomic investment is often small relative to the total narrative output, because public institutions and commercial media provide massive amplification.
+The think tanks do not need to reach the public directly; they need to reach the \emph{institutions} that reach the public.
+The multiplier, not the direct investment, is the story.
+\end{remark}
+
+
+\section{Accounting for Non-Monetary Flows}
+\label{sec:ch14-nonmonetary}
+
+Not all doxonomic resources are monetary.
+Several important flows resist financial accounting:
+
+\begin{itemize}[nosep]
+  \item \textbf{Volunteer labor}: social movements, religious organizations, and community groups produce narrative through unpaid work.
+  The monetary equivalent can be estimated (hours $\times$ wage rate), but the institutional dynamics differ from funded production.
+  \item \textbf{Attention as currency}: on social media, sharing, liking, and commenting are forms of doxonomic production with zero monetary cost to the producer but significant narrative effect.
+  \item \textbf{Institutional cross-subsidy}: a corporation's marketing budget (spent on product advertising) also reinforces the consumer-identity anthropological regime; a military's recruitment budget also reinforces nationalist narratives.
+  These doxonomic effects are by-products, not intentional investments, but they are real.
+  \item \textbf{Architecture and space}: the built environment communicates beliefs without any ongoing narrative production (monumental state buildings communicate power; open-plan offices communicate transparency/surveillance; shopping malls communicate consumption-as-activity).
+\end{itemize}
+
+\begin{definition}[Expanded Doxonomic Account]
+\label{def:expanded-account}
+\index{belief-flow accounting!expanded}
+An \emph{expanded doxonomic account} adds non-monetary flows to the standard account:
+\[
+  \mathcal{L}_p^+ = \mathcal{L}_p \cup \{(\text{source}, \text{type}, \text{estimated equivalent}, \Theta)\}_{\text{non-monetary}}
+\]
+The ``estimated equivalent'' converts non-monetary contributions to dollar values where possible and flags them as imputed rather than observed.
+\end{definition}
+
 
 \section{Notes and References}
 \label{sec:ch14-notes}
 
 The accounting approach draws on national income accounting methods \autocite{stiglitz2012}.
+The Leontief input-output framework originates in Leontief (1941); for a modern introduction, see Miller and Blair (2009).
 Dark money flows are documented in \textcite{mayer2016}.
-The Leontief model is standard in economics; its application to narrative flows is original to this text.
-For lobbying data, see OpenSecrets; for think-tank funding, see InfluenceWatch.
+The application of input-output accounting to narrative flows is original to this text.
+For lobbying data, see OpenSecrets; for think-tank funding, see InfluenceWatch and ProPublica Nonprofit Explorer.
 On media ownership structures, see \textcite{bagdikian2004}.
+
+On the specific case of climate-doubt funding, see \textcite{oreskes2010} and Supran and Oreskes (2017).
+For the UK austerity case, see \textcite{streeck2016} and Blyth (2013), \textit{Austerity: The History of a Dangerous Idea}.
+On non-monetary doxonomic production (architecture, space, material culture), see Latour (2005) and \textcite{scott1998}.
+The opacity concept connects to the literature on dark money and political finance regulation \autocite{mayer2016}.
+
 
 \section{Exercises}
 
 \begin{exercise}
-Using publicly available IRS 990 data, construct a partial doxonomic account for the belief ``regulation harms economic growth'' by tracing funding from three major foundations to think tanks to publications.
+Using publicly available IRS 990 data (via ProPublica Nonprofit Explorer), construct a partial doxonomic account for the belief ``regulation harms economic growth'' by tracing funding from three major foundations to think tanks to publications.
+Report the funding chain length and opacity for each path.
 \end{exercise}
 
 \begin{exercise}
-Compute the Leontief inverse for a three-institution system and interpret the multiplier for a \$1M injection into the first institution.
+Compute the Leontief inverse for the four-sector system in Example~\ref{ex:io-construction}.
+What is the total system-wide narrative output from a \$1M injection into think tanks?
+Which indirect pathway produces the largest multiplier effect?
 \end{exercise}
 
 \begin{exercise}
-Estimate the doxonomic efficiency $\eta$ of a university vs.\ a social media campaign.
-Which has higher overhead?
-Which has higher long-run throughput per dollar?
+Estimate the doxonomic efficiency $\eta$ of: (a)~a university economics department, (b)~a social media campaign, (c)~a think tank.
+For each, estimate the total budget, the fraction devoted to doxonomic output, and the resulting $\eta$.
+Which has the highest efficiency?
+Which has the highest long-run effectiveness?
+Why might these differ?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch14-uncertainty}
+Take the austerity worked example (Section~\ref{sec:ch14-austerity}) and construct 90\% confidence intervals for each throughput estimate.
+How does the uncertainty in the ``austerity share'' of Treasury communication affect the total investment estimate?
+Perform a sensitivity analysis: report $F_p$ under optimistic, central, and pessimistic attribution assumptions.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch14-nonmonetary}
+Identify three non-monetary doxonomic flows in your daily life (e.g., architectural, spatial, routine, performative).
+Estimate their doxonomic throughput in dollar-equivalent terms.
+How do they compare in magnitude to the monetary flows you encounter through media and advertising?
+\end{exercise}
+
+\begin{exercise}
+Construct a doxonomic account for a belief of your choice.
+Report: (a)~at least three funding sources with amounts, (b)~at least two processing institutions, (c)~at least two channels with reach and credibility estimates, (d)~total $F_p$ with uncertainty bounds, (e)~a candid assessment of what you could not trace and why.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch14-opacity}
+The chapter defines funding opacity as $1 - \prod_i d_i$.
+For a chain of length $l = 4$ where each intermediary has disclosure probability $d_i = 0.7$, compute the opacity.
+What opacity would the chain have if a donor-advised fund ($d = 0.1$) were inserted as one intermediary?
+What does this imply about the doxonomic accounting challenge posed by anonymous philanthropy?
 \end{exercise}

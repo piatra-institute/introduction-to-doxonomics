@@ -6,7 +6,13 @@
 \noindent
 Not all dollars are equal in the market for belief.
 A dollar spent through a prestigious university carries more doxonomic force than a dollar spent on a billboard.
-The difference is \emph{epistemic capital}: the accumulated stock of credibility, authority, and attention that an institution or agent can deploy in the production of belief.
+The difference is \emph{epistemic capital}\index{epistemic capital}: the accumulated stock of credibility, authority, and attention that an institution or agent can deploy in the production of belief.
+
+Epistemic capital is the currency of the doxonomic system.
+It determines the conversion rate at which economic resources become belief effects.
+A think tank with high epistemic capital can shift policy debates with a single report; one with low epistemic capital can produce a hundred reports that no one reads.
+Understanding how epistemic capital is accumulated, converted, deployed, destroyed, and distributed is central to doxonomic analysis.
+
 
 \section{Definition and Structure}
 \label{sec:ch6-definition}
@@ -18,17 +24,70 @@ The \emph{epistemic capital} of an agent or institution $a$ is a vector
 \[
   \ecap(a) = \bigl(\ecap_{\text{cred}}(a),\; \ecap_{\text{att}}(a),\; \ecap_{\text{auth}}(a)\bigr) \in \R_{\geq 0}^3
 \]
-where $\ecap_{\text{cred}}$ is \emph{credibility capital} (the degree to which $a$'s outputs are treated as reliable), $\ecap_{\text{att}}$ is \emph{attention capital} (the audience share $a$ commands), and $\ecap_{\text{auth}}$ is \emph{authority capital} (the degree to which $a$ can set the terms of legitimate discourse).
+where:
+\begin{itemize}[nosep]
+  \item $\ecap_{\text{cred}}$ is \emph{credibility capital}: the degree to which $a$'s outputs are treated as reliable by audiences.
+  Sources: track record of accuracy, institutional prestige, peer endorsement, professional credentials.
+  \item $\ecap_{\text{att}}$ is \emph{attention capital}: the audience share $a$ commands---how many people will encounter $a$'s outputs.
+  Sources: subscriber base, media citations, social media following, search ranking.
+  \item $\ecap_{\text{auth}}$ is \emph{authority capital}: the degree to which $a$ can set the terms of legitimate discourse---defining what questions are askable, what methods are acceptable, what conclusions are serious.
+  Sources: institutional gatekeeping positions, editorial control, curriculum authority, regulatory standing.
+\end{itemize}
 \end{definition}
 
 This extends Bourdieu's analysis of capital forms \autocite{bourdieu1984, bourdieu1991}.
 Where Bourdieu distinguished economic, cultural, social, and symbolic capital qualitatively, we provide a quantitative decomposition oriented specifically toward belief production.
+
+The three components are partially independent.
+An institution can have high credibility but low attention (an obscure but respected research lab), high attention but low credibility (a viral social media account), or high authority but low attention (a regulatory body whose rulings shape an industry but whose reports are unread by the public).
+The doxonomic force of an institution depends on the \emph{product} of relevant components, not on any single one.
+
+\begin{definition}[Doxonomic Force]
+\label{def:doxonomic-force}
+\index{doxonomic force}
+The \emph{doxonomic force} of an institution $a$ with respect to belief $i$ is
+\[
+  \Phi_i(a) = \ecap_{\text{cred}}(a) \cdot \ecap_{\text{att}}(a) \cdot \relevance{a}{i}
+\]
+where $\relevance{a}{i}$ is the relevance of $a$'s domain to belief $i$.
+Authority capital enters indirectly: $\ecap_{\text{auth}}$ shapes the boundaries of $\narspace$ (which narratives are ``in play'') rather than the force of any particular narrative.
+\end{definition}
+
+\begin{example}[Epistemic Capital Profiles]
+\label{ex:profiles}
+\index{epistemic capital!profiles}
+Consider five institutions and their approximate capital vectors:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Institution} & $\ecap_{\text{cred}}$ & $\ecap_{\text{att}}$ & $\ecap_{\text{auth}}$ \\
+\midrule
+Harvard Economics Dept. & 0.92 & 0.15 & 0.85 \\
+\textit{New York Times} & 0.70 & 0.60 & 0.55 \\
+Heritage Foundation & 0.55 & 0.35 & 0.50 \\
+Joe Rogan podcast & 0.20 & 0.80 & 0.05 \\
+Anonymous Twitter account & 0.05 & 0.40 & 0.01 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Harvard has high credibility and authority but limited direct public reach.
+The \textit{Times} has a balanced profile.
+Heritage has moderate credibility but strong policy-world authority.
+Joe Rogan has enormous attention capital but low credibility among experts and near-zero authority capital.
+An anonymous Twitter account can command surprising attention but has negligible credibility or authority.
+
+The doxonomic strategy of channeling narratives through complementary institutions---from Heritage (credibility + authority) through the \textit{Times} (attention + credibility) to social media (attention)---exploits the comparative advantage of each.
+\end{example}
+
 
 \section{Conversion Functions}
 \label{sec:ch6-conversion}
 
 Epistemic capital is not created from nothing.
 It is converted from other forms of capital---primarily economic capital---through specific institutional mechanisms.
+The conversion is neither instant nor guaranteed: building credibility takes years, building authority takes decades, and both can be destroyed in days.
 
 \begin{definition}[Capital Conversion]
 \label{def:conversion}
@@ -41,15 +100,56 @@ where $f_a(t)$ is the economic investment at time $t$ and $\delta \in (0,1)$ is 
 The function $\phi$ is typically concave: the marginal epistemic capital gained per dollar decreases with scale.
 \end{definition}
 
-\begin{example}
-\label{ex:endowed-chair}
-A donor endows a university chair for \$5M.
-The conversion function produces approximately:
-$\ecap_{\text{cred}} \approx 0.8$ (university affiliation lends high credibility),
-$\ecap_{\text{att}} \approx 0.1$ (academic work has limited public attention),
-$\ecap_{\text{auth}} \approx 0.6$ (the chair-holder can influence disciplinary norms).
-The same \$5M spent on advertising might yield $\ecap_{\text{cred}} \approx 0.2$, $\ecap_{\text{att}} \approx 0.7$, $\ecap_{\text{auth}} \approx 0.05$.
+The concavity of $\phi$ is important.
+It means that the first million dollars invested in building a new think tank buys more credibility than the hundredth million.
+At some point, additional spending on institutional trappings (nicer offices, more conferences, shinier publications) produces negligible additional credibility.
+This is the doxonomic analogue of diminishing returns.
+
+\begin{example}[Conversion Pathways]
+\label{ex:conversion-pathways}
+\index{capital conversion!pathways}
+Different investments convert economic capital into different components of $\ecap$:
+
+\begin{center}
+\begin{tabular}{lp{6cm}ccc}
+\toprule
+\textbf{Investment} & \textbf{Mechanism} & $\Delta\ecap_{\text{cred}}$ & $\Delta\ecap_{\text{att}}$ & $\Delta\ecap_{\text{auth}}$ \\
+\midrule
+Endow a university chair (\$5M) & Institutional affiliation, peer network & High & Low & Medium \\
+Fund a think tank (\$5M/yr) & Reports, op-eds, testimony & Medium & Medium & Medium \\
+Buy advertising (\$5M) & Audience reach, repetition & Low & High & None \\
+Fund a journal (\$2M/yr) & Gatekeeping, peer review & Medium & Low & High \\
+Sponsor a conference (\$500K) & Network effects, prestige association & Medium & Low & Medium \\
+Hire a PR firm (\$1M) & Media placement, message optimization & Low & Medium & None \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The most cost-effective credibility conversion is institutional affiliation: attaching a narrative to a university, a professional body, or a credentialed expert.
+The most cost-effective attention conversion is advertising or viral content.
+Authority capital is the hardest to purchase directly; it accumulates through sustained institutional presence over time.
 \end{example}
+
+\begin{proposition}[Steady-State Epistemic Capital]
+\label{prop:steady-state}
+Under constant investment $f$ and depreciation rate $\delta$, the epistemic capital converges to a steady state:
+\[
+  \ecap^* = \frac{\phi(f)}{\delta}
+\]
+Institutions that stop investing ($f = 0$) decay exponentially: $\ecap(t) = \ecap(0) \cdot e^{-\delta t}$ with half-life $t_{1/2} = \ln 2 / \delta$.
+For institutions with $\delta \approx 0.02$ (elite universities, legacy media), $t_{1/2} \approx 35$ years.
+For institutions with $\delta \approx 0.2$ (social media influencers, digital outlets), $t_{1/2} \approx 3.5$ years.
+\end{proposition}
+
+\begin{remark}[The Time Asymmetry of Credibility]
+\label{rem:time-asymmetry}
+Credibility is slow to build and fast to destroy.
+The accumulation timescale is $\tau_{\text{build}} \sim 1/\phi'(f)$, which for credibility capital is typically years to decades.
+The destruction timescale can be instantaneous: a single scandal, a single fabrication, a single revealed conflict of interest can reduce $\ecap_{\text{cred}}$ by a large fraction overnight.
+This asymmetry has a doxonomic consequence: institutions with high credibility capital have a strong incentive to maintain quality---not out of virtue, but because their most valuable asset is fragile.
+When this incentive is undermined (e.g., by pressure from funders who value message over accuracy), the institution's credibility begins to erode.
+\end{remark}
+
 
 \section{Epistemic Rents}
 \label{sec:ch6-rents}
@@ -59,16 +159,165 @@ The same \$5M spent on advertising might yield $\ecap_{\text{cred}} \approx 0.2$
 \index{epistemic rent}
 An \emph{epistemic rent} is the excess doxonomic return earned by an agent due to a monopoly or near-monopoly position in the production of legitimate knowledge on a topic.
 Formally, if the competitive doxonomic return per dollar is $r^*$, an agent with epistemic rent earns $r > r^*$ due to barriers to entry in the credibility market.
+The rent is $\rho = r - r^*$.
 \end{definition}
 
 Epistemic rents explain why certain institutions---elite universities, credentialed professions, legacy media---exert disproportionate influence on public belief relative to their expenditure.
 They have accumulated credibility that new entrants cannot quickly replicate.
 
+\begin{example}[Sources of Epistemic Rent]
+\label{ex:rent-sources}
+\begin{itemize}[nosep]
+  \item \textbf{Credential barriers}: only holders of an MD can authoritatively pronounce on medical treatment; only holders of a PhD in economics are taken seriously in policy debates.
+  The credential system creates a barrier to entry that protects incumbents' epistemic rent.
+  \item \textbf{Brand accumulation}: the \textit{New York Times} has accumulated credibility over 170 years.
+  A new publication cannot replicate this overnight, regardless of quality.
+  The brand acts as a moat around the epistemic rent.
+  \item \textbf{Network effects}: a journal's authority depends on who publishes in it, and who publishes in it depends on its authority.
+  This circularity creates a self-reinforcing advantage for established journals.
+  \item \textbf{Institutional interlocking}: elite institutions cite each other, hire each other's graduates, and appear on each other's boards.
+  This network structure distributes epistemic rent across the cluster while making it difficult for outsiders to penetrate.
+\end{itemize}
+\end{example}
+
 \begin{proposition}[Rent Persistence]
 \label{prop:rent-persistence}
 If the depreciation rate $\delta$ is low and barriers to credibility accumulation are high, epistemic rents can persist for decades.
 Formally, the half-life of an epistemic rent is $t_{1/2} = \ln 2 / \delta$, which for institutions with $\delta \approx 0.02$ gives $t_{1/2} \approx 35$ years.
+Rent persistence means that the current credibility landscape is substantially determined by investments made a generation ago.
 \end{proposition}
+
+
+\section{Credibility Destruction}
+\label{sec:ch6-destruction}
+
+If epistemic capital is the most valuable asset in doxonomic production, then credibility destruction is the most potent weapon in doxonomic warfare.
+
+\begin{definition}[Credibility Attack]
+\label{def:credibility-attack}
+\index{credibility attack}
+A \emph{credibility attack} on institution $a$ is an action that reduces $\ecap_{\text{cred}}(a)$.
+Types include:
+\begin{enumerate}[nosep]
+  \item \textbf{Exposure}: revealing hidden funding, conflicts of interest, or fabrication.
+  \item \textbf{Delegitimation}: framing the institution as biased, politicized, or captured (``liberal academia,'' ``mainstream media'').
+  \item \textbf{Flooding}: producing so much contradictory content that the audience cannot distinguish credible from non-credible sources (``epistemic pollution'').
+  \item \textbf{Co-optation}: infiltrating the institution to degrade its output quality from within.
+\end{enumerate}
+\end{definition}
+
+\begin{example}[The War on Expertise]
+\label{ex:war-expertise}
+The systematic delegitimation of scientific expertise on climate change is a case of organized credibility attack \autocite{oreskes2010}.
+The fossil fuel industry did not need to build higher credibility than climate scientists.
+It needed only to \emph{reduce} the credibility of climate science enough that the public perceived a ``debate''---a strategy of epistemic pollution rather than epistemic competition.
+The cost of reducing public trust in climate science was far lower than the cost of building a credible alternative scientific consensus.
+This asymmetry---destruction is cheaper than construction---is a fundamental property of epistemic capital.
+\end{example}
+
+\begin{proposition}[Destruction-Construction Asymmetry]
+\label{prop:asymmetry}
+\index{credibility!destruction-construction asymmetry}
+Let $c_{\text{build}}(\Delta\ecap)$ be the cost of increasing an institution's credibility by $\Delta\ecap$ and $c_{\text{destroy}}(\Delta\ecap)$ the cost of reducing a rival's credibility by the same amount.
+Generically, $c_{\text{destroy}} \ll c_{\text{build}}$.
+One scandal can destroy what took decades to build.
+This asymmetry implies that doxonomic systems with high epistemic capital are structurally vulnerable to well-funded credibility attacks.
+\end{proposition}
+
+
+\section{Interaction Effects Between Capital Types}
+\label{sec:ch6-interactions}
+
+The three components of epistemic capital do not operate independently.
+They interact in ways that create both synergies and vulnerabilities.
+
+\begin{model}[Capital Interaction Matrix]
+\label{mod:interaction}
+\index{epistemic capital!interactions}
+The evolution of epistemic capital is governed by:
+\[
+  \frac{d}{dt}\ecap(a) = \phi(f_a) - \delta \cdot \ecap(a) + \bm{M} \cdot \ecap(a)
+\]
+where $\bm{M}$ is a $3 \times 3$ interaction matrix.
+Key interactions:
+\begin{itemize}[nosep]
+  \item $M_{\text{att},\text{cred}} > 0$: credibility attracts attention (credible sources get cited, shared, invited).
+  \item $M_{\text{auth},\text{cred}} > 0$: credibility enables authority (credible institutions are invited to set standards, write curricula, advise governments).
+  \item $M_{\text{cred},\text{att}} < 0$ (potentially): excessive attention can reduce credibility (``selling out,'' ``dumbing down,'' ``clickbait'').
+  \item $M_{\text{att},\text{auth}} > 0$: authority generates attention (authoritative pronouncements are newsworthy).
+\end{itemize}
+\end{model}
+
+The negative interaction $M_{\text{cred},\text{att}} < 0$ is doxonomically significant.
+It means there is a tension between reaching a mass audience and maintaining credibility among discriminating audiences.
+Institutions that ``go viral'' sometimes find their credibility among experts diminished.
+This is the \emph{populism-credibility tradeoff}: you can speak to everyone or be believed by the serious people, but doing both is difficult.
+
+\begin{example}[The Academic-Public Dilemma]
+\label{ex:academic-public}
+An economist who writes a popular book (high $\Delta\ecap_{\text{att}}$) may find their standing among peers reduced (negative $\Delta\ecap_{\text{cred}}$ in academic circles).
+An academic department that aggressively markets itself on social media may be perceived by peer departments as unserious.
+This creates an institutional incentive against public engagement---which, from a doxonomic perspective, means that the highest-credibility institutions systematically underinvest in public communication, leaving the public information environment to lower-credibility sources.
+\end{example}
+
+
+\section{Epistemic Capital Inequality}
+\label{sec:ch6-inequality}
+
+Epistemic capital, like economic capital, is unequally distributed.
+A small number of institutions control a disproportionate share of credibility, attention, and authority.
+
+\begin{definition}[Epistemic Gini Coefficient]
+\label{def:epistemic-gini}
+\index{epistemic Gini coefficient}
+The \emph{epistemic Gini coefficient} for a population of $n$ institutions with doxonomic forces $\Phi_1, \ldots, \Phi_n$ is
+\[
+  G_{\ecap} = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |\Phi_i - \Phi_j|}{2n\sum_{i=1}^{n}\Phi_i}
+\]
+$G_{\ecap} = 0$ indicates perfect equality; $G_{\ecap} = 1$ indicates total concentration.
+\end{definition}
+
+\begin{remark}
+In most media systems, the epistemic Gini is very high---likely exceeding the economic Gini.
+A handful of outlets (major newspapers, broadcast networks, dominant platforms) command the majority of public attention, while thousands of smaller outlets share the remainder.
+The implication: the effective ``electorate'' of the belief-production system is far more concentrated than the political electorate.
+This concentration is the structural basis of doxonomic power (Chapter~\ref{ch:doxonomic-power}).
+\end{remark}
+
+
+\section{The Digital Disruption of Epistemic Capital}
+\label{sec:ch6-digital}
+
+The internet disrupted traditional epistemic capital hierarchies in several ways:
+
+\begin{itemize}[nosep]
+  \item \textbf{Attention democratization}: anyone can publish, reducing the barriers to $\ecap_{\text{att}}$.
+  Blogs, podcasts, YouTube channels, and social media accounts compete with legacy media for audience.
+  \item \textbf{Credibility unbundling}: traditional media bundled attention and credibility together (the \textit{Times} had both).
+  Digital media unbundled them: a viral tweet has enormous attention but no institutional credibility.
+  \item \textbf{Authority erosion}: gatekeeping functions (editorial selection, peer review, professional licensing) are partially circumvented by direct-to-audience publishing.
+  \item \textbf{Speed advantage}: digital channels can produce and circulate narrative faster than traditional institutions, meaning low-credibility sources often set the initial frame that high-credibility sources then react to.
+\end{itemize}
+
+\begin{model}[Two-Tier Epistemic Capital]
+\label{mod:two-tier}
+In the digital era, epistemic capital bifurcates:
+\begin{itemize}[nosep]
+  \item \textbf{Institutional capital} ($\ecap^I$): slow to build, high credibility, high authority, moderate attention.
+  Still dominates policy, academia, and elite discourse.
+  \item \textbf{Network capital} ($\ecap^N$): fast to build, low credibility, low authority, potentially very high attention.
+  Dominates popular discourse, social media, and cultural conversation.
+\end{itemize}
+The doxonomic competition between institutional and network capital is one of the defining features of the contemporary information environment.
+Legacy institutions have $\ecap^I \gg \ecap^N$; digital-native actors have $\ecap^N \gg \ecap^I$.
+Neither can easily convert their capital into the other type.
+\end{model}
+
+This bifurcation creates a distinctive doxonomic dynamic.
+Policy elites and academic experts retain institutional capital and shape law and regulation.
+Digital influencers and populist media retain network capital and shape public mood and electoral outcomes.
+The two systems operate semi-independently, producing the conditions for epistemic fragmentation (Chapter~\ref{ch:contradiction-coherence}).
+
 
 \section{The Credibility Market}
 \label{sec:ch6-market}
@@ -81,34 +330,86 @@ Let $n$ institutions compete by choosing quality $q_k$ (costly) and signaling $s
 The audience assigns credibility $\credibility{k} = h(q_k, s_k, \ecap_{\text{cred}}(k))$ where $h$ is increasing in all arguments.
 Equilibrium credibility levels satisfy
 \[
-  \max_{q_k, s_k} \; \credibility{k} \cdot \reach{k} \cdot \pi_k - c(q_k) - c(s_k)
+  \max_{q_k, s_k} \; \credibility{k} \cdot \reach{k} \cdot \pi_k - c_q(q_k) - c_s(s_k)
 \]
-where $\pi_k$ is the revenue from doxonomic output and $c(\cdot)$ are cost functions.
+where $\pi_k$ is the revenue from doxonomic output and $c_q, c_s$ are cost functions for quality and signaling respectively.
 \end{model}
 
-This model reveals a market failure: because credibility has a public-good character (audiences benefit from accurate information regardless of payment), the market tends to under-produce genuine quality and over-produce cheap signals.
+This model reveals a market failure: because credibility has a public-good character (audiences benefit from accurate information regardless of whether they pay for it), the market tends to under-produce genuine quality and over-produce cheap signals.
+
+\begin{proposition}[The Lemons Problem in Credibility]
+\label{prop:lemons}
+\index{credibility!lemons problem}
+If audiences cannot perfectly distinguish quality from signaling ($h$ depends on $s_k$ as well as $q_k$), then in equilibrium, some institutions will substitute signaling for quality.
+As audiences learn that signals are noisy, they discount all sources---including high-quality ones.
+This is the \emph{epistemic lemons problem}\index{epistemic lemons problem}: low-quality producers drive down the perceived value of the entire market, just as bad used cars drive good ones off the lot \autocite{akerlof2015}.
+The result is a race to the bottom in credibility, especially in domains where quality is hard to assess (complex policy, long-run predictions, statistical claims).
+\end{proposition}
+
 
 \section{Notes and References}
 \label{sec:ch6-notes}
 
 The concept of epistemic capital formalizes ideas in \textcite{bourdieu1984, bourdieu1991}.
-The economics of credibility connects to \textcite{stigler1961} on the economics of information and \textcite{akerlof2015} on manipulation.
+The three-component decomposition (credibility, attention, authority) extends Bourdieu's capital typology to the specific needs of doxonomic analysis.
+The economics of credibility connects to \textcite{stigler1961} on the economics of information and \textcite{akerlof2015} on manipulation and deception.
 Epistemic rents parallel the rent concept in \textcite{stiglitz2012}.
 The market for ideas is analyzed in \textcite{coase1974}.
 For the role of expertise as a form of capital, see \textcite{eyal2019}.
+
+On the destruction of credibility through organized doubt, see \textcite{oreskes2010}.
+The digital disruption of epistemic hierarchies is analyzed in \textcite{benkler2018} and \textcite{zuboff2019}.
+On the tension between popular communication and expert credibility, see \textcite{eyal2019}.
+The epistemic lemons problem extends Akerlof's (1970) market-for-lemons argument to the information domain.
+On epistemic injustice as a structural barrier to credibility accumulation, see \textcite{fricker2007}: members of marginalized groups face systematic credibility deficits regardless of the quality of their testimony, which is a form of epistemic capital inequality not reducible to institutional investment.
+
+For the interaction between different forms of capital, see Bourdieu's general theory of capital conversion in \textcite{bourdieu1984}.
+The concept of network capital as distinct from institutional capital draws on \textcite{benkler2006} and the literature on networked public spheres.
+
 
 \section{Exercises}
 
 \begin{exercise}
 Estimate the epistemic capital vector $\ecap$ for three institutions of your choice (e.g., a national newspaper, a social media influencer, a university department).
 Justify your estimates.
+Compute the doxonomic force $\Phi_i(a)$ for each with respect to a specific belief.
 \end{exercise}
 
 \begin{exercise}
 Prove that if $\phi$ is strictly concave, there exists an optimal investment level $f^*$ beyond which additional spending on credibility conversion has diminishing returns below the depreciation rate.
+Formally: find $f^*$ such that $\phi'(f^*) = \delta$.
+What happens if the institution invests $f > f^*$?
 \end{exercise}
 
 \begin{exercise}
 Model a ``credibility laundering'' operation in which a low-credibility funder channels money through a high-credibility institution.
-What is the net credibility gain, and under what conditions does the institution's credibility itself depreciate from the association?
+What is the net credibility gain?
+Under what conditions does the institution's credibility itself depreciate from the association?
+Use the capital conversion dynamics to model the institution's credibility trajectory when it accepts tainted funding.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch6-gini}
+Compute the epistemic Gini coefficient for a hypothetical media system with five outlets having doxonomic forces $\Phi = (100, 50, 20, 5, 1)$.
+Is this system more or less concentrated than a typical economic wealth distribution?
+What would a policy intervention to reduce $G_{\ecap}$ look like?
+\end{exercise}
+
+\begin{exercise}
+Analyze the credibility attack strategy used against climate science.
+Which of the four attack types (exposure, delegitimation, flooding, co-optation) were employed?
+Estimate the cost of the attack relative to the cost of building the scientific credibility it targeted.
+\end{exercise}
+
+\begin{exercise}
+For the two-tier model (Model~\ref{mod:two-tier}), consider an institution that tries to build both $\ecap^I$ and $\ecap^N$ simultaneously.
+Under what conditions is this possible without the populism-credibility tradeoff destroying institutional capital?
+Give a real-world example of an institution that has succeeded (or failed) at this.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch6-interaction}
+Write out the full $3 \times 3$ interaction matrix $\bm{M}$ for a university, a think tank, and a social media influencer.
+For each, which off-diagonal entries are positive, negative, or zero?
+How do the interaction effects shape the long-run evolution of each institution's epistemic capital?
 \end{exercise}

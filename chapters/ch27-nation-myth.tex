@@ -6,37 +6,219 @@
 \noindent
 National narratives are among the most expensive doxonomic products in history.
 Every modern state invests in the production and maintenance of national identity: through education, monuments, ceremonies, media, and military ritual.
+The budgets are enormous---dwarfing anything a private think tank could deploy---because the state itself is the primary funder, and the survival of the state depends on the narrative's success.
+
+This chapter applies the doxonomic framework to nationalism: the production of collective identity, the management of historical memory, the construction of civilizational narratives, and the conditions under which national myths fracture or are replaced.
+Unlike the previous application chapters---where the doxonomic agents are primarily private (corporations, foundations, think tanks)---the state is the central doxonomic actor here, with its unmatched capacity to fund narrative infrastructure through taxation.
 
 \section{National Narrative as Doxonomic Product}
 \label{sec:ch27-national}
+
+\subsection{The structure of national myth}
 
 \begin{definition}[National Myth]
 \label{def:national-myth}
 \index{national myth}
 A \emph{national myth} is a structured narrative $n_{\text{nat}} \in \narspace$ specifying:
 \begin{enumerate}[nosep]
-  \item a founding story (origin, sacrifice, triumph),
-  \item a collective character (virtues attributed to the nation),
-  \item an enemy or other (defining the boundary of ``us''),
-  \item a destiny (what the nation is called to achieve).
+  \item a \emph{founding story}: origin, sacrifice, triumph (the Revolution, the Landing, the Liberation),
+  \item a \emph{collective character}: virtues attributed to the nation (American ingenuity, French rationalism, Japanese harmony, British resilience),
+  \item an \emph{enemy or other}: defining the boundary of ``us'' by contrast with ``them'' (the empire, the barbarian, the foreign ideology),
+  \item a \emph{destiny}: what the nation is called to achieve (manifest destiny, civilizing mission, historical mission of the proletariat),
+  \item a \emph{sacred text or canon}: founding documents, literary traditions, historical narratives that anchor the other four elements.
 \end{enumerate}
 \end{definition}
+
+The national myth is not a single narrative but a \emph{narrative system}---an interconnected set of stories, images, rituals, and institutions that collectively produce the experience of national belonging.
+\textcite{anderson2006} famously described the nation as an ``imagined community'': a group too large for face-to-face interaction whose members nevertheless feel a profound sense of shared identity.
+The doxonomic question is: what institutional infrastructure produces and sustains this imagining?
+
+\subsection{The myth maintenance model}
 
 \begin{model}[Myth Maintenance]
 \label{mod:myth-maintenance}
 \index{myth maintenance}
-The strength of national identification $\belief{N}$ requires continuous investment:
+The strength of national identification $\belief{N}(t)$ requires continuous investment:
 \[
   \frac{d\belief{N}}{dt} = \alpha \phi_N - \delta \belief{N} + \beta \belief{N}(1 - \belief{N}) - \gamma \cdot D(t)
 \]
-where $\phi_N$ is the institutional investment, $\delta$ is natural decay, $\beta$ is social reinforcement, and $D(t)$ measures the dissonance from events contradicting the myth.
+where:
+\begin{itemize}[nosep]
+  \item $\phi_N$ is the institutional investment in national narrative (education budgets, state media, military spending on ceremony and recruitment, holiday infrastructure),
+  \item $\delta$ is natural decay (generational replacement, exposure to alternative identities, immigration),
+  \item $\beta$ captures social reinforcement (national identity is stronger when peers share it),
+  \item $D(t)$ measures dissonance from events contradicting the myth (military defeats, economic crises, revelations of historical atrocities, visible hypocrisy between national values and state actions).
+\end{itemize}
 \end{model}
+
+The logistic term $\beta \belief{N}(1 - \belief{N})$ is crucial: national identification has the strongest peer reinforcement at intermediate levels.
+A deeply nationalistic society reinforces itself; a deeply cosmopolitan one reinforces its alternative.
+The unstable point is in the middle, where small doxonomic investments can tip the population in either direction.
+
+\section{The Institutional Infrastructure of National Identity}
+\label{sec:ch27-infrastructure}
+
+\subsection{Education}
+
+The school system is the primary delivery mechanism for national narrative.
+History curricula, language instruction, civic education, and even mathematics word problems (``a patriot buys 3 flags\ldots'') are sites of national identity production.
+
+\begin{example}
+\label{ex:education-national}
+A rough accounting of the US national-narrative education budget:
+\begin{itemize}[nosep]
+  \item K-12 history and social studies instruction: $\sim$\$15--20 billion/year (estimated from teacher salaries, textbook costs, and curriculum development in the relevant fields).
+  \item Daily Pledge of Allegiance: performed in $\sim$100,000 schools, $\sim$180 days/year, for $\sim$50 million students. Total ritual-hours: $\sim$150 million hours/year.
+  \item Standardized testing of ``American history'': the AP US History exam alone is taken by $\sim$500,000 students annually, requiring months of curriculum dedicated to a specific narrative of national development.
+\end{itemize}
+No private doxonomic actor commands anything close to this institutional reach.
+\end{example}
+
+\subsection{Military and security institutions}
+
+Military institutions serve a dual doxonomic function: they defend the state and they produce the narrative that justifies the state's claim on citizens' loyalty (and lives).
+
+\begin{itemize}[nosep]
+  \item \textbf{Recruitment advertising}: the US military spends $\sim$\$1.5 billion/year on recruitment, much of it narrative-driven (``Army Strong,'' ``Be All You Can Be,'' ``The Few. The Proud.'').
+  \item \textbf{Ceremony and ritual}: parades, flyovers at sporting events, flag ceremonies, memorial services---all funded by the state and designed to produce emotional identification with the nation.
+  \item \textbf{Entertainment partnerships}: the Pentagon's entertainment liaison office reviews and influences Hollywood scripts in exchange for access to military equipment and locations, shaping the cinematic representation of the nation at war.
+  \item \textbf{Veterans' institutions}: the VA, veterans' organizations, and Memorial/Veterans Day observances maintain the narrative of national sacrifice.
+\end{itemize}
+
+\subsection{State media and public broadcasting}
+
+Many states operate media organizations whose explicit mandate includes national identity production: the BBC (UK), NHK (Japan), France T\'{e}l\'{e}visions, RT (Russia), CCTV (China).
+Even ostensibly independent public broadcasters operate within a national framework---their programming assumes a national audience and reinforces national reference points.
+
+\subsection{Monuments, museums, and public space}
+
+The physical landscape is a doxonomic medium.
+National monuments, war memorials, museum exhibits, street names, and public art all encode national narratives in material form.
+Unlike textbooks, which can be revised, monuments are physically durable---they persist across generations, anchoring national identity in the built environment.
+
+\begin{proposition}[Material Persistence of National Narrative]
+\label{prop:material-persistence}
+\index{material persistence}
+Physical infrastructure (monuments, place names, architecture) has lower depreciation than textual or digital narratives.
+A monument can sustain a national narrative for centuries with minimal ongoing investment, while a media campaign requires continuous funding.
+This gives physical infrastructure a distinctive role in the doxonomic economy: it provides a ``base layer'' of national identity that persists even when active narrative production declines.
+\end{proposition}
 
 \section{Historical Memory Management}
 \label{sec:ch27-memory}
 
+\subsection{Selection and omission}
+
 States actively manage historical memory: what is remembered, how it is framed, and what is omitted.
 Curriculum design, museum curation, memorial construction, and holiday designation are all doxonomic operations with measurable budgets \autocite{anderson2006}.
+
+\begin{definition}[Historical Memory Regime]
+\label{def:memory-regime}
+\index{historical memory}
+A \emph{historical memory regime} is the institutionally maintained selection of historical events, figures, and narratives that constitute a nation's ``usable past.''
+It includes:
+\begin{enumerate}[nosep]
+  \item \emph{Inclusion}: events that are actively commemorated and taught (victories, foundings, heroic sacrifices).
+  \item \emph{Framing}: how included events are interpreted (the Civil War as ``states' rights'' vs.\ ``slavery''; colonialism as ``civilizing mission'' vs.\ ``exploitation'').
+  \item \emph{Omission}: events that are systematically excluded from public memory (massacres, forced relocations, failed policies, uncomfortable alliances).
+  \item \emph{Periodization}: which periods are treated as ``golden ages'' and which as ``dark ages,'' shaping the narrative arc of national destiny.
+\end{enumerate}
+\end{definition}
+
+\subsection{Contested memory}
+
+Historical memory is never uncontested.
+Counter-memories---maintained by marginalized communities, academic historians, and dissident institutions---challenge the official narrative.
+The doxonomic competition between official and counter-memory is visible in:
+\begin{itemize}[nosep]
+  \item \textbf{Textbook wars}: battles over how to teach the history of slavery, colonialism, indigenous peoples, and immigration (e.g., the Texas textbook controversies, Japan's treatment of WWII atrocities, Turkey and the Armenian genocide).
+  \item \textbf{Monument controversies}: debates over Confederate monuments (US), colonial statues (UK, Belgium), and Soviet-era memorials (Eastern Europe).
+  \item \textbf{Truth commissions}: post-conflict societies (South Africa, Argentina, Rwanda) that attempt to reconstruct historical memory as a collective project.
+  \item \textbf{Memory laws}: legal prohibitions on certain historical claims (Holocaust denial laws, Russia's prohibition on ``falsifying'' WWII history) that use state power to enforce a specific memory regime.
+\end{itemize}
+
+\begin{example}
+\label{ex:memory-contest}
+The memory of the US Civil War has been actively managed for 160 years:
+\begin{itemize}[nosep]
+  \item \emph{Lost Cause narrative} (1870s--present): the war was about states' rights, not slavery; Confederate soldiers were honorable; Reconstruction was a disaster. Produced by the United Daughters of the Confederacy, textbook campaigns, and monument construction (most Confederate monuments were erected 1890--1950, during peak Jim Crow, not during the war).
+  \item \emph{Abolitionist/emancipation narrative}: the war was fundamentally about slavery; the Union cause was morally just; Reconstruction was an unfinished revolution. Maintained by African American communities, academic historians, and civil rights organizations.
+  \item The doxonomic competition between these narratives has concrete consequences: which narrative dominates affects support for racial equality policies, attitudes toward Confederate symbolism, and the content of K-12 education in the American South.
+\end{itemize}
+\end{example}
+
+\section{Civilizational Narratives}
+\label{sec:ch27-civilization}
+
+Beyond national myth, larger-scale civilizational narratives operate: ``the West,'' ``the Islamic world,'' ``Asian values,'' ``the Global South.''
+These are doxonomic products at a macro scale, grouping diverse societies into supposedly coherent civilizational units.
+
+\begin{proposition}[Civilizational Narrative as Meta-Regime]
+\label{prop:civilizational}
+\index{civilizational narrative}
+Civilizational narratives function as meta-regimes: they provide the background assumptions within which national narratives operate.
+``Western civilization'' is not a neutral description of a geographic-cultural zone but a doxonomic construct that:
+\begin{enumerate}[nosep]
+  \item selects a specific intellectual lineage (Athens $\to$ Rome $\to$ Renaissance $\to$ Enlightenment $\to$ democracy) while omitting others (Byzantium, Islamic golden age, Chinese technological leadership, African kingdoms),
+  \item attributes the selected achievements to an essentialized ``Western'' character rather than to contingent historical circumstances,
+  \item serves as the foundation for geopolitical narratives (``defending Western values,'' ``the clash of civilizations'') with material consequences.
+\end{enumerate}
+\end{proposition}
+
+The ``Western civilization'' narrative is institutionally produced through university curricula (``Western Civ'' courses, which became standard in US universities after WWI as a tool for national identity formation), museum curation (European art at the center, everything else as ``world cultures''), and geopolitical discourse (NATO as defender of ``the free world'').
+
+\section{National Myth and Economic Interest}
+\label{sec:ch27-economic}
+
+National narratives interact with economic interests in specific ways:
+
+\begin{enumerate}
+  \item \textbf{Military-industrial legitimation.}
+  The narrative of national threat justifies military spending, which benefits defense contractors.
+  The annual US defense budget ($\sim$\$850 billion) is partly a doxonomic product: it requires a narrative of existential threat to sustain political support.
+  Defense industry lobbying ($\sim$\$100 million/year) funds the production of this narrative.
+
+  \item \textbf{Trade nationalism.}
+  ``Buy American,'' ``Made in Germany,'' ``Cool Japan'' campaigns fuse national identity with consumption, creating doxonomic synergy between nationalism and consumerism (Chapter~\ref{ch:consumerism}).
+
+  \item \textbf{Immigration narratives.}
+  The framing of immigration as threat or opportunity serves different economic interests: employers benefit from immigration (cheaper labor), while native workers may face wage competition.
+  National narratives about immigration (``nation of immigrants'' vs.\ ``invasion'') track these interests with remarkable fidelity.
+
+  \item \textbf{Austerity nationalism.}
+  The Greek case (Chapter~\ref{ch:austerity}) illustrates how national stereotypes (``lazy Greeks'') serve economic interests (justifying creditor-imposed austerity).
+  The narrative of national character becomes a tool of transnational economic discipline.
+\end{enumerate}
+
+\section{Myth Fracture and Reconstruction}
+\label{sec:ch27-fracture}
+
+\subsection{When myths break}
+
+National myths can fracture when dissonance $D(t)$ exceeds the narrative infrastructure's capacity to absorb it:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Military defeat}: especially when the myth includes martial prowess (France 1940, Russia in Afghanistan, the US in Vietnam/Iraq).
+  \item \textbf{Regime change}: revolutions, coups, and decolonization require wholesale myth reconstruction (post-Soviet states, post-colonial nations).
+  \item \textbf{Historical revelation}: declassified documents, archaeological discoveries, or truth commissions that contradict the official narrative.
+  \item \textbf{Demographic transformation}: immigration that changes the population's composition faster than the myth can absorb, creating tension between the narrative ``we'' and the actual population.
+\end{enumerate}
+
+\subsection{Myth reconstruction}
+
+After fracture, new myths must be constructed---and the construction process reveals the doxonomic machinery in sharp relief.
+Post-Soviet states invested heavily in new national narratives; post-apartheid South Africa constructed the ``Rainbow Nation'' myth; post-WWII Germany invested in the ``Vergangenheitsbew\"{a}ltigung'' (coming to terms with the past) narrative.
+
+\begin{example}
+\label{ex:german-memory}
+Germany's post-WWII memory management is perhaps the most self-conscious exercise in national myth reconstruction:
+\begin{itemize}[nosep]
+  \item Mandatory Holocaust education in all school curricula.
+  \item The Memorial to the Murdered Jews of Europe (Berlin, 2005) as a permanent acknowledgment of national guilt.
+  \item \emph{Vergangenheitsbew\"{a}ltigung} as a cultural norm: the expectation that the nation must continuously confront rather than suppress its history.
+  \item This reconstruction required enormous institutional investment and produced a distinctive national identity: ``Germany is the nation that confronts its past''---itself a narrative that serves contemporary legitimation functions.
+\end{itemize}
+\end{example}
 
 \section{Notes and References}
 \label{sec:ch27-notes}
@@ -46,19 +228,86 @@ State simplification and legibility are analyzed in \textcite{scott1998}.
 On propaganda and national myth, see \textcite{lippmann1922} and \textcite{bernays1928}.
 For the political economy of nationalism, see \textcite{acemoglu2012}.
 
+On historical memory and its politics, see Assmann (2011) and Nora (1989).
+The ``Lost Cause'' narrative is analyzed in Blight (2001).
+On ``Western civilization'' as a doxonomic construct, see Appiah (2018).
+Civilizational narratives and geopolitics connect to Huntington (1996) and Said's critique in \textcite{said1978}.
+
+On military-entertainment partnerships, see Suid (2002).
+For monument controversies, see Savage (2009).
+On textbook politics, see Loewen (1995).
+Memory laws and their implications are discussed in Belavusau and Gliszczy\'{n}ska-Grabias (2017).
+
 \section{Exercises}
 
 \begin{exercise}
 Estimate the annual doxonomic investment in national identity for a country of your choice.
-Include education, military ceremony, state media, monuments, and holidays.
+\begin{enumerate}[nosep]
+  \item Include: education (history curricula), military (recruitment, ceremony, entertainment partnerships), state media, monuments and museums, holidays and public ceremonies.
+  \item Express the total as a fraction of GDP.
+  \item Compare this to the investment in any single private doxonomic campaign (e.g., a think tank's annual budget).
+  \item What does the comparison reveal about the relative doxonomic power of states vs.\ private actors?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Using the myth maintenance model, predict the effect of a major scandal on national identification.
-At what $D(t)$ does the myth become unsustainable without additional investment?
+Using the myth maintenance model (Model~\ref{mod:myth-maintenance}), analyze the effect of a major dissonance event on national identification.
+\begin{enumerate}[nosep]
+  \item Choose a specific event (e.g., a military defeat, a historical revelation, an economic crisis).
+  \item Estimate $D(t)$ (the dissonance magnitude) and its duration.
+  \item At what $D(t)$ does $\belief{N}$ begin to decline despite continued institutional investment?
+  \item What additional investment $\Delta \phi_N$ would be needed to maintain $\belief{N}$ at its pre-crisis level?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Compare the national myths of two countries.
-Identify the structural parallels in their belief production chains.
+Compare the national myths of two countries using Definition~\ref{def:national-myth}.
+\begin{enumerate}[nosep]
+  \item Identify the five components (founding story, collective character, enemy/other, destiny, sacred text) for each.
+  \item Map the institutional infrastructure that produces each myth.
+  \item Identify the structural parallels in their belief production chains.
+  \item Where do the myths contradict historical evidence, and how is the contradiction managed?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Analyze a textbook war (e.g., US Civil War historiography, Japan's WWII memory, India's partition narratives) as a doxonomic competition.
+\begin{enumerate}[nosep]
+  \item Identify the competing narratives and the institutions that produce each.
+  \item Trace the funding and institutional authority behind each side.
+  \item What has determined which narrative dominates in the school curriculum?
+  \item How does the winning narrative affect contemporary political attitudes?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply the civilizational meta-regime analysis (Proposition~\ref{prop:civilizational}) to the concept of ``Western civilization.''
+\begin{enumerate}[nosep]
+  \item Trace the institutional history of ``Western Civ'' courses in US universities.
+  \item What was included and excluded from the canonical narrative?
+  \item How has the narrative changed since the 1990s ``culture wars''?
+  \item What geopolitical functions does the civilizational narrative serve?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design a study to measure the doxonomic output of a national monument or memorial.
+\begin{enumerate}[nosep]
+  \item Choose a specific site.
+  \item How would you measure its effect on national identification (surveys of visitors vs.\ non-visitors? before/after construction? geographic proximity as instrument?)?
+  \item What beliefs does the monument encode, and do visitors absorb them?
+  \item How does the monument's effect compare to other channels of national narrative (education, media)?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the myth maintenance model for a nation experiencing a dissonance crisis:
+\begin{enumerate}[nosep]
+  \item Set $\belief{N}(0) = 0.8$, $\alpha = 0.05$, $\phi_N = 5$, $\delta = 0.03$, $\beta = 0.4$.
+  \item Run for 200 periods with $D(t) = 0$ (no dissonance). Verify stability.
+  \item At $t = 50$, introduce a crisis: $D(t) = 3$ for $t \in [50, 60]$, then $D(t) = 0$.
+  \item Plot $\belief{N}(t)$. Does the system recover to its pre-crisis level?
+  \item Now simulate a ``myth reconstruction'' scenario: at $t = 100$, increase $\phi_N$ by 50\% (state increases investment in national narrative). How long does recovery take?
+  \item At what crisis magnitude $D$ does the system fail to recover even with increased investment?
+\end{enumerate}
 \end{exercise}

@@ -4,10 +4,23 @@
 \epigraph{A theory has only the alternative of being right or wrong. A model has a third possibility: it may be right, but irrelevant.}{Manfred Eigen}
 
 \noindent
-This chapter develops the mathematical core of doxonomics: stock-and-flow models, epidemiological diffusion, Bayesian updating under unequal exposure, cascade models, and differential equation frameworks for belief dynamics.
+This chapter develops the mathematical core of doxonomics.
+The previous chapters introduced concepts---belief stocks, narrative flows, thresholds, lock-in, capture---using a mixture of formal definitions and qualitative argument.
+Here we build the dynamical models that give these concepts predictive structure.
+
+Five model families are presented, each illuminating a different aspect of doxonomic dynamics: stock-and-flow models for aggregate belief trajectories, epidemiological models for narrative spread, Bayesian models for rational updating under asymmetric exposure, cascade models for sudden collective shifts, and competitive models for belief-versus-belief dynamics.
+The chapter closes with a guide to choosing among them.
+
+A warning: all models in this chapter are stylized.
+They are designed to clarify mechanisms and generate testable predictions, not to reproduce empirical data with quantitative precision.
+Calibrating these models to real doxonomic systems is a major open problem.
+The Piatra Institute's computational playgrounds allow readers to explore each model's behavior under varying parameters.
+
 
 \section{Stock-and-Flow Models}
 \label{sec:ch11-stock-flow}
+
+The simplest dynamical model treats belief as a stock that accumulates or decays depending on narrative inflow and natural erosion.
 
 \begin{definition}[Belief Stock and Narrative Flow]
 \label{def:stock-flow}
@@ -17,26 +30,90 @@ The \emph{narrative flow} $\phi_i(t) \in \R_{\geq 0}$ is the rate at which narra
 The dynamics are:
 \begin{equation}
 \label{eq:stock-flow}
-  \frac{d\belief{i}}{dt} = \alpha \cdot \phi_i(t) \cdot (1 - \belief{i}(t)) - \delta \cdot \belief{i}(t) + \beta \cdot \belief{i}(t)(1 - \belief{i}(t))
+  \frac{d\belief{i}}{dt} = \underbrace{\alpha \cdot \phi_i(t) \cdot (1 - \belief{i}(t))}_{\text{institutional persuasion}} - \underbrace{\delta \cdot \belief{i}(t)}_{\text{natural decay}} + \underbrace{\beta \cdot \belief{i}(t)(1 - \belief{i}(t))}_{\text{social reinforcement}}
 \end{equation}
-where $\alpha$ is the persuasion rate, $\delta$ is the natural decay rate, and $\beta$ is the social reinforcement rate (peer effects).
+where $\alpha$ is the persuasion rate (effectiveness of institutional narrative per unit flow), $\delta$ is the natural decay rate (belief erodes without reinforcement), and $\beta$ is the social reinforcement rate (peer effects amplify belief through social proof).
 \end{definition}
 
-\begin{proposition}[Steady States]
+Each term has a distinct doxonomic interpretation:
+\begin{itemize}[nosep]
+  \item The persuasion term $\alpha\phi(1-\belief{})$ captures institutional production.
+  It is proportional to narrative flow $\phi$ and to the remaining persuadable fraction $(1-\belief{})$: as belief approaches 1, there are fewer people left to persuade.
+  \item The decay term $-\delta\belief{}$ captures the natural erosion of belief absent reinforcement: memories fade, new generations arrive uninstructed, and contrary experience accumulates.
+  \item The social reinforcement term $\beta\belief{}(1-\belief{})$ captures peer effects: holding a belief makes you more likely to transmit it to non-holders.
+  This term is logistic---strongest when $\belief{} \approx 0.5$ and vanishing at the extremes.
+\end{itemize}
+
+\subsection{Stability Analysis}
+
+\begin{proposition}[Steady States and Stability]
 \label{prop:steady-states}
-Equation~\eqref{eq:stock-flow} has at most three steady states.
-Setting $d\belief{i}/dt = 0$, the trivial steady state $\belief{i}^* = 0$ exists when $\phi_i = 0$.
-For $\phi_i > 0$ and $\beta > 0$, there exist two non-trivial steady states:
+Setting $d\belief{i}/dt = 0$ and writing $B = \belief{i}$ for brevity, the steady states satisfy:
 \[
-  \belief{i}^* = \frac{(\alpha\phi_i + \beta - \delta) \pm \sqrt{(\alpha\phi_i + \beta - \delta)^2 + 4\beta\alpha\phi_i}}{2\beta}
+  \alpha\phi(1-B) - \delta B + \beta B(1-B) = 0
 \]
-The system exhibits bistability when $\beta$ is sufficiently large relative to $\delta$, corresponding to the lock-in phenomenon of Chapter~\ref{ch:common-sense-capture}.
+which is a quadratic in $B$:
+\[
+  -\beta B^2 + (\alpha\phi + \beta - \delta)B - \alpha\phi \cdot 0 = 0
+\]
+Rearranging: $\beta B^2 - (\alpha\phi + \beta - \delta)B - \alpha\phi = 0$.
+The steady states are:
+\begin{equation}
+\label{eq:steady-states}
+  B^* = \frac{(\alpha\phi + \beta - \delta) \pm \sqrt{(\alpha\phi + \beta - \delta)^2 + 4\beta\alpha\phi}}{2\beta}
+\end{equation}
 \end{proposition}
+
+\begin{remark}[Bistability Condition]
+\label{rem:bistability}
+\index{bistability}
+The discriminant $\Delta = (\alpha\phi + \beta - \delta)^2 + 4\beta\alpha\phi$ is always positive (since $\beta, \alpha, \phi \geq 0$), so two real roots always exist when $\beta > 0$.
+However, only roots in $[0,1]$ are physically meaningful.
+The system exhibits \emph{bistability}---two stable equilibria separated by an unstable threshold---when $\beta$ is sufficiently large relative to $\delta$.
+Specifically, when $\beta > \delta$ and $\phi$ is in an intermediate range, there exist a low-belief stable equilibrium $B_L^*$ and a high-belief stable equilibrium $B_H^*$, separated by an unstable equilibrium $B_U^*$.
+The basin of attraction of each stable equilibrium determines the system's response to perturbations.
+\end{remark}
+
+The stability of each equilibrium is determined by the sign of $f'(B^*)$ where $f(B) = \alpha\phi(1-B) - \delta B + \beta B(1-B)$.
+We have:
+\[
+  f'(B) = -\alpha\phi - \delta + \beta(1 - 2B)
+\]
+An equilibrium $B^*$ is stable if $f'(B^*) < 0$ and unstable if $f'(B^*) > 0$.
+
+\subsection{Bifurcation Under Changing Funding}
+
+\begin{proposition}[Funding Bifurcation]
+\label{prop:bifurcation}
+\index{bifurcation!funding}
+As the narrative flow $\phi$ increases from zero, the system undergoes a saddle-node bifurcation.
+Below a critical $\phi^*$, only the low-belief equilibrium exists.
+At $\phi = \phi^*$, a pair of new equilibria appears (one stable, one unstable).
+Above $\phi^*$, the system is bistable: the high-belief equilibrium is reachable if the initial condition or a temporary perturbation pushes $B$ above the unstable threshold.
+\end{proposition}
+
+This has a direct doxonomic interpretation: there is a \emph{minimum funding level} below which no amount of social reinforcement can sustain a belief.
+Above that level, the belief can be ``tipped'' into a self-sustaining high-adoption equilibrium by a temporary burst of investment.
+Once tipped, the belief persists even if funding is subsequently reduced (as long as $\phi$ remains above the level needed to maintain the equilibrium---which may be much lower than the tipping level).
+
+\begin{example}[Numerical Example]
+\label{ex:stock-flow-numerical}
+With $\alpha = 0.3$, $\beta = 0.5$, $\delta = 0.1$:
+\begin{itemize}[nosep]
+  \item At $\phi = 0$: only $B^* = 0$ is stable (belief dies without support).
+  \item At $\phi = 0.1$: $B_L^* \approx 0.08$ (low equilibrium), $B_H^* \approx 0.87$ (high equilibrium).
+  The unstable threshold is $B_U^* \approx 0.35$.
+  \item At $\phi = 0.5$: $B_H^* \approx 0.95$ (near-complete adoption); the low equilibrium has vanished.
+\end{itemize}
+The critical finding: at $\phi = 0.1$, a temporary shock that pushes adoption above 35\% will cause the system to cascade to the high equilibrium---and stay there even after the shock ends.
+This is the formal model of the tipping-point phenomenon from Chapter~\ref{ch:common-sense-capture}.
+\end{example}
+
 
 \section{Epidemiological Diffusion Models}
 \label{sec:ch11-sir}
 
-Belief spread shares structural features with disease transmission.
+Belief spread shares structural features with disease transmission: an ``infected'' individual can transmit the belief to ``susceptible'' contacts, and exposure can come from both peer contact and institutional sources.
 
 \begin{model}[SIR Model for Belief]
 \label{mod:sir-belief}
@@ -47,13 +124,13 @@ Partition the population into three compartments:
   \item $I(t)$: infected (actively hold and transmit the belief),
   \item $R(t)$: recovered (have encountered and rejected the belief, or lost interest).
 \end{itemize}
-The dynamics are:
+With $S + I + R = 1$, the dynamics are:
 \begin{align}
   \frac{dS}{dt} &= -\beta S I - \alpha \phi(t) S \label{eq:sir-s}\\
   \frac{dI}{dt} &= \beta S I + \alpha \phi(t) S - \gamma I \label{eq:sir-i}\\
   \frac{dR}{dt} &= \gamma I \label{eq:sir-r}
 \end{align}
-where $\beta$ is the peer transmission rate, $\alpha\phi(t)$ is the institutional transmission rate (from narrative infrastructure), and $\gamma$ is the recovery rate (skepticism, counter-narrative exposure).
+where $\beta$ is the peer transmission rate, $\alpha\phi(t)$ is the institutional transmission rate (from narrative infrastructure), and $\gamma$ is the recovery rate (skepticism, counter-narrative exposure, or simple loss of interest).
 \end{model}
 
 \begin{definition}[Basic Reproduction Number]
@@ -63,15 +140,81 @@ The \emph{doxonomic reproduction number} is
 \[
   R_0 = \frac{\beta + \alpha\phi}{\gamma}
 \]
-If $R_0 > 1$, the belief can spread epidemically.
-If $R_0 < 1$, it dies out without sustained institutional support ($\phi > 0$).
+If $R_0 > 1$, the belief can spread epidemically from a small seed.
+If $R_0 < 1$, each ``infected'' individual transmits to fewer than one new adopter on average, and the belief dies out.
 \end{definition}
 
 A crucial difference from epidemiology: institutions can maintain $\phi > 0$ indefinitely, sustaining beliefs that would otherwise die out.
+A belief with $\beta/\gamma < 1$ (peer transmission alone is insufficient) can persist if $\alpha\phi$ makes up the difference.
 This is the formal basis of the claim that some beliefs persist not because they are persuasive but because they are subsidized.
+
+\subsection{Endemic Equilibrium}
+
+\begin{proposition}[Endemic Belief]
+\label{prop:endemic}
+\index{endemic equilibrium}
+When $R_0 > 1$ and institutional support is sustained ($\phi = \text{const}$), the belief reaches an \emph{endemic equilibrium} where a constant fraction of the population holds the belief:
+\[
+  I^* = 1 - \frac{1}{R_0} = 1 - \frac{\gamma}{\beta + \alpha\phi}
+\]
+This is the doxonomic analogue of an endemic disease: the belief is never universally held but never disappears, maintained by the combination of peer transmission and institutional support.
+\end{proposition}
+
+\begin{example}[Endemic vs.\ Epidemic Belief]
+\label{ex:endemic}
+Consider two scenarios:
+\begin{itemize}[nosep]
+  \item \textbf{Epidemic belief} (high $R_0$): a viral conspiracy theory with $\beta = 0.3$, $\gamma = 0.1$, $\alpha\phi = 0$.
+  $R_0 = 3$; the belief sweeps through the susceptible population rapidly but then decays as the recovery rate takes effect.
+  Peak $I$ is high but transient.
+  \item \textbf{Endemic belief} (moderate $R_0$, sustained $\phi$): the belief ``markets are efficient'' with $\beta = 0.05$, $\gamma = 0.02$, $\alpha\phi = 0.03$.
+  $R_0 = 4$; the belief reaches a stable endemic level $I^* = 0.75$ and stays there indefinitely.
+  It never goes viral but never fades either.
+\end{itemize}
+The epidemic belief is dramatic but ephemeral.
+The endemic belief is quiet but permanent.
+Doxonomic systems aim for endemic stability, not epidemics.
+\end{example}
+
+\subsection{The SIRV Model: Inoculation}
+
+\begin{model}[SIRV Model with Inoculation]
+\label{mod:sirv}
+\index{SIRV model}
+\index{inoculation!model}
+Adding a ``vaccinated'' compartment $V(t)$ representing people who have received counter-narrative inoculation (Chapter~\ref{ch:counter-doxonomic}):
+\begin{align}
+  \frac{dS}{dt} &= -\beta S I - \alpha \phi S - \nu S \\
+  \frac{dV}{dt} &= \nu S - \eta V I \\
+  \frac{dI}{dt} &= \beta S I + \alpha \phi S + \eta V I - \gamma I \\
+  \frac{dR}{dt} &= \gamma I
+\end{align}
+where $\nu$ is the inoculation rate and $\eta \ll \beta$ is the reduced transmission rate for inoculated individuals ($\eta < \beta$ because inoculation provides partial immunity but is not perfect).
+
+The effective reproduction number with inoculation is:
+\[
+  R_{\text{eff}} = \frac{(\beta + \alpha\phi) S^* + \eta V^*}{\gamma}
+\]
+Inoculation reduces $R_{\text{eff}}$ by moving people from $S$ to $V$, where they are harder to infect.
+\end{model}
+
+\begin{remark}[Doxonomic Herd Immunity]
+\label{rem:herd-immunity}
+\index{herd immunity!doxonomic}
+If inoculation is sufficiently widespread, $R_{\text{eff}}$ drops below 1 and the belief cannot sustain itself even with institutional support.
+The \emph{doxonomic herd immunity threshold} is the fraction of the population that must be inoculated to prevent endemic belief:
+\[
+  V^* > 1 - \frac{1}{R_0}
+\]
+This provides a quantitative target for counter-doxonomic educational programs: inoculate more than $1 - 1/R_0$ of the population, and the belief cannot persist at endemic levels.
+\end{remark}
+
 
 \section{Bayesian Updating Under Unequal Exposure}
 \label{sec:ch11-bayesian}
+
+The epidemiological models treat belief adoption as binary (hold or don't hold).
+The Bayesian framework models belief as a continuous credence that evolves as agents receive signals from their information environment.
 
 \begin{model}[Asymmetric Information Environment]
 \label{mod:asymmetric-bayes}
@@ -82,10 +225,7 @@ Agent $j$ observes a sequence of signals $\{s_t^{(j)}\}_{t=1}^{T}$ where each $s
 \]
 and $q_j$ depends on $j$'s media environment.
 Agents in channel $k$ have $q_j = q_k$, determined by the channel's editorial stance.
-After $T$ signals, the posterior is
-\[
-  \pi_j^{(T)}(p) = \frac{\pi_j^{(0)}(p) \cdot \prod_{t=1}^T L(s_t^{(j)} \mid p)}{\pi_j^{(0)}(p) \cdot \prod_{t=1}^T L(s_t^{(j)} \mid p) + (1-\pi_j^{(0)}(p)) \cdot \prod_{t=1}^T L(s_t^{(j)} \mid \neg p)}
-\]
+The parameter $q_k$ captures the \emph{exposure bias} of channel $k$: $q_k > 1/2$ means the channel favors proposition $p$; $q_k < 1/2$ means it favors $\neg p$; $q_k = 1/2$ means balanced exposure.
 \end{model}
 
 \begin{theorem}[Polarization Under Asymmetric Exposure]
@@ -95,70 +235,286 @@ If two groups $A$ and $B$ have $q_A > 1/2$ and $q_B < 1/2$ (their channels syste
 \[
   \pi_A^{(T)}(p) \to 1 \quad \text{and} \quad \pi_B^{(T)}(p) \to 0
 \]
-almost surely, even if both groups are perfectly rational Bayesian updaters.
+almost surely, even if both groups are perfectly rational Bayesian updaters starting from the same prior.
 \end{theorem}
 
+\begin{proof}
+For group $A$, the log-likelihood ratio after $T$ signals is:
+\[
+  \Lambda_A^{(T)} = \sum_{t=1}^{T} \log \frac{L(s_t \mid p)}{L(s_t \mid \neg p)}
+\]
+Since $q_A > 1/2$, the expected log-likelihood ratio per signal is:
+\[
+  \E[\log L(s_t \mid p) / L(s_t \mid \neg p)] = q_A \log\frac{q_A}{1-q_A} + (1-q_A)\log\frac{1-q_A}{q_A} = D_{\mathrm{KL}}(q_A \| 1-q_A) > 0
+\]
+By the strong law of large numbers, $\Lambda_A^{(T)} / T \to D_{\mathrm{KL}}(q_A \| 1-q_A) > 0$ almost surely, so $\Lambda_A^{(T)} \to \infty$ and $\pi_A^{(T)}(p) \to 1$.
+The symmetric argument applies to group $B$ with $q_B < 1/2$.
+The divergence rate is proportional to $D_{\mathrm{KL}}(q_A \| 1-q_A) + D_{\mathrm{KL}}(q_B \| 1-q_B)$.
+\end{proof}
+
+\begin{remark}
 This theorem is the formal foundation for the claim that doxonomic polarization does not require irrationality---only asymmetric evidence supply.
+Two perfectly rational populations in different information environments will arrive at opposite conclusions with certainty.
+The doxonomic system controls $q_k$ (the exposure bias of each channel); the rest is Bayes' rule doing its job.
+\end{remark}
+
+\begin{example}[Numerical Polarization]
+\label{ex:polarization-numerical}
+Two groups start with the same prior $\pi^{(0)} = 0.5$.
+Group $A$ watches Channel X ($q_A = 0.7$): 70\% of signals support $p$.
+Group $B$ watches Channel Y ($q_B = 0.3$): only 30\% of signals support $p$.
+After $T = 50$ signals:
+\begin{itemize}[nosep]
+  \item Group $A$: expected $\pi_A^{(50)} \approx 0.98$ (near-certain $p$ is true).
+  \item Group $B$: expected $\pi_B^{(50)} \approx 0.02$ (near-certain $p$ is false).
+\end{itemize}
+Both groups are fully rational.
+Both have seen 50 pieces of ``evidence.''
+They disagree completely because they live in different information environments.
+If asked, each would say the other group is ``ignoring the evidence''---and from their perspective, they would be right.
+This is doxonomic polarization in its purest form.
+\end{example}
+
+\begin{remark}[Correlated Signals and Bounded Rationality]
+\label{rem:correlated}
+The theorem assumes conditionally independent signals.
+In practice, media content is highly correlated (outlets repeat each other, social media creates echo chambers, institutional sources are shared).
+Correlated signals carry less information per signal than independent ones, which means:
+\begin{itemize}[nosep]
+  \item the \emph{perceived} evidence is stronger than the \emph{actual} evidence (agents treat correlated signals as independent, over-counting),
+  \item the polarization occurs faster than the theorem predicts (because agents are over-confident in their media-derived beliefs),
+  \item de-polarization requires not just exposure to counter-signals but recognition that prior signals were correlated---a meta-cognitive step that most agents do not take spontaneously.
+\end{itemize}
+This is one reason why ``just expose people to the other side'' is a weaker intervention than doxonomic analysis might naively suggest.
+The problem is not insufficient exposure; it is the structure of the prior evidence environment.
+\end{remark}
+
 
 \section{Cascade Models}
 \label{sec:ch11-cascades}
 
 \begin{model}[Information Cascade]
-\label{mod:cascade}
+\label{mod:cascade-threshold}
 \index{information cascade}
 Following \textcite{banerjee1992} and \textcite{bikhchandani1992}, agents act sequentially, observing predecessors' actions but not their private signals.
-An \emph{information cascade} occurs when agent $j$'s optimal action is independent of $j$'s private signal---the public evidence overwhelms private information.
-In doxonomic terms, a cascade occurs when the accumulated weight of institutional narrative is so strong that individual experience becomes irrelevant to expressed belief.
+Each agent $j$ receives a private signal $s_j \in \{+, -\}$ (favoring $p$ or $\neg p$) and observes the actions $a_1, \ldots, a_{j-1}$ of all predecessors.
+Agent $j$'s optimal action is:
+\[
+  a_j = \begin{cases} + & \text{if } \pi_j(p \mid s_j, a_1, \ldots, a_{j-1}) > 1/2 \\ - & \text{otherwise} \end{cases}
+\]
+An \emph{information cascade} occurs when the accumulated public evidence from predecessors' actions is so strong that agent $j$'s optimal action is independent of $j$'s private signal---the public evidence overwhelms private information.
 \end{model}
 
-\section{Differential Equation Framework}
-\label{sec:ch11-ode}
+\begin{proposition}[Cascade Fragility]
+\label{prop:cascade-fragility}
+\index{information cascade!fragility}
+Information cascades are \emph{informationally fragile}: they aggregate very little information.
+In a cascade, each agent's action reveals no new information (because the action is independent of the private signal).
+Therefore, the cascade is based on the signals of the few agents who acted before the cascade began---potentially as few as two or three.
+A single credible revelation of contradictory information can shatter the cascade.
+\end{proposition}
 
-We can model competing beliefs as a dynamical system.
-Let $\belief{1}(t)$ and $\belief{2}(t) = 1 - \belief{1}(t)$ be two competing beliefs.
+\begin{remark}[Doxonomic Interpretation]
+In doxonomic terms, a cascade occurs when the accumulated weight of institutional narrative is so strong that individual experience becomes irrelevant to expressed belief.
+Everyone acts as if $p$ is true, not because the evidence is overwhelming, but because everyone else is acting as if $p$ is true.
+This is precisely the pluralistic-ignorance configuration (Definition~\ref{def:pluralistic-ignorance}).
+
+The fragility result (Proposition~\ref{prop:cascade-fragility}) has an important implication for regime fracture (Chapter~\ref{ch:how-belief-regimes-fracture}): cascade-based consensus is dramatically more vulnerable to disruption than evidence-based consensus.
+A single whistleblower, a single scandal, or a single credible defection can trigger a \emph{reverse cascade}---a rapid collapse of apparent consensus, as each agent, seeing others defect, reveals their own private doubt.
+This is the mechanism behind ``preference cascades'' and the ``element of surprise in revolutions'' \autocite{kuran1995}.
+\end{remark}
+
+
+\section{Competitive Belief Dynamics}
+\label{sec:ch11-competitive}
+
+Most real doxonomic systems involve not one belief spreading through a population but multiple beliefs competing for the same audience.
 
 \begin{model}[Lotka-Volterra Belief Competition]
 \label{mod:lotka-volterra}
 \index{Lotka-Volterra model}
+Let $\belief{1}(t)$ and $\belief{2}(t)$ be two competing beliefs, not necessarily summing to 1 (an agent can hold neither or both to some degree).
+The dynamics are:
 \begin{align}
-  \frac{d\belief{1}}{dt} &= \belief{1}(\alpha_1 \phi_1 - \gamma_1 - \beta_{12}\belief{2}) \\
-  \frac{d\belief{2}}{dt} &= \belief{2}(\alpha_2 \phi_2 - \gamma_2 - \beta_{21}\belief{1})
+  \frac{d\belief{1}}{dt} &= \belief{1}(\alpha_1 \phi_1 - \gamma_1 - \beta_{12}\belief{2}) \label{eq:lv1}\\
+  \frac{d\belief{2}}{dt} &= \belief{2}(\alpha_2 \phi_2 - \gamma_2 - \beta_{21}\belief{1}) \label{eq:lv2}
 \end{align}
-where $\phi_k$ is the narrative flow for belief $k$, $\gamma_k$ is the intrinsic decay, and $\beta_{ij}$ is the competitive displacement rate.
-The funding asymmetry $\phi_1 \gg \phi_2$ can ensure dominance of belief 1 regardless of intrinsic merit.
+where $\phi_k$ is the narrative flow for belief $k$, $\gamma_k$ is the intrinsic decay rate, and $\beta_{ij}$ is the competitive displacement rate (the degree to which belief $j$ suppresses belief $i$).
 \end{model}
+
+\subsection{Equilibrium Analysis}
+
+The system has four possible equilibria:
+\begin{enumerate}[nosep]
+  \item $(0, 0)$: both beliefs extinct.
+  Always exists; stable when both $\alpha_k\phi_k < \gamma_k$.
+  \item $(\belief{1}^*, 0)$: belief 1 dominates, belief 2 extinct.
+  $\belief{1}^* = (\alpha_1\phi_1 - \gamma_1)/\beta_{12}$ if positive.
+  \item $(0, \belief{2}^*)$: belief 2 dominates, belief 1 extinct.
+  \item $(\belief{1}^*, \belief{2}^*)$: coexistence.
+\end{enumerate}
+
+\begin{proposition}[Competitive Exclusion]
+\label{prop:competitive-exclusion}
+\index{competitive exclusion}
+If $\beta_{12}\beta_{21} > (\alpha_1\phi_1 - \gamma_1)(\alpha_2\phi_2 - \gamma_2) / (\belief{1}^*\belief{2}^*)$, the coexistence equilibrium is unstable: one belief must exclude the other.
+The winner depends on initial conditions and funding levels.
+This is the doxonomic analogue of the \emph{competitive exclusion principle} in ecology: two beliefs competing for the same ``niche'' (the same proposition space) cannot coexist indefinitely unless they differentiate.
+\end{proposition}
+
+\begin{proposition}[Funding Advantage and Dominance]
+\label{prop:funding-advantage}
+\index{funding advantage}
+If beliefs 1 and 2 have identical intrinsic properties ($\gamma_1 = \gamma_2$, $\beta_{12} = \beta_{21}$) but asymmetric funding ($\phi_1 > \phi_2$), then belief 1 dominates in the long run.
+Specifically, the critical condition for belief 1 to exclude belief 2 is:
+\[
+  \alpha_1\phi_1 - \gamma_1 > \beta_{21} \cdot \frac{\alpha_2\phi_2 - \gamma_2}{\beta_{12}}
+\]
+When the beliefs are symmetric in all respects except funding, this reduces to $\phi_1 > \phi_2$: the better-funded belief wins, regardless of intrinsic merit.
+\end{proposition}
+
+\begin{remark}[When the Under-Funded Belief Survives]
+\label{rem:underfunded-survival}
+The under-funded belief ($\phi_2 < \phi_1$) can survive or even win if:
+\begin{itemize}[nosep]
+  \item it has lower intrinsic decay ($\gamma_2 < \gamma_1$)---it is more consistent with lived experience and requires less maintenance,
+  \item it has stronger competitive displacement ($\beta_{21} > \beta_{12}$)---it is more effective at undermining the dominant belief per unit of contact,
+  \item it occupies a different niche---rather than directly contradicting belief 1, it addresses a different aspect of the proposition space, enabling coexistence.
+\end{itemize}
+These conditions provide guidance for counter-doxonomic strategy (Chapter~\ref{ch:counter-doxonomic}): when outspent, invest in resilience ($\gamma$ reduction), efficiency ($\beta$ enhancement), and niche differentiation rather than trying to match the dominant belief's funding.
+\end{remark}
+
+
+\section{Agent-Based Models}
+\label{sec:ch11-abm}
+
+When analytical models become intractable---because of heterogeneous agents, network structure, multiple interacting beliefs, or complex institutional dynamics---agent-based models (ABMs) provide a computational alternative.
+
+\begin{model}[Doxonomic Agent-Based Model]
+\label{mod:abm}
+\index{agent-based model}
+A doxonomic ABM consists of:
+\begin{itemize}[nosep]
+  \item $N$ agents on a network $G = (V, E)$, each with a belief vector $\bm{\pi}_j \in [0,1]^n$ and attributes (group membership, resistance profile, media exposure),
+  \item $m$ institutional agents producing narrative at rates determined by funding,
+  \item an exposure rule: at each time step, agent $j$ is exposed to narratives from their network neighbors and from institutional channels,
+  \item an update rule: agent $j$ updates $\bm{\pi}_j$ according to the augmented internalization model~\eqref{eq:augmented-update} from Chapter~\ref{ch:belief-production-chain},
+  \item a feedback rule: aggregate beliefs influence institutional funding (closing the loop).
+\end{itemize}
+\end{model}
+
+ABMs sacrifice analytical tractability for realism.
+They allow exploration of phenomena that are difficult to capture in closed-form models:
+\begin{itemize}[nosep]
+  \item \textbf{network effects}: beliefs spread differently on scale-free networks (hubs amplify) versus random networks (uniform diffusion),
+  \item \textbf{community structure}: polarization emerges naturally from clustered networks where intra-group connections are denser than inter-group connections,
+  \item \textbf{heterogeneous resistance}: different population segments respond differently to the same narrative, and the aggregate outcome depends on the distribution of resistance profiles,
+  \item \textbf{strategic institutional behavior}: funders can adapt their strategies in response to observed belief dynamics, creating complex co-evolutionary dynamics.
+\end{itemize}
+
+\begin{remark}[ABMs and the Playgrounds]
+\label{rem:playgrounds}
+The Piatra Institute's computational playgrounds implement several doxonomic ABMs with adjustable parameters.
+Readers can explore: how network topology affects polarization speed, how funding asymmetry determines competitive outcomes, how inoculation strategies perform against different epidemic dynamics, and how threshold distributions shape the conditions for capture.
+These simulations are designed to complement---not replace---the analytical models of this chapter.
+\end{remark}
+
+
+\section{Model Comparison and Selection}
+\label{sec:ch11-comparison}
+
+With five model families available, the researcher must choose which is appropriate for a given doxonomic question.
+The following table provides guidance:
+
+\begin{center}
+\begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}}
+\toprule
+\textbf{Model} & \textbf{Best for} & \textbf{Key assumption} & \textbf{Limitation} \\
+\midrule
+Stock-and-flow & Aggregate belief trajectories, tipping points, bifurcation analysis & Homogeneous population, well-mixed & No network structure, no individual heterogeneity \\
+SIR/SIRV & Narrative spread dynamics, endemic equilibria, inoculation strategy & Compartmental (agents are S, I, or R) & Binary belief, no credence gradients \\
+Bayesian & Polarization, filter bubbles, rational divergence under asymmetric exposure & Rational agents, independent signals & Ignores motivated reasoning, identity, affect \\
+Cascade & Sudden collective shifts, fragile consensus, regime collapse & Sequential action, observable predecessors & Stylized; hard to calibrate to real populations \\
+Lotka-Volterra & Belief competition, competitive exclusion, counter-narrative resilience & Competing beliefs interact through displacement & Aggregate; no within-population structure \\
+ABM & All of the above with heterogeneity and network structure & Computational; requires parameter choices & Not analytically tractable; results are simulation-specific \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{principle}[Model Selection]
+\label{prin:model-selection}
+\index{model selection}
+Choose the simplest model that captures the mechanism under study.
+Use stock-and-flow for aggregate dynamics, SIR for spread phenomena, Bayesian for polarization, Lotka-Volterra for competition, cascades for sudden shifts, and ABMs when heterogeneity and network structure are essential.
+When in doubt, start with the analytical model and move to ABM only when the analytical model's assumptions are clearly violated by the empirical setting.
+\end{principle}
+
 
 \section{Notes and References}
 \label{sec:ch11-notes}
 
-Stock-and-flow models adapt systems dynamics \autocite{jackson2008}.
-The SIR framework for information is developed in \textcite{watts2002}.
-Bayesian polarization under asymmetric information is treated in the economics of media bias \autocite{gentzkow2010}.
-Cascade models originate with \textcite{banerjee1992} and \textcite{bikhchandani1992}.
-Lotka-Volterra models for cultural competition appear in cultural evolution literature \autocite{nowak2006}.
+Stock-and-flow models adapt systems dynamics; for an introduction, see Sterman (2000).
+The SIR framework for information diffusion is developed in \textcite{watts2002}; for a comprehensive treatment of epidemic models on networks, see Pastor-Satorras et al.\ (2015).
+Bayesian polarization under asymmetric information is treated in the economics of media bias \autocite{gentzkow2010}; on rational herding, see \textcite{banerjee1992}.
+Cascade models originate with \textcite{banerjee1992} and \textcite{bikhchandani1992}; on cascade fragility, see also Chamley (2004).
+Lotka-Volterra models for cultural competition appear in the cultural evolution literature \autocite{nowak2006}; the competitive exclusion principle is standard in mathematical ecology.
+Agent-based models in social science are surveyed in \textcite{salganik2018} and Epstein (2006).
+Preference cascades and the element of surprise in regime collapse draw on \textcite{kuran1995}.
+Bifurcation theory for social tipping points connects to \textcite{schelling1978}.
+On the relationship between signal correlation and belief over-confidence, see Glaeser and Sunstein (2009).
+
 
 \section{Exercises}
 
 \begin{exercise}
 For the stock-and-flow model~\eqref{eq:stock-flow} with $\alpha = 0.3$, $\delta = 0.1$, $\beta = 0.5$, find the minimum narrative flow $\phi^*$ needed for a stable high-adoption equilibrium to exist.
+Verify your answer by computing the steady states at $\phi = \phi^* - 0.01$ and $\phi = \phi^* + 0.01$.
 \end{exercise}
 
 \begin{exercise}
 Compute $R_0$ for a belief spread through social media ($\beta = 0.05$, $\gamma = 0.2$) with institutional support $\alpha\phi = 0.1$.
-Can the belief sustain itself without institutional support?
+Can the belief sustain itself without institutional support ($\phi = 0$)?
+What is the endemic equilibrium $I^*$ with and without institutional support?
 \end{exercise}
 
 \begin{exercise}
 Simulate the Bayesian polarization theorem: generate $T = 100$ signals for two groups with $q_A = 0.7$ and $q_B = 0.3$, starting from the same prior $\pi^{(0)} = 0.5$.
 Plot the posterior trajectories.
+Now repeat with correlated signals (each signal is a copy of the previous one with probability 0.5).
+How does correlation affect the speed and confidence of polarization?
 \end{exercise}
 
 \begin{exercise}
-In the Lotka-Volterra model, find the conditions under which belief 2 survives despite $\phi_1 > \phi_2$.
-Interpret economically: what makes a counter-narrative resilient?
+In the Lotka-Volterra model with $\gamma_1 = \gamma_2 = 0.1$, $\beta_{12} = \beta_{21} = 0.3$, and $\alpha_1 = \alpha_2 = 0.2$, find the critical funding ratio $\phi_1 / \phi_2$ above which belief 1 excludes belief 2.
+Interpret: how much must the dominant belief outspend the challenger to guarantee competitive exclusion?
 \end{exercise}
 
 \begin{exercise}
-Extend the SIR model to include a ``vaccinated'' compartment $V(t)$ representing people who have received counter-narrative inoculation.
-Write the modified equations and find the new $R_0$.
+Extend the SIR model to include a ``vaccinated'' compartment $V(t)$ using Model~\ref{mod:sirv}.
+If $R_0 = 3$, what fraction of the population must be inoculated to achieve doxonomic herd immunity?
+What inoculation rate $\nu$ achieves this within 5 years?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch11-cascade-fragility}
+In a cascade of 20 agents, suppose agent 15 receives a highly credible counter-signal (a whistleblower revelation).
+Model the reverse cascade: if agent 15 defects, under what conditions do agents 16--20 follow?
+Under what conditions does the cascade withstand the shock?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch11-abm}
+Design a doxonomic ABM with 1000 agents on a small-world network.
+Specify: two competing beliefs, one institutional funder for each, heterogeneous resistance profiles, and a feedback rule.
+Describe (qualitatively) what you expect to observe as you vary the funding ratio $\phi_1/\phi_2$ from 1:1 to 10:1.
+If you have access to a simulation environment, implement and run the model.
+\end{exercise}
+
+\begin{exercise}
+The model comparison table provides guidance on when to use each model.
+For each of the following doxonomic questions, identify the most appropriate model family and justify your choice:
+(a)~How does Fox News affect climate belief in the U.S.?
+(b)~Can a counter-narrative survive against a 5:1 funding disadvantage?
+(c)~Why did public support for austerity collapse so quickly in some countries after 2008?
+(d)~What is the minimum inoculation rate to prevent anti-vaccine belief from reaching endemic levels?
 \end{exercise}

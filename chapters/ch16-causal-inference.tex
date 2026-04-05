@@ -4,67 +4,376 @@
 \epigraph{Correlation is not causation, but it sure is a hint.}{Edward Tufte}
 
 \noindent
-Doxonomics makes causal claims: funding \emph{causes} belief, institutions \emph{produce} narratives, exposure \emph{changes} behavior.
-These claims require rigorous causal methods.
-This chapter adapts the modern causal inference toolkit to the doxonomic setting.
+Doxonomics makes causal claims: funding \emph{causes} belief shift, institutions \emph{produce} narratives, exposure \emph{changes} behavior.
+These claims require rigorous causal methods---yet the doxonomic setting presents distinctive challenges that standard econometric toolkits do not fully address.
+Beliefs are partially observable, treatments are continuous and multi-dimensional, interference between units is the norm rather than the exception, and the actors who generate the ``treatment'' have strategic reasons to obscure the causal chain.
+This chapter adapts the modern causal inference toolkit---potential outcomes, difference-in-differences, instrumental variables, causal graphs, synthetic controls, and regression discontinuity---to these distinctive challenges.
+
+We proceed from a methodological conviction: doxonomics cannot content itself with establishing that correlations exist between funding flows and belief distributions.
+The field must identify \emph{mechanisms} and estimate \emph{magnitudes}.
+Without credible causal identification, doxonomic claims reduce to conspiracy theory dressed in Greek notation.
 
 \section{The Potential Outcomes Framework}
 \label{sec:ch16-potential}
 
+\subsection{Basic setup}
+
 \begin{definition}[Doxonomic Treatment Effect]
 \label{def:treatment-effect}
 \index{treatment effect}
-Let $Y_j(1)$ be agent $j$'s belief under exposure to narrative treatment and $Y_j(0)$ under control.
-The \emph{individual doxonomic treatment effect} is $\tau_j = Y_j(1) - Y_j(0)$.
-The \emph{average doxonomic treatment effect} is
+Let $Y_j(1)$ be agent $j$'s belief state under exposure to narrative treatment and $Y_j(0)$ under control.
+The \emph{individual doxonomic treatment effect} (IDTE) is
 \[
-  \mathrm{ADTE} = \E[Y_j(1) - Y_j(0)]
+  \tau_j = Y_j(1) - Y_j(0).
 \]
-The fundamental problem: we observe either $Y_j(1)$ or $Y_j(0)$, never both \autocite{rubin2005}.
+The \emph{average doxonomic treatment effect} (ADTE) is
+\[
+  \mathrm{ADTE} = \E[Y_j(1) - Y_j(0)].
+\]
+The fundamental problem of causal inference: we observe either $Y_j(1)$ or $Y_j(0)$, never both \autocite{rubin2005}.
 \end{definition}
 
-\section{Natural Experiments}
+The notation is deceptively simple.
+In practice, three features of doxonomic settings complicate the standard Rubin framework.
+
+\begin{enumerate}
+  \item \textbf{Multi-valued, continuous treatment.}
+  Narrative exposure is not binary but varies in intensity, frequency, source credibility, and framing.
+  Let $D_j \in [0, \infty)$ represent a dose of exposure.
+  We need dose-response functions:
+  \[
+    Y_j(d) = g(d, X_j, U_j)
+  \]
+  where $X_j$ are observed covariates and $U_j$ unobserved heterogeneity.
+  The average dose-response function is $\mu(d) = \E[Y_j(d)]$, and the marginal effect at dose $d$ is $\mu'(d)$.
+
+  \item \textbf{Multi-dimensional belief outcomes.}
+  A single narrative intervention may shift beliefs along multiple dimensions simultaneously.
+  If $\mathbf{Y}_j(d) \in \R^k$ is a vector of $k$ belief dimensions, the treatment effect becomes a vector $\boldsymbol{\tau}_j = \mathbf{Y}_j(1) - \mathbf{Y}_j(0)$, raising multiple-testing issues and requiring that researchers specify which dimension is primary ex ante.
+
+  \item \textbf{Interference.}
+  The Stable Unit Treatment Value Assumption (SUTVA) requires that $j$'s outcome depends only on $j$'s own treatment.
+  In doxonomic settings, agent $j$'s belief depends on the beliefs (and hence treatments) of $j$'s social contacts.
+  Formally, $Y_j = Y_j(D_j, \mathbf{D}_{-j})$, where $\mathbf{D}_{-j}$ includes others' exposures.
+  We address interference below in Section~\ref{sec:ch16-interference}.
+\end{enumerate}
+
+\subsection{Conditional treatment effects}
+
+The ADTE masks important heterogeneity.
+In doxonomic settings, treatment effects are likely to differ systematically across groups.
+
+\begin{definition}[Conditional Average Doxonomic Treatment Effect]
+\label{def:cate}
+\index{conditional treatment effect}
+For a subgroup defined by covariates $X = x$:
+\[
+  \mathrm{CADTE}(x) = \E[Y_j(1) - Y_j(0) \mid X_j = x].
+\]
+Of particular interest in doxonomics:
+\begin{itemize}[nosep]
+  \item \emph{Prior-belief heterogeneity}: do those with strong prior beliefs respond differently than the uncommitted?
+  \item \emph{Educational heterogeneity}: does the effect differ by formal education level?
+  \item \emph{Source-trust heterogeneity}: does the treatment effect depend on whether the subject trusts the source institution?
+\end{itemize}
+\end{definition}
+
+A key doxonomic hypothesis is that treatment effects are \emph{non-monotone} in prior belief: agents with moderate prior beliefs are most susceptible, while those at the extremes resist new information (cf.\ the Bayesian updating results in Chapter~\ref{ch:formal-models}).
+This generates a U-shaped resistance function that causal methods must be able to detect.
+
+\subsection{Worked example: estimating a think-tank effect}
+
+\begin{example}
+\label{ex:think-tank-ate}
+A think tank begins publishing policy briefs targeting state legislators.
+We model the treatment as binary: $D_j = 1$ if legislator $j$ receives the briefs, $D_j = 0$ otherwise.
+The outcome $Y_j$ is the legislator's roll-call voting score on the policy domain the briefs address (e.g., deregulation), measured on a 0--100 scale.
+
+If assignment were random, identification would be trivial:
+\[
+  \widehat{\mathrm{ADTE}} = \bar{Y}_{\text{treated}} - \bar{Y}_{\text{control}} = 62.3 - 54.7 = 7.6 \text{ points}.
+\]
+But assignment is not random: the think tank targets swing-district legislators.
+Selection bias means $\E[Y_j(0) \mid D_j = 1] \neq \E[Y_j(0) \mid D_j = 0]$---swing legislators may differ from safe-seat legislators in baseline ideology.
+The naive estimator confounds the treatment effect with selection.
+
+We need one of the identification strategies developed below.
+\end{example}
+
+\section{Natural Experiments in Doxonomic Settings}
 \label{sec:ch16-natural}
 
-Doxonomic natural experiments arise when narrative exposure varies for reasons unrelated to individual characteristics:
+Natural experiments arise when narrative exposure varies for reasons unrelated to individual characteristics---what \textcite{angrist2009} call ``instruments of fate.''
+The doxonomic setting offers several distinctive sources of quasi-random variation.
+
+\subsection{Media market boundaries}
+
+Following \textcite{gentzkow2010}, adjacent counties on opposite sides of a media market boundary receive different television content despite sharing demographic and economic characteristics.
+If county $A$ receives Fox News at channel position 2 and county $B$ receives it at channel position 73, channel position creates quasi-random variation in exposure.
+
+\begin{model}[Media Boundary Design]
+\label{mod:media-boundary}
+\index{media boundary design}
+For counties $c$ near boundary $b$:
+\[
+  Y_c = \alpha + \tau D_c + f(\text{dist}_c) + \gamma X_c + \varepsilon_c
+\]
+where $D_c$ is exposure, $\text{dist}_c$ is distance to the boundary, $f(\cdot)$ is a smooth function (typically linear or polynomial), and $X_c$ are county-level covariates.
+The identifying assumption is that unobserved determinants of $Y$ vary smoothly across the boundary---a form of regression discontinuity in geographic space.
+\end{model}
+
+\subsection{Outlet entry and exit}
+
+The introduction or removal of a media outlet provides a before/after comparison.
+Historical examples include:
 \begin{itemize}[nosep]
-  \item media market boundaries that split otherwise similar populations \autocite{gentzkow2010},
-  \item the introduction or removal of a media outlet,
-  \item policy changes affecting advertising or educational content,
-  \item platform algorithm changes that alter exposure distributions.
+  \item the rollout of television across US counties in the 1940s--50s,
+  \item the entry of Fox News into cable markets in the late 1990s \autocite{dellavigna2007},
+  \item the shutdown of local newspapers (``news deserts'') and subsequent shifts in political knowledge and participation,
+  \item the introduction of broadband internet, which shifted the information mix from broadcast to on-demand.
 \end{itemize}
+
+\subsection{Platform algorithm changes}
+
+When a social media platform changes its content recommendation algorithm, the resulting shift in exposure is exogenous to any individual user's characteristics.
+These events create a useful before/after contrast, though identification requires that no other changes occurred simultaneously---a condition that platform companies rarely guarantee.
+
+\subsection{Policy shocks}
+
+Regulatory changes that affect narrative production or distribution provide natural experiments:
+\begin{itemize}[nosep]
+  \item the repeal of the Fairness Doctrine (1987) and subsequent growth of partisan talk radio,
+  \item foreign-ownership restrictions on media,
+  \item campaign finance rulings (e.g., \emph{Citizens United}) that alter the volume of political advertising,
+  \item educational curriculum mandates that change what students encounter in schools.
+\end{itemize}
+
+Each provides variation in the ``supply side'' of the doxonomic system that is plausibly independent of individual-level belief determinants.
 
 \section{Difference-in-Differences}
 \label{sec:ch16-did}
+
+\subsection{Basic design}
 
 \begin{model}[Doxonomic DiD]
 \label{mod:did}
 \index{difference-in-differences}
 Let a new think tank begin operating in region $A$ but not in region $B$ at time $t_0$.
-The doxonomic effect is
+The doxonomic effect is estimated as:
 \[
   \hat{\tau} = (\bar{Y}_{A,\text{post}} - \bar{Y}_{A,\text{pre}}) - (\bar{Y}_{B,\text{post}} - \bar{Y}_{B,\text{pre}})
 \]
 under the parallel trends assumption: absent treatment, beliefs in $A$ and $B$ would have evolved identically.
 \end{model}
 
+In regression form:
+\[
+  Y_{it} = \alpha + \beta \cdot \text{Treat}_i + \gamma \cdot \text{Post}_t + \tau(\text{Treat}_i \times \text{Post}_t) + \varepsilon_{it}
+\]
+where $\text{Treat}_i = 1$ for units in the treated group, $\text{Post}_t = 1$ for post-treatment periods, and $\tau$ is the DiD estimate of the ADTE.
+
+\subsection{Parallel trends and pre-treatment tests}
+
+The parallel trends assumption is untestable---it concerns the counterfactual path of the treated group.
+However, we can probe its plausibility by examining whether treated and control groups followed parallel trajectories \emph{before} treatment.
+
+\begin{proposition}[Pre-Trend Test]
+\label{prop:pre-trend}
+\index{parallel trends}
+If pre-treatment outcomes satisfy
+\[
+  \E[Y_{it} - Y_{it-1} \mid \text{Treat}_i = 1] = \E[Y_{it} - Y_{it-1} \mid \text{Treat}_i = 0] \quad \text{for all } t < t_0,
+\]
+this is consistent with (but does not prove) parallel trends.
+Rejection provides evidence against the identifying assumption.
+\end{proposition}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \begin{axis}[
+    width=10cm, height=6cm,
+    xlabel={Time},
+    ylabel={Belief measure $\bar{Y}$},
+    xmin=-4.5, xmax=4.5,
+    ymin=30, ymax=75,
+    xtick={-4,-3,-2,-1,0,1,2,3,4},
+    xticklabels={$t_{-4}$,$t_{-3}$,$t_{-2}$,$t_{-1}$,$t_0$,$t_1$,$t_2$,$t_3$,$t_4$},
+    legend pos=north west,
+    legend style={font=\small},
+    grid=major,
+    grid style={dotted, gray!50},
+  ]
+    % Control group
+    \addplot[blue, thick, mark=square*] coordinates {
+      (-4,40) (-3,42) (-2,44) (-1,46) (0,48) (1,50) (2,52) (3,54) (4,56)
+    };
+    \addlegendentry{Control}
+
+    % Treated group - actual
+    \addplot[red, thick, mark=*] coordinates {
+      (-4,45) (-3,47) (-2,49) (-1,51) (0,53) (1,59) (2,63) (3,66) (4,68)
+    };
+    \addlegendentry{Treated (observed)}
+
+    % Treated group - counterfactual
+    \addplot[red, dashed, thick] coordinates {
+      (0,53) (1,55) (2,57) (3,59) (4,61)
+    };
+    \addlegendentry{Treated (counterfactual)}
+
+    % Treatment effect arrow
+    \draw[-Stealth, thick, doxogreen] (axis cs:4,61) -- (axis cs:4,68);
+    \node[right, doxogreen, font=\small] at (axis cs:4.1,64.5) {$\hat{\tau}$};
+
+    % Vertical line at treatment
+    \draw[dashed, gray] (axis cs:0,30) -- (axis cs:0,75);
+    \node[above, font=\small] at (axis cs:0,75) {Treatment};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{Staggered adoption and modern DiD}
+
+In many doxonomic settings, treatment rolls out at different times across units---a think-tank network opens regional offices sequentially, or a media platform enters different markets over several years.
+Classical two-way fixed effects (TWFE) regression can produce biased estimates under staggered treatment timing because early-treated units serve as ``controls'' for later-treated units.
+
+Recent methodological advances address this problem.
+Following \textcite{callaway2021}, define the \emph{group-time average treatment effect}:
+\[
+  \mathrm{ATT}(g, t) = \E[Y_t(g) - Y_t(\infty) \mid G_i = g]
+\]
+where $G_i = g$ denotes units first treated at time $g$, $Y_t(g)$ is the potential outcome under treatment beginning at $g$, and $Y_t(\infty)$ is the never-treated potential outcome.
+These group-time effects can be aggregated into an overall summary:
+\[
+  \hat{\tau}^{\text{agg}} = \sum_{g} \sum_{t \geq g} w_{g,t} \cdot \widehat{\mathrm{ATT}}(g, t)
+\]
+with weights $w_{g,t}$ proportional to group size.
+
+\subsection{Worked example: think-tank regional entry}
+
+\begin{example}
+\label{ex:did-think-tank}
+The Prosperity Institute opens offices in three states at staggered intervals: Ohio in 2015, Michigan in 2017, and Pennsylvania in 2019.
+Using survey data on beliefs about economic regulation from 2012--2022, we estimate group-time ATTs:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+& Ohio ($g = 2015$) & Michigan ($g = 2017$) & Pennsylvania ($g = 2019$) \\
+\midrule
+1 year post  & $+3.2$ (1.4) & $+2.8$ (1.6) & $+4.1$ (1.8) \\
+2 years post & $+5.1$ (1.7) & $+4.4$ (1.9) & $+5.8$ (2.3) \\
+3 years post & $+6.3$ (2.0) & $+5.9$ (2.2) & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+Standard errors in parentheses, clustered by state.
+The aggregated ATT across all groups and post-periods is $\hat{\tau}^{\text{agg}} = 4.6$ (SE $= 1.1$), suggesting the think tank shifted beliefs about economic regulation by roughly 4.6 points on a 100-point scale.
+Effects appear to grow over time, consistent with cumulative exposure models from Chapter~\ref{ch:formal-models}.
+
+Note: This example uses simulated data for illustration.
+Real applications require actual survey instruments, pre-registration, and sensitivity analyses.
+\end{example}
+
 \section{Instrumental Variables}
 \label{sec:ch16-iv}
+
+\subsection{The doxonomic endogeneity problem}
+
+In most doxonomic settings, exposure to narratives is endogenous: people select into media, educational, and social environments based on pre-existing beliefs.
+This \emph{selective exposure} means that naive regression of belief on exposure confounds the causal effect with self-selection.
 
 \begin{definition}[Doxonomic Instrument]
 \label{def:instrument}
 \index{instrumental variable}
-An \emph{instrument} $Z$ for doxonomic exposure is a variable that:
+An \emph{instrument} $Z$ for doxonomic exposure $D$ is a variable that satisfies:
 \begin{enumerate}[nosep]
-  \item is correlated with narrative exposure (relevance),
-  \item affects belief only through exposure (exclusion restriction),
-  \item is not correlated with unobserved confounders (independence).
+  \item \textbf{Relevance}: $\operatorname{Cov}(Z, D) \neq 0$---the instrument predicts exposure.
+  \item \textbf{Exclusion}: $Z$ affects belief $Y$ only through exposure $D$---no direct effect.
+  \item \textbf{Independence}: $Z \perp\!\!\!\perp U$---the instrument is uncorrelated with unobserved confounders.
 \end{enumerate}
-Example: distance to a university (affects exposure to academic narratives but not directly to beliefs about human nature).
+Under these conditions, the IV estimator identifies the Local Average Treatment Effect (LATE):
+\[
+  \tau^{\text{LATE}} = \frac{\operatorname{Cov}(Y, Z)}{\operatorname{Cov}(D, Z)} = \frac{\text{reduced form}}{\text{first stage}}
+\]
+which is the average treatment effect among \emph{compliers}---agents whose exposure is changed by the instrument.
 \end{definition}
 
-\section{Causal DAGs for Doxonomics}
+\subsection{Candidate instruments}
+
+Finding valid instruments is the central challenge of IV estimation.
+In doxonomic research, several categories of instruments have been proposed or used:
+
+\begin{enumerate}
+  \item \textbf{Geographic instruments.}
+  Distance to a university (affects exposure to academic narratives), distance to a think-tank office, proximity to media production centers.
+  The concern: geography correlates with urbanization, education, and wealth, creating potential violations of independence.
+
+  \item \textbf{Technological instruments.}
+  Cable channel position (lower channel numbers get more viewers), internet connection speed (affects online news consumption), television signal strength.
+  These are often more credible because the assignment mechanism is more clearly exogenous.
+
+  \item \textbf{Regulatory instruments.}
+  Changes in media ownership rules, campaign finance limits, or educational mandates that shift exposure.
+  These affect the supply side of the doxonomic system in ways plausibly independent of individual demand.
+
+  \item \textbf{Weather and timing instruments.}
+  Rain on election day (affects turnout and hence exposure to campaign messaging at polling places), natural disasters that preempt regular media programming, scheduling of major sporting events that shift audience attention.
+\end{enumerate}
+
+\subsection{Two-stage least squares}
+
+The practical workhorse for IV estimation is two-stage least squares (2SLS):
+
+\medskip
+\noindent\textbf{First stage:}
+\[
+  D_j = \pi_0 + \pi_1 Z_j + \pi_2 X_j + v_j
+\]
+
+\noindent\textbf{Second stage:}
+\[
+  Y_j = \beta_0 + \tau \hat{D}_j + \beta_1 X_j + \varepsilon_j
+\]
+where $\hat{D}_j$ is the fitted value from the first stage.
+The coefficient $\tau$ is the 2SLS estimate of the causal effect.
+
+A critical diagnostic is first-stage strength.
+The rule of thumb is that the first-stage $F$-statistic should exceed 10 \autocite{staiger1997}.
+In doxonomic applications, weak instruments are a persistent concern because most plausible instruments have only modest effects on narrative exposure.
+
+\subsection{Worked example: channel position instrument}
+
+\begin{example}
+\label{ex:iv-channel}
+We instrument Fox News viewership with channel position, following \textcite{dellavigna2007}.
+In cable systems, channels assigned to lower positions receive more viewers due to habitual channel-surfing patterns.
+Channel position is determined by negotiations between cable providers and networks, plausibly independent of local political preferences.
+
+\medskip
+\noindent\textbf{First stage}: regress Fox News viewership share on channel position (controlling for demographics):
+\[
+  \text{FoxShare}_c = 0.23 - 0.0018 \cdot \text{Position}_c + \gamma X_c + v_c
+\]
+Each 10-position increase reduces Fox viewership by 1.8 percentage points.
+First-stage $F = 23.4 > 10$.
+
+\medskip
+\noindent\textbf{Second stage}: regress Republican vote share on instrumented Fox viewership:
+\[
+  \text{RepVote}_c = \alpha + \hat{\tau} \cdot \widehat{\text{FoxShare}}_c + \beta X_c + \varepsilon_c
+\]
+The 2SLS estimate $\hat{\tau} = 0.28$ (SE $= 0.12$): each percentage point of Fox viewership causes a 0.28 percentage point increase in Republican vote share.
+This is larger than the OLS estimate of 0.15, suggesting that OLS is attenuated by measurement error in viewership (or that compliers are more responsive than the average viewer).
+\end{example}
+
+\section{Causal Directed Acyclic Graphs}
 \label{sec:ch16-dags}
+
+\subsection{The core doxonomic DAG}
+
+Causal DAGs make identification assumptions transparent by encoding them as graphical structures \autocite{pearl2009}.
+The core doxonomic DAG links funding, exposure, belief, and behavior:
 
 \begin{center}
 \begin{tikzpicture}[
@@ -80,7 +389,7 @@ Example: distance to a university (affects exposure to academic narratives but n
 
   \draw[arrow] (F) -- (E) node[midway, below, draw=none, font=\footnotesize] {funding};
   \draw[arrow] (E) -- (B) node[midway, below, draw=none, font=\footnotesize] {exposure};
-  \draw[arrow] (B) -- (X) node[midway, below, draw=none, font=\footnotesize] {belief};
+  \draw[arrow] (B) -- (X) node[midway, below, draw=none, font=\footnotesize] {action};
   \draw[arrow, dashed] (U) -- (E);
   \draw[arrow, dashed] (U) -- (B);
 \end{tikzpicture}
@@ -90,34 +399,347 @@ Here $F$ is funding, $E$ is exposure, $B$ is belief, $X$ is behavior, and $U$ re
 The confounding path $E \leftarrow U \to B$ means naive regression of $B$ on $E$ is biased.
 An instrument that affects $E$ but not $U$ identifies the causal effect \autocite{pearl2009, angrist2009}.
 
+\subsection{An expanded DAG}
+
+The core DAG is too simple for most real doxonomic settings.
+An expanded version includes institutional structure, social influence, and feedback loops:
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.8cm,
+  every node/.style={draw, rounded corners, thick, minimum size=1cm, font=\small},
+  arrow/.style={-Stealth, thick},
+  dashed arrow/.style={-Stealth, thick, dashed}
+]
+  \node (W) {Wealth $W$};
+  \node[right=of W] (F) {Funding $F$};
+  \node[right=of F] (I) {Institution $I$};
+  \node[right=of I] (N) {Narrative $N$};
+  \node[below=1.5cm of N] (E) {Exposure $E$};
+  \node[left=of E] (S) {Social net $S$};
+  \node[below=1.5cm of E] (B) {Belief $B$};
+  \node[right=1.5cm of B] (X) {Behavior $X$};
+  \node[above=1cm of S] (U) {$U$ (unobs.)};
+
+  \draw[arrow] (W) -- (F);
+  \draw[arrow] (F) -- (I);
+  \draw[arrow] (I) -- (N);
+  \draw[arrow] (N) -- (E);
+  \draw[arrow] (S) -- (E);
+  \draw[arrow] (E) -- (B);
+  \draw[arrow] (B) -- (X);
+  \draw[dashed arrow] (U) -- (E);
+  \draw[dashed arrow] (U) -- (B);
+  \draw[arrow, bend left=20] (B) to (S);
+  \draw[arrow, bend right=30] (X) to (W);
+\end{tikzpicture}
+\end{center}
+
+Two feedback loops appear: $B \to S$ (beliefs shape social networks through homophily) and $X \to W$ (behavior affects wealth, which funds future narrative production).
+These feedback loops mean the system is not a DAG in the strict sense---it is a \emph{dynamic causal model} that unfolds over time.
+We recover a DAG by indexing variables by time period: $B_t$ can cause $S_{t+1}$ but not $S_t$.
+
+\subsection{Identification via d-separation}
+
+Pearl's d-separation criterion determines which causal effects are identifiable from observational data.
+
+\begin{proposition}[D-Separation for Doxonomic Effects]
+\label{prop:d-sep}
+\index{d-separation}
+In the expanded doxonomic DAG, the causal effect of $F$ on $B$ is identifiable by conditioning on $\{U, S\}$.
+Since $U$ is unobserved, we need either:
+\begin{enumerate}[nosep]
+  \item an instrument for $F$ (affecting $F$ but not $U$ or $S$ directly), or
+  \item a proxy for $U$ that satisfies the conditions of proxy variable estimation, or
+  \item a design that eliminates $U$ (e.g., panel data with individual fixed effects, if $U$ is time-invariant).
+\end{enumerate}
+\end{proposition}
+
+The DAG framework clarifies why doxonomic causal inference is hard: the chain $W \to F \to I \to N \to E \to B$ has many links, and confounders can enter at each one.
+But it also clarifies the \emph{modularity} of the problem: if we can credibly identify $E \to B$ (the exposure-to-belief link), we can combine it with descriptive evidence on $F \to I \to N \to E$ (the production chain) to construct a complete causal narrative, even if the full chain is not identified in a single study.
+
+\section{Synthetic Control Methods}
+\label{sec:ch16-synth}
+
+\subsection{The setup}
+
+When only one or a few units are treated, difference-in-differences lacks statistical power.
+Synthetic control methods \autocite{abadie2010} construct a weighted combination of untreated units that closely matches the treated unit's pre-treatment trajectory.
+
+\begin{definition}[Synthetic Control Estimator]
+\label{def:synth-control}
+\index{synthetic control}
+Let unit 1 be treated at time $T_0$.
+The synthetic control is a weighted average of $J$ donor units:
+\[
+  \hat{Y}_{1t}^{(0)} = \sum_{j=2}^{J+1} w_j^* Y_{jt}, \quad t > T_0
+\]
+where the weights $\mathbf{w}^* = (w_2^*, \ldots, w_{J+1}^*)$ minimize the pre-treatment discrepancy:
+\[
+  \mathbf{w}^* = \arg\min_{\mathbf{w}} \sum_{t=1}^{T_0} \left( Y_{1t} - \sum_{j=2}^{J+1} w_j Y_{jt} \right)^2 \quad \text{s.t.\ } w_j \geq 0, \; \sum_j w_j = 1.
+\]
+The treatment effect estimate is $\hat{\tau}_{1t} = Y_{1t} - \hat{Y}_{1t}^{(0)}$ for $t > T_0$.
+\end{definition}
+
+\subsection{Doxonomic applications}
+
+Synthetic control is well-suited to studying country-level or state-level doxonomic interventions where the number of treated units is small:
+\begin{itemize}[nosep]
+  \item the doxonomic effect of a country banning political advertising (treated: Norway; donors: other Nordic/European countries),
+  \item the effect of a media mogul acquiring a national newspaper (treated: the newspaper's audience region; donors: comparable regions),
+  \item the effect of a new educational curriculum on long-run beliefs (treated: the adopting state; donors: non-adopting states).
+\end{itemize}
+
+Inference relies on \emph{placebo tests}: applying the synthetic control procedure to each donor unit in turn and checking whether the treated unit's gap exceeds the placebo distribution.
+If the treated unit's post-treatment gap is larger than all or nearly all placebo gaps, the effect is deemed significant.
+
+\subsection{Worked example: advertising ban}
+
+\begin{example}
+\label{ex:synth-adban}
+Country $A$ bans political television advertising in 2010.
+We construct a synthetic version of $A$ from a donor pool of 15 comparable democracies, matching on pre-2010 values of: trust in government, media consumption patterns, GDP per capita, internet penetration, and education levels.
+
+The synthetic $A$ is: $0.31 \times \text{Country B} + 0.24 \times \text{Country C} + 0.22 \times \text{Country D} + 0.23 \times \text{Country E}$.
+Pre-treatment fit: root mean squared prediction error $= 1.3$ on a 100-point trust scale.
+
+Post-ban, actual trust in government in $A$ exceeds synthetic $A$ by 4.2 points on average over 2011--2018.
+Placebo tests show that $A$'s gap ranks 1st out of 16 (all countries), yielding a placebo $p$-value of $1/16 = 0.0625$---suggestive but not conventionally significant.
+This illustrates a common limitation: with few donor units, synthetic control has limited statistical power.
+\end{example}
+
+\section{Regression Discontinuity}
+\label{sec:ch16-rd}
+
+\subsection{Sharp and fuzzy designs}
+
+Regression discontinuity (RD) exploits a threshold rule that creates a jump in treatment probability at a cutoff value of a running variable.
+
+\begin{definition}[Doxonomic RD Design]
+\label{def:rd}
+\index{regression discontinuity}
+Let $R_j$ be a running variable with cutoff $c$.
+In a \emph{sharp} design, treatment is deterministic:
+\[
+  D_j = \mathbf{1}(R_j \geq c).
+\]
+In a \emph{fuzzy} design, the probability of treatment jumps at $c$:
+\[
+  \lim_{r \downarrow c} P(D = 1 \mid R = r) - \lim_{r \uparrow c} P(D = 1 \mid R = r) > 0.
+\]
+The RD estimator is
+\[
+  \hat{\tau}_{\text{RD}} = \lim_{r \downarrow c} \E[Y \mid R = r] - \lim_{r \uparrow c} \E[Y \mid R = r]
+\]
+for the sharp case, and $\hat{\tau}_{\text{fuzzy}} = \hat{\tau}_{\text{RD}} / \hat{\Delta}_D$ for the fuzzy case, where $\hat{\Delta}_D$ is the first-stage jump in treatment.
+\end{definition}
+
+\subsection{Doxonomic RD settings}
+
+Several doxonomic settings feature natural thresholds:
+\begin{enumerate}[nosep]
+  \item \textbf{Electoral thresholds}: parties that barely win elections gain control of government communications infrastructure; parties that barely lose do not.
+  Comparing beliefs in jurisdictions where a party barely won vs.\ barely lost identifies the effect of controlling institutional narrative channels.
+
+  \item \textbf{Funding thresholds}: grant programs with score cutoffs create sharp discontinuities in institutional funding.
+  Organizations just above the threshold receive funding; those just below do not.
+
+  \item \textbf{Platform thresholds}: content that crosses a virality threshold (e.g., appearing on a ``trending'' list) receives vastly more exposure than content just below.
+  This creates a discontinuity in narrative reach.
+
+  \item \textbf{Age thresholds}: legal ages for voting, drinking, or military service create discontinuities in the types of political messaging individuals receive.
+\end{enumerate}
+
+\section{Interference and Spillovers}
+\label{sec:ch16-interference}
+
+\subsection{Why SUTVA fails in doxonomics}
+
+The Stable Unit Treatment Value Assumption (SUTVA) requires that each unit's outcome depends only on its own treatment assignment.
+In doxonomic settings, this assumption is routinely violated: beliefs are socially contagious, and treating agent $j$ may shift the beliefs of $j$'s contacts, their contacts' contacts, and so on.
+
+\begin{definition}[Interference Structure]
+\label{def:interference}
+\index{interference}
+Let $\mathcal{G} = (V, E)$ be the social network.
+Agent $j$'s potential outcome depends on the full treatment vector:
+\[
+  Y_j = Y_j(D_j, \mathbf{D}_{\mathcal{N}(j)})
+\]
+where $\mathcal{N}(j) = \{k : (j,k) \in E\}$ is $j$'s neighborhood.
+Under the \emph{partial interference} assumption, $j$'s outcome depends on $D_j$ and a summary statistic of neighbors' treatments:
+\[
+  Y_j = Y_j(D_j, g(\mathbf{D}_{\mathcal{N}(j)}))
+\]
+where $g(\cdot)$ might be the fraction of treated neighbors.
+\end{definition}
+
+\subsection{Direct and indirect effects}
+
+With interference, we distinguish:
+\begin{align}
+  \text{Direct effect:} &\quad \tau^{\text{dir}} = \E[Y_j(1, g) - Y_j(0, g)] \\
+  \text{Indirect (spillover) effect:} &\quad \tau^{\text{ind}} = \E[Y_j(d, g') - Y_j(d, g)] \\
+  \text{Total effect:} &\quad \tau^{\text{tot}} = \E[Y_j(1, g'(1)) - Y_j(0, g'(0))]
+\end{align}
+where $g'(d)$ is the neighborhood treatment summary that would obtain if $j$ were assigned treatment $d$.
+
+In doxonomic settings, indirect effects may exceed direct effects: a media campaign's largest impact may come not from those who directly see it, but from the social diffusion of the beliefs it generates.
+This has profound implications for cost-effectiveness analysis of doxonomic interventions (cf.\ Chapter~\ref{ch:belief-flow-accounting}).
+
+\subsection{Cluster randomized designs}
+
+One practical solution to interference is to randomize at the cluster level---treating entire communities, media markets, or network components:
+\[
+  Y_{jc} = \alpha + \tau D_c + \gamma X_{jc} + \varepsilon_{jc}
+\]
+where $D_c$ is the cluster-level treatment.
+Within-cluster spillovers are absorbed into the treatment effect; between-cluster spillovers remain a threat to validity.
+The effective sample size is the number of clusters, not the number of individuals, which reduces statistical power substantially.
+
+\section{Sensitivity Analysis and Robustness}
+\label{sec:ch16-sensitivity}
+
+\subsection{Omitted variable bias bounds}
+
+No observational study can rule out all confounders.
+Following \textcite{oster2019}, we can bound the bias from unobservable confounders:
+
+\begin{proposition}[Oster Bound]
+\label{prop:oster}
+\index{sensitivity analysis}
+Let $\tilde{\tau}$ be the coefficient from a regression of $Y$ on $D$ without controls, $\hat{\tau}$ the coefficient after adding observed controls, and $\tilde{R}^2, \hat{R}^2$ the corresponding $R$-squared values.
+Under proportional selection (unobservables relate to treatment in the same proportion as observables), the bias-adjusted estimate is:
+\[
+  \tau^* = \hat{\tau} - \delta \cdot (\tilde{\tau} - \hat{\tau}) \cdot \frac{R_{\max} - \hat{R}^2}{\hat{R}^2 - \tilde{R}^2}
+\]
+where $\delta$ measures the relative importance of unobservables and $R_{\max}$ is the hypothetical $R^2$ if all confounders were observed.
+If $\tau^*$ remains meaningfully different from zero for reasonable values of $\delta$ and $R_{\max}$, the finding is robust to omitted variable bias.
+\end{proposition}
+
+\subsection{Rosenbaum bounds}
+
+For matched designs, Rosenbaum bounds assess how strong an unmeasured confounder would need to be to explain away the observed effect.
+The sensitivity parameter $\Gamma$ represents the ratio of treatment odds for two units with the same observed covariates but different values of the unobserved confounder.
+If the effect survives at $\Gamma = 2$, a confounder would need to more than double the odds of treatment to nullify the finding.
+
+\subsection{Reporting standards}
+
+We propose that doxonomic causal studies report:
+\begin{enumerate}[nosep]
+  \item the primary causal estimate with confidence intervals,
+  \item at least one sensitivity analysis (Oster bounds, Rosenbaum bounds, or placebo tests),
+  \item a discussion of the most plausible threat to identification,
+  \item the LATE-vs-ATE distinction: for whom does the estimate apply?
+  \item a pre-analysis plan (ideally pre-registered) specifying outcomes, subgroups, and model specifications.
+\end{enumerate}
+
+\section{Doxonomic-Specific Identification Challenges}
+\label{sec:ch16-challenges}
+
+Beyond the standard econometric challenges, doxonomic causal inference faces several distinctive difficulties.
+
+\subsection{Strategic obscuration}
+
+Unlike natural phenomena, doxonomic ``treatments'' are often designed by strategic actors who have incentives to obscure the causal chain.
+Dark money in political spending, astroturf organizations that mimic grassroots movements, and undisclosed native advertising all make it difficult to measure treatment accurately.
+Measurement error in the treatment variable biases IV toward zero and DiD toward the null, making it harder to detect real effects.
+
+\subsection{Belief measurement}
+
+Beliefs are not directly observable.
+Survey measures are subject to social desirability bias, framing effects, and the distinction between expressed and held beliefs (cf.\ Chapter~\ref{ch:doxometric-measurement}).
+If measurement error is \emph{classical} (random noise), it attenuates treatment effect estimates.
+If it is \emph{non-classical} (e.g., people misreport beliefs more when politically sensitive), it can bias estimates in either direction.
+
+\subsection{Long causal chains}
+
+The doxonomic causal chain $W \to F \to I \to N \to E \to B \to X$ spans many links.
+End-to-end identification---from wealth to behavior---is extremely difficult in a single study.
+The modular approach described in Section~\ref{sec:ch16-dags} provides a practical alternative: identify individual links credibly and combine them.
+But this requires an additional ``no interaction'' assumption---that the causal effect of each link does not depend on how other links are configured.
+
+\subsection{Feedback and general equilibrium}
+
+Doxonomic systems feature feedback: beliefs affect behavior, behavior affects economic outcomes, economic outcomes affect the resources available for narrative production.
+Standard partial-equilibrium causal estimates may miss these amplification (or dampening) effects.
+Structural estimation methods---which embed the causal model within a general equilibrium framework---can address this, but at the cost of stronger parametric assumptions.
+
 \section{Notes and References}
 \label{sec:ch16-notes}
 
-The potential outcomes framework is developed in \textcite{rubin2005} and \textcite{imbens2015}.
-Difference-in-differences is covered in \textcite{angrist2009}.
+The potential outcomes framework originates with \textcite{rubin2005}; see \textcite{imbens2015} for a comprehensive treatment.
+Difference-in-differences is covered in \textcite{angrist2009}; for the staggered-treatment extensions, see \textcite{callaway2021} and \textcite{dechaisemartin2020}.
+Instrumental variables are developed in \textcite{angrist2009}; the weak-instruments problem is analyzed in \textcite{staiger1997}.
+
 DAGs and structural causal models are in \textcite{pearl2009}.
-Media market instruments for causal identification are used in \textcite{gentzkow2010}.
 Synthetic control methods are introduced in \textcite{abadie2010}.
-For an overview of modern causal methods, see \textcite{athey2017} and \textcite{morgan2015}.
+Media market instruments for causal identification are used in \textcite{gentzkow2010} and \textcite{dellavigna2007}.
+
+Sensitivity analysis frameworks include \textcite{oster2019} for coefficient stability and \textcite{rosenbaum2002} for matched designs.
+The interference literature is surveyed in \textcite{hudgens2008}.
+For general overviews of modern causal methods, see \textcite{athey2017} and \textcite{morgan2015}.
+
+On the specific challenges of causal inference in media effects research, see \textcite{dellavigna2010}.
+The problem of strategic obscuration in political spending is documented in \textcite{mayer2016}.
 
 \section{Exercises}
 
 \begin{exercise}
 Design a difference-in-differences study to estimate the effect of a new cable news channel on beliefs about immigration.
-State the parallel trends assumption and discuss its plausibility.
+State the parallel trends assumption explicitly.
+Discuss at least two plausible threats to parallel trends and how you would test for them using pre-treatment data.
 \end{exercise}
 
 \begin{exercise}
 Draw a causal DAG for the relationship between economics education, belief in selfish human nature, and cooperative behavior.
-Identify all confounding paths and propose an identification strategy.
+Include at least two unobserved confounders.
+Identify all confounding paths using d-separation.
+Propose two distinct identification strategies and discuss their relative strengths.
 \end{exercise}
 
 \begin{exercise}
 Propose an instrumental variable for the effect of social media exposure on political beliefs.
-Verify the three IV conditions.
+Verify the three IV conditions in detail, discussing the most likely violation.
+Calculate the first-stage $F$-statistic you would need for the instrument to be credible.
 \end{exercise}
 
 \begin{exercise}
 Using synthetic control, design a study to estimate the doxonomic effect of a country banning political advertising.
-What donor pool would you use?
+Specify the donor pool, matching variables, and pre-treatment period.
+Describe how you would conduct placebo tests and interpret the results.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:interference}
+Consider a randomized experiment where half of a social network is exposed to a media literacy intervention.
+\begin{enumerate}[nosep]
+  \item Explain why SUTVA is violated.
+  \item Define the direct and indirect effects formally.
+  \item Propose a cluster-randomized design that addresses interference.
+  \item Discuss what the cluster-level estimate captures vs.\ what it misses.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+A researcher finds that exposure to economic think-tank publications is correlated with pro-deregulation beliefs ($r = 0.35$, $p < 0.001$, $N = 2{,}000$).
+\begin{enumerate}[nosep]
+  \item List three confounders that could produce this correlation without any causal effect.
+  \item For each confounder, describe a research design that would control for it.
+  \item Apply the Oster bound: if adding demographics reduces $\hat{\tau}$ from 0.35 to 0.28 and raises $R^2$ from 0.04 to 0.12, how robust is the estimate to further unobservable confounders?
+  \item Assume $R_{\max} = 0.5$ and $\delta = 1$. Calculate $\tau^*$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate a doxonomic DiD study with the following data-generating process:
+\begin{itemize}[nosep]
+  \item 200 units, 10 time periods, treatment at $t = 6$ for half the units,
+  \item $Y_{it} = 2 + 0.5t + 3 \cdot \text{Treat}_i + \tau \cdot \text{Treat}_i \cdot \text{Post}_t + \varepsilon_{it}$, with $\tau = 5$ and $\varepsilon_{it} \sim N(0, 4)$.
+\end{itemize}
+\begin{enumerate}[nosep]
+  \item Estimate $\hat{\tau}$ using the DiD regression. How close is it to the true value?
+  \item Introduce a violation of parallel trends: add $0.3t \cdot \text{Treat}_i$ to the DGP. Re-estimate $\hat{\tau}$. How biased is it?
+  \item Plot the pre-treatment trends for treated and control groups in both scenarios. Can you visually detect the violation?
+\end{enumerate}
 \end{exercise}

@@ -4,8 +4,12 @@
 \epigraph{Tell me who your friends are, and I will tell you who you are.}{Proverb}
 
 \noindent
-Doxonomic systems are networks: funders connect to institutions, institutions connect to media, media connect to audiences.
-This chapter applies graph theory and network science to map and measure these structures.
+Doxonomic systems are networks: funders connect to institutions, institutions connect to media, media connect to audiences, and audiences feed back into funders.
+The structure of these connections---who is linked to whom, with what weight, through what pathways---determines how narratives flow, where they amplify, and which nodes hold structural power.
+
+This chapter applies graph theory and network science to map and measure doxonomic structures.
+Where previous chapters treated the belief production chain as a linear sequence, this chapter reveals it as a complex, multiply-connected network with shortcuts, bottlenecks, clusters, and bridges.
+
 
 \section{Doxonomic Networks}
 \label{sec:ch15-networks}
@@ -13,11 +17,56 @@ This chapter applies graph theory and network science to map and measure these s
 \begin{definition}[Doxonomic Network]
 \label{def:doxonomic-network}
 \index{doxonomic network}
-A \emph{doxonomic network} is a weighted directed graph $G = (V, E, w)$ where vertices $V$ are doxonomic agents (funders, institutions, media, audiences), edges $E$ represent influence or resource flows, and weights $w: E \to \R_{\geq 0}$ measure the magnitude of the flow (dollars, citations, audience share).
+A \emph{doxonomic network} is a weighted directed graph $G = (V, E, w)$ where:
+\begin{itemize}[nosep]
+  \item vertices $V$ are doxonomic agents (funders, institutions, media, intermediaries, audience segments),
+  \item directed edges $E$ represent influence or resource flows (money, citations, sourcing, audience sharing),
+  \item weights $w: E \to \R_{\geq 0}$ measure the magnitude of the flow (dollars, citation counts, audience share fraction).
+\end{itemize}
 \end{definition}
+
+A doxonomic network is typically \emph{multipartite}: vertices can be classified into layers (funders → institutions → channels → audiences), with most edges running between layers.
+But the network is not strictly layered---there are important within-layer connections (institutions cite each other, media outlets share content, funders coordinate) and feedback edges (audience behavior influences funders).
+
+\begin{definition}[Network Types]
+\label{def:network-types}
+\index{doxonomic network!types}
+Several network projections are useful for different analytical purposes:
+\begin{description}[nosep]
+  \item[Funding network:] $G_F = (V_{\text{funders}} \cup V_{\text{institutions}}, E_F)$ where edges represent grant flows.
+  Source: IRS 990 data, foundation annual reports.
+  \item[Citation network:] $G_C = (V_{\text{institutions}} \cup V_{\text{media}}, E_C)$ where edges represent citation or sourcing relationships.
+  Source: content analysis, media sourcing studies.
+  \item[Personnel network:] $G_P = (V, E_P)$ where edges represent personnel movement (a person leaving institution $A$ to join institution $B$).
+  Source: LinkedIn data, biographical records.
+  \item[Board interlock:] $G_B = (V_{\text{institutions}}, E_B)$ where edges connect institutions sharing board members.
+  Source: organizational filings, databases like BoardEx.
+  \item[Audience overlap:] $G_A = (V_{\text{channels}}, E_A)$ where edges represent shared audience (people who consume both channels).
+  Source: survey data, platform analytics.
+\end{description}
+\end{definition}
+
+Each projection reveals a different aspect of the doxonomic system.
+The funding network shows who pays for what.
+The citation network shows how ideas propagate.
+The personnel network shows how institutional cultures diffuse.
+The board-interlock network shows structural coordination.
+The audience-overlap network shows which channels reach the same people.
+
+\begin{remark}[Multiplex Analysis]
+\label{rem:multiplex}
+\index{multiplex network}
+In practice, these networks overlap: institution $A$ may be funded by funder $X$ (funding edge), cited by media outlet $Y$ (citation edge), share a board member with institution $B$ (interlock edge), and hire graduates of institution $C$ (personnel edge).
+The multiplex structure---multiple relationship types between the same nodes---is what makes doxonomic networks so robust: disrupting one type of connection leaves others intact.
+A funder who withdraws funding may still be connected through board interlocks and personnel sharing.
+\end{remark}
+
 
 \section{Centrality Measures}
 \label{sec:ch15-centrality}
+
+Not all nodes in a doxonomic network are equally important.
+Centrality measures identify the nodes that occupy structurally powerful positions.
 
 \begin{definition}[Doxonomic Centrality]
 \label{def:centrality}
@@ -27,11 +76,49 @@ The \emph{doxonomic centrality} of node $v$ is its eigenvector centrality in the
   x_v = \frac{1}{\lambda} \sum_{u: (u,v) \in E} w_{uv} \cdot x_u
 \]
 where $\lambda$ is the largest eigenvalue of the weighted adjacency matrix.
-Nodes with high doxonomic centrality are those that receive large weighted inputs from other central nodes.
+Nodes with high doxonomic centrality are those that receive large weighted inputs from other central nodes---a recursive definition that captures the idea that influence from influential sources is worth more than influence from peripheral ones.
 \end{definition}
 
-High-centrality nodes are the bottlenecks of belief production.
-Disrupting or capturing a high-centrality institution has disproportionate effect on the entire narrative ecosystem.
+Eigenvector centrality is closely related to PageRank (used by Google to rank web pages) and has a natural doxonomic interpretation: a node is central if it is cited, funded, or sourced by other central nodes.
+This captures the credibility-laundering dynamic (Example~\ref{ex:think-tank-credibility}): an institution becomes credible by being associated with other credible institutions.
+
+\begin{example}[Centrality Hierarchy]
+\label{ex:centrality-hierarchy}
+In the U.S.\ policy-influencing network, typical centrality rankings are:
+\begin{enumerate}[nosep]
+  \item \textbf{Highest}: major universities (Harvard, MIT, Stanford, Chicago) --- central through personnel, citation, and prestige networks simultaneously.
+  \item \textbf{High}: legacy think tanks (Brookings, Heritage, AEI, RAND) --- central through funding, citation, and congressional testimony networks.
+  \item \textbf{Medium}: prestige media (\textit{NYT}, \textit{WSJ}, \textit{Washington Post}) --- central through citation and audience networks.
+  \item \textbf{Lower}: newer think tanks, advocacy organizations --- connected through fewer network layers.
+  \item \textbf{Peripheral}: grassroots organizations, independent media --- weakly connected to the core.
+\end{enumerate}
+The centrality hierarchy is remarkably stable over time: the top-ranked institutions in 2020 were substantially the same as in 1990, reflecting the path dependence of epistemic capital accumulation (Proposition~\ref{prop:rent-persistence}).
+\end{example}
+
+\subsection{Multiple Centrality Measures}
+
+Different centrality measures capture different forms of structural importance:
+
+\begin{center}
+\begin{tabular}{lp{5cm}p{5cm}}
+\toprule
+\textbf{Measure} & \textbf{What it captures} & \textbf{Doxonomic interpretation} \\
+\midrule
+Eigenvector & Connected to well-connected nodes & Prestige through association \\
+Betweenness & Lies on many shortest paths & Brokerage power \\
+In-degree & Many incoming edges & Attention/funding recipient \\
+Out-degree & Many outgoing edges & Narrative producer/distributor \\
+Closeness & Short distance to all others & Speed of narrative propagation \\
+PageRank & Important in directed flow & Influence in directed networks \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A node may rank high on one measure and low on another.
+A think tank may have high betweenness (it bridges funders and media) but low in-degree (it has few funders).
+A social media platform may have enormous out-degree (it reaches billions) but low eigenvector centrality (it is not prestigious).
+The appropriate centrality measure depends on the doxonomic question being asked.
+
 
 \section{Community Detection}
 \label{sec:ch15-community}
@@ -44,10 +131,28 @@ Formally, $S$ maximizes the modularity:
 \[
   Q = \frac{1}{2W} \sum_{i,j \in S} \left(w_{ij} - \frac{s_i s_j}{2W}\right)
 \]
-where $s_i = \sum_j w_{ij}$ and $W = \frac{1}{2}\sum_{ij} w_{ij}$.
+where $s_i = \sum_j w_{ij}$ is the weighted degree of node $i$ and $W = \frac{1}{2}\sum_{ij} w_{ij}$ is the total weight.
+High modularity ($Q > 0.3$) indicates well-separated clusters.
 \end{definition}
 
 Narrative clusters reveal which institutions form coherent ideological coalitions, even without explicit coordination.
+Institutions within the same cluster share funders, cite each other's work, hire each other's personnel, and tend to produce narratives within a similar ideological range.
+The cluster structure emerges from \emph{structural alignment} (Principle~\ref{prin:structural-alignment}), not from conspiracy.
+
+\begin{example}[Two-Cluster Structure in U.S.\ Policy]
+\label{ex:two-cluster}
+\index{narrative cluster!example}
+\textcite{benkler2018} mapped the U.S.\ media and think-tank ecosystem during the 2016 election and found a striking asymmetric structure:
+\begin{itemize}[nosep]
+  \item A \textbf{right-wing cluster} centered on Breitbart, Fox News, and talk radio, with dense internal citation but sparse links to other media.
+  This cluster shared a distinct funding network (Mercer family, Koch network), a distinct personnel pool, and a distinct audience.
+  \item A \textbf{center-to-left cluster} with the \textit{New York Times} at its center, connected to a broader range of outlets including \textit{Washington Post}, CNN, BBC, and academic institutions.
+  This cluster had higher internal citation diversity and more external connections.
+\end{itemize}
+The asymmetry is doxonomically significant: the right-wing cluster is more insular (higher intra-cluster density, lower inter-cluster connections), which means it can sustain narratives that diverge from the center cluster without corrective pressure from shared sources.
+This is the network-structural basis of epistemic fragmentation (Definition~\ref{def:fragmentation}).
+\end{example}
+
 
 \section{Brokerage}
 \label{sec:ch15-brokerage}
@@ -63,7 +168,31 @@ where $\sigma_{st}$ is the number of shortest paths from $s$ to $t$ and $\sigma_
 Brokers bridge otherwise disconnected narrative clusters and can translate ideas between communities.
 \end{definition}
 
+Brokers occupy a special doxonomic position: they have access to multiple narrative worlds and can control the flow of ideas between them.
+A journalist who covers both conservative think tanks and progressive policy organizations is an epistemic broker.
+An academic who publishes in both economics journals and sociology journals bridges disciplinary clusters.
+
+\begin{proposition}[Broker Power]
+\label{prop:broker-power}
+\index{broker power}
+Epistemic brokers derive power from three sources:
+\begin{enumerate}[nosep]
+  \item \textbf{Translation}: they can reframe ideas from one cluster in the language of another, making them legible and credible across boundaries.
+  \item \textbf{Gatekeeping}: they control which ideas cross cluster boundaries and which are blocked.
+  \item \textbf{Arbitrage}: they can exploit information asymmetries between clusters, introducing ideas that are common knowledge in one cluster as ``new insights'' in another.
+\end{enumerate}
+\end{proposition}
+
+\begin{example}[Brokerage in the Neoliberal Network]
+\label{ex:brokerage-neoliberal}
+Milton Friedman functioned as an epistemic broker between academic economics, public media, and political policy.
+He translated technical economic arguments into popular columns (\textit{Newsweek}), television programs (\textit{Free to Choose}), and policy advice (to Pinochet, Reagan, Thatcher).
+His brokerage position---connecting the academic cluster to the media cluster to the political cluster---was arguably more consequential than his academic contributions alone, because it enabled ideas that were contentious within economics to become common sense in policy.
+\end{example}
+
+
 \section{Example: A Donor-Institution Network}
+\label{sec:ch15-example}
 
 \begin{center}
 \begin{tikzpicture}[
@@ -92,28 +221,207 @@ Brokers bridge otherwise disconnected narrative clusters and can translate ideas
 \end{center}
 
 In this network, institution $I_2$ is the epistemic broker: it bridges both funders and both media outlets.
+It receives funding from both $F_1$ and $F_2$ and feeds into both $M_1$ and $M_2$.
+Its betweenness centrality is the highest in the network---removing $I_2$ would disconnect $F_1$ from $M_2$ and $F_2$ from $M_1$.
+
+\begin{remark}[Interpreting the Diagram]
+\label{rem:interpreting-diagram}
+Several doxonomic insights emerge from even this simple network:
+\begin{itemize}[nosep]
+  \item $F_2$ has more total funding (\$6M) but $F_1$'s funding reaches a higher-credibility media outlet ($M_1$) through the more efficient pathway $F_1 \to I_1 \to M_1$.
+  \item $I_2$ is the most structurally powerful institution despite receiving less funding than $I_3$, because of its bridging position.
+  \item If $I_2$ is captured by one funder (say $F_2$ doubles its grant while $F_1$ withdraws), the narrative output of $M_1$ shifts---even though $M_1$ receives no direct funding from $F_2$.
+  This is \emph{indirect influence}: controlling the broker controls the bridge.
+\end{itemize}
+\end{remark}
+
+
+\section{Spectral Analysis of Doxonomic Networks}
+\label{sec:ch15-spectral}
+
+The eigenvalue spectrum of a doxonomic network reveals its structural properties.
+
+\begin{definition}[Narrative Propagation Speed]
+\label{def:propagation-speed}
+\index{propagation speed}
+The \emph{narrative propagation speed} in a network is determined by the spectral radius $\lambda_1$ of the weighted adjacency matrix $\bm{W}$:
+\[
+  \lambda_1 = \max\{|\lambda| : \det(\bm{W} - \lambda \bm{I}) = 0\}
+\]
+Higher $\lambda_1$ means faster propagation: narratives injected at any node reach the entire network more quickly.
+The spectral gap $\lambda_1 - \lambda_2$ (difference between the two largest eigenvalues) measures the mixing rate: a large gap means the network converges to a steady-state narrative distribution quickly, while a small gap means distinct clusters can maintain different narratives for extended periods.
+\end{definition}
+
+\begin{proposition}[Spectral Gap and Fragmentation]
+\label{prop:spectral-fragmentation}
+\index{spectral gap}
+If the spectral gap $\lambda_1 - \lambda_2$ is small (near zero), the network is close to disconnected: it contains clusters that communicate weakly.
+In doxonomic terms, a small spectral gap predicts epistemic fragmentation (Definition~\ref{def:fragmentation})---the network can sustain divergent belief systems in different clusters.
+A large spectral gap predicts narrative convergence: information flows rapidly enough across the network that maintaining divergent narratives is difficult.
+\end{proposition}
+
+\begin{remark}
+The spectral gap provides a structural prediction: systems with small spectral gaps are vulnerable to polarization, while systems with large spectral gaps are vulnerable to common-sense capture.
+Both are doxonomic risks; the question is which one a given society faces.
+Public broadcasting, shared curricula, and cross-community institutions increase the spectral gap (by adding cross-cluster edges), making polarization harder but capture easier.
+This is a structural version of the coherence-fragmentation tradeoff (Chapter~\ref{ch:contradiction-coherence}).
+\end{remark}
+
+
+\section{Temporal Network Dynamics}
+\label{sec:ch15-temporal}
+
+Doxonomic networks are not static.
+They evolve as institutions are founded or dissolved, as funding flows shift, as personnel move, and as new media channels emerge.
+
+\begin{definition}[Network Evolution]
+\label{def:network-evolution}
+\index{network evolution}
+A \emph{temporal doxonomic network} is a sequence $\{G_t\}_{t=0}^{T}$ of networks on a (possibly changing) vertex set $V_t$ with time-varying edges $E_t$ and weights $w_t$.
+Key events include:
+\begin{itemize}[nosep]
+  \item \textbf{Node entry}: a new institution is founded (Heritage Foundation, 1973; Fox News, 1996; Breitbart, 2007).
+  \item \textbf{Node exit}: an institution closes or loses relevance.
+  \item \textbf{Edge rewiring}: funding flows shift (a foundation redirects grants from one think tank to another).
+  \item \textbf{Weight changes}: an existing connection strengthens or weakens (a newspaper increases its reliance on a particular think tank as a source).
+\end{itemize}
+\end{definition}
+
+\begin{example}[Network Evolution: Conservative Infrastructure 1970--2020]
+\label{ex:network-evolution}
+\begin{itemize}[nosep]
+  \item \textbf{1970}: sparse network---a few academic nodes (Chicago, Virginia), the Mont P\`{e}lerin Society, and limited institutional infrastructure.
+  \item \textbf{1980}: new nodes added (Heritage, Cato, AEI expansion, Olin-funded law-and-economics programs), dense funding edges from Olin/Scaife/Bradley/Koch.
+  \item \textbf{1996}: Fox News enters as a high-reach amplifier node, dramatically increasing the spectral radius and connecting the policy cluster to a mass audience.
+  \item \textbf{2007--2015}: digital nodes (Breitbart, Daily Wire, PragerU, Turning Point USA) add a new layer with very high reach but lower credibility, creating the two-tier structure described in Model~\ref{mod:two-tier}.
+  \item \textbf{2020}: the network is far denser, has higher total throughput, but also shows internal fragmentation (establishment conservative cluster vs.\ populist cluster, with weakening cross-cluster edges).
+\end{itemize}
+Tracking this evolution requires longitudinal data: 990 filings over decades, citation analyses across multiple time periods, personnel movement records, and audience-overlap surveys.
+\end{example}
+
+
+\section{Network Resilience and Attack Vulnerability}
+\label{sec:ch15-resilience}
+
+\begin{definition}[Network Resilience]
+\label{def:resilience}
+\index{network resilience}
+A doxonomic network is \emph{resilient} if the removal of a small number of nodes does not significantly reduce the maximum pathway efficiency (Definition~\ref{def:pathway}) or increase epistemic fragmentation.
+\end{definition}
+
+\begin{proposition}[Scale-Free Vulnerability]
+\label{prop:scale-free}
+\index{scale-free network!vulnerability}
+If a doxonomic network is scale-free (a small number of hubs have most connections, as is typical for citation and media networks), it is:
+\begin{itemize}[nosep]
+  \item \textbf{robust} to random node removal (removing random institutions has little effect, because most nodes are peripheral),
+  \item \textbf{vulnerable} to targeted attack on hubs (removing the few most-connected nodes rapidly fragments the network).
+\end{itemize}
+\end{proposition}
+
+This has implications for both counter-doxonomic strategy and doxonomic defense.
+Counter-doxonomic actors should target hubs (high-centrality institutions whose removal would fragment the narrative pipeline).
+Doxonomic actors should diversify their networks to reduce hub dependency.
+
+\begin{example}[Targeted vs.\ Random Disruption]
+\label{ex:disruption}
+Suppose a doxonomic network has 50 institutions, with 3 hubs (a major think tank, a prestige newspaper, a dominant broadcaster) accounting for 60\% of total throughput.
+\begin{itemize}[nosep]
+  \item \textbf{Random removal} of 3 institutions: expected throughput reduction $\sim 6\%$ (most removed nodes are peripheral).
+  \item \textbf{Targeted removal} of the 3 hubs: throughput reduction $\sim 60\%$, plus the network fragments into disconnected components.
+\end{itemize}
+The ten-fold difference in effect illustrates scale-free vulnerability.
+In practice, ``removing'' an institution means discrediting it (credibility attack, Chapter~\ref{ch:epistemic-capital}), cutting its funding, or undermining its gatekeeper position---not literal elimination.
+\end{example}
+
+
+\section{Practical Network Reconstruction}
+\label{sec:ch15-practical}
+
+Constructing a doxonomic network from empirical data is a substantial research task.
+The practical steps are:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Define the boundary}: which institutions, funders, and channels are included? (The boundary choice is an analytical decision that affects all results.)
+  \item \textbf{Identify nodes}: list all relevant actors from funding databases, media directories, and institutional registries.
+  \item \textbf{Identify edges}: for each node pair, check for funding relationships (990 data), citation relationships (content analysis), personnel movement (biographical data), and board interlocks (organizational filings).
+  \item \textbf{Estimate weights}: assign weights based on dollar flows, citation counts, audience share, or a composite measure.
+  \item \textbf{Validate}: check the reconstructed network against known case studies.
+  If a well-documented funding relationship is missing from the network, the reconstruction is incomplete.
+  \item \textbf{Compute metrics}: centrality, modularity, spectral gap, vulnerability indices.
+  \item \textbf{Report uncertainty}: edges may be missing (opacity), weights may be estimated, and the boundary choice affects results.
+  Sensitivity analysis is essential.
+\end{enumerate}
+
 
 \section{Notes and References}
 \label{sec:ch15-notes}
 
-Network analysis draws on \textcite{jackson2008}.
-Community detection via modularity is due to \textcite{newman2006}.
+Network analysis draws on \textcite{jackson2008} for economic and social networks.
+Community detection via modularity is due to \textcite{newman2006}; for a review of community detection methods, see Fortunato (2010).
 Betweenness centrality is from \textcite{freeman1977}.
-For applications to media and political networks, see \textcite{watts2002}.
-Donor networks in U.S.\ politics are mapped in \textcite{mayer2016}.
+Eigenvector centrality and PageRank are related; for the connection, see Langville and Meyer (2006).
+For applications to media and political networks, see \textcite{watts2002} and \textcite{benkler2018}.
+Donor networks in U.S.\ politics are mapped in \textcite{mayer2016} and \textcite{phillipsfein2009}.
+
+Scale-free network vulnerability is analyzed in Albert, Jeong, and Barab\'{a}si (2000).
+Spectral graph theory is covered in Chung (1997).
+Multiplex networks are treated in Kivel\"{a} et al.\ (2014).
+Board interlocks as a form of elite coordination are studied in Mizruchi (1996).
+For temporal network analysis, see Holme and Saram\"{a}ki (2012).
+
 
 \section{Exercises}
 
 \begin{exercise}
-Compute the eigenvector centrality of each node in the example network above.
+Compute the eigenvector centrality of each node in the example network (Section~\ref{sec:ch15-example}).
 Which node has the highest doxonomic centrality?
+Does the centrality ranking change if you use betweenness centrality instead?
 \end{exercise}
 
 \begin{exercise}
-Using citation data from a policy domain of your choice, construct a donor-institution-media network and identify narrative clusters.
+Using citation data from a policy domain of your choice, construct a donor-institution-media network with at least 10 nodes.
+Identify narrative clusters using modularity maximization.
+Who are the epistemic brokers?
 \end{exercise}
 
 \begin{exercise}
-Prove that removing a node with high betweenness centrality from a connected doxonomic network increases the number of connected components.
-Under what conditions is this guaranteed?
+Prove that removing a node $v$ from a connected graph $G$ increases the number of connected components if and only if $v$ is a \emph{cut vertex} (its removal disconnects $G$).
+Is every node with high betweenness centrality a cut vertex?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch15-spectral}
+For the four-sector input-output system in Example~\ref{ex:io-construction}, compute the spectral radius $\lambda_1$ and the spectral gap $\lambda_1 - \lambda_2$.
+Predict whether the system is more vulnerable to fragmentation or to common-sense capture.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch15-temporal}
+Sketch the temporal evolution of a doxonomic network in a domain you know well (e.g., education policy, climate discourse, tech regulation).
+Identify at least three key events that changed the network structure.
+How did each event affect centrality rankings and cluster structure?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch15-resilience}
+For a network with 20 nodes where 3 hubs account for 50\% of throughput, compute:
+(a)~the expected throughput reduction from removing 3 random nodes,
+(b)~the throughput reduction from removing the 3 hubs.
+Propose a ``doxonomic antifragility'' strategy that reduces hub dependency.
+\end{exercise}
+
+\begin{exercise}
+The chapter identifies five network projections (funding, citation, personnel, board interlock, audience overlap).
+For a specific institution of your choice, describe its position in each projection.
+In which projection is it most central?
+In which is it most peripheral?
+What does the difference tell you about its doxonomic role?
+\end{exercise}
+
+\begin{exercise}
+Milton Friedman is described as an epistemic broker connecting academic, media, and political clusters.
+Identify a contemporary equivalent---a person or institution that bridges two or more doxonomic clusters.
+Map their connections.
+What would happen to narrative flow between the clusters if the broker were removed?
 \end{exercise}

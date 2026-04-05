@@ -5,10 +5,38 @@
 
 \noindent
 Every unequal society faces a legitimation problem: why do the many accept the privilege of the few?
-Doxonomics provides a precise framework for studying how inequality is narratively shielded from contestation.
+The question is ancient---Hume noted that the rulers are always outnumbered by the ruled, so government must rest ultimately on opinion---but doxonomics gives it new precision.
+The previous chapters analyzed specific regimes (selfishness, meritocracy, consumerism) that contribute to legitimation.
+This chapter integrates them into a unified framework: the doxonomic theory of inequality legitimation.
+
+The central argument: inequality persists not (primarily) because of coercion but because of narrative.
+The narrative infrastructure that legitimates inequality---the network of institutions, media outlets, educational practices, and cultural forms that make the existing distribution of rewards seem natural, inevitable, or deserved---is itself a product of material investment.
+The wealthy fund the narratives that legitimate their wealth: a feedback loop that doxonomics is uniquely equipped to analyze.
 
 \section{The Legitimation Problem}
 \label{sec:ch24-problem}
+
+\subsection{Why legitimation is necessary}
+
+In any society where the top 1\% holds 30--40\% of the wealth (as in the contemporary US and UK), the distribution could in principle be challenged by majoritarian political action.
+That it is not---that democratic majorities consistently fail to enact redistributive policies commensurate with the level of inequality---requires explanation.
+
+Three explanations are commonly offered:
+\begin{enumerate}
+  \item \textbf{Coercion}: the wealthy use force (police, military, legal system) to suppress redistributive demands.
+  This is occasionally true but insufficient as a general explanation in democracies with contested elections and free speech.
+
+  \item \textbf{Institutional capture}: the political system is structured to block redistribution regardless of majority preferences (gerrymandering, lobbying, campaign finance, filibuster).
+  This is substantially true and well-documented, but it is only part of the story.
+
+  \item \textbf{Narrative legitimation}: the majority \emph{accepts} the existing distribution as fair, natural, or inevitable---or at least does not find it sufficiently objectionable to prioritize redistribution.
+  This is the doxonomic explanation.
+\end{enumerate}
+
+All three mechanisms operate simultaneously.
+The doxonomic contribution is not to deny coercion or institutional capture but to analyze the third mechanism---the one that makes the first two unnecessary for much of the time.
+
+\subsection{The legitimation function}
 
 \begin{definition}[Legitimation Function]
 \label{def:legitimation}
@@ -17,13 +45,24 @@ The \emph{legitimation function} $L: \R_{\geq 0} \times \R_{\geq 0} \to [0,1]$ m
 \[
   L(I, \phi_L) = \frac{\phi_L}{\phi_L + \kappa(I - I_0)^+}
 \]
-where $I_0$ is a baseline inequality level below which legitimation is ``free'' and $\kappa$ is the sensitivity parameter.
-As inequality rises above $I_0$, legitimation requires increasing narrative investment.
+where $I_0$ is a baseline inequality level below which legitimation is ``free'' (inequality is accepted without narrative investment) and $\kappa > 0$ is the sensitivity parameter measuring how effectively visible inequality erodes acceptance.
 \end{definition}
+
+Properties of the legitimation function:
+\begin{itemize}[nosep]
+  \item $L = 1$ when $I \leq I_0$: below the baseline, inequality requires no justification.
+  \item $L$ decreases as $I$ increases for fixed $\phi_L$: rising inequality erodes legitimacy.
+  \item $L$ increases as $\phi_L$ increases for fixed $I$: more narrative investment increases acceptance.
+  \item $\lim_{\phi_L \to \infty} L = 1$: with unlimited narrative investment, any inequality can be legitimated.
+  \item $\lim_{I \to \infty} L = 0$ for fixed $\phi_L$: at extreme inequality, finite investment cannot maintain legitimacy.
+\end{itemize}
+
+\subsection{The escalating cost of legitimation}
 
 \begin{proposition}[Escalating Cost of Legitimation]
 \label{prop:escalation}
-For fixed acceptance level $L^*$, the required investment is
+\index{legitimation cost}
+For a fixed acceptance level $L^*$, the required narrative investment is:
 \[
   \phi_L^* = \frac{L^*}{1 - L^*} \cdot \kappa(I - I_0)
 \]
@@ -31,43 +70,333 @@ which grows linearly in inequality.
 Highly unequal societies must spend proportionally more on narrative maintenance.
 \end{proposition}
 
-\section{Wealth-Virtue Association}
-\label{sec:ch24-wealth-virtue}
+\begin{example}
+\label{ex:legitimation-cost-us}
+Applying the model to the United States, 1970--2020:
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+& 1970 & 1990 & 2010 & 2020 \\
+\midrule
+Top 1\% wealth share ($I$) & 22\% & 30\% & 35\% & 38\% \\
+Think-tank spending (est., \$B) & 0.1 & 0.5 & 0.8 & 1.0 \\
+Meritocratic belief (\%) & 70 & 75 & 72 & 68 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Inequality rose by 73\% (from 22\% to 38\% of wealth held by the top 1\%) while think-tank spending rose tenfold.
+Meritocratic belief initially rose despite growing inequality (the model predicts this: investment can outpace erosion), but began declining after 2010 as inequality outstripped the narrative infrastructure's capacity to legitimate it.
+The 2008 crisis and post-2016 populism may mark the onset of legitimation failure---a point we return to below.
+(Illustrative data; actual estimation requires the methods of Chapters~\ref{ch:doxometric-measurement}--\ref{ch:causal-inference}.)
+\end{example}
+
+\section{The Legitimation Repertoire}
+\label{sec:ch24-repertoire}
+
+The narrative infrastructure of inequality legitimation draws on several interlocking belief systems.
+Each provides a distinct justification for the existing distribution.
+
+\subsection{The wealth-virtue association}
 
 The most efficient legitimating narrative is the association of wealth with virtue: the belief that the rich \emph{deserve} their wealth because they are more talented, hardworking, or morally superior.
-This narrative is the intersection of the meritocratic regime (Chapter~\ref{ch:meritocracy}) and the selfish-anthropology regime (Chapter~\ref{ch:human-nature}): competition is natural, winners earned it, losers deserve their fate.
+This is the intersection of the meritocratic regime (Chapter~\ref{ch:meritocracy}) and the selfishness regime (Chapter~\ref{ch:human-nature}): competition is natural, markets are fair, winners earned their position, losers deserve their fate.
 
-\section{Narrative Shielding}
-\label{sec:ch24-shielding}
+\begin{model}[Wealth-Virtue Feedback]
+\label{mod:wealth-virtue}
+\index{wealth-virtue association}
+The wealth-virtue association creates a feedback loop:
+\begin{enumerate}[nosep]
+  \item Wealthy individuals and corporations fund institutions that promote the wealth-virtue association (think tanks, business schools, media).
+  \item These institutions produce narratives that frame wealth as deserved.
+  \item The public internalizes the association, reducing political demand for redistribution.
+  \item Reduced redistribution preserves the wealth that funds the narrative infrastructure.
+\end{enumerate}
+The loop is self-sustaining as long as the narrative investment is sufficient to maintain legitimation above the threshold $L^*$.
+\end{model}
+
+\subsection{Trickle-down narratives}
+
+The ``trickle-down'' narrative holds that inequality benefits everyone because wealth at the top generates investment, innovation, and employment that eventually reach the bottom.
+The narrative has been a staple of supply-side economics since the 1980s and is actively promoted by business organizations and free-market think tanks.
+
+The empirical evidence is weak: \textcite{piketty2014} documents that periods of high inequality are not associated with faster growth; several studies find the opposite relationship.
+But the narrative persists because it serves a specific doxonomic function: it converts a moral problem (is inequality just?) into a technical claim (does inequality promote growth?) that can be debated endlessly without ever reaching the normative question.
+
+\subsection{Aspirational narratives}
+
+Rather than justifying the existing distribution, aspirational narratives redirect attention to future possibility: ``You too could be rich.''
+Lottery advertising, rags-to-riches media, and ``American Dream'' rhetoric serve this function.
+The doxonomic operation: convert a statistical reality (low intergenerational mobility) into a subjective experience (possibility of upward mobility), making the current distribution feel temporary rather than structural.
+
+\begin{proposition}[Prospect of Upward Mobility]
+\label{prop:poum}
+\index{prospect of upward mobility}
+The ``prospect of upward mobility'' (POUM) hypothesis holds that tolerance of inequality reflects the belief that one's own position may improve.
+Formally, agent $j$ tolerates inequality if:
+\[
+  \E_j[U(Y_j^{\text{future}})] > U(Y_j^{\text{current}} + r_j)
+\]
+where $r_j$ is the redistribution $j$ would receive.
+If $j$ overestimates their probability of upward mobility (because aspirational narratives are more prevalent than accurate mobility data), they rationally oppose redistribution even when it would benefit them in expectation.
+This is the ``temporarily embarrassed millionaire'' effect.
+\end{proposition}
+
+\subsection{Blame narratives}
+
+Blame narratives locate the cause of poverty in the poor themselves: lack of effort, bad decisions, moral failings, cultural deficiency.
+These narratives operationalize the meritocratic regime's third proposition ($p_3$: failure reflects personal deficiency) and direct attention away from structural causes (deindustrialization, discrimination, healthcare costs, housing markets).
 
 \begin{definition}[Narrative Shield]
 \label{def:narrative-shield}
 \index{narrative shield}
 A \emph{narrative shield} is a set of beliefs that deflects attention from structural causes of inequality to individual explanations.
-Formally, a narrative shield maps the proposition ``inequality is structurally produced'' to ``inequality reflects individual differences,'' reducing the perceived need for collective action.
+Formally, a narrative shield is a mapping:
+\[
+  \sigma: \{\text{structural explanations for outcome } O\} \to \{\text{individual explanations for outcome } O\}
+\]
+that replaces ``$O$ is caused by institutional structures $S$'' with ``$O$ is caused by individual characteristics $C$.''
+The shield reduces the perceived need for collective action by framing outcomes as matters of personal responsibility.
 \end{definition}
+
+Common narrative shields:
+\begin{itemize}[nosep]
+  \item ``The poor are lazy'' (shields from: labor market structure, wage stagnation, precarious employment).
+  \item ``If you wanted health insurance, you should have gotten a better job'' (shields from: employer-based insurance system, pre-existing condition exclusions).
+  \item ``College is available to anyone who works hard enough'' (shields from: tuition costs, school quality segregation, information asymmetries).
+  \item ``If immigrants can succeed, why can't you?'' (shields from: selection effects in immigration, survivorship bias in success stories).
+\end{itemize}
+
+\section{The Political Economy of Legitimation}
+\label{sec:ch24-political-economy}
+
+\subsection{Who funds legitimation?}
+
+The legitimation infrastructure is not funded by ``the economy'' in the abstract; it is funded by identifiable actors with identifiable interests.
+
+\begin{example}
+\label{ex:legitimation-funders}
+The institutional infrastructure of inequality legitimation in the US includes:
+\begin{enumerate}[nosep]
+  \item \textbf{Corporate-funded think tanks}: Heritage Foundation (\$85M/year), Cato Institute (\$40M), AEI (\$60M), Manhattan Institute (\$25M), and hundreds of smaller organizations in the Atlas Network.
+  \item \textbf{Family foundations of the ultra-wealthy}: Koch network (\$400M+/election cycle), Scaife foundations, Bradley Foundation, Olin Foundation (now defunct but highly influential in building the intellectual infrastructure).
+  \item \textbf{Industry associations}: US Chamber of Commerce (\$200M+/year in lobbying and communications), National Association of Manufacturers, Business Roundtable.
+  \item \textbf{Corporate PR and communications departments}: Fortune 500 companies collectively spend billions on public affairs, issue advertising, and narrative management.
+\end{enumerate}
+Total estimated annual spending on inequality-legitimating narrative infrastructure: \$1--3 billion in direct think-tank and advocacy spending, plus an unknown (but much larger) amount in corporate communications and media.
+\end{example}
+
+\subsection{Demand-side factors}
+
+Legitimation succeeds not only because it is well-funded but because audiences have psychological incentives to accept it.
+Just-world belief, system justification theory \autocite{jost2004}, and cognitive dissonance reduction all predict that people will be motivated to accept narratives that justify the existing order---especially if they perceive themselves as benefiting from it (or hope to benefit in the future).
+
+\begin{proposition}[System Justification Premium]
+\label{prop:system-justification}
+\index{system justification}
+System justification theory predicts that, holding narrative investment constant, legitimation is higher among:
+\begin{enumerate}[nosep]
+  \item those who perceive themselves as benefiting from the current system,
+  \item those with higher need for cognitive closure (preference for certainty),
+  \item those with lower socioeconomic status (paradoxically, because accepting the system reduces the psychological cost of their position---it is less painful to believe one's poverty is deserved than to believe one is a victim of injustice).
+\end{enumerate}
+The third prediction---that the disadvantaged sometimes embrace legitimating narratives more than the advantaged---is empirically documented and represents a distinctive contribution of system justification theory to doxonomic analysis \autocite{jost2004}.
+\end{proposition}
+
+\section{Legitimation Failure and Crisis}
+\label{sec:ch24-failure}
+
+\subsection{When legitimation breaks down}
+
+The model predicts that legitimation fails when inequality grows faster than narrative investment can compensate.
+Observable signatures of legitimation failure:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Declining trust in institutions}: if the institutions that produce legitimating narratives lose credibility, their output loses effectiveness.
+  \item \textbf{Rise of populism}: populist movements (left and right) are characterized by explicit rejection of elite legitimacy---``the system is rigged.''
+  \item \textbf{Increased protest activity}: strikes, demonstrations, and social movements increase when the population no longer accepts the distribution as legitimate.
+  \item \textbf{Narrative fragmentation}: the unified legitimating narrative fragments into competing frames, reducing the coherence that sustains common-sense capture.
+  \item \textbf{Elite anxiety}: increased spending on private security, gated communities, and ``prepper'' culture among the wealthy signals awareness that legitimation is failing.
+\end{enumerate}
+
+\subsection{The 2008--present legitimation crisis}
+
+\begin{example}
+\label{ex:legitimation-crisis}
+The 2008 financial crisis produced the most visible legitimation failure in Western democracies since the 1930s.
+
+\paragraph{The triggering event.}
+Banks that had been celebrated as innovative were revealed to be reckless.
+Executives who had been compensated as geniuses were exposed as incompetent or fraudulent.
+The meritocratic narrative---that financial success reflects talent---was visibly falsified.
+
+\paragraph{The legitimation response.}
+The policy response (bailouts without prosecution, austerity for the public, continued bonuses for executives) further eroded legitimacy by making the double standard visible.
+Think tanks and business groups invested heavily in counter-narratives: ``the crisis was caused by government regulation'' (deflecting blame from the financial sector), ``we need growth, not redistribution'' (the trickle-down narrative), ``too much regulation will prevent recovery'' (the deregulation narrative).
+
+\paragraph{Partial legitimation recovery.}
+By 2015, meritocratic belief had partially recovered in survey data---the narrative infrastructure proved resilient.
+But new cracks had appeared: the Occupy movement (2011), the Sanders and Trump campaigns (2016), and the ``rigged system'' discourse all reflected persistent legitimation failure among significant segments of the population.
+
+\paragraph{The COVID-19 shock.}
+The pandemic produced a second legitimation shock: ``essential workers'' earning minimum wage while billionaire wealth increased by trillions made the wealth-virtue association difficult to sustain.
+Whether this produces lasting legitimation failure or another partial recovery depends on the relative investment in legitimating vs.\ delegitimating narratives in the coming years.
+\end{example}
+
+\subsection{A model of legitimation dynamics}
+
+\begin{model}[Legitimation Dynamics]
+\label{mod:legitimation-dynamics}
+\index{legitimation dynamics}
+\begin{align}
+  \frac{dL}{dt} &= \alpha \phi_L (1 - L) - \beta (I - I_0)^+ L - \delta_{\text{crisis}} \cdot \mathbf{1}[\text{crisis at } t] \label{eq:legit-dynamics} \\
+  \frac{dI}{dt} &= \gamma_I \cdot r(L) - \mu \label{eq:ineq-dynamics}
+\end{align}
+where:
+\begin{itemize}[nosep]
+  \item $\alpha \phi_L (1-L)$: narrative investment increases legitimation (with diminishing returns),
+  \item $\beta(I - I_0)^+ L$: excess inequality erodes legitimation,
+  \item $\delta_{\text{crisis}}$: a crisis event produces a discrete legitimation shock,
+  \item $r(L)$: the rate of return to capital increases with legitimation (high $L$ blocks redistribution and regulation),
+  \item $\mu$: a natural compression force (growth, diffusion, demographic change).
+\end{itemize}
+The system can exhibit:
+\begin{enumerate}[nosep]
+  \item \emph{Stable legitimation}: $L$ and $I$ reach a self-sustaining equilibrium.
+  \item \emph{Vicious spiral}: rising $I$ erodes $L$, but reduced $L$ fails to produce redistribution because institutional capture blocks the political channel, so $I$ continues to rise, further eroding $L$.
+  \item \emph{Crisis-triggered regime change}: a legitimation shock ($\delta_{\text{crisis}}$ large enough) pushes $L$ below a threshold, triggering redistributive political action that reduces $I$.
+\end{enumerate}
+\end{model}
+
+\section{Inequality, Race, and Compound Legitimation}
+\label{sec:ch24-race}
+
+Economic inequality intersects with racial and gender hierarchies (Chapter~\ref{ch:race-coloniality-gender}), creating \emph{compound legitimation}: each hierarchy provides narrative resources for legitimating the others.
+
+\begin{proposition}[Compound Legitimation]
+\label{prop:compound}
+\index{compound legitimation}
+When economic inequality correlates with racial hierarchy, each provides narrative cover for the other:
+\begin{itemize}[nosep]
+  \item Economic inequality is legitimated by racial narratives: ``Those people are poor because of their culture/behavior.''
+  \item Racial hierarchy is legitimated by economic narratives: ``If racism were real, how do you explain successful minorities?''
+\end{itemize}
+The compound effect means that neither inequality nor racial hierarchy can be fully delegitimated without also challenging the other.
+Intersectional doxonomic analysis is therefore not a supplement to economic analysis but a requirement for it.
+\end{proposition}
+
+Historically, racial division has been a powerful tool for blocking class-based redistribution.
+\textcite{du-bois2007} identified the ``psychological wage of whiteness''---the psychic benefit that poor whites derive from racial superiority, which compensates for economic deprivation and reduces demand for redistribution.
+This is a doxonomic mechanism: the racial narrative substitutes for material benefit, reducing the political threat that economic inequality would otherwise face.
+
+\section{Comparative Legitimation Regimes}
+\label{sec:ch24-comparative}
+
+Different societies legitimate their inequality structures through different narrative repertoires:
+
+\begin{center}
+\begin{tabular}{p{2.5cm}p{3cm}p{3.5cm}p{3cm}}
+\toprule
+Society & Inequality level & Primary legitimation narrative & Counter-narrative strength \\
+\midrule
+United States & Very high (Gini $\approx 0.39$) & Meritocracy, aspiration & Moderate (populist, progressive) \\[4pt]
+United Kingdom & High (Gini $\approx 0.35$) & Tradition, meritocracy & Moderate (labor movement) \\[4pt]
+Germany & Moderate (Gini $\approx 0.31$) & Social market economy & Strong (unions, SPD tradition) \\[4pt]
+Sweden & Low (Gini $\approx 0.27$) & Social solidarity & Very strong (universal welfare) \\[4pt]
+South Africa & Very high (Gini $\approx 0.63$) & Post-apartheid aspiration & Strong but contested \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The comparison supports the model: higher inequality requires stronger legitimating narratives, and the specific narrative used depends on the available institutional infrastructure.
+The US and Sweden are polar cases: the US has high inequality and a strong meritocratic infrastructure; Sweden has low inequality and a strong solidarity infrastructure.
+The causal direction runs both ways: institutions produce narratives that sustain inequality levels, and inequality levels demand institutions that produce legitimating narratives.
 
 \section{Notes and References}
 \label{sec:ch24-notes}
 
 On inequality and its justification, see \textcite{piketty2014} and \textcite{stiglitz2012}.
+The legitimation function draws on \textcite{lukes2005} on the third dimension of power and Gramsci's theory of hegemony.
+System justification theory is developed in \textcite{jost2004}.
 The wealth-virtue association is analyzed in \textcite{sandel2012}.
-Narrative shielding connects to \textcite{lukes2005} on the third dimension of power.
-For the political economy of inequality, see \textcite{acemoglu2012}.
+
+On the prospect of upward mobility, see Benabou and Ok (2001).
+On the racial dimensions of inequality legitimation, see \textcite{du-bois2007} on the wages of whiteness and \textcite{hochschild2016} on the American Dream's racial contours.
+For the political economy of inequality, see \textcite{acemoglu2012} and Hacker and Pierson (2010).
+
+The 2008 legitimation crisis is analyzed in Streeck (2016).
+On populism as a symptom of legitimation failure, see M\"{u}ller (2016).
+For the Koch network's institutional infrastructure, see \textcite{mayer2016}.
 
 \section{Exercises}
 
 \begin{exercise}
-Using the legitimation function, estimate $\kappa$ for the United States by comparing inequality growth and think-tank spending over the past 40 years.
+Using the legitimation function (Definition~\ref{def:legitimation}), estimate $\kappa$ for the United States by comparing inequality growth and think-tank spending over 1980--2020.
+\begin{enumerate}[nosep]
+  \item Gather data on the top 1\% wealth share (as a proxy for $I$) and total think-tank spending (as a proxy for $\phi_L$).
+  \item Estimate $I_0$ (the inequality level at which legitimation becomes necessary) from the historical data.
+  \item Calibrate $\kappa$ so that the model reproduces observed meritocratic belief levels.
+  \item Does the model predict the post-2008 decline in meritocratic belief?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Identify three narrative shields currently active in public discourse about wealth inequality.
-For each, trace the belief production chain.
+Identify three narrative shields (Definition~\ref{def:narrative-shield}) currently active in public discourse about wealth inequality.
+For each:
+\begin{enumerate}[nosep]
+  \item State the structural explanation being shielded.
+  \item State the individual explanation being substituted.
+  \item Trace the belief production chain: who produces this shield, through what institutions, with what funding?
+  \item How would you empirically test whether the shield is effective (i.e., whether exposure to the shield narrative reduces support for structural explanations)?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Model a society where legitimation fails ($L < L^*$).
-What observable consequences follow?
-Connect to Chapter~\ref{ch:how-belief-regimes-fracture}.
+\begin{enumerate}[nosep]
+  \item What observable consequences follow from legitimation failure?
+  \item Using Model~\ref{mod:legitimation-dynamics}, identify the parameter conditions under which a crisis event triggers lasting legitimation failure vs.\ temporary disruption followed by recovery.
+  \item Connect to Chapter~\ref{ch:how-belief-regimes-fracture}: how does legitimation failure relate to belief regime fracture?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply the compound legitimation framework (Proposition~\ref{prop:compound}) to a specific historical case.
+\begin{enumerate}[nosep]
+  \item Choose a society where economic and racial inequality are correlated.
+  \item Show how economic narratives legitimate racial hierarchy and vice versa.
+  \item Identify a historical moment when the compound was challenged (e.g., a cross-racial labor movement) and explain why it succeeded or failed.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Construct the comparative legitimation table (Section~\ref{sec:ch24-comparative}) using actual data.
+\begin{enumerate}[nosep]
+  \item Find Gini coefficients and top-income shares for at least four countries.
+  \item Find survey data on meritocratic or just-world belief (World Values Survey, ISSP).
+  \item Map the legitimation infrastructure in each country (think tanks, media, policy design).
+  \item Does the model's prediction (higher inequality $\to$ more legitimation investment) hold cross-nationally?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Analyze the POUM hypothesis (Proposition~\ref{prop:poum}) using mobility data.
+\begin{enumerate}[nosep]
+  \item Find actual intergenerational mobility rates for the US (e.g., Chetty et al.).
+  \item Find survey data on \emph{perceived} mobility (what people think their chances of upward mobility are).
+  \item Compute the ``mobility perception gap'': the difference between perceived and actual mobility.
+  \item Estimate the doxonomic investment needed to maintain this gap (i.e., to sustain the belief in mobility despite contrary evidence).
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the legitimation dynamics model (Model~\ref{mod:legitimation-dynamics}):
+\begin{enumerate}[nosep]
+  \item Set $I_0 = 20$, $I(0) = 25$, $L(0) = 0.7$, $\alpha = 0.1$, $\phi_L = 3$, $\beta = 0.02$, $\gamma_I = 0.5$, $\mu = 0.3$.
+  \item Simulate 200 time steps with no crisis ($\delta_{\text{crisis}} = 0$). Plot $L(t)$ and $I(t)$.
+  \item At $t = 100$, introduce a crisis ($\delta_{\text{crisis}} = 0.2$). How does the system respond?
+  \item Experiment with different $\phi_L$ values. What is the minimum narrative investment needed to prevent legitimation collapse after the crisis?
+  \item Compare scenarios where the crisis triggers redistributive policy ($I$ decreases) vs.\ where institutional capture blocks redistribution ($I$ continues rising despite low $L$).
+\end{enumerate}
 \end{exercise}

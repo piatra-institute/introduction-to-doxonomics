@@ -1,0 +1,33 @@
+% Full-black cover page matching Piatra . Institute aesthetic
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  % Black background filling entire page
+  \fill[black] (current page.south west) rectangle (current page.north east);
+
+  % Piatra . Institute name at top
+  \node[white, font=\large\scshape] at ([yshift=-4cm]current page.north) {%
+    Piatra {\color{doxolime}\,.}\, Institute%
+  };
+
+  % Main title
+  \node[white, font=\fontsize{36}{42}\selectfont\bfseries, text width=12cm, align=center]
+    at ([yshift=2cm]current page.center) {%
+    Introduction to\\[6pt]Doxonomics%
+  };
+
+  % Subtitle
+  \node[doxolime, font=\Large\itshape, text width=12cm, align=center]
+    at ([yshift=-1.5cm]current page.center) {%
+    Toward a Science of\\[2pt]How Power Shapes Belief%
+  };
+
+  % Decorative line
+  \draw[doxolime, line width=0.8pt] ([yshift=-3.5cm, xshift=-4cm]current page.center)
+    -- ([yshift=-3.5cm, xshift=4cm]current page.center);
+
+  % Year at bottom
+  \node[white, font=\large] at ([yshift=2.5cm]current page.south) {%
+    \the\year%
+  };
+\end{tikzpicture}
+\clearpage

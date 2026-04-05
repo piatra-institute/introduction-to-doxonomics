@@ -5,88 +5,580 @@
 
 \noindent
 Observational methods identify correlations; experiments identify causes.
-This chapter develops experimental designs for testing doxonomic hypotheses in the laboratory and the field.
+The causal inference methods of Chapter~\ref{ch:causal-inference} work backward from observational data; experimental methods work forward from controlled intervention.
+This chapter develops experimental designs for testing doxonomic hypotheses in the laboratory, the survey, and the field.
+
+The fundamental doxonomic experiment asks: does exposure to a specific narrative, produced by a specific institution, \emph{cause} a measurable change in belief or behavior?
+The question sounds simple.
+In practice, it implicates every difficulty in social science experimentation---demand effects, ecological validity, ethical constraints, generalizability---plus several difficulties distinctive to the doxonomic setting, where ``treatments'' are complex discursive objects and ``outcomes'' are partially hidden mental states.
 
 \section{Cooperation Games as Belief Measurement}
 \label{sec:ch19-games}
 
+\subsection{The behavioral proxy strategy}
+
 \begin{definition}[Doxonomic Game]
 \label{def:doxonomic-game}
 \index{doxonomic game}
-A \emph{doxonomic game} is an experimental economic game (public goods, dictator, trust, ultimatum) administered after exposure to a doxonomic treatment (narrative about human nature, institutional framing, etc.).
-The outcome variable is the degree of cooperative or self-interested behavior, interpreted as a \emph{behavioral proxy} for internalized belief.
+A \emph{doxonomic game} is an experimental economic game (public goods, dictator, trust, ultimatum) administered after exposure to a doxonomic treatment (narrative about human nature, institutional framing, economic pedagogy, etc.).
+The outcome variable is the degree of cooperative or self-interested behavior, interpreted as a \emph{behavioral proxy} for internalized belief about human nature.
 \end{definition}
 
-\textcite{fischbacher2001} found that most people are conditional cooperators---not the selfish maximizers predicted by standard economic models.
-\textcite{henrich2001} showed this holds cross-culturally.
-The doxonomic question is: does exposure to selfishness narratives \emph{reduce} cooperation?
+The logic: if doxonomic theory is correct that narratives shape beliefs and beliefs shape behavior, then experimentally manipulating narrative exposure should produce measurable behavioral shifts in the direction predicted by the narrative.
+The behavioral proxy strategy avoids the self-report problems discussed in Chapter~\ref{ch:doxometric-measurement}---subjects reveal their beliefs through action rather than declaration.
+
+\subsection{Baseline findings}
+
+The behavioral economics literature provides a crucial baseline.
+\textcite{fischbacher2001} found that roughly 50\% of people are conditional cooperators (cooperate when they expect others to cooperate), 30\% are free riders, and 20\% display other patterns.
+\textcite{henrich2001} showed that cooperation norms vary across cultures but that pure self-interest is nowhere the modal behavior.
+
+These baselines matter for doxonomics because they establish what behavior looks like \emph{before} doxonomic intervention.
+If a narrative treatment shifts the cooperation rate from 50\% to 35\%, we can estimate that the narrative converts roughly 15\% of the population from cooperative to self-interested behavior---a quantifiable doxonomic effect.
+
+\subsection{Game selection}
+
+Different games measure different aspects of belief:
+
+\begin{center}
+\begin{tabular}{p{3cm}p{4.5cm}p{4.5cm}}
+\toprule
+Game & What it measures & Doxonomic relevance \\
+\midrule
+Public goods & Willingness to contribute to collective benefit & Tests whether narratives about ``free-riding human nature'' reduce contributions \\[4pt]
+Trust game & Willingness to make oneself vulnerable to another's choices & Tests whether institutional-distrust narratives reduce social trust \\[4pt]
+Dictator game & Unilateral generosity without strategic incentive & Tests whether ``rational self-interest'' narratives reduce altruism \\[4pt]
+Ultimatum game & Fairness norms and willingness to punish unfairness & Tests whether ``efficiency'' frames weaken fairness considerations \\[4pt]
+Common-pool resource & Restraint in extracting from shared resources & Tests whether ``tragedy of the commons'' narratives become self-fulfilling \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The economics education effect}
+
+A well-documented finding provides natural evidence for doxonomic games: economics students behave more self-interestedly than students in other disciplines.
+\textcite{frank1993} found that economics majors defected more in prisoner's dilemma games and contributed less in public goods games.
+
+The causal question is contested: does economics education \emph{cause} selfishness (the indoctrination hypothesis), or do selfish people \emph{select into} economics (the selection hypothesis)?
+Longitudinal designs that track students before and after economics courses suggest both mechanisms operate: there is a selection effect, but exposure to the rational-actor model also produces a treatment effect \autocite{bauman1996}.
+
+\begin{example}
+\label{ex:econ-education}
+A pre-post design: measure cooperation in a public goods game at the beginning of the semester, then again after completing an introductory economics course.
+The within-subject treatment effect is $\hat{\tau}_{\text{within}} = \bar{Y}_{\text{post}} - \bar{Y}_{\text{pre}}$.
+Compare this to a control group taking introductory psychology over the same period.
+The doxonomic effect of economics pedagogy is the DiD:
+\[
+  \hat{\tau}_{\text{DiD}} = (\bar{Y}^{\text{econ}}_{\text{post}} - \bar{Y}^{\text{econ}}_{\text{pre}}) - (\bar{Y}^{\text{psych}}_{\text{post}} - \bar{Y}^{\text{psych}}_{\text{pre}})
+\]
+If $\hat{\tau}_{\text{DiD}} < 0$, economics education has a net doxonomic effect of reducing cooperation beyond what would occur from maturation or other common factors.
+\end{example}
 
 \section{Priming and Framing Experiments}
 \label{sec:ch19-priming}
 
-\begin{model}[Narrative Priming]
+\subsection{Basic design}
+
+\begin{model}[Narrative Priming Experiment]
 \label{mod:priming}
 \index{priming experiment}
 Randomly assign subjects to:
 \begin{itemize}[nosep]
-  \item \textbf{Treatment}: read a text asserting that human nature is fundamentally self-interested,
-  \item \textbf{Control}: read a neutral text or one asserting cooperative human nature.
+  \item \textbf{Treatment A} (selfishness narrative): read a text asserting that human nature is fundamentally self-interested (drawn from economics textbooks, evolutionary psychology popularizations, or Ayn Rand).
+  \item \textbf{Treatment B} (cooperation narrative): read a text asserting that human nature is fundamentally cooperative (drawn from mutual-aid literature, Kropotkin, developmental psychology).
+  \item \textbf{Control}: read a text of equal length on an unrelated topic (e.g., geography).
 \end{itemize}
-Then measure behavior in a public goods game.
-The treatment effect $\hat{\tau} = \bar{Y}_{\text{treat}} - \bar{Y}_{\text{control}}$ estimates the causal effect of a single narrative exposure on cooperative behavior.
+Then measure behavior in a public goods game or trust game.
+The treatment effects are:
+\begin{align}
+  \hat{\tau}_A &= \bar{Y}_A - \bar{Y}_{\text{control}} \quad \text{(selfishness narrative effect)} \\
+  \hat{\tau}_B &= \bar{Y}_B - \bar{Y}_{\text{control}} \quad \text{(cooperation narrative effect)} \\
+  \hat{\tau}_{AB} &= \bar{Y}_A - \bar{Y}_B \quad \text{(frame contrast effect)}
+\end{align}
 \end{model}
 
-\section{Norm Perception Studies}
+\subsection{Dose-response designs}
+
+A single brief exposure is a weak doxonomic treatment.
+Real doxonomic effects accumulate through repeated exposure over extended periods.
+Dose-response designs vary the intensity of exposure:
+
+\begin{model}[Narrative Dose-Response]
+\label{mod:dose-response}
+\index{dose-response}
+Assign subjects to $k$ treatment levels $D \in \{0, 1, 2, \ldots, k\}$ representing the number of narrative exposures (e.g., 0, 1, 3, 7, and 14 articles read over two weeks).
+The dose-response function is:
+\[
+  Y(D) = \alpha + f(D) + \varepsilon
+\]
+where $f(\cdot)$ is estimated nonparametrically (e.g., by including indicators for each dose level) or parametrically (e.g., $f(D) = \beta \log(D + 1)$ for a concave dose-response).
+
+Key questions:
+\begin{enumerate}[nosep]
+  \item Is there a \emph{threshold}: a minimum dose below which no effect is detectable?
+  \item Is the response \emph{concave} (diminishing marginal returns to each additional exposure) or \emph{convex} (accelerating effects, consistent with cascade models)?
+  \item Is there a \emph{saturation point} beyond which additional exposure has no further effect?
+\end{enumerate}
+\end{model}
+
+\subsection{Source credibility manipulation}
+
+The same narrative content may have different effects depending on the perceived credibility and institutional origin of the source.
+
+\begin{model}[Source Attribution Experiment]
+\label{mod:source-attribution}
+\index{source credibility}
+Present identical narrative content to all subjects but vary the attributed source:
+\begin{itemize}[nosep]
+  \item attributed to a prestigious university,
+  \item attributed to a known think tank,
+  \item attributed to a corporate-funded research institute,
+  \item attributed to an anonymous blog post.
+\end{itemize}
+The treatment effect difference across conditions estimates the \emph{credibility premium}: how much does institutional prestige amplify (or attenuate) narrative effectiveness?
+\end{model}
+
+This design tests the epistemic capital model from Chapter~\ref{ch:epistemic-capital}: institutions with higher credibility should produce larger treatment effects from the same content, and revealing the funding source of a high-credibility institution should reduce its effect (a credibility destruction experiment).
+
+\subsection{Persistence and decay}
+
+A critical doxonomic question is how long experimental effects last.
+A priming effect that decays within hours has different policy implications than one that persists for weeks or months.
+
+\begin{model}[Persistence Design]
+\label{mod:persistence}
+\index{persistence}
+After narrative exposure at time $t_0$, measure the outcome at multiple follow-up times $t_1, t_2, \ldots, t_m$:
+\[
+  \hat{\tau}(t_s) = \bar{Y}_{\text{treat}}(t_s) - \bar{Y}_{\text{control}}(t_s), \quad s = 1, \ldots, m.
+\]
+The decay function $\hat{\tau}(t)$ characterizes how quickly the effect fades.
+Doxonomic theory predicts that single exposures produce rapidly decaying effects, but repeated exposures (as in the dose-response design) produce effects that persist longer---because repetition transitions the belief from working memory to long-term schema (cf.\ the internalization model in Chapter~\ref{ch:belief-production-chain}).
+\end{model}
+
+\begin{example}
+\label{ex:persistence}
+A hypothetical persistence study:
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+& Immediate & 1 day & 1 week & 1 month & 3 months \\
+\midrule
+Single exposure & $-4.2^{**}$ & $-2.8^{*}$ & $-1.1$ & $-0.3$ & $+0.1$ \\
+Seven exposures & $-6.1^{***}$ & $-5.4^{***}$ & $-4.8^{**}$ & $-3.2^{*}$ & $-2.1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Effects on public goods contributions (percentage point change from control).
+Stars denote significance: $^{*}p < 0.05$, $^{**}p < 0.01$, $^{***}p < 0.001$.
+Single exposure decays to insignificance within a week; seven exposures persist for at least a month, consistent with the schema-internalization model.
+(Illustrative data.)
+\end{example}
+
+\section{Norm Perception Experiments}
 \label{sec:ch19-norms}
+
+\subsection{The norm channel}
 
 \begin{definition}[Perceived Social Norm]
 \label{def:perceived-norm}
 \index{perceived norm}
-The \emph{perceived social norm} for behavior $x$ is agent $j$'s belief about the population's behavior: $\hat{\mu}_j(x)$.
-Doxonomic systems can shift behavior by shifting norm perceptions---making people think others are more selfish than they actually are.
+The \emph{perceived social norm} for behavior $x$ is agent $j$'s belief about the population's behavior: $\hat{\mu}_j(x) = \E_j[\bar{x}]$.
+Doxonomic systems can shift behavior by shifting norm perceptions---making people think others are more selfish (or more cooperative) than they actually are.
 \end{definition}
+
+This channel is distinct from direct belief change.
+A subject may not change their own moral convictions but still change their behavior because they believe the social environment has changed.
+If I believe everyone else is defecting, conditional cooperation logic says I should defect too---not because I've become selfish, but because cooperation without reciprocity is exploitation.
 
 \begin{proposition}[Norm Misperception Effect]
 \label{prop:norm-misperception}
+\index{norm misperception}
 If agents are conditional cooperators (cooperate when they believe others cooperate), then a doxonomic intervention that increases $\hat{\mu}_j(\text{selfish})$ without changing actual behavior will reduce cooperation in subsequent interactions.
-The belief becomes self-fulfilling.
+Formally, let $c_j = g(\hat{\mu}_j)$ be $j$'s cooperation level as a function of perceived norms, with $g' > 0$.
+A doxonomic shift $\hat{\mu}_j \to \hat{\mu}_j + \delta$ (where $\delta$ increases perceived selfishness) reduces cooperation by $\Delta c_j \approx g'(\hat{\mu}_j) \cdot \delta$.
+If agents observe each other's behavior, the reduced cooperation confirms the misperception, creating a \emph{self-fulfilling belief}:
+\[
+  \hat{\mu} \uparrow \;\Rightarrow\; c \downarrow \;\Rightarrow\; \text{observed selfishness} \uparrow \;\Rightarrow\; \hat{\mu} \uparrow \;\Rightarrow\; \cdots
+\]
+The system can tip from a cooperative equilibrium to a defection equilibrium without any change in underlying preferences.
 \end{proposition}
 
-\section{Ethical Limits}
-\label{sec:ch19-ethics}
+\subsection{Measuring the norm channel}
 
-Experimental doxonomics faces distinctive ethical constraints:
+To isolate the norm channel from direct belief change, we need designs that manipulate norm perceptions independently of personal beliefs.
+
+\begin{model}[Norm Information Experiment]
+\label{mod:norm-info}
+\index{norm information experiment}
+\begin{enumerate}[nosep]
+  \item Measure subjects' personal beliefs about human nature (survey).
+  \item Randomly provide accurate or distorted information about others' behavior:
+  \begin{itemize}[nosep]
+    \item \textbf{Accurate}: ``In previous sessions, 65\% of participants cooperated.''
+    \item \textbf{Pessimistic distortion}: ``In previous sessions, only 25\% cooperated.''
+    \item \textbf{Optimistic distortion}: ``In previous sessions, 90\% cooperated.''
+  \end{itemize}
+  \item Measure behavior in a public goods game.
+  \item Re-measure personal beliefs (post-test).
+\end{enumerate}
+If behavior changes in step 3 but personal beliefs do not change in step 4, the effect operates through the norm channel.
+If both change, the norm information also updates personal beliefs (a stronger doxonomic effect).
+\end{model}
+
+\begin{example}
+\label{ex:norm-gap}
+Suppose a norm perception study finds that 78\% of people believe ``most people are selfish,'' but behavioral games show only 30\% defect.
+The \emph{norm misperception gap} is $0.78 - 0.30 = 0.48$: perceived selfishness exceeds actual selfishness by 48 percentage points.
+This gap represents the doxonomic ``opportunity''---the space in which narratives about human selfishness have shifted perceptions beyond reality.
+
+The doxonomic prediction: closing the gap (by providing accurate norm information) should increase cooperation.
+Several studies have found exactly this effect: providing accurate information about others' pro-social behavior increases cooperation, recycling, energy conservation, and charitable giving \autocite{cialdini2006}.
+\end{example}
+
+\section{Field Experiments}
+\label{sec:ch19-field}
+
+\subsection{Why laboratory results may not generalize}
+
+Laboratory doxonomic experiments face threats to \emph{ecological validity}:
 \begin{itemize}[nosep]
-  \item exposing subjects to false narratives about human nature may have lasting effects,
-  \item deception about the social environment may erode trust,
-  \item experiments that increase selfishness ``work'' by making people worse off.
+  \item subjects know they are in an experiment (demand effects),
+  \item exposure is brief and isolated from the media environment,
+  \item the stake sizes in games are small relative to real-world decisions,
+  \item the subject pool (often university students) is not representative.
 \end{itemize}
 
-These constraints limit the scope of laboratory doxonomics but do not eliminate it.
-Natural experiments and field studies with minimal deception remain viable.
+Field experiments address these threats by embedding doxonomic treatments in real-world settings.
+
+\subsection{Media field experiments}
+
+\begin{model}[Randomized Media Exposure]
+\label{mod:media-field}
+\index{media field experiment}
+Recruit a panel of participants.
+Randomly assign media diet modifications:
+\begin{itemize}[nosep]
+  \item \textbf{Treatment}: provide free subscription to a newspaper with known editorial stance (or pay subjects to read/watch specified media).
+  \item \textbf{Control}: no media modification (or subscription to a neutral outlet).
+\end{itemize}
+Measure beliefs and behaviors at baseline, during treatment, and at follow-up intervals.
+
+Design considerations:
+\begin{enumerate}[nosep]
+  \item \emph{Compliance}: subjects may not actually consume the assigned media. Intent-to-treat (ITT) and local average treatment effect (LATE) analyses are both needed.
+  \item \emph{Contamination}: subjects receive media from many sources. The treatment adds to, rather than replaces, their existing media diet.
+  \item \emph{Duration}: meaningful doxonomic effects may require months of exposure, making field experiments expensive.
+\end{enumerate}
+\end{model}
+
+\begin{example}
+\label{ex:media-field}
+\textcite{dellavigna2007} used cable channel positioning as a natural experiment for Fox News exposure.
+A randomized field experiment could improve on this:
+\begin{itemize}[nosep]
+  \item Recruit 2,000 participants in media markets without Fox News.
+  \item Randomly give 1,000 free cable packages that include Fox News.
+  \item Survey beliefs about economic policy, immigration, and government trust at baseline, 3 months, 6 months, and 12 months.
+  \item Measure behavioral outcomes: voting behavior, charitable giving patterns, community participation.
+\end{itemize}
+The ITT estimate captures the effect of \emph{offering} the channel; the LATE (instrumenting actual viewership with random assignment) captures the effect of \emph{watching} it.
+\end{example}
+
+\subsection{Educational field experiments}
+
+\begin{model}[Curriculum Experiment]
+\label{mod:curriculum}
+\index{curriculum experiment}
+Randomly assign classrooms or schools to different pedagogical approaches for the same content area:
+\begin{itemize}[nosep]
+  \item \textbf{Treatment A}: economics course using standard textbook (emphasizing rational self-interest, efficiency, market equilibrium).
+  \item \textbf{Treatment B}: economics course using behavioral/institutional textbook (emphasizing bounded rationality, cooperation, market failures).
+  \item \textbf{Control}: no economics course (alternative elective).
+\end{itemize}
+Outcome measures: beliefs about human nature, economic beliefs, cooperative behavior in games, and real-world behavioral indicators (volunteering, political participation).
+Follow-up at end of course, 1 year later, and (ideally) 5 years later.
+\end{model}
+
+This design directly tests the doxonomic claim that educational institutions are sites of belief production.
+The randomization overcomes the selection problem that plagues observational studies of economics education.
+
+\subsection{Information correction experiments}
+
+\begin{model}[Doxonomic Correction Experiment]
+\label{mod:correction}
+\index{correction experiment}
+Test whether providing counter-narratives or factual corrections can undo doxonomic effects:
+\begin{enumerate}[nosep]
+  \item Establish baseline beliefs.
+  \item Expose all subjects to a doxonomic narrative (e.g., ``most economists agree that minimum wages destroy jobs'').
+  \item Randomly assign correction:
+  \begin{itemize}[nosep]
+    \item \textbf{No correction} (control),
+    \item \textbf{Factual correction} (``the evidence on minimum wages and employment is mixed''),
+    \item \textbf{Source disclosure} (``this claim was funded by the National Restaurant Association''),
+    \item \textbf{Both} correction and source disclosure.
+  \end{itemize}
+  \item Measure beliefs and behavioral intentions.
+\end{enumerate}
+This design estimates the ``de-doxonomification'' effect: how much belief recovery is possible after narrative exposure?
+\end{model}
+
+A key finding from the misinformation literature is that corrections often fail, especially when the original misinformation is congruent with prior beliefs \autocite{nyhan2010}.
+The \emph{backfire effect}---corrections strengthening the original misbelief---has been documented in some (though not all) settings.
+If doxonomic narratives are similarly resistant to correction, this has profound implications for counter-doxonomic policy.
+
+\section{Survey Experiments}
+\label{sec:ch19-survey}
+
+\subsection{Conjoint designs for doxonomic attributes}
+
+Conjoint experiments present respondents with profiles that vary multiple attributes simultaneously, allowing estimation of the causal effect of each attribute on choices or evaluations.
+
+\begin{model}[Doxonomic Conjoint]
+\label{mod:conjoint}
+\index{conjoint experiment}
+Present respondents with pairs of policy proposals that vary on:
+\begin{itemize}[nosep]
+  \item policy content (identical across conditions),
+  \item source institution (think tank, university, government agency),
+  \item funding disclosure (corporate-funded, foundation-funded, government-funded, undisclosed),
+  \item endorsement (endorsed by economist, endorsed by community leader, no endorsement).
+\end{itemize}
+Ask respondents to choose which proposal they prefer.
+The \emph{average marginal component effect} (AMCE) for each attribute estimates how much that attribute affects preference, holding all others constant.
+\end{model}
+
+This design estimates the ``credibility premium'' of institutional source and the ``credibility penalty'' of funding disclosure---directly testing the epistemic capital model.
+
+\subsection{List experiments for sensitive beliefs}
+
+Some doxonomically relevant beliefs are socially sensitive---respondents may not truthfully report racist beliefs, extreme distrust of institutions, or conspiracy theories.
+List experiments (the item count technique) allow estimation of prevalence without requiring individual admission:
+
+\begin{model}[List Experiment for Sensitive Beliefs]
+\label{mod:list-experiment}
+\index{list experiment}
+Present respondents with a list of $k$ items and ask how many (not which) they agree with.
+\begin{itemize}[nosep]
+  \item \textbf{Control}: $k$ non-sensitive items.
+  \item \textbf{Treatment}: same $k$ items plus one sensitive item.
+\end{itemize}
+The difference in means estimates the population prevalence of the sensitive belief:
+\[
+  \hat{\pi} = \bar{Y}_{\text{treat}} - \bar{Y}_{\text{control}}.
+\]
+This can be combined with doxonomic treatments (e.g., preceding the list experiment with narrative exposure) to estimate the effect of narrative on sensitive beliefs without direct questioning.
+\end{model}
+
+\section{Online and Platform Experiments}
+\label{sec:ch19-online}
+
+\subsection{Advantages and limitations}
+
+Online platforms have become a major site for doxonomic experiments due to:
+\begin{itemize}[nosep]
+  \item large, diverse subject pools (Amazon Mechanical Turk, Prolific, Lucid),
+  \item rapid iteration and large sample sizes,
+  \item natural embedding in digital media environments,
+  \item ability to simulate realistic media exposure.
+\end{itemize}
+
+Limitations include: lower attention and engagement than laboratory settings, inability to verify identity, self-selection into platforms, and the ``professional respondent'' problem.
+
+\subsection{A/B testing as doxonomic evidence}
+
+Technology companies routinely run A/B tests that are, in effect, large-scale doxonomic experiments: randomly varying the content shown to users and measuring behavioral responses.
+These experiments generate valuable evidence about the causal effects of narrative exposure, but the results are typically proprietary.
+
+\begin{proposition}[Platform Experiment Transparency]
+\label{prop:platform-transparency}
+The doxonomic information generated by platform A/B tests is a \emph{public good}: it reveals how narrative exposure affects belief and behavior at unprecedented scale.
+Its private custody by platform companies constitutes an information asymmetry with doxonomic consequences---the companies that produce the most powerful narrative infrastructure are also the only ones who know how it works.
+\end{proposition}
+
+\subsection{Researcher-platform collaborations}
+
+A growing number of studies use researcher-platform collaborations to overcome the access problem.
+Facebook's ``social media and democracy'' research program, Twitter's (now X's) academic API, and YouTube's researcher access program have all produced doxonomically relevant experiments, though questions about independence and selective publication remain.
+
+\section{Power Analysis and Sample Size}
+\label{sec:ch19-power}
+
+\subsection{Doxonomic effect sizes}
+
+Experimental doxonomic effects are typically small to moderate by behavioral science standards.
+A single narrative exposure might shift behavior by $d = 0.1$ to $0.3$ standard deviations.
+Accumulated effects (multiple exposures, institutional-level treatments) may be larger, but they are harder to study experimentally.
+
+\begin{proposition}[Sample Size for Doxonomic Experiments]
+\label{prop:sample-size}
+\index{power analysis}
+For a two-group comparison detecting a standardized effect of $d$ with power $1 - \beta$ at significance level $\alpha$:
+\[
+  n_{\text{per group}} = \frac{2(z_{1-\alpha/2} + z_{1-\beta})^2}{d^2}.
+\]
+For $d = 0.2$ (a small-to-moderate doxonomic effect), $\alpha = 0.05$, power $= 0.80$:
+\[
+  n = \frac{2(1.96 + 0.84)^2}{0.04} = \frac{2(7.84)}{0.04} = 392 \text{ per group}.
+\]
+Multi-arm designs (3+ treatment conditions), moderation analyses (heterogeneous treatment effects), and mediation analyses (testing the norm channel vs.\ direct belief change) require substantially larger samples.
+\end{proposition}
+
+\subsection{Pre-registration}
+
+Given the flexibility in doxonomic experiments (many possible outcomes, subgroups, model specifications), pre-registration is essential to prevent $p$-hacking.
+A doxonomic experiment should pre-register:
+\begin{enumerate}[nosep]
+  \item primary outcome(s) and the direction of the predicted effect,
+  \item secondary outcomes (clearly labeled as exploratory),
+  \item planned subgroup analyses with theoretical justification,
+  \item the statistical model (ITT vs.\ LATE, covariates, clustering),
+  \item the multiple-testing correction procedure.
+\end{enumerate}
+
+\section{Ethical Constraints and Institutional Review}
+\label{sec:ch19-ethics}
+
+\subsection{The harm asymmetry}
+
+Experimental doxonomics faces a distinctive ethical tension.
+Standard IRB criteria ask whether the experiment could harm subjects.
+A doxonomic experiment that successfully makes subjects more selfish ``works'' precisely by making them worse off (or making others worse off through their changed behavior).
+Conversely, an experiment that makes subjects more cooperative or better-informed might be beneficial.
+
+This creates an asymmetry: the experiments that would provide the strongest evidence for doxonomic theory (demonstrating that narrative exposure causes harmful belief change) are precisely those that are hardest to justify ethically.
+
+\subsection{Specific ethical concerns}
+
+\begin{enumerate}
+  \item \textbf{Lasting belief effects.}
+  If a brief experimental exposure can shift beliefs, the shift might persist beyond the experiment.
+  Debriefing may not fully restore pre-experimental beliefs (the ``you can't un-ring a bell'' problem).
+
+  \item \textbf{Deception about the social environment.}
+  Norm perception experiments require providing false information about others' behavior.
+  This is a form of deception that standard protocols require justification for and debriefing about.
+
+  \item \textbf{Vulnerable populations.}
+  If doxonomic effects are strongest on those with weak prior beliefs (as the formal model predicts), experimentally targeting such populations raises heightened ethical concerns.
+
+  \item \textbf{Dual use.}
+  Experimental knowledge about effective doxonomic techniques could be used by powerful actors to improve their narrative campaigns.
+  The same research that reveals how beliefs are shaped could serve as an instruction manual for more effective manipulation.
+\end{enumerate}
+
+\subsection{Mitigation strategies}
+
+\begin{itemize}[nosep]
+  \item \textbf{Minimal deception}: use real rather than fabricated narrative materials where possible; attribute content accurately.
+  \item \textbf{Thorough debriefing}: provide subjects with accurate information after the experiment, including the hypothesized direction of the effect.
+  \item \textbf{Follow-up measurement}: check whether beliefs have returned to baseline at a follow-up assessment.
+  \item \textbf{Equipoise}: design experiments where the direction of the effect is genuinely uncertain (the researcher doesn't know which treatment is ``harmful'').
+  \item \textbf{Natural and observational alternatives}: when ethical constraints are binding, use natural experiments (Chapter~\ref{ch:causal-inference}) or observational designs that exploit existing variation in narrative exposure.
+\end{itemize}
+
+\section{Replication and Meta-Analysis}
+\label{sec:ch19-replication}
+
+\subsection{The replication crisis and doxonomic experiments}
+
+Social psychology's replication crisis has particular relevance for experimental doxonomics.
+Many priming effects that seemed robust in initial studies failed to replicate in larger, pre-registered replications.
+Doxonomic experiments should be designed with replication in mind from the outset:
+\begin{itemize}[nosep]
+  \item pre-registered protocols with publicly available materials,
+  \item sample sizes powered to detect realistic (not optimistic) effect sizes,
+  \item multi-site designs that test generalizability across populations,
+  \item sharing of raw data and analysis code.
+\end{itemize}
+
+\subsection{Meta-analytic synthesis}
+
+As the experimental doxonomics literature grows, meta-analysis becomes the tool for synthesizing effects across studies.
+Key questions for meta-analysis:
+\begin{enumerate}[nosep]
+  \item What is the average effect of narrative exposure on behavior across studies?
+  \item Does the effect vary by narrative type, exposure duration, subject population, or outcome measure?
+  \item Is there evidence of publication bias (selective reporting of significant results)?
+  \item What moderates the effect---prior beliefs, education level, source credibility?
+\end{enumerate}
+
+A meta-analytic estimate of the doxonomic effect size, even if small ($d \approx 0.15$), would be substantively important if it represents the effect of a \emph{single} exposure.
+The cumulative effect of thousands of exposures over a lifetime---the realistic doxonomic scenario---could be vastly larger, though extrapolation from single-exposure experiments to cumulative effects requires the dose-response models of Section~\ref{sec:ch19-priming}.
 
 \section{Notes and References}
 \label{sec:ch19-notes}
 
-Public goods experiments are reviewed in \textcite{fischbacher2001}.
+Public goods experiments are reviewed in \textcite{fischbacher2001} and Chaudhuri (2011).
 Cross-cultural behavioral games are in \textcite{henrich2001}.
-Priming effects on economic behavior are studied in the behavioral economics literature; see \textcite{kahneman2011} for an overview.
-On norm misperception, see \textcite{cialdini2006}.
+The economics education effect is documented in \textcite{frank1993} and \textcite{bauman1996}.
+
+Priming effects on economic behavior are surveyed in \textcite{kahneman2011}.
+On norm misperception and social influence, see \textcite{cialdini2006} and Bicchieri (2005).
+Media effects experiments are reviewed in \textcite{dellavigna2010}.
+
+The misinformation correction literature includes \textcite{nyhan2010} and Wood and Porter (2019).
+On pre-registration and the replication crisis, see Nosek et al.\ (2015) and Open Science Collaboration (2015).
 Experimental ethics in social science is discussed in \textcite{salganik2018}.
+
+For conjoint experimental designs, see Hainmueller et al.\ (2014).
+List experiments are developed in Blair and Imai (2012).
+On platform experiments and transparency, see Guess et al.\ (2023).
 
 \section{Exercises}
 
 \begin{exercise}
 Design a priming experiment to test whether exposure to ``greed is good'' narratives increases defection in a public goods game.
-Specify sample size, treatment arms, and outcome measures.
+Specify: sample size (with power analysis), treatment arms, randomization procedure, primary and secondary outcome measures, and pre-registration plan.
 \end{exercise}
 
 \begin{exercise}
-A norm perception study finds that 80\% of people believe ``most people are selfish,'' but behavioral games show only 30\% defect.
-Compute the norm misperception gap and predict its doxonomic consequences.
+A norm perception study finds that 78\% of people believe ``most people are selfish,'' but behavioral games show only 30\% defect.
+\begin{enumerate}[nosep]
+  \item Compute the norm misperception gap.
+  \item Using the conditional cooperation model ($c_j = g(\hat{\mu}_j)$ with $g(\hat{\mu}) = 1 - \hat{\mu}$), predict the equilibrium cooperation rate if agents update their norm perceptions based on observed behavior.
+  \item Does the system converge to a cooperative or defection equilibrium?
+  \item What intervention could tip the system toward the cooperative equilibrium?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Discuss the ethics of an experiment that exposes children to competing anthropological narratives (selfish vs.\ cooperative) and measures long-term behavioral effects.
-Under what conditions (if any) would this be justifiable?
+\begin{enumerate}[nosep]
+  \item Under what conditions (if any) would this be justifiable?
+  \item What would a thorough debriefing look like for children?
+  \item How does this experiment compare ethically to the actual practice of teaching economics (which already exposes students to the rational self-interest narrative without IRB approval)?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design a source credibility experiment (Model~\ref{mod:source-attribution}) with four source conditions.
+\begin{enumerate}[nosep]
+  \item Choose a specific policy claim as the content.
+  \item Specify the four source attributions and justify their selection.
+  \item Predict the ordering of treatment effects based on the epistemic capital model.
+  \item What would it mean for the epistemic capital model if the ordering came out differently?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design a dose-response experiment (Model~\ref{mod:dose-response}) to estimate the cumulative effect of narrative exposure.
+\begin{enumerate}[nosep]
+  \item Specify the dose levels and the delivery schedule (how are multiple exposures spaced?).
+  \item Discuss the tradeoff between dose intensity and ecological validity.
+  \item How would you test for a threshold effect vs.\ a gradual dose-response?
+  \item What sample size would you need to estimate the dose-response curve with adequate precision at each level?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the norm misperception cascade from Proposition~\ref{prop:norm-misperception}:
+\begin{enumerate}[nosep]
+  \item Create 100 agents with initial cooperation probability drawn from $\text{Beta}(3, 1.5)$ (most agents tend toward cooperation).
+  \item Each agent observes a biased signal of group behavior: $\hat{\mu}_j = (1-\lambda) \cdot \mu_{\text{actual}} + \lambda \cdot \mu_{\text{media}}$, where $\mu_{\text{media}} = 0.7$ (media suggests 70\% are selfish) and $\lambda = 0.3$ (30\% weight on media signal).
+  \item Agents update cooperation based on $c_j^{(t+1)} = c_j^{(0)} \cdot (1 - \hat{\mu}_j^{(t)})$.
+  \item Iterate for 50 rounds. Plot the average cooperation rate over time.
+  \item At what value of $\lambda$ does the system tip from the cooperative to the defection equilibrium?
+\end{enumerate}
 \end{exercise}

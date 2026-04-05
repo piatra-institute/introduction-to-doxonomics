@@ -4,34 +4,90 @@
 \epigraph{The only useful function of a statistician is to make predictions, and thus to provide a basis for action.}{W.\ Edwards Deming}
 
 \noindent
-Doxonomics makes strong claims about the causal structure of belief.
+Doxonomics makes strong claims about the causal structure of belief: that material resources shape public opinion through identifiable institutional mechanisms.
 These claims must be testable, falsifiable, and honest about their limitations.
-This chapter develops the tools for validating doxonomic models and the discipline to admit when they fail.
+A field that studies how power corrupts knowledge production must be especially vigilant about how its own knowledge production might be corrupted---by ideological commitment, confirmation bias, unfalsifiable theorizing, or the temptation to see doxonomic causation in every correlation between money and belief.
+
+This chapter develops the tools for validating doxonomic models---uncertainty quantification, out-of-sample prediction, sensitivity analysis, triangulation, and Bayesian model comparison---and the intellectual discipline to admit when those models fail.
+It is the methodological conscience of the book.
 
 \section{Uncertainty Quantification}
 \label{sec:ch20-uncertainty}
 
+\subsection{The uncertainty imperative}
+
 \begin{principle}[Doxonomic Uncertainty]
 \label{prin:uncertainty}
-Every doxonomic estimate---of funding, belief prevalence, causal effects---must be accompanied by a quantified uncertainty.
-Point estimates without confidence intervals are not doxonomic science.
+\index{uncertainty quantification}
+Every doxonomic estimate---of funding flows, belief prevalence, causal effects, model parameters---must be accompanied by a quantified uncertainty.
+Point estimates without uncertainty intervals are not doxonomic science; they are doxonomic assertion.
 \end{principle}
+
+The principle sounds banal---every statistics course teaches confidence intervals---but in practice, doxonomic research faces distinctive challenges in uncertainty quantification:
+\begin{itemize}[nosep]
+  \item funding data is incomplete (dark money, international flows, in-kind contributions), so the inputs to doxonomic models carry large measurement error,
+  \item belief data comes from surveys with known biases (social desirability, framing effects), so the outputs carry systematic error,
+  \item causal identification is rarely bulletproof, so structural uncertainty (``is this the right model?'') dominates statistical uncertainty (``given this model, how precise is the estimate?'').
+\end{itemize}
+
+\subsection{Frequentist and Bayesian frameworks}
 
 \begin{definition}[Doxonomic Uncertainty Interval]
 \label{def:uncertainty-interval}
+\index{uncertainty interval}
 A $100(1-\alpha)\%$ uncertainty interval for a doxonomic parameter $\theta$ can be constructed in two frameworks:
 \begin{itemize}[nosep]
   \item \textbf{Frequentist (confidence interval)}: the procedure $[\hat{\theta}_L, \hat{\theta}_U]$ is calibrated so that, over repeated sampling, the interval contains the true $\theta$ at least $100(1-\alpha)\%$ of the time.
   The probability statement is about the procedure, not about $\theta$ lying in any particular realized interval.
-  \item \textbf{Bayesian (credible interval)}: given a prior $\pi(\theta)$ and data $y$, the interval $[\theta_L, \theta_U]$ satisfies $\Prob(\theta_L \leq \theta \leq \theta_U \mid y) \geq 1 - \alpha$ under the posterior.
+  \item \textbf{Bayesian (credible interval)}: given a prior $\pi(\theta)$ and data $y$, the interval $[\theta_L, \theta_U]$ satisfies $P(\theta_L \leq \theta \leq \theta_U \mid y) \geq 1 - \alpha$ under the posterior.
   The probability statement is about $\theta$ conditional on the observed data.
 \end{itemize}
 Doxonomic research should specify which framework is in use.
-Given the typically small samples and strong prior information in doxonomic studies, Bayesian credible intervals are often more appropriate.
 \end{definition}
 
-\section{Overfitting Ideological Explanations}
+Given the typically small samples, strong prior information, and complex hierarchical structures in doxonomic studies, Bayesian methods are often more natural.
+A Bayesian framework allows the analyst to incorporate prior knowledge about funding magnitudes, belief distributions, and institutional behavior while updating transparently as data arrives.
+
+\subsection{Propagating uncertainty through the doxonomic chain}
+
+The doxonomic causal chain $F \to I \to N \to E \to B$ involves multiple estimated quantities at each link.
+Uncertainty at each link compounds:
+
+\begin{proposition}[Uncertainty Propagation]
+\label{prop:uncertainty-propagation}
+\index{uncertainty propagation}
+If the doxonomic effect of funding $F$ on belief $B$ is the product of link-specific effects:
+\[
+  \frac{\partial B}{\partial F} = \frac{\partial B}{\partial E} \cdot \frac{\partial E}{\partial N} \cdot \frac{\partial N}{\partial I} \cdot \frac{\partial I}{\partial F}
+\]
+and each link is estimated with independent uncertainty, then the total variance of the end-to-end effect is (by the delta method):
+\[
+  \operatorname{Var}\!\left(\frac{\partial B}{\partial F}\right) \approx \left(\frac{\partial B}{\partial F}\right)^2 \sum_{k} \left(\frac{\sigma_k}{\hat{\beta}_k}\right)^2
+\]
+where $\hat{\beta}_k$ and $\sigma_k$ are the estimate and standard error at link $k$.
+The relative uncertainty of the total effect is approximately the square root of the sum of squared relative uncertainties at each link.
+\end{proposition}
+
+This means that even if each individual link is estimated with moderate precision (say, a coefficient of variation of 30\%), the end-to-end estimate may have enormous uncertainty.
+For a four-link chain with 30\% relative uncertainty at each link, the total relative uncertainty is $\sqrt{4 \times 0.09} = 0.60$---a 60\% coefficient of variation, yielding a very wide confidence interval.
+This is a fundamental constraint on doxonomic measurement, not a failure of technique.
+
+\subsection{Reporting standards}
+
+We propose minimum reporting standards for doxonomic uncertainty:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Primary estimates}: point estimate $\pm$ 95\% interval, with the framework (frequentist or Bayesian) stated.
+  \item \textbf{Data uncertainty}: document missing data rates for funding, belief, and exposure variables.
+  \item \textbf{Model uncertainty}: report results under at least two plausible model specifications.
+  \item \textbf{Identification uncertainty}: state the identifying assumptions and assess their plausibility.
+  \item \textbf{Propagated uncertainty}: when combining estimates across links, report the compounded interval.
+\end{enumerate}
+
+\section{Overfitting and the Ideological Hazard}
 \label{sec:ch20-overfitting}
+
+\subsection{The problem}
 
 \begin{definition}[Doxonomic Overfitting]
 \label{def:overfitting}
@@ -39,75 +95,511 @@ Given the typically small samples and strong prior information in doxonomic stud
 A doxonomic model \emph{overfits} if it explains observed patterns in a specific dataset (e.g., media coverage correlates with funding) but fails to predict out-of-sample---because the apparent pattern reflects noise, selection, or post hoc rationalization rather than genuine causal structure.
 \end{definition}
 
-Doxonomics is especially vulnerable to overfitting because:
+Doxonomics is especially vulnerable to overfitting for three reasons:
+
+\begin{enumerate}
+  \item \textbf{The dependent variable is over-determined.}
+  Public belief is influenced by funding, institutions, media, education, personal experience, peer effects, economic conditions, historical memory, and random events.
+  Any model that includes only doxonomic variables will have low $R^2$, tempting analysts to mine the specification until something ``works.''
+
+  \item \textbf{Funding data is incomplete and noisy.}
+  Missing data on dark money, in-kind contributions, and indirect funding creates measurement error that can generate spurious patterns when combined with flexible model specifications.
+
+  \item \textbf{The analyst has priors.}
+  A researcher drawn to doxonomics is likely to believe, prior to analysis, that power shapes belief.
+  This prior creates a confirmation bias that makes it easier to accept evidence consistent with doxonomic explanations and harder to accept null results.
+\end{enumerate}
+
+\subsection{The ideological hazard}
+
+\begin{principle}[Ideological Hazard]
+\label{prin:ideological-hazard}
+\index{ideological hazard}
+A discipline that studies how ideology distorts knowledge production must acknowledge the possibility that it is itself subject to ideological distortion.
+Doxonomics is not immune to the forces it studies.
+The ideological hazard is the temptation to:
 \begin{itemize}[nosep]
-  \item the dependent variable (public belief) is influenced by many factors beyond doxonomic investment,
-  \item funding data is incomplete, introducing measurement error,
-  \item the analyst's own priors may favor ideological explanations.
+  \item see doxonomic causation in every correlation between money and belief,
+  \item attribute all belief to manipulation while ignoring genuine persuasion, rational updating, and independent thought,
+  \item treat one's own beliefs as exempt from doxonomic influence,
+  \item present speculative hypotheses with the confidence appropriate to well-identified causal claims.
 \end{itemize}
+\end{principle}
 
-\section{Robustness Checks}
-\label{sec:ch20-robustness}
+The ideological hazard does not invalidate doxonomics---the same hazard exists in any social science that studies power---but it requires institutional safeguards: pre-registration, adversarial collaboration, publication of null results, and the kind of epistemic humility developed in Section~\ref{sec:ch20-humility}.
 
-\begin{model}[Sensitivity Analysis]
+\section{Out-of-Sample Prediction}
+\label{sec:ch20-prediction}
+
+\subsection{The prediction test}
+
+The most powerful safeguard against overfitting is out-of-sample prediction.
+A model that can predict doxonomic outcomes in data it has not seen has demonstrated that it has captured genuine structure, not noise.
+
+\begin{definition}[Predictive Validation]
+\label{def:predictive-validation}
+\index{predictive validation}
+Split the available data into training set $\mathcal{D}_{\text{train}}$ and test set $\mathcal{D}_{\text{test}}$ (or use $k$-fold cross-validation).
+Fit the doxonomic model on $\mathcal{D}_{\text{train}}$ and evaluate on $\mathcal{D}_{\text{test}}$ using:
+\begin{itemize}[nosep]
+  \item \textbf{Root mean squared prediction error} (RMSPE) for continuous outcomes:
+  \[
+    \text{RMSPE} = \sqrt{\frac{1}{|\mathcal{D}_{\text{test}}|} \sum_{i \in \mathcal{D}_{\text{test}}} (Y_i - \hat{Y}_i)^2}
+  \]
+  \item \textbf{Classification accuracy} (or AUC) for binary belief outcomes.
+  \item \textbf{Log predictive density} for Bayesian models: $\sum_{i \in \mathcal{D}_{\text{test}}} \log p(Y_i \mid \mathcal{D}_{\text{train}})$.
+\end{itemize}
+Compare the doxonomic model's prediction against a \emph{null model} that uses only non-doxonomic predictors (demographics, economic conditions, prior beliefs).
+The doxonomic model must outperform the null to justify its additional complexity.
+\end{definition}
+
+\subsection{Temporal out-of-sample tests}
+
+In doxonomic settings, temporal splits are more informative than random splits.
+Train the model on data up to year $t$ and predict outcomes for years $t+1, t+2, \ldots$
+This tests whether the model's structural relationships are stable over time---a stronger test than cross-sectional prediction.
+
+\begin{example}
+\label{ex:temporal-prediction}
+A model relates think-tank funding to public opinion on climate change, estimated on 1990--2010 data.
+The model predicts that the decline in fossil-fuel think-tank funding after 2015 should lead to a modest increase in climate concern.
+Checking this prediction against 2015--2022 survey data:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Year & Predicted climate concern & Actual climate concern \\
+\midrule
+2016 & 62.3\% & 64.1\% \\
+2018 & 64.7\% & 67.2\% \\
+2020 & 66.1\% & 70.8\% \\
+2022 & 67.4\% & 72.3\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+The model correctly predicts the direction and approximate magnitude of the change but systematically underpredicts, suggesting that factors beyond think-tank funding (e.g., direct experience of extreme weather, youth activism) contributed to the belief shift.
+The prediction error is informative: it reveals the limits of a funding-only doxonomic model.
+(Illustrative data.)
+\end{example}
+
+\subsection{Cross-national out-of-sample tests}
+
+An even stronger test: estimate the model on one country and predict outcomes in another.
+If the doxonomic model captures generalizable mechanisms, a model estimated on US data should have some predictive power for UK or Australian outcomes (after adjusting for institutional differences).
+Failure to generalize cross-nationally suggests that the model has overfit to country-specific features.
+
+\section{Sensitivity Analysis}
+\label{sec:ch20-sensitivity}
+
+\subsection{Rosenbaum bounds revisited}
+
+\begin{model}[Sensitivity Analysis for Doxonomic Claims]
 \label{mod:sensitivity}
 \index{sensitivity analysis}
 Following \textcite{rosenbaum2002}, a sensitivity analysis asks: how large would an unobserved confounder $U$ have to be to explain away the estimated doxonomic effect?
-Define the sensitivity parameter $\Gamma$ as the maximum ratio of treatment odds due to $U$:
+The sensitivity parameter $\Gamma$ represents the maximum ratio of treatment odds for two units with the same observed covariates:
 \[
-  \frac{1}{\Gamma} \leq \frac{\Prob(T=1 \mid x, U=1) / \Prob(T=0 \mid x, U=1)}{\Prob(T=1 \mid x, U=0) / \Prob(T=0 \mid x, U=0)} \leq \Gamma
+  \frac{1}{\Gamma} \leq \frac{P(D=1 \mid X, U=1) / P(D=0 \mid X, U=1)}{P(D=1 \mid X, U=0) / P(D=0 \mid X, U=0)} \leq \Gamma.
 \]
-The doxonomic conclusion is robust if it holds for $\Gamma$ up to a plausible range.
+At $\Gamma = 1$, there is no unobserved confounding.
+As $\Gamma$ increases, the bounds on the treatment effect widen.
+The \emph{breaking point} $\Gamma^*$ is the smallest $\Gamma$ at which the doxonomic effect is no longer statistically significant.
+A claim with $\Gamma^* = 1.2$ is fragile; one with $\Gamma^* = 3.0$ is robust.
 \end{model}
+
+\subsection{The Oster test}
+
+\textcite{oster2019} provides an alternative sensitivity framework based on coefficient stability:
+
+\begin{proposition}[Coefficient Stability Test]
+\label{prop:oster-test}
+\index{coefficient stability}
+Let $\tilde{\tau}$ be the doxonomic effect estimate from a short regression (without controls), $\hat{\tau}$ the estimate from a long regression (with observable controls), and $\tilde{R}^2, \hat{R}^2$ the corresponding $R$-squared values.
+Under the assumption that observable and unobservable confounders are equally important ($\delta = 1$) and that the maximum attainable $R^2$ is $R_{\max}$, the bias-adjusted estimate is:
+\[
+  \tau^* = \hat{\tau} - (\tilde{\tau} - \hat{\tau}) \cdot \frac{R_{\max} - \hat{R}^2}{\hat{R}^2 - \tilde{R}^2}.
+\]
+If $\tau^* > 0$ (or retains the hypothesized sign) for $R_{\max} = 1.3 \hat{R}^2$ and $\delta = 1$, the estimate is considered robust.
+\end{proposition}
+
+\begin{example}
+\label{ex:oster-application}
+A study finds that think-tank proximity predicts pro-deregulation beliefs:
+\begin{itemize}[nosep]
+  \item Short regression (no controls): $\tilde{\tau} = 0.42$, $\tilde{R}^2 = 0.05$.
+  \item Long regression (with demographics, income, education, urban/rural): $\hat{\tau} = 0.28$, $\hat{R}^2 = 0.18$.
+  \item With $R_{\max} = 1.3 \times 0.18 = 0.234$ and $\delta = 1$:
+  \[
+    \tau^* = 0.28 - (0.42 - 0.28) \cdot \frac{0.234 - 0.18}{0.18 - 0.05} = 0.28 - 0.14 \cdot \frac{0.054}{0.13} = 0.28 - 0.058 = 0.222.
+  \]
+\end{itemize}
+The bias-adjusted estimate $\tau^* = 0.222$ remains positive and substantively meaningful.
+Even if unobserved confounders are as important as observed ones, the doxonomic effect survives.
+\end{example}
+
+\subsection{Placebo tests}
+
+\begin{definition}[Doxonomic Placebo Test]
+\label{def:placebo}
+\index{placebo test}
+A \emph{placebo test} applies the doxonomic estimation procedure to an outcome that should \emph{not} be affected by the hypothesized mechanism.
+If a significant effect is found on the placebo outcome, the original finding is likely driven by confounding rather than the doxonomic mechanism.
+\end{definition}
+
+\begin{example}
+\label{ex:placebo}
+A study claims that fossil-fuel funding shifted beliefs about climate change.
+Placebo tests:
+\begin{enumerate}[nosep]
+  \item Does fossil-fuel funding predict beliefs about \emph{evolution}?
+  If yes, the ``effect'' may reflect general conservative ideology, not a specific doxonomic mechanism.
+  \item Does fossil-fuel funding predict beliefs about climate change \emph{before} the funding began?
+  If yes, the relationship is driven by pre-existing differences (selection), not the funding.
+  \item Does fossil-fuel funding predict climate beliefs in countries where the funded institutions have no presence?
+  If yes, the correlation reflects global trends, not institutional influence.
+\end{enumerate}
+Passing all three placebo tests substantially strengthens the doxonomic claim.
+\end{example}
+
+\section{Bayesian Model Comparison}
+\label{sec:ch20-bayesian}
+
+\subsection{The model comparison problem}
+
+Doxonomic claims typically involve choosing among competing explanations for the same observed pattern:
+\begin{itemize}[nosep]
+  \item $M_1$: funding causes belief change (the doxonomic explanation),
+  \item $M_2$: ideology drives both funding and belief (confounding),
+  \item $M_3$: belief change drives funding (reverse causation---funders invest where they see receptive audiences),
+  \item $M_4$: no systematic relationship (coincidence).
+\end{itemize}
+
+Bayesian model comparison provides a principled framework for adjudicating among these.
+
+\begin{definition}[Bayes Factor]
+\label{def:bayes-factor}
+\index{Bayes factor}
+The Bayes factor comparing model $M_1$ to model $M_2$ is:
+\[
+  \text{BF}_{12} = \frac{P(\text{data} \mid M_1)}{P(\text{data} \mid M_2)} = \frac{\int P(\text{data} \mid \theta_1, M_1) \pi(\theta_1 \mid M_1) \, d\theta_1}{\int P(\text{data} \mid \theta_2, M_2) \pi(\theta_2 \mid M_2) \, d\theta_2}.
+\]
+A Bayes factor of $\text{BF}_{12} > 10$ provides ``strong'' evidence for $M_1$; $\text{BF}_{12} > 100$ provides ``decisive'' evidence (Jeffreys' scale).
+The Bayes factor automatically penalizes model complexity through the prior-weighted integral, implementing a natural Occam's razor.
+\end{definition}
+
+\subsection{Comparing doxonomic and non-doxonomic models}
+
+The critical comparison is $M_1$ (doxonomic model: funding $\to$ belief) vs.\ $M_2$ (confounding model: ideology $\to$ funding and ideology $\to$ belief):
+
+\begin{example}
+\label{ex:bayes-factor}
+Using panel data on think-tank funding and regional beliefs about deregulation:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Model & Log marginal likelihood & Bayes factor vs.\ $M_4$ \\
+\midrule
+$M_1$: funding $\to$ belief & $-3{,}412.7$ & $245.3$ \\
+$M_2$: ideology confounds & $-3{,}415.1$ & $22.8$ \\
+$M_3$: reverse causation & $-3{,}418.9$ & $0.5$ \\
+$M_4$: no relationship & $-3{,}419.6$ & $1.0$ (reference) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Both $M_1$ and $M_2$ are strongly supported over no-relationship.
+The Bayes factor of $M_1$ over $M_2$ is $245.3 / 22.8 = 10.8$, providing strong (but not decisive) evidence for the doxonomic over the confounding explanation.
+The reverse-causation model is not supported.
+(Illustrative data.)
+\end{example}
+
+\subsection{Model averaging}
+
+When multiple models are plausible, Bayesian model averaging (BMA) provides predictions that account for model uncertainty:
+\[
+  P(\theta \mid \text{data}) = \sum_{m=1}^{M} P(\theta \mid \text{data}, M_m) \cdot P(M_m \mid \text{data})
+\]
+where $P(M_m \mid \text{data})$ is the posterior model probability.
+This is especially appropriate for doxonomics because the correct model is genuinely uncertain---confounding, reverse causation, and doxonomic causation may all operate simultaneously.
 
 \section{Triangulation}
 \label{sec:ch20-triangulation}
 
+\subsection{The convergence criterion}
+
 \begin{principle}[Doxonomic Triangulation]
 \label{prin:triangulation}
 \index{triangulation}
-A doxonomic claim is strengthened when it is supported by multiple independent methods: accounting evidence (money was spent), network evidence (institutional connections exist), causal evidence (exposure changes beliefs), textual evidence (narratives shifted), and historical evidence (the timing fits).
-No single method is sufficient.
+A doxonomic claim is strengthened when it is supported by multiple independent lines of evidence.
+The key categories:
+\begin{enumerate}[nosep]
+  \item \textbf{Accounting evidence}: money was spent (foundation records, tax filings).
+  \item \textbf{Production evidence}: narratives were produced (publications, media content).
+  \item \textbf{Network evidence}: institutional connections exist between funder and producer.
+  \item \textbf{Causal evidence}: exposure changes beliefs (experiments, natural experiments).
+  \item \textbf{Textual evidence}: narrative content shifted in the predicted direction (text analysis).
+  \item \textbf{Historical evidence}: the timing of funding precedes the timing of belief change.
+  \item \textbf{Comparative evidence}: similar funding produces similar effects in different contexts.
+\end{enumerate}
+No single line is sufficient.
+The claim is credible when multiple independent lines converge on the same conclusion.
 \end{principle}
 
-\section{When Not to Claim Causality}
-\label{sec:ch20-limits}
+\subsection{Formal triangulation assessment}
+
+\begin{model}[Triangulation Scorecard]
+\label{mod:triangulation-score}
+\index{triangulation scorecard}
+For a specific doxonomic claim, rate the evidence on each line as: strong ($++$), moderate ($+$), weak ($\circ$), absent ($-$), or contradictory ($--$).
+The overall assessment:
+\begin{itemize}[nosep]
+  \item \textbf{Established}: 4+ lines at strong or moderate, none contradictory.
+  \item \textbf{Supported}: 2--3 lines at strong or moderate, none contradictory.
+  \item \textbf{Suggestive}: 1--2 lines at moderate, others absent.
+  \item \textbf{Speculative}: only weak evidence or single line.
+  \item \textbf{Challenged}: at least one contradictory line.
+\end{itemize}
+\end{model}
+
+\begin{example}
+\label{ex:triangulation}
+Scorecard for ``fossil-fuel funding produced climate doubt'':
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Evidence line & Rating & Key source \\
+\midrule
+Accounting & $++$ & Tax filings, litigation discovery \\
+Production & $++$ & Think-tank publications, op-eds \\
+Network & $++$ & Board overlaps, funding flows \\
+Causal & $+$ & Natural experiments, some RCTs \\
+Textual & $++$ & ``Uncertainty'' frame six times more prevalent \\
+Historical & $++$ & Internal memos date strategy to 1989 \\
+Comparative & $+$ & Weaker in countries without think-tank network \\
+\bottomrule
+\end{tabular}
+\end{center}
+Assessment: \textbf{Established}.
+Six lines at strong or moderate, none contradictory.
+This is one of the best-documented doxonomic cases because litigation discovery provided archival evidence that is normally inaccessible.
+\end{example}
+
+\section{Falsifiability and Degenerating Research Programs}
+\label{sec:ch20-falsifiability}
+
+\subsection{What would falsify doxonomics?}
+
+A field that cannot specify conditions under which its core claims would be falsified is not science.
+Doxonomics should state explicitly what observations would count as evidence against its hypotheses:
+
+\begin{enumerate}
+  \item \textbf{Funding-belief independence}: if careful causal studies consistently find no relationship between funding and belief (after correcting for confounding), the core doxonomic hypothesis is falsified.
+
+  \item \textbf{Symmetry failure}: if well-funded narratives are no more prevalent than poorly funded narratives of equal quality, the power-shapes-belief mechanism is not operative.
+
+  \item \textbf{Resilience of reason}: if populations consistently resist funded narratives and converge on true beliefs regardless of the institutional environment, the doxonomic model of belief formation is wrong.
+
+  \item \textbf{Reverse dominance}: if belief change consistently precedes (rather than follows) funding and institutional activity, the causal arrow runs the other direction.
+\end{enumerate}
+
+None of these falsifications would be established by a single study---they would require a pattern of findings across multiple contexts and methods.
+
+\subsection{Lakatos and degenerating programs}
+
+Following \textcite{lakatos1978}, a research program \emph{progresses} if it successfully predicts novel facts and \emph{degenerates} if it can only accommodate observations post hoc.
+Doxonomics should be evaluated by this standard:
+
+\begin{itemize}[nosep]
+  \item A \emph{progressive} sign: a doxonomic model estimated on 1990--2010 data correctly predicts the direction and approximate magnitude of belief change in 2010--2020.
+  \item A \emph{degenerating} sign: every counter-example to a doxonomic claim is explained away by ad hoc auxiliary hypotheses (``the funding was dark money we can't trace,'' ``the effect operates at a level we can't measure,'' ``the alternative explanation is itself a doxonomic product'').
+\end{itemize}
+
+The danger of degeneration is especially acute for doxonomics because its subject matter---the production of belief by power---provides a built-in excuse for any failure: ``the reason you don't see the doxonomic effect is that the doxonomic system has prevented you from seeing it.''
+This is the epistemic equivalent of an unfalsifiable conspiracy theory, and guarding against it requires the formal validation tools of this chapter.
+
+\section{Epistemic Humility in Practice}
+\label{sec:ch20-humility}
+
+\subsection{The humility checklist}
 
 \begin{principle}[Epistemic Humility]
 \label{prin:humility}
 \index{epistemic humility}
-A doxonomic analysis should explicitly state:
+Every doxonomic publication should explicitly state:
 \begin{enumerate}[nosep]
-  \item what it has shown (e.g., correlation between funding and belief prevalence),
-  \item what it assumes (e.g., no unobserved confounders, stable structural relationships),
-  \item what it has \emph{not} shown (e.g., that the funding caused the belief shift rather than the reverse).
+  \item \textbf{What it has shown}: the specific empirical finding, described in modest terms (correlation, association, estimated causal effect under stated assumptions).
+  \item \textbf{What it assumes}: the identifying assumptions, measurement assumptions, and theoretical priors that underpin the analysis.
+  \item \textbf{What it has not shown}: the causal claims that the evidence does not support, even if the analyst suspects they are true.
+  \item \textbf{How it could be wrong}: the most plausible alternative explanation for the observed pattern.
+  \item \textbf{What would change the conclusion}: the specific evidence that would cause the author to abandon or substantially revise the claim.
 \end{enumerate}
 Over-claiming undermines the field's credibility---its own epistemic capital.
+A field that studies the corruption of epistemic authority must guard its own epistemic authority with unusual care.
 \end{principle}
+
+\subsection{Graduated confidence language}
+
+We propose a graduated vocabulary for doxonomic claims, tied to the triangulation scorecard:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Triangulation level & Appropriate language \\
+\midrule
+Established & ``The evidence strongly suggests that\ldots'' \\
+Supported & ``There is substantial evidence that\ldots'' \\
+Suggestive & ``Preliminary evidence is consistent with\ldots'' \\
+Speculative & ``It is plausible that\ldots'' or ``We hypothesize that\ldots'' \\
+Challenged & ``The evidence is mixed; some findings suggest\ldots'' \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This vocabulary is not merely stylistic.
+It encodes real epistemic information and allows readers to calibrate their confidence appropriately.
+A field-wide norm of graduated language would do more to protect doxonomics from overclaiming than any number of statistical tests.
+
+\subsection{The symmetry obligation}
+
+\begin{principle}[Analytical Symmetry]
+\label{prin:symmetry}
+\index{analytical symmetry}
+Doxonomic analysis should be applied symmetrically to all belief-producing institutions, not selectively to those the researcher opposes.
+If the tools developed in this book can show that fossil-fuel funding shaped climate beliefs, the same tools should be applied to environmental foundation funding, government science communication, and academic knowledge production.
+The asymmetric application of doxonomic analysis---scrutinizing only one side's narrative infrastructure---is itself a form of doxonomic bias.
+\end{principle}
+
+This is not a ``both sides'' equivalence.
+Different institutions may have very different levels of doxonomic power, and the analysis may well find that one side's infrastructure is vastly larger or more effective.
+But the \emph{method} of analysis must be applied symmetrically; only the \emph{results} should be asymmetric.
+
+\section{Common Pitfalls and How to Avoid Them}
+\label{sec:ch20-pitfalls}
+
+We conclude with a catalog of the most common errors in doxonomic reasoning, distilled from the methodological principles developed throughout this part of the book.
+
+\begin{enumerate}
+  \item \textbf{Post hoc ergo propter hoc.}
+  ``Think tank was founded in 1985; beliefs shifted in 1990; therefore the think tank caused the shift.''
+  Temporal precedence is necessary but not sufficient for causation.
+  Remedy: use the causal methods of Chapter~\ref{ch:causal-inference}.
+
+  \item \textbf{Guilt by association.}
+  ``Institution $X$ receives funding from corporation $Y$; therefore $X$'s conclusions are wrong.''
+  Funding creates a \emph{suspicion} of bias, not proof of it.
+  The doxonomic question is whether funding predicts framing \emph{conditional on the evidence}---not whether funded conclusions are false.
+  Remedy: distinguish between the genetic fallacy (dismissing claims because of their origin) and legitimate doxonomic analysis (studying how origin correlates with content).
+
+  \item \textbf{Monocausal explanation.}
+  ``Belief $p$ exists because of doxonomic campaign $X$.''
+  Real beliefs have multiple causes: personal experience, peer influence, institutional exposure, economic conditions, and yes, funded narrative production.
+  The doxonomic contribution is one factor among many.
+  Remedy: estimate the \emph{partial} effect of doxonomic variables, controlling for other factors.
+
+  \item \textbf{Unfalsifiable theorizing.}
+  ``If you can't see the doxonomic influence, that's because the influence is so total that it has become invisible.''
+  This renders the theory immune to evidence.
+  Remedy: specify observable implications and test them (Section~\ref{sec:ch20-falsifiability}).
+
+  \item \textbf{The totalizing error.}
+  ``All belief is socially produced; therefore no belief is genuinely held.''
+  Showing that a belief has social origins does not show that it is false or that the believer is a puppet.
+  People are agents who process, filter, resist, and transform the narratives they encounter.
+  Remedy: model agent heterogeneity in belief response (Chapter~\ref{ch:formal-models}).
+
+  \item \textbf{Asymmetric scrutiny.}
+  Applying doxonomic analysis only to beliefs one disagrees with.
+  Remedy: the symmetry obligation (Principle~\ref{prin:symmetry}).
+\end{enumerate}
 
 \section{Notes and References}
 \label{sec:ch20-notes}
 
-Model selection and validation are covered in \textcite{freedman2009}.
-Sensitivity analysis is developed in \textcite{rosenbaum2002}.
-On the limits of causal inference in social science, see \textcite{manski1993}.
-Bayesian model comparison is treated in standard references.
+Model selection and validation are covered in \textcite{freedman2009} and \textcite{gelman2020}.
+Sensitivity analysis via Rosenbaum bounds is developed in \textcite{rosenbaum2002}; the Oster test is in \textcite{oster2019}.
+On the limits of causal inference in social science, see \textcite{manski1993} and \textcite{imbens2015}.
+
+Bayesian model comparison and Bayes factors are treated in \textcite{kass1995} and Gelman et al.\ (2013).
+Model averaging is developed in Hoeting et al.\ (1999).
+The philosophy of falsifiability and research programs draws on \textcite{lakatos1978} and Popper (1963).
+
 For triangulation methodology, see \textcite{king1994} and \textcite{morgan2015}.
+On the replication crisis and its implications for social science methodology, see Open Science Collaboration (2015).
+The ethics of social science research are discussed in \textcite{salganik2018}.
+
+On the problem of reflexivity in social science---the fact that studying social phenomena can change them---see \textcite{hacking1999} and Bourdieu (2004).
 
 \section{Exercises}
 
 \begin{exercise}
-Take a published claim of the form ``think-tank funding increased public support for deregulation'' and design a sensitivity analysis.
-For what values of $\Gamma$ does the claim survive?
+Take a published claim of the form ``think-tank funding increased public support for deregulation.''
+\begin{enumerate}[nosep]
+  \item Design a Rosenbaum sensitivity analysis. For what values of $\Gamma$ does the claim survive?
+  \item Apply the Oster coefficient stability test. Compute $\tau^*$ for $R_{\max} = 1.3\hat{R}^2$ and $\delta = 1$.
+  \item Design three placebo tests that would strengthen or weaken the claim.
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Describe a doxonomic hypothesis that is unfalsifiable in practice.
-Why is unfalsifiability a problem for the field?
-How would you reformulate the hypothesis to make it testable?
+\begin{enumerate}[nosep]
+  \item Explain why it is unfalsifiable.
+  \item Reformulate it as a testable hypothesis with specific observable implications.
+  \item Identify the data and methods needed to test the reformulated hypothesis.
+  \item Describe what results would constitute falsification.
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Design a triangulation strategy for the claim that economics education increases belief in selfish human nature.
-Identify at least four independent lines of evidence.
+Construct a triangulation scorecard (Model~\ref{mod:triangulation-score}) for the claim that economics education increases belief in selfish human nature.
+Rate each of the seven evidence lines and provide an overall assessment.
+Where is the evidence weakest?
+What study would most improve the overall assessment?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:bayes-factor-exercise}
+Consider two models for the correlation between media ownership concentration and political polarization:
+\begin{itemize}[nosep]
+  \item $M_1$: concentration causes polarization (doxonomic model).
+  \item $M_2$: polarization causes audiences to self-sort, leading to concentrated viewership that \emph{looks like} media power but is actually demand-driven.
+\end{itemize}
+\begin{enumerate}[nosep]
+  \item What data would discriminate between these models?
+  \item If you had panel data on both ownership changes and polarization measures, how would you compute the Bayes factor for $M_1$ vs.\ $M_2$?
+  \item What prior over model parameters would you use, and how sensitive is the Bayes factor to this choice?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply the common pitfalls catalog (Section~\ref{sec:ch20-pitfalls}) to a real-world doxonomic claim from public discourse (e.g., ``Big Pharma controls what doctors believe,'' ``the liberal media brainwashes viewers,'' ``tech companies radicalize users'').
+\begin{enumerate}[nosep]
+  \item Which pitfalls does the claim commit?
+  \item How would you reformulate the claim to avoid those pitfalls?
+  \item What evidence would you need to evaluate the reformulated claim?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design a pre-registration protocol for a doxonomic study that is maximally protected against the ideological hazard (Principle~\ref{prin:ideological-hazard}).
+Include:
+\begin{enumerate}[nosep]
+  \item specific hypotheses with predicted directions and magnitudes,
+  \item primary and secondary outcomes,
+  \item the analysis plan (including what constitutes a null result),
+  \item an adversarial critique section: write the strongest objection a skeptic could raise, and describe how the study design addresses it.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the uncertainty propagation problem (Proposition~\ref{prop:uncertainty-propagation}):
+\begin{enumerate}[nosep]
+  \item Create a four-link doxonomic chain where each link has a true effect of $\beta = 0.5$ and is estimated with noise $\varepsilon \sim N(0, 0.15^2)$.
+  \item Compute the end-to-end effect $\hat{\beta}_{\text{total}} = \prod_{k=1}^{4} \hat{\beta}_k$ for 10,000 Monte Carlo replications.
+  \item Plot the sampling distribution of $\hat{\beta}_{\text{total}}$.
+  \item What fraction of replications yield an estimate within 50\% of the true total effect ($0.5^4 = 0.0625$)?
+  \item How does this fraction change if you increase the per-link noise to $\sigma = 0.25$?
+\end{enumerate}
 \end{exercise}

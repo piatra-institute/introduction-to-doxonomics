@@ -5,11 +5,16 @@
 
 \noindent
 Crises---wars, pandemics, economic collapses, ecological disasters---are periods of accelerated belief change.
-The normal inertia of common sense is temporarily suspended.
-This chapter analyzes the doxonomics of crisis: how fear amplifies narrative capture, how emergencies expand the Overton window, and how the aftermath determines which new common sense is installed.
+The normal inertia of common sense is temporarily suspended: beliefs that would take decades to shift can shift in months.
+This chapter analyzes the doxonomics of crisis: how fear amplifies narrative capture, how emergencies expand the Overton window, how competing actors race to fill the narrative vacuum, and how the aftermath determines which new common sense is installed.
+
+Crisis doxonomics is the practical synthesis of the entire book.
+Every tool developed in the preceding chapters---formal models (Chapter~\ref{ch:formal-models}), causal inference (Chapter~\ref{ch:causal-inference}), text analysis (Chapter~\ref{ch:text-media}), historical methods (Chapter~\ref{ch:historical-archival}), and the application case studies---converges on the question: when common sense cracks open, what determines what fills the gap?
 
 \section{Crisis as Phase Transition}
 \label{sec:ch29-phase}
+
+\subsection{The acceleration model}
 
 \begin{model}[Crisis Belief Dynamics]
 \label{mod:crisis}
@@ -26,62 +31,408 @@ The crisis does not change the structure of doxonomic dynamics; it changes their
 Beliefs that would take decades to shift can shift in months.
 \end{model}
 
+Why does $\varepsilon$ change?
+Several mechanisms operate simultaneously:
+
+\begin{enumerate}
+  \item \textbf{Attention surge.}
+  In normal times, most people pay little attention to policy, governance, or systemic questions.
+  During a crisis, attention is forcibly redirected: everyone is watching the news, discussing the crisis, seeking explanations.
+  The ``attention tax'' (Proposition~\ref{prop:attention-tax}) is temporarily reallocated from commercial content to crisis content.
+
+  \item \textbf{Schema disruption.}
+  Existing mental models fail to explain the crisis event.
+  When the 2008 crash occurred, the belief ``markets are self-correcting'' was visibly falsified.
+  When COVID-19 hit, the belief ``pandemics don't happen in modern societies'' was shattered.
+  The failure of existing schemas creates cognitive demand for new explanations.
+
+  \item \textbf{Institutional authority fluctuation.}
+  Institutions that perform well during a crisis gain credibility; those that fail lose it.
+  This reshuffles the credibility weights $\credibility{k}$ that determine which narrative sources are trusted.
+
+  \item \textbf{Uncertainty and anxiety.}
+  Psychological uncertainty increases receptivity to narratives that offer clarity, coherence, and direction---even if those narratives are oversimplified or self-serving.
+\end{enumerate}
+
+\subsection{Phase transition analogy}
+
+The crisis-induced acceleration can be understood as a phase transition in the belief system.
+In statistical mechanics, a phase transition occurs when a control parameter (temperature) crosses a critical threshold and the system reorganizes rapidly.
+In the doxonomic analogy:
+
+\begin{proposition}[Doxonomic Phase Transition]
+\label{prop:phase-transition}
+\index{phase transition}
+Let $\sigma(t)$ be a ``stress'' parameter measuring the severity of the crisis (economic contraction, mortality rate, institutional failure).
+Below a critical stress $\sigma^*$, the belief system is in a ``solid'' phase: beliefs are locked into their current configuration by institutional inertia.
+Above $\sigma^*$, the system enters a ``liquid'' phase: beliefs become fluid, reconfigurable, and sensitive to small doxonomic inputs.
+The susceptibility $\chi = \partial \beliefvec / \partial \fundingvec$ diverges near the critical point:
+\[
+  \chi(\sigma) \sim |\sigma - \sigma^*|^{-\nu}
+\]
+meaning that near the critical point, even modest narrative investment produces outsized belief shifts.
+\end{proposition}
+
+This is why crises are such valuable doxonomic opportunities: the return on narrative investment is orders of magnitude higher during a crisis than during normal times.
+The actors who understand this---and who prepare narrative infrastructure in advance---have an enormous advantage.
+
 \section{Fear as Amplifier}
 \label{sec:ch29-fear}
+
+\subsection{Credibility weighting under threat}
 
 \begin{proposition}[Fear and Credibility Weighting]
 \label{prop:fear}
 \index{fear}
 Under conditions of threat, agents increase the credibility weight assigned to authority sources:
 \[
-  \credibility{k}^{\text{crisis}} = \credibility{k} + \eta \cdot \text{threat}(t)
+  \credibility{k}^{\text{crisis}} = \credibility{k} + \eta \cdot \operatorname{threat}(t)
 \]
-for institutional channels (government, experts, legacy media), while decreasing weights for unfamiliar or non-authoritative sources.
+for institutional channels (government, military, medical experts, legacy media), while decreasing weights for unfamiliar or non-authoritative sources.
 This concentrates doxonomic power in established institutions during crises.
 \end{proposition}
 
-\section{Overton Window Shifts}
+The psychological mechanism is well-documented: under threat, people gravitate toward familiar, authoritative sources of information and become more susceptible to in-group/out-group framing.
+This creates a paradox: crises open the belief space but simultaneously concentrate narrative power in the hands of existing authorities, who may use it to reinforce rather than transform the status quo.
+
+\subsection{The rally-around-the-flag effect}
+
+\begin{example}
+\label{ex:rally-flag}
+After the September 11, 2001 attacks, George W.\ Bush's approval rating surged from 51\% to 90\%---the largest rally-around-the-flag effect ever measured.
+This credibility surge was used to:
+\begin{itemize}[nosep]
+  \item pass the PATRIOT Act (expanding surveillance authority) with minimal debate,
+  \item launch the invasion of Afghanistan with near-universal public support,
+  \item create the Department of Homeland Security (reorganizing the federal bureaucracy),
+  \item build the narrative case for invading Iraq (WMD claims).
+\end{itemize}
+The crisis-induced credibility surge gave the executive branch a doxonomic window in which policies that would normally face opposition were adopted with minimal scrutiny.
+By the time the credibility surge faded (2004--2005), the policies were institutional facts---much harder to reverse than to prevent.
+\end{example}
+
+\subsection{Fear and simplification}
+
+\begin{proposition}[Fear-Complexity Tradeoff]
+\label{prop:fear-complexity}
+\index{fear!complexity tradeoff}
+Under high threat, agents' tolerance for narrative complexity decreases.
+If $C(n)$ is the complexity of narrative $n$ and $\operatorname{threat}(t)$ is the perceived threat level, the probability of adopting narrative $n$ is:
+\[
+  P(\text{adopt } n) \propto \operatorname{credibility}(n) \cdot e^{-\lambda \cdot \operatorname{threat}(t) \cdot C(n)}
+\]
+Higher threat exponentially penalizes complex narratives.
+This gives simple, binary narratives (``us vs.\ them,'' ``good vs.\ evil,'' ``act now or die'') a systematic advantage during crises, even if more complex narratives are more accurate.
+\end{proposition}
+
+\section{The Overton Window}
 \label{sec:ch29-overton}
+
+\subsection{Definition and dynamics}
 
 \begin{definition}[Overton Window]
 \label{def:overton}
 \index{Overton window}
-The \emph{Overton window} is the set of propositions $W \subset \narspace$ that are perceived as politically viable at time $t$.
+The \emph{Overton window} is the set of propositions $W(t) \subset \narspace$ that are perceived as politically viable at time $t$.
 Propositions outside $W$ are ``unthinkable'' regardless of their merit.
-A crisis can shift $W$ dramatically, making previously unthinkable policies (surveillance, nationalization, border closure, universal basic income) temporarily thinkable.
+The window has a structure:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \draw[thick] (0,0) -- (12,0);
+  \foreach \x/\label in {1/Unthinkable, 3/Radical, 5/Acceptable, 7/Sensible, 9/Popular, 11/Policy} {
+    \node[below, font=\footnotesize] at (\x, 0) {\label};
+    \draw (\x, -0.1) -- (\x, 0.1);
+  }
+  \draw[doxolime, very thick] (4,0.3) -- (10,0.3);
+  \node[above, doxolime, font=\small\bfseries] at (7, 0.3) {Overton Window};
+\end{tikzpicture}
+\end{center}
+A crisis can shift $W$ dramatically, making previously unthinkable policies temporarily thinkable.
 \end{definition}
 
-The doxonomic contest during a crisis is over which direction $W$ shifts.
-The group that captures the post-crisis narrative determines the new Overton window.
+\subsection{Crisis-induced window shifts}
+
+\begin{example}
+\label{ex:overton-shifts}
+Notable Overton window shifts during crises:
+
+\begin{center}
+\begin{tabular}{p{3cm}p{4cm}p{4.5cm}}
+\toprule
+Crisis & Previously unthinkable & Became thinkable/enacted \\
+\midrule
+Great Depression & Federal jobs programs, Social Security & New Deal (1933--38) \\[3pt]
+9/11 attacks & Mass surveillance, indefinite detention & PATRIOT Act, Guantanamo \\[3pt]
+2008 crash & Bank nationalization, \$700B bailout & TARP, QE \\[3pt]
+COVID-19 & Universal cash transfers, lockdowns & Stimulus checks, furlough schemes \\[3pt]
+Climate crisis & Fossil fuel bans, degrowth & Green New Deal proposals (still contested) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Note that the window can shift in multiple directions simultaneously: COVID-19 made both universal cash transfers (left shift) and unprecedented surveillance (right shift) thinkable.
+The direction of the permanent shift depends on which actors successfully capture the post-crisis narrative.
+\end{example}
+
+\subsection{The window-capture race}
+
+\begin{model}[Overton Window Capture]
+\label{mod:overton-capture}
+\index{Overton window!capture}
+During a crisis, competing groups race to fill the expanded Overton window.
+Let $G_1$ (incumbent narrative) and $G_2$ (challenger narrative) invest $\phi_1$ and $\phi_2$ in narrative production.
+The post-crisis window location is:
+\[
+  W_{\text{post}} = W_{\text{pre}} + \Delta W \cdot \frac{\phi_2 \cdot \credibility{2}}{\phi_1 \cdot \credibility{1} + \phi_2 \cdot \credibility{2}}
+\]
+where $\Delta W$ is the total window expansion created by the crisis.
+If $\phi_1 \credibility{1} \gg \phi_2 \credibility{2}$, the incumbent captures the expanded window and the post-crisis common sense reinforces the status quo (the window ``snaps back'').
+If the challenger has prepared narrative infrastructure, the window can be permanently shifted.
+\end{model}
+
+The key insight: the crisis creates the \emph{opportunity} for window shift, but the shift's direction and permanence depend on \emph{pre-crisis narrative preparation}.
+This is why the shock doctrine (Chapter~\ref{ch:austerity}) favors groups with existing institutional infrastructure: they have pre-packaged narratives ready for deployment when the window opens.
+
+\section{Narrative Vacuum and Competition}
+\label{sec:ch29-vacuum}
+
+\subsection{The vacuum period}
+
+Between the collapse of the old narrative and the consolidation of a new one, there is a period of \emph{narrative vacuum}: high entropy, low coherence, and intense competition among alternative framings.
+
+\begin{model}[Narrative Vacuum Dynamics]
+\label{mod:vacuum}
+\index{narrative vacuum}
+Let $H(t)$ be narrative entropy.
+The crisis produces:
+\[
+  H(t) = \begin{cases}
+    H_0 & t < t_{\text{crisis}} \\
+    H_0 + (H_{\max} - H_0)(1 - e^{-\mu(t - t_{\text{crisis}})}) & t_{\text{crisis}} \leq t < t_{\text{capture}} \\
+    H_{\text{new}} + (H_{\max} - H_{\text{new}}) e^{-\lambda(t - t_{\text{capture}})} & t \geq t_{\text{capture}}
+  \end{cases}
+\]
+Three phases: entropy rises during the crisis ($\mu$ rate), reaches a maximum, then declines as a new dominant narrative consolidates ($\lambda$ rate).
+The \emph{vacuum duration} $t_{\text{capture}} - t_{\text{crisis}}$ is the critical parameter: longer vacuums allow more narrative competition; shorter vacuums favor prepared actors.
+\end{model}
+
+\subsection{The game-theoretic structure}
+
+\begin{model}[Crisis Narrative Game]
+\label{mod:narrative-game}
+\index{crisis narrative game}
+Two groups compete to capture the post-crisis narrative.
+Each chooses an investment level $\phi_i \in [0, B_i]$ (bounded by budget $B_i$).
+The payoff to group $i$ from capturing the narrative is $V_i$ (the value of having their preferred policy regime installed).
+The probability of capture is a contest function:
+\[
+  p_i(\phi_1, \phi_2) = \frac{(\phi_i \cdot \credibility{i})^r}{(\phi_1 \cdot \credibility{1})^r + (\phi_2 \cdot \credibility{2})^r}
+\]
+where $r > 0$ is the ``decisiveness'' of investment (higher $r$ means investment matters more relative to luck).
+Group $i$'s expected payoff is $p_i V_i - \phi_i$.
+
+The Nash equilibrium investment is:
+\[
+  \phi_i^* = \frac{r V_i V_j (\credibility{i} \credibility{j})^r}{(V_i \credibility{i}^r + V_j \credibility{j}^r)^2} \cdot V_j \credibility{j}^r
+\]
+This implies: (1) both groups invest more when the stakes $V_i$ are higher; (2) the group with higher credibility invests less per dollar of payoff (credibility substitutes for spending); (3) total expenditure is highest when the groups are evenly matched.
+\end{model}
+
+\section{Case Studies in Crisis Doxonomics}
+\label{sec:ch29-cases}
+
+\subsection{The 2008 financial crisis (reprise)}
+
+The 2008 crisis was analyzed in Chapter~\ref{ch:austerity} from the perspective of austerity narrative capture.
+Here we examine the broader doxonomic dynamics:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Vacuum phase} (September 2008 -- March 2009): Lehman Brothers collapsed; narrative entropy surged; multiple framings competed (``Wall Street greed,'' ``regulatory failure,'' ``government interference,'' ``systemic risk'').
+  \item \textbf{Brief Keynesian capture} (March 2009 -- late 2009): stimulus programs passed; ``government must act'' was the dominant frame.
+  \item \textbf{Austerity counter-capture} (2010--2012): fiscal conservatives, with superior institutional infrastructure, reframed the crisis from ``private-sector failure'' to ``public-sector profligacy'' (see Chapter~\ref{ch:austerity} for the detailed mechanism).
+  \item \textbf{Residual fragmentation} (2012--present): no single narrative achieved full capture; populist narratives (left and right) filled the vacuum left by partial austerity failure.
+\end{enumerate}
+
+The key doxonomic lesson: the Keynesian narrative ``won'' the initial framing contest but lost the post-crisis consolidation because it lacked the institutional infrastructure to sustain its narrative beyond the immediate emergency.
+
+\subsection{COVID-19 pandemic}
+
+\begin{example}
+\label{ex:covid}
+The COVID-19 pandemic (2020--2022) was the most compressed doxonomic event in modern history:
+
+\paragraph{Phase 1: Rally and consensus (March--June 2020).}
+Near-universal credibility surge for public health authorities.
+Previously unthinkable policies (lockdowns, universal cash transfers, vaccine mandates) became thinkable.
+Narrative entropy was briefly low: ``follow the science'' was the dominant frame.
+
+\paragraph{Phase 2: Fragmentation (July 2020--2021).}
+As the crisis extended, narrative competition intensified.
+Competing frames emerged: ``public health vs.\ economy,'' ``masks as freedom vs.\ masks as control,'' ``vaccines as salvation vs.\ vaccines as coercion.''
+Partisan identity became the strongest predictor of pandemic beliefs in the US, stronger than education, income, or geography.
+
+\paragraph{Phase 3: Institutionalization (2021--2022).}
+The pandemic produced lasting belief shifts:
+\begin{itemize}[nosep]
+  \item \emph{Remote work}: the belief ``most office work can be done from home'' went from fringe to common sense in months.
+  \item \emph{Government capacity}: the belief ``government can send checks to everyone quickly'' was demonstrated empirically.
+  \item \emph{Institutional distrust}: trust in public health authorities declined sharply in some populations, a credibility destruction that may take a generation to repair.
+  \item \emph{Surveillance normalization}: contact tracing, vaccine passports, and health status monitoring expanded state and corporate surveillance capacity.
+\end{itemize}
+Which of these shifts proves permanent depends on the post-pandemic narrative competition, which is still underway.
+\end{example}
+
+\subsection{Climate crisis: slow-motion doxonomics}
+
+The climate crisis is distinctive because it is a \emph{slow-motion} crisis: the threat is real but unfolds over decades rather than days.
+This creates a doxonomic disadvantage for crisis-response narratives, because the phase-transition mechanism requires a discrete threshold crossing to accelerate belief change.
+
+\begin{proposition}[Slow Crisis Disadvantage]
+\label{prop:slow-crisis}
+\index{slow crisis}
+A crisis that unfolds gradually ($\sigma(t)$ rises slowly) may never cross the critical threshold $\sigma^*$ that triggers a phase transition in the belief system.
+Instead, the system adapts incrementally, normalizing each step of deterioration.
+The ``boiling frog'' problem: each year's weather is only slightly worse than the last, never triggering the sudden schema disruption that a discrete crisis (earthquake, crash, attack) produces.
+\end{proposition}
+
+The climate doxonomic contest therefore depends on discrete ``focusing events'' (hurricanes, wildfires, heat waves) that temporarily accelerate belief change.
+Whether these events produce lasting shifts depends on whether climate-action advocates have prepared narrative infrastructure for rapid deployment when events create openings---the same preparedness logic as the shock doctrine, but applied to a progressive rather than conservative agenda.
+
+\section{Doxonomic Preparedness}
+\label{sec:ch29-preparedness}
+
+\subsection{The preparedness framework}
+
+The analysis above suggests that crisis outcomes depend heavily on \emph{pre-crisis narrative preparation}.
+This has implications for any group that wants to shape post-crisis common sense:
+
+\begin{model}[Doxonomic Preparedness]
+\label{mod:preparedness}
+\index{doxonomic preparedness}
+Effective crisis narrative capture requires:
+\begin{enumerate}[nosep]
+  \item \textbf{Pre-packaged narratives}: clear, simple, emotionally resonant explanations of what went wrong and what should change, ready for deployment before the crisis hits.
+  \item \textbf{Institutional infrastructure}: think tanks, media relationships, academic allies, and trained spokespeople who can amplify the narrative rapidly.
+  \item \textbf{Policy proposals}: specific, implementable policy solutions that operationalize the narrative (``never let a crisis go to waste'' requires having the solution ready when the crisis arrives).
+  \item \textbf{Credibility reserves}: pre-crisis institutional credibility that can be drawn on during the crisis (the group must be seen as legitimate and knowledgeable \emph{before} the crisis, not just during it).
+  \item \textbf{Counter-narrative inoculation}: anticipating and pre-empting the competing narratives that will be deployed.
+\end{enumerate}
+\end{model}
+
+\subsection{Asymmetric preparedness}
+
+\begin{proposition}[Conservative Preparedness Advantage]
+\label{prop:conservative-advantage}
+\index{conservative advantage}
+Groups defending the status quo tend to have a structural preparedness advantage because:
+\begin{enumerate}[nosep]
+  \item they have larger institutional budgets (Chapter~\ref{ch:inequality-legitimacy}),
+  \item their narratives align with pre-existing common sense (requiring less persuasion),
+  \item their policy proposals involve \emph{less} change (which is simpler to communicate),
+  \item the rally-around-the-flag effect initially boosts established institutions.
+\end{enumerate}
+Challenger narratives must overcome these disadvantages through superior simplicity, emotional resonance, or the visible failure of the incumbent narrative to explain the crisis.
+\end{proposition}
+
+The 2008 crisis illustrates this asymmetry: the austerity narrative (status quo-reinforcing) defeated the Keynesian narrative (reform-oriented) despite the latter's stronger evidential base, because the austerity camp had superior institutional infrastructure and a simpler story.
+
+\section{Post-Crisis Consolidation}
+\label{sec:ch29-consolidation}
+
+\subsection{The window of vulnerability}
+
+The period immediately after a crisis---when the new narrative is being consolidated but has not yet achieved full common-sense status---is a window of vulnerability.
+The new narrative can be challenged, reversed, or modified during this period.
+Once it achieves common-sense status (typically 2--5 years after the crisis), it becomes much more resistant to challenge.
+
+\subsection{Lock-in mechanisms}
+
+Post-crisis narratives are locked in through:
+\begin{itemize}[nosep]
+  \item \textbf{Policy institutionalization}: policies enacted during the crisis create institutional facts that are hard to reverse (agencies, regulations, spending programs).
+  \item \textbf{Curriculum adoption}: if the crisis narrative enters educational materials, it is transmitted to the next generation.
+  \item \textbf{Professional norms}: if the crisis narrative changes professional standards (medical protocols, financial regulations, risk assessment), it persists through professional practice.
+  \item \textbf{Physical infrastructure}: investments made during the crisis (hospitals, surveillance systems, military bases) embody the crisis narrative in material form.
+\end{itemize}
 
 \section{Notes and References}
 \label{sec:ch29-notes}
 
 On crisis and belief change, see \textcite{klein2007}.
-Gramsci's concept of interregnum connects to \textcite{gramsci1971}.
+Gramsci's concept of interregnum and hegemonic crisis connects to \textcite{gramsci1971}.
 The Overton window concept is from Joseph Overton (Mackinac Center, 2003).
 On emergency governance and narrative, see \textcite{lippmann1922} and \textcite{herman1988}.
+
+The rally-around-the-flag effect is documented in Mueller (1970).
+On fear and political cognition, see Huddy et al.\ (2005).
+The phase transition analogy for social systems draws on Scheffer (2009).
+On the 2008 crisis as a doxonomic event, see Blyth (2013) and \textcite{mirowski2009}.
+
+COVID-19 and belief polarization are analyzed in Gadarian et al.\ (2021).
+On the climate crisis as a slow-motion doxonomic challenge, see Oreskes and Conway (2014).
+For the game-theoretic analysis of narrative competition, see Acemoglu et al.\ (2013).
 
 \section{Exercises}
 
 \begin{exercise}
 Using Model~\ref{mod:crisis}, analyze the COVID-19 pandemic as a doxonomic event.
-Which beliefs shifted rapidly?
-Which institutions captured the narrative?
-What new common sense was installed?
+\begin{enumerate}[nosep]
+  \item Which beliefs shifted rapidly during the first three months?
+  \item Which institutions gained credibility? Which lost it?
+  \item What new common sense was installed, and how durable has it proven?
+  \item Apply the phase-transition model: estimate when $\sigma(t)$ crossed $\sigma^*$ and when it fell back below.
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Estimate the Overton window before and after the 2008 financial crisis.
-Which propositions entered or exited the window?
+\begin{enumerate}[nosep]
+  \item List 5 propositions that were ``unthinkable'' before September 2008.
+  \item Which of these entered the window during the crisis?
+  \item Which have remained in the window, and which snapped back to ``unthinkable''?
+  \item What institutional factors explain the difference?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Design a ``doxonomic preparedness'' framework for progressive movements.
-What narratives should be ready for deployment when the next crisis opens the Overton window?
+Design a ``doxonomic preparedness'' plan (Model~\ref{mod:preparedness}) for a progressive movement of your choice.
+\begin{enumerate}[nosep]
+  \item Specify the crisis type you are preparing for (economic, ecological, public health, political).
+  \item Write the pre-packaged narrative (one paragraph, suitable for media deployment).
+  \item List the institutional infrastructure that would need to be built in advance.
+  \item Identify 3 specific policy proposals that operationalize the narrative.
+  \item Anticipate the competing narratives and write counter-arguments.
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Model two competing groups racing to capture the post-crisis narrative.
-Formalize as a game and identify the Nash equilibrium investment levels.
+Apply the crisis narrative game (Model~\ref{mod:narrative-game}) to a historical crisis.
+\begin{enumerate}[nosep]
+  \item Identify the two (or more) competing groups and their narratives.
+  \item Estimate $V_i$ (value of capture), $\credibility{i}$ (pre-crisis credibility), and $\phi_i$ (investment during the crisis).
+  \item Compute the Nash equilibrium investment levels.
+  \item Did the actual outcome match the model's prediction? If not, what did the model miss?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Analyze the climate crisis using the slow-crisis framework (Proposition~\ref{prop:slow-crisis}).
+\begin{enumerate}[nosep]
+  \item Why has the climate crisis not produced a belief-system phase transition despite overwhelming scientific evidence?
+  \item Identify 3 ``focusing events'' (extreme weather, ecological collapse) that temporarily accelerated belief change.
+  \item Were climate advocates prepared to exploit these events doxonomically? What was missing from their preparedness?
+  \item Design a preparedness framework specifically adapted to the slow-crisis structure.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the narrative vacuum dynamics (Model~\ref{mod:vacuum}) and capture race:
+\begin{enumerate}[nosep]
+  \item Set $H_0 = 1.5$, $H_{\max} = 3.0$, $\mu = 0.3$, $\lambda = 0.15$.
+  \item Simulate two competing groups with budgets $B_1 = 10$, $B_2 = 3$ and credibilities $\credibility{1} = 0.8$, $\credibility{2} = 0.5$.
+  \item Using the contest function with $r = 1$, compute the probability that each group captures the post-crisis narrative.
+  \item How does the outcome change if the challenger invests in credibility-building \emph{before} the crisis ($\credibility{2} \to 0.7$)?
+  \item Plot the entropy trajectory $H(t)$ for the crisis, vacuum, and consolidation phases.
+  \item Simulate 1000 crises with stochastic capture outcomes. What fraction does the underfunded challenger win?
+\end{enumerate}
 \end{exercise}

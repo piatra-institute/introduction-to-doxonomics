@@ -5,61 +5,351 @@
 
 \noindent
 Doxonomic equilibria are stable but not permanent.
-This chapter analyzes the mechanisms by which dominant belief regimes fracture: contradictions, scandals, economic shocks, institutional failure, and the loss of elite credibility.
+The preceding chapters analyzed how belief regimes are constructed, funded, and maintained.
+This chapter analyzes how they come apart: the mechanisms by which dominant belief regimes fracture, the dynamics of credibility collapse, the role of contradictions between narrative and lived experience, and the conditions under which fracture produces transformation rather than mere turbulence.
+
+Understanding fracture is essential to doxonomics for two reasons.
+First, it completes the theory: a framework that can explain regime maintenance but not regime change is fundamentally incomplete.
+Second, it has practical implications: actors seeking to challenge a dominant belief regime need to understand when and how regimes are vulnerable, just as actors seeking to defend a regime need to understand the sources of fragility.
 
 \section{Regime Fracture as Bifurcation}
 \label{sec:ch30-bifurcation}
 
+\subsection{The formal model}
+
 \begin{model}[Bifurcation Model of Regime Fracture]
 \label{mod:bifurcation}
 \index{bifurcation}
-Let $\belief{}(t)$ be the strength of the dominant belief and $\sigma(t)$ a stress parameter (accumulating contradictions, declining legitimacy).
+Let $\belief{}(t)$ be the strength of the dominant belief and $\sigma(t)$ a stress parameter (accumulating contradictions, declining legitimacy, external shocks).
 The dynamics are:
 \[
   \frac{d\belief{}}{dt} = \belief{}(\alpha\phi - \delta - \sigma(t)) + \beta\belief{}^2(1 - \belief{})
 \]
-As $\sigma$ increases past a critical value $\sigma^*$, the high-$\belief{}$ equilibrium disappears through a saddle-node bifurcation.
-The system drops to a low-$\belief{}$ state---regime fracture.
+where $\alpha\phi$ is the institutional production rate, $\delta$ is natural decay, and $\beta$ captures social reinforcement.
 \end{model}
+
+\subsection{The critical stress threshold}
+
+\begin{proposition}[Critical Stress for Regime Fracture]
+\label{prop:critical-stress}
+\index{critical stress}
+The high-$\belief{}$ equilibrium exists if and only if $\sigma < \sigma^*$, where:
+\[
+  \sigma^* = \alpha\phi - \delta + \frac{\beta}{4}.
+\]
+When $\sigma$ exceeds $\sigma^*$, the high-belief equilibrium disappears through a saddle-node bifurcation.
+The system drops to a low-$\belief{}$ state---regime fracture.
+
+The critical stress $\sigma^*$ increases with:
+\begin{itemize}[nosep]
+  \item institutional investment $\phi$ (more funding makes the regime more resilient),
+  \item social reinforcement $\beta$ (stronger peer effects make the regime harder to crack),
+  \item conversion efficiency $\alpha$ (more effective institutions are more resilient).
+\end{itemize}
+It decreases with natural decay $\delta$ (regimes with faster turnover are more fragile).
+\end{proposition}
+
+\subsection{The fragility-resilience spectrum}
+
+\begin{example}
+\label{ex:fragility-spectrum}
+Different belief regimes occupy different positions on the fragility-resilience spectrum:
+
+\begin{center}
+\begin{tabular}{p{3.5cm}ccp{4cm}}
+\toprule
+Regime & $\alpha\phi$ (investment) & $\beta$ (reinforcement) & Assessment \\
+\midrule
+``Markets are efficient'' & High & Moderate & Fractured partially in 2008; recovered due to high $\phi$ \\[4pt]
+``Smoking doesn't cause cancer'' & Moderate & Low & Fractured 1960s--90s as evidence accumulated \\[4pt]
+National identity & Very high & Very high & Highly resilient; fractures only in existential crises \\[4pt]
+``Human nature is selfish'' & High & High & Very resilient; self-fulfilling properties add extra stability \\[4pt]
+Soviet communism & Moderate & High (coerced) & Fractured 1989--91 when coercion was withdrawn \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{example}
+
+\section{Sources of Stress}
+\label{sec:ch30-stress}
+
+The stress parameter $\sigma(t)$ aggregates multiple distinct sources of strain on the belief regime.
+
+\subsection{Contradiction accumulation}
+
+\begin{definition}[Doxonomic Contradiction]
+\label{def:contradiction}
+\index{contradiction!doxonomic}
+A \emph{doxonomic contradiction} arises when the belief system predicts $X$ but reality delivers $\neg X$ in a publicly visible way.
+Each contradiction adds $\Delta\sigma > 0$ to the stress parameter.
+Small contradictions can be absorbed through rationalization, reinterpretation, or blame-shifting.
+Large or repeated contradictions accumulate until $\sigma$ approaches $\sigma^*$.
+\end{definition}
+
+\begin{example}
+\label{ex:contradictions}
+Contradictions that accumulated against the ``efficient markets'' regime:
+\begin{itemize}[nosep]
+  \item Long-Term Capital Management collapse (1998): $\Delta\sigma$ moderate, contained by bailout.
+  \item Dot-com crash (2000--01): $\Delta\sigma$ moderate, rationalized as ``irrational exuberance'' (a market failure, but a correctable one).
+  \item Enron/WorldCom scandals (2001--02): $\Delta\sigma$ moderate, framed as individual fraud rather than systemic failure.
+  \item 2008 financial crisis: $\Delta\sigma$ very large, exceeding the rationalization capacity. Regime fractured partially.
+\end{itemize}
+Note the pattern: each contradiction was individually absorbed through narrative repair, but the cumulative $\sigma$ brought the system close to $\sigma^*$.
+The 2008 crisis pushed it over the threshold---not because it was qualitatively different from previous crises, but because the accumulated stress left no remaining margin.
+\end{example}
+
+\subsection{Credibility collapse}
 
 \begin{definition}[Credibility Collapse]
 \label{def:credibility-collapse}
 \index{credibility collapse}
 A \emph{credibility collapse} occurs when the credibility $\credibility{k}$ of a central institution drops rapidly, typically due to a scandal, failure, or exposure of deception.
-Because credibility compounds through the network, a single collapse can cascade.
+Because credibility is networked (institutions lend credibility to each other through association), a single collapse can cascade through the institutional network.
 \end{definition}
 
-\section{Sources of Stress}
-\label{sec:ch30-stress}
+\begin{model}[Credibility Cascade]
+\label{mod:credibility-cascade}
+\index{credibility cascade}
+Let $\credibility{k}(t)$ be the credibility of institution $k$, and let $A_{kj}$ be the association matrix ($A_{kj} > 0$ if institutions $k$ and $j$ are perceived as connected---shared funders, shared personnel, shared narrative space).
+When institution $k_0$ suffers a credibility shock:
+\[
+  \credibility{k}(t+1) = \credibility{k}(t) - \gamma \sum_{j} A_{kj} \cdot \Delta\credibility{j}(t)
+\]
+where $\Delta\credibility{j}(t)$ is the credibility loss at $j$ in the previous step.
+If $\gamma$ is large (strong association effects), a single institutional failure can trigger a credibility cascade that undermines the entire network of institutions supporting the belief regime.
+\end{model}
+
+\begin{example}
+\label{ex:credibility-cascade}
+The Catholic Church sex abuse scandal illustrates a credibility cascade:
+\begin{itemize}[nosep]
+  \item The initial revelation (Boston Globe, 2002) destroyed the credibility of specific dioceses.
+  \item The cascade spread to the institutional Church as a whole (shared identity).
+  \item It damaged the credibility of \emph{moral authority} in general (if the Church was complicit, who can be trusted on moral questions?).
+  \item It weakened the doxonomic output of religious institutions more broadly (survey data shows declining trust in all organized religion post-2002, not just Catholicism).
+\end{itemize}
+The cascade followed the association matrix: institutions perceived as closer to the Church (other religious bodies, moral-authority organizations) suffered larger credibility losses than distant institutions.
+\end{example}
+
+\subsection{Economic shocks}
+
+Material conditions constrain belief.
+When economic conditions deteriorate sharply---unemployment rises, living standards fall, inequality becomes visible---the gap between narrative (``the economy works for everyone'') and experience (``I just lost my job/house/savings'') generates stress.
+
+\begin{proposition}[Material-Narrative Gap]
+\label{prop:material-narrative-gap}
+\index{material-narrative gap}
+The stress contribution from economic conditions is:
+\[
+  \sigma_{\text{econ}}(t) = \kappa \cdot |Y_{\text{narrative}}(t) - Y_{\text{actual}}(t)|
+\]
+where $Y_{\text{narrative}}$ is the prosperity level implied by the dominant belief regime and $Y_{\text{actual}}$ is the experienced reality.
+Regimes that promise more (``rising tide lifts all boats'') are more vulnerable to economic downturns than regimes with more modest claims (``life is hard but fair'').
+\end{proposition}
+
+\subsection{Generational turnover}
+
+Each generation arrives without the formative experiences that established the belief regime for their parents.
+The beliefs must be actively reproduced through education and socialization---they are not transmitted automatically.
+
+\begin{proposition}[Generational Decay]
+\label{prop:generational-decay}
+\index{generational decay}
+If the belief regime's institutional reproduction is imperfect (transmission rate $\tau < 1$ per generation), then belief strength decays geometrically across generations:
+\[
+  \belief{}^{(n)} = \tau^n \cdot \belief{}^{(0)}.
+\]
+For $\tau = 0.85$ (15\% loss per generation), the regime retains only $0.85^3 = 0.61$ of its original strength after three generations ($\sim$75 years).
+This decay is independent of external stress and represents the ``natural lifespan'' of a belief regime in the absence of continuous institutional reinvestment.
+\end{proposition}
+
+\subsection{Memetic overload}
+
+The information environment can become so saturated with competing narratives that no single frame achieves dominance.
+This raises entropy $H(t)$ and erodes the coherence of the dominant regime even without any specific contradiction.
+
+The digital media environment has accelerated memetic overload: the proliferation of information sources, the algorithmic amplification of controversy, and the collapse of shared informational baselines all contribute to rising entropy.
+Some analysts interpret the current political moment as a \emph{permanent memetic overload}---a condition in which no stable common sense can be maintained because the information environment is too fragmented.
+
+\section{Fracture Dynamics}
+\label{sec:ch30-dynamics}
+
+\subsection{Slow accumulation, fast collapse}
+
+Regime fracture typically follows a pattern of slow stress accumulation followed by rapid collapse.
+The bifurcation model explains why: as $\sigma$ approaches $\sigma^*$, the high-belief equilibrium becomes increasingly fragile---small perturbations produce large swings---but the equilibrium persists until the critical threshold is crossed.
+The collapse, when it comes, is rapid and discontinuous.
+
+This pattern---decades of apparent stability followed by sudden, surprising collapse---is familiar from the fall of the Soviet Union, the Arab Spring, the \#MeToo movement, and other regime fractures.
+In each case, observers were surprised by the speed of change, but the bifurcation model predicts exactly this pattern: the regime appeared stable because the equilibrium existed, but it was increasingly fragile because $\sigma$ was close to $\sigma^*$.
+
+\subsection{Partial vs.\ complete fracture}
+
+Not all regime fractures are complete.
+The 2008 crisis produced a \emph{partial} fracture of the efficient markets regime: the belief was damaged but not destroyed, and institutional investment ($\phi$) proved sufficient to repair much of the damage over the following decade.
+
+\begin{definition}[Partial Fracture]
+\label{def:partial-fracture}
+\index{partial fracture}
+A \emph{partial fracture} occurs when $\sigma$ temporarily exceeds $\sigma^*$ but then falls back below it (because the stress source was temporary), and institutional investment is sufficient to rebuild the high-belief equilibrium before the system fully transitions to the low-belief state.
+The regime survives but is weakened: $\belief{}^{\text{post}} < \belief{}^{\text{pre}}$.
+\end{definition}
+
+Complete fracture occurs when either the stress is sustained long enough for the system to fully transition, or when the stress destroys the institutional infrastructure ($\phi$ declines), making the high-belief equilibrium unrecoverable.
+
+\subsection{What fills the vacuum?}
+
+Regime fracture creates a narrative vacuum (cf.\ Chapter~\ref{ch:crisis-doxonomics}).
+What fills the vacuum determines whether fracture produces progressive transformation, reactionary backlash, or prolonged instability.
+
+\begin{proposition}[Post-Fracture Outcomes]
+\label{prop:post-fracture}
+\index{post-fracture outcomes}
+The outcome of regime fracture depends on the relative preparedness of competing narratives:
+\begin{enumerate}[nosep]
+  \item \textbf{Regime replacement}: a prepared alternative with institutional infrastructure captures the vacuum. Example: the New Deal replacing laissez-faire after 1929.
+  \item \textbf{Regime restoration}: the old regime's institutional infrastructure survives the fracture and rebuilds. Example: efficient markets partially restored after 2008.
+  \item \textbf{Prolonged instability}: no alternative achieves capture; the system oscillates between competing frames. Example: the post-2016 political landscape in many Western democracies.
+  \item \textbf{Authoritarian capture}: a crisis narrative built on fear, identity, and simplification captures the vacuum. Example: Weimar Germany, various 21st-century populist movements.
+\end{enumerate}
+\end{proposition}
+
+\section{Historical Case Studies}
+\label{sec:ch30-cases}
+
+\subsection{The fall of Soviet communism (1989--91)}
+
+The Soviet belief regime fractured through a combination of all five stress sources operating simultaneously:
+\begin{itemize}[nosep]
+  \item \emph{Contradictions}: the economy failed to deliver the promised prosperity; Soviet citizens could see Western living standards through increasing media exposure.
+  \item \emph{Credibility collapse}: Chernobyl (1986) demonstrated that the state would lie about existential threats.
+  \item \emph{Economic shock}: declining oil prices and economic stagnation in the 1980s.
+  \item \emph{Memetic overload}: glasnost opened the information space to competing narratives.
+  \item \emph{Generational turnover}: young Soviets had no memory of WWII, which had been the regime's primary legitimating experience.
+\end{itemize}
+
+The critical factor was that Gorbachev's reforms \emph{withdrew coercive enforcement} without building an alternative belief infrastructure.
+The social reinforcement term $\beta$ dropped sharply (people could now express dissent), and the institutional investment $\phi$ was not redirected to a new narrative.
+The result was complete regime fracture within two years.
+
+\subsection{The \#MeToo fracture (2017--)}
+
+The gender regime (Chapter~\ref{ch:race-coloniality-gender}) experienced a rapid partial fracture beginning in October 2017:
+\begin{itemize}[nosep]
+  \item \emph{Trigger}: the Harvey Weinstein revelations provided a high-profile credibility shock.
+  \item \emph{Cascade}: social media enabled rapid aggregation of individual experiences into a visible pattern, bypassing institutional gatekeepers who had previously suppressed the narrative.
+  \item \emph{Norm shift}: the disclosure norm shifted from ``don't talk about it'' to ``speak up,'' enabling thousands of additional disclosures.
+  \item \emph{Institutional response}: companies, universities, and governments adopted new policies, institutionalizing the partial fracture.
+\end{itemize}
+
+The fracture was partial: behavioral norms in many workplaces shifted, but the deeper gender regime (Chapter~\ref{ch:race-coloniality-gender}) remained substantially intact.
+The digital infrastructure that enabled the cascade also enabled counter-narratives (``cancel culture,'' ``due process concerns'') that partially contained the fracture.
+
+\section{Regime Resilience and Repair}
+\label{sec:ch30-resilience}
+
+\subsection{Repair mechanisms}
+
+Regimes that survive partial fracture employ several repair mechanisms:
 
 \begin{enumerate}[nosep]
-  \item \textbf{Contradictions}: the belief system predicts $X$ but reality delivers $\neg X$ (e.g., ``markets self-correct'' during a crash).
-  \item \textbf{Scandals}: institutional hypocrisy is exposed (e.g., a think tank's hidden funding revealed).
-  \item \textbf{Economic shocks}: material conditions deteriorate, undermining narrative plausibility.
-  \item \textbf{Memetic overload}: the narrative space becomes saturated with competing frames, raising entropy.
-  \item \textbf{Generational turnover}: new cohorts arrive without the same formative exposure.
+  \item \textbf{Narrative absorption}: incorporate the critique into the regime without changing its core. Example: ``We need \emph{better} regulation, not more government'' absorbs the 2008 critique without challenging the market-primacy narrative.
+
+  \item \textbf{Scapegoating}: attribute the failure to specific bad actors rather than systemic problems. Example: ``A few bad apples on Wall Street'' preserves the system while sacrificing individuals.
+
+  \item \textbf{Amnesia acceleration}: speed the forgetting of the fracture event. Institutional media moves on to new stories; the crisis becomes ``old news.''
+
+  \item \textbf{Credibility restoration}: rebuild institutional credibility through reforms, apologies, or personnel changes that signal change without altering the underlying structure.
+
+  \item \textbf{Counter-narrative suppression}: use institutional power to marginalize or delegitimize the alternative narratives that emerged during the fracture.
 \end{enumerate}
+
+\subsection{The resilience paradox}
+
+\begin{proposition}[Resilience Paradox]
+\label{prop:resilience-paradox}
+\index{resilience paradox}
+Regime repair that is too successful can increase long-run fragility.
+If the regime absorbs a crisis without meaningful reform, the underlying contradictions that produced the stress are not resolved---they are merely papered over.
+The stress parameter $\sigma$ resumes its accumulation, and the next crisis finds a regime that is closer to $\sigma^*$ than before, with repair mechanisms that have been partially depleted.
+Successful short-run repair can produce a cycle of escalating crises and increasingly brittle repairs, culminating in a fracture that no repair can contain.
+\end{proposition}
 
 \section{Notes and References}
 \label{sec:ch30-notes}
 
-On the dynamics of regime change, see \textcite{gramsci1971} on interregnum.
+On the dynamics of regime change, see \textcite{gramsci1971} on interregnum and \textcite{polanyi1944} on the double movement.
 Threshold and cascade dynamics are in \textcite{granovetter1978} and \textcite{watts2002}.
-On economic shocks and ideological change, see \textcite{polanyi1944} and \textcite{klein2007}.
+On economic shocks and ideological change, see \textcite{klein2007}.
+
+Bifurcation theory for social systems draws on Scheffer (2009) and Strogatz (2015).
+On the fall of Soviet communism as a belief-system collapse, see Kotkin (2001) and Yurchak (2005).
+The \#MeToo movement's dynamics are analyzed in Fileborn and Loney-Howes (2019).
+
+On credibility cascades and institutional trust, see Slovic (1993) and Cvetkovich and L\"{o}fstedt (1999).
+Generational effects on belief are studied in Mannheim (1952) and Inglehart (1977).
+For memetic overload and information fragmentation, see \textcite{sunstein2017} and Benkler, Faris, and Roberts (2018).
 
 \section{Exercises}
 
 \begin{exercise}
-For the bifurcation model, compute $\sigma^*$ as a function of $\alpha$, $\phi$, $\delta$, and $\beta$.
-Interpret: what makes a regime more or less resilient to stress?
+For the bifurcation model (Model~\ref{mod:bifurcation}), compute $\sigma^*$ as a function of $\alpha$, $\phi$, $\delta$, and $\beta$.
+\begin{enumerate}[nosep]
+  \item What makes a regime more resilient to stress? Interpret each parameter's contribution.
+  \item Compare the resilience of the selfishness regime ($\alpha\phi$ high, $\beta$ high) vs.\ a specific scientific consensus ($\alpha\phi$ moderate, $\beta$ low).
+  \item How much additional institutional investment $\Delta\phi$ would be needed to survive a stress increase of $\Delta\sigma = 0.5$?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Analyze the 2008 financial crisis as a partial fracture of the ``efficient markets'' belief regime.
-Why was the fracture incomplete?
+Analyze the 2008 financial crisis as a partial fracture of the ``efficient markets'' regime.
+\begin{enumerate}[nosep]
+  \item Identify the specific contradictions ($\Delta\sigma$ events) that accumulated prior to 2008.
+  \item Why was the fracture incomplete? Which repair mechanisms (Section~\ref{sec:ch30-resilience}) were deployed?
+  \item Apply the resilience paradox (Proposition~\ref{prop:resilience-paradox}): has the repair made the regime more or less fragile going forward?
+  \item What would complete fracture look like, and what stress level would be required?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Model a credibility cascade in which the exposure of one institution's deception reduces credibility of connected institutions.
-Use network contagion dynamics.
+Model a credibility cascade (Model~\ref{mod:credibility-cascade}) using a network of 10 institutions.
+\begin{enumerate}[nosep]
+  \item Define the association matrix $A_{kj}$ based on shared funding, shared personnel, or shared narrative space.
+  \item Shock one institution ($\Delta\credibility{k_0} = -0.5$) and propagate the cascade.
+  \item How many institutions lose more than 20\% credibility? Does the cascade reach institutions not directly associated with $k_0$?
+  \item What network structure (hub-and-spoke vs.\ distributed) is more vulnerable to cascading credibility collapse?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply the generational decay model (Proposition~\ref{prop:generational-decay}) to a belief regime of your choice.
+\begin{enumerate}[nosep]
+  \item Estimate the transmission rate $\tau$ from survey data comparing cohorts.
+  \item Compute the regime's ``natural lifespan'' (the number of generations until $\belief{}$ falls below 0.3).
+  \item How much institutional investment $\phi$ is needed to offset generational decay?
+  \item Compare with the actual investment in the regime's institutional reproduction (education budgets, media, etc.).
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Analyze the \#MeToo movement as a partial regime fracture.
+\begin{enumerate}[nosep]
+  \item What was the stress accumulation ($\sigma(t)$) prior to October 2017?
+  \item What role did social media play in bypassing institutional gatekeepers?
+  \item Was the fracture captured by a prepared alternative, or did it produce prolonged instability?
+  \item Apply the partial fracture definition: what aspects of the gender regime fractured, and what aspects survived intact?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the bifurcation model of regime fracture:
+\begin{enumerate}[nosep]
+  \item Set $\alpha\phi = 0.3$, $\delta = 0.1$, $\beta = 0.5$, $\belief{}(0) = 0.8$.
+  \item Slowly increase $\sigma$ from 0 to 1 over 500 time steps. Plot $\belief{}(t)$.
+  \item Identify the critical $\sigma^*$ at which fracture occurs.
+  \item Repeat with $\beta = 0.3$ (weaker social reinforcement). How does $\sigma^*$ change?
+  \item Simulate a partial fracture: increase $\sigma$ above $\sigma^*$ for 20 time steps, then reduce it. Does the regime recover?
+  \item How long must $\sigma > \sigma^*$ persist for the fracture to become irreversible?
+\end{enumerate}
 \end{exercise}

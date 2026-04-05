@@ -5,30 +5,103 @@
 
 \noindent
 The belief that technological development is autonomous, inevitable, and inherently progressive is one of the most powerful doxonomic products of modernity.
-It depoliticizes technological choices by framing them as natural laws rather than social decisions.
+It depoliticizes technological choices by framing them as natural laws rather than social decisions: technologies ``arrive'' rather than being chosen; they ``disrupt'' rather than being deployed by actors with interests; they create ``the future'' rather than one possible future among many.
+This chapter analyzes technological determinism, platform ideology, AI narratives, and the politics of inevitability as doxonomic systems.
+
+The stakes are high: if technology is understood as a social choice, it is subject to democratic governance.
+If it is understood as an autonomous force, governance is futile---we can only adapt.
+The difference between these framings determines whether societies actively shape their technological futures or passively accept whatever powerful actors deploy.
+
+\section{Technological Determinism as Doxa}
+\label{sec:ch28-determinism}
+
+\subsection{The belief}
+
+\begin{definition}[Technological Determinism]
+\label{def:tech-determinism}
+\index{technological determinism}
+\emph{Technological determinism} is the belief system holding that:
+\begin{enumerate}[nosep]
+  \item technology develops according to its own internal logic, independent of social choices,
+  \item technological development is unidirectional and irreversible (``progress''),
+  \item society must adapt to technology, not the reverse,
+  \item attempts to regulate, slow, or redirect technology are futile or harmful.
+\end{enumerate}
+As a doxonomic product, technological determinism forecloses democratic deliberation about which technologies to develop, deploy, or constrain.
+\end{definition}
+
+The word ``innovation'' has been transformed from a neutral descriptor to a term of moral approval.
+To oppose or regulate an innovation is framed as opposing progress itself---as being ``anti-technology,'' ``Luddite,'' or ``on the wrong side of history.''
+This framing is not natural; it is produced and maintained by actors who benefit from unregulated technological deployment \autocite{winner1986}.
+
+\subsection{The institutional genealogy}
+
+Technological determinism has deep roots but was systematically amplified in the late 20th century:
+
+\paragraph{The Progress narrative (18th--19th c.).}
+Enlightenment thinkers linked technological advancement to human improvement.
+Comte's positivism, Spencer's social evolution, and the ``Whig interpretation of history'' all treated technological development as evidence of civilizational advance.
+
+\paragraph{Cold War technology worship (1945--1990).}
+The atomic bomb, the space race, and the computer revolution were framed as proof that technological superiority equals national superiority.
+Government funding of R\&D (\$100+ billion/year in the US by the 1980s) created an institutional base for the belief that more technology is always better.
+
+\paragraph{Silicon Valley ideology (1990--present).}
+The tech industry developed its own doxonomic apparatus: the ideology of ``disruption'' (Christensen, 1997), the framing of regulation as ``innovation-killing,'' and the presentation of tech entrepreneurs as visionaries who see the future before the rest of us.
+This ideology is reinforced through venture capital (which rewards narratives of inevitable transformation), tech media (Wired, TechCrunch, which celebrate every new product as revolutionary), and the industry's immense lobbying presence (\$70+ million/year from Google, Meta, Amazon, Apple, and Microsoft combined).
 
 \section{Innovation as Legitimating Discourse}
 \label{sec:ch28-innovation}
 
-\begin{definition}[Technological Determinism as Doxa]
-\label{def:tech-determinism}
-\index{technological determinism}
-\emph{Technological determinism} is the belief that technology develops according to its own logic and that society must adapt to it.
-As a doxonomic product, it serves to foreclose democratic deliberation about which technologies to develop, deploy, or constrain.
-\end{definition}
+\subsection{The innovation imperative}
 
-The word ``innovation'' has been transformed from a neutral descriptor to a term of moral approval.
-To oppose or regulate an innovation is framed as opposing progress itself.
+\begin{proposition}[Innovation as Narrative Shield]
+\label{prop:innovation-shield}
+\index{innovation discourse}
+The ``innovation'' discourse functions as a narrative shield (Definition~\ref{def:narrative-shield}) that deflects critique of specific technologies by reframing it as critique of progress itself.
+The mapping:
+\begin{itemize}[nosep]
+  \item ``This algorithm discriminates'' $\to$ ``You're against AI.''
+  \item ``Gig workers need protections'' $\to$ ``You're against the sharing economy.''
+  \item ``Social media harms children'' $\to$ ``You're against free speech and connection.''
+  \item ``Surveillance is invasive'' $\to$ ``You want to fall behind China.''
+\end{itemize}
+In each case, a specific critique of a specific deployment is reframed as opposition to a general and unimpeachable good (innovation, progress, freedom, national competitiveness).
+\end{proposition}
+
+\subsection{Who funds the innovation discourse?}
+
+The innovation narrative is produced by actors with direct financial interests in unregulated technological deployment:
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Source & Estimated annual spending \\
+\midrule
+Tech industry lobbying (US, top 10 firms) & \$100+ million \\
+Industry-funded think tanks (ITIF, AEI tech, etc.) & \$30--50 million \\
+Tech company PR and communications & \$500+ million \\
+Industry-funded academic centers & \$50--100 million \\
+Tech media (advertising-supported) & \$2+ billion \\
+\midrule
+Counter-narrative (tech accountability orgs) & \$20--40 million \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The funding asymmetry is roughly 50:1 in favor of the pro-innovation narrative.
 
 \section{Platform Ideology}
 \label{sec:ch28-platforms}
+
+\subsection{Platforms as doxonomic infrastructure}
 
 \begin{model}[Platform Doxonomics]
 \label{mod:platform}
 \index{platform ideology}
 Social media platforms are simultaneously doxonomic infrastructure \emph{and} doxonomic actors.
 They control the exposure matrix $E$ through algorithmic curation, shaping which narratives reach which audiences.
-The platform's optimization function
+The platform's optimization function:
 \[
   \max_E \; \text{engagement}(E) = \max_E \sum_{j,k} e_{jk} \cdot r_{jk}
 \]
@@ -36,35 +109,214 @@ where $r_{jk}$ is the revenue from exposing agent $j$ to content $k$, is not bel
 It systematically amplifies high-engagement content, which tends toward moral outrage, identity threat, and simplistic narratives \autocite{zuboff2019}.
 \end{model}
 
+The doxonomic consequences:
+\begin{enumerate}[nosep]
+  \item \textbf{Attention monopoly}: platforms capture 6+ hours/day of the average user's attention, making them the primary channel through which most people encounter narratives about the world.
+  \item \textbf{Algorithmic amplification}: content that generates engagement (clicks, shares, comments) is algorithmically amplified regardless of its truth, nuance, or social value.
+  \item \textbf{Microtargeting}: advertisers and political campaigns can target specific belief profiles with tailored narratives, creating \emph{personalized doxonomic environments} that different people in the same society never see.
+  \item \textbf{Opacity}: the algorithms that determine exposure are proprietary, making the doxonomic system unobservable to the public and to researchers.
+\end{enumerate}
+
+\subsection{Engagement optimization and narrative entropy}
+
+\begin{proposition}[Algorithmic Entropy Reduction]
+\label{prop:algo-entropy}
+\index{algorithmic entropy}
+Engagement-maximizing algorithms tend to reduce narrative entropy $H(t)$ by amplifying a small number of high-engagement narratives at the expense of diverse, nuanced content.
+If engagement $r_{jk}$ is highest for content $k$ that is emotionally arousing, morally simple, and identity-affirming, then:
+\[
+  H^{\text{algo}}(t) < H^{\text{chronological}}(t)
+\]
+where $H^{\text{algo}}$ is narrative entropy under algorithmic curation and $H^{\text{chronological}}$ is entropy under chronological (uncurated) presentation.
+Lower entropy means fewer dominant narratives, which facilitates common-sense capture (cf.\ the entropy-capture connection in Chapter~\ref{ch:text-media}).
+\end{proposition}
+
+\subsection{Surveillance capitalism}
+
+\textcite{zuboff2019} argues that the platform business model constitutes a new form of capitalism: ``surveillance capitalism,'' in which human experience is extracted as raw material for behavioral prediction and modification.
+In doxonomic terms, surveillance capitalism represents the most sophisticated belief-production system ever constructed---one that:
+\begin{itemize}[nosep]
+  \item observes billions of people continuously,
+  \item learns what narratives each person responds to,
+  \item delivers personalized belief-shaping content at industrial scale,
+  \item monetizes the resulting behavioral changes.
+\end{itemize}
+
+The doxonomic novelty is not persuasion (advertising has always been persuasion) but the \emph{feedback loop}: the system measures the effect of each narrative exposure on each individual and uses that measurement to optimize future exposures.
+Traditional doxonomic systems (think tanks, curricula, mass media) broadcast narratives without individual-level feedback.
+Surveillance capitalism closes the loop.
+
+\section{AI Narratives}
+\label{sec:ch28-ai}
+
+\subsection{The ``AI will change everything'' narrative}
+
+The discourse around artificial intelligence provides a real-time case study in doxonomic narrative production.
+Two dominant narratives compete:
+
+\paragraph{The utopian narrative.}
+AI will solve humanity's greatest problems: cure disease, end poverty, manage climate change, augment human capability.
+This narrative is produced primarily by AI companies (OpenAI, Google DeepMind, Anthropic), venture capital firms, and tech-optimist media.
+Its doxonomic function: justify continued investment, forestall regulation, and frame critics as obstacles to progress.
+
+\paragraph{The existential risk narrative.}
+AI poses an existential threat to humanity: superintelligent systems could destroy civilization.
+This narrative is produced by a smaller but influential set of actors (some overlapping with the utopian camp).
+Its doxonomic function: concentrate governance authority in the hands of technical experts (``only we understand the risk'') and divert regulatory attention from \emph{present} harms (bias, surveillance, labor displacement) to \emph{speculative} future threats.
+
+\begin{proposition}[AI Narrative Convergence]
+\label{prop:ai-narratives}
+\index{AI narratives}
+Both the utopian and existential-risk narratives share a common doxonomic substrate: the assumption that AI is autonomous and transformative---that it ``arrives'' rather than being built by specific actors for specific purposes.
+Both narratives serve the interests of AI developers by framing the technology as too powerful to be governed by ordinary democratic processes.
+The difference is in the valence (hope vs.\ fear), not in the underlying determinism.
+\end{proposition}
+
+\subsection{What the narratives suppress}
+
+Both dominant AI narratives suppress a third framing: AI as a \emph{mundane technology} embedded in specific social contexts, developed by specific corporations, serving specific interests, and subject to the same governance frameworks as any other powerful technology.
+This framing---which \textcite{winner1986} would recognize as the ``politics of artifacts'' approach---has a much smaller institutional base: a few academic centers (AI Now Institute, Data \& Society), some journalism (The Markup, MIT Technology Review), and civil-society organizations (EFF, ACLU tech).
+
 \section{The Politics of Inevitability}
 \label{sec:ch28-inevitability}
 
-TINA (``There Is No Alternative'') is the purest doxonomic product: the belief that the current arrangement is not merely good but \emph{the only possibility}.
-This forecloses not just opposition but imagination.
+\subsection{TINA as doxonomic product}
+
+TINA---``There Is No Alternative''---is the purest doxonomic product: the belief that the current arrangement is not merely good but \emph{the only possibility}.
+This forecloses not just opposition but imagination \autocite{brown2015, streeck2016}.
+
+\begin{definition}[Inevitability Narrative]
+\label{def:inevitability}
+\index{inevitability narrative}
+An \emph{inevitability narrative} frames a contingent social arrangement as the necessary outcome of natural, technological, or historical forces.
+Its doxonomic function: eliminate the perceived space for political choice.
+If there is no alternative, there is nothing to deliberate about, nothing to organize for, and no point in resistance.
+\end{definition}
+
+Examples of inevitability narratives:
+\begin{itemize}[nosep]
+  \item ``Globalization is inevitable''---obscures the specific trade agreements, institutional decisions, and political choices that produced globalization in its current form.
+  \item ``Automation will replace most jobs''---obscures that automation is a choice (which tasks to automate, at what pace, with what safeguards) and frames labor displacement as a force of nature.
+  \item ``The market will decide''---obscures that markets are institutional constructions with rules that can be changed.
+  \item ``You can't stop progress''---conflates a specific deployment of a specific technology by a specific company with the general advancement of human knowledge.
+\end{itemize}
+
+\subsection{The doxonomic structure of inevitability}
+
+\begin{model}[Inevitability Production]
+\label{mod:inevitability}
+\index{inevitability!production model}
+Inevitability beliefs are produced by the combination of:
+\begin{enumerate}[nosep]
+  \item \emph{Repeated assertion}: ``experts agree,'' ``economists agree,'' ``history shows''---creating the impression of consensus about the inevitability of a specific outcome.
+  \item \emph{Suppression of alternatives}: defunding, marginalizing, or ridiculing proposals that demonstrate that alternatives exist.
+  \item \emph{Accomplished facts}: implementing the arrangement before democratic deliberation can occur (``move fast and break things''), then pointing to its existence as evidence of its inevitability.
+  \item \emph{Cost framing}: framing any change to the current arrangement as prohibitively expensive, while treating the costs of the current arrangement as natural.
+\end{enumerate}
+\end{model}
+
+\section{Counter-Narratives: Technology as Social Choice}
+\label{sec:ch28-counter}
+
+\subsection{The STS tradition}
+
+Science and Technology Studies (STS) provides the intellectual foundation for the counter-narrative: technologies are \emph{socially shaped}, not autonomous forces.
+\textcite{winner1986} showed that technologies embed political choices (the Long Island parkway bridges, too low for buses, encoded racial segregation in infrastructure).
+Bijker and Pinch demonstrated that the ``success'' of a technology reflects social negotiation, not technical superiority.
+
+\subsection{Democratic technology governance}
+
+Institutional alternatives to technological determinism include:
+\begin{itemize}[nosep]
+  \item \textbf{Technology assessment}: parliamentary or independent bodies that evaluate technologies before deployment (the US Office of Technology Assessment, defunded in 1995; European equivalents that still operate).
+  \item \textbf{Algorithmic accountability}: requirements that consequential algorithms be auditable, explainable, and subject to oversight.
+  \item \textbf{Data governance}: regulations (GDPR, proposed AI Act) that treat data and algorithms as objects of democratic governance.
+  \item \textbf{Participatory design}: involving affected communities in technological design decisions rather than deploying technologies on them.
+\end{itemize}
+
+\subsection{The institutional gap}
+
+The counter-narrative faces the standard doxonomic asymmetry: the tech industry spends orders of magnitude more on narrative production than the tech-accountability movement.
+But the counter-narrative has one advantage: lived experience.
+As algorithmic harms become visible (biased hiring algorithms, social media's mental health effects, gig economy exploitation, AI-generated misinformation), the gap between the innovation narrative and lived reality widens, creating openings for counter-narratives---the same erosion mechanism that weakened the austerity narrative after 2008 (Chapter~\ref{ch:austerity}).
 
 \section{Notes and References}
 \label{sec:ch28-notes}
 
 On surveillance capitalism, see \textcite{zuboff2019}.
 Platform power is analyzed in \textcite{sunstein2017}.
-The innovation discourse is critiqued in \textcite{mirowski2009}.
-On technological determinism, see \textcite{winner1986}.
+The innovation discourse is critiqued in \textcite{mirowski2009} and Morozov (2013).
+On technological determinism and the politics of artifacts, see \textcite{winner1986} and Bijker, Hughes, and Pinch (1987).
+
 TINA and the politics of inevitability connect to \textcite{brown2015} and \textcite{streeck2016}.
+On AI narratives and their politics, see Crawford (2021) and Bender et al.\ (2021).
+The STS tradition is surveyed in Jasanoff (2004).
+For algorithmic accountability, see Pasquale (2015) and O'Neil (2016).
+
+On the history of technology assessment, see Bimber (1996).
+The ``disruption'' narrative is analyzed in Lepore (2014).
+For the political economy of Silicon Valley, see O'Mara (2019).
 
 \section{Exercises}
 
 \begin{exercise}
 Analyze the discourse around AI automation as a doxonomic product.
-Who funds the ``AI will replace most jobs'' narrative?
-What alternative framings are suppressed?
+\begin{enumerate}[nosep]
+  \item Who funds the ``AI will replace most jobs'' narrative? Map the institutional sources.
+  \item Who funds the ``AI will augment human capability'' narrative? Are the funders the same?
+  \item What alternative framings are suppressed (e.g., ``AI deployment is a choice about labor relations'')?
+  \item Apply framing analysis (Chapter~\ref{ch:text-media}) to three media articles about AI and employment.
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Using the platform doxonomics model, show that engagement-maximizing algorithms reduce narrative entropy.
-Under what conditions does algorithmic curation produce common-sense capture?
+Using the platform doxonomics model (Model~\ref{mod:platform}), show that engagement-maximizing algorithms reduce narrative entropy.
+\begin{enumerate}[nosep]
+  \item Define a simple content ecosystem with $K = 20$ narrative frames and $N = 1000$ users.
+  \item Assign engagement scores $r_k$ that correlate with emotional arousal and simplicity.
+  \item Show that algorithmic curation (amplifying high-$r_k$ content) reduces $H(t)$ relative to chronological ordering.
+  \item Under what conditions does algorithmic curation produce common-sense capture ($H < H^*$)?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Design a counter-narrative to technological determinism.
-Estimate the resources needed to achieve measurable belief shift using the funding threshold from Proposition~\ref{prop:funding-threshold}.
+Choose a specific technology (e.g., facial recognition, autonomous vehicles, gene editing) and analyze the inevitability narrative surrounding it.
+\begin{enumerate}[nosep]
+  \item Identify the inevitability claims (``it's coming whether we like it or not'').
+  \item Who produces these claims and through what channels?
+  \item What social choices are obscured by the inevitability framing?
+  \item Design a counter-narrative that reframes the technology as a democratic choice.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply Proposition~\ref{prop:ai-narratives} to the current AI discourse.
+\begin{enumerate}[nosep]
+  \item Collect 10 media articles about AI risk (5 utopian, 5 existential-risk).
+  \item For each, identify the underlying assumption about AI autonomy.
+  \item Do any of the articles frame AI as a mundane technology subject to ordinary governance?
+  \item What institutional changes would be needed to amplify the mundane-technology framing?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Compare the defunding of the US Office of Technology Assessment (1995) with the current debate about AI governance.
+\begin{enumerate}[nosep]
+  \item Who lobbied for the OTA's defunding and why?
+  \item What institutional gap did its closure create?
+  \item How does this gap affect the current capacity for democratic technology governance?
+  \item Design a 21st-century technology assessment institution and estimate its required budget.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Simulate the platform doxonomics model:
+\begin{enumerate}[nosep]
+  \item Create 1,000 users and 50 content items with engagement scores drawn from a Pareto distribution (a few items get very high engagement).
+  \item Under chronological feed: each user sees a random sample of 20 items per day.
+  \item Under algorithmic feed: each user sees the 20 highest-engagement items.
+  \item Compute narrative entropy $H$ under both regimes over 100 days.
+  \item How much does the algorithmic feed reduce entropy?
+  \item Introduce a ``diversity injection'' (10\% of algorithmic feed is random). How much entropy does this recover?
+\end{enumerate}
 \end{exercise}

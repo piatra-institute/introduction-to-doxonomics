@@ -5,10 +5,15 @@
 
 \noindent
 Belief production has costs, returns, market structures, and welfare effects.
-This chapter applies economic analysis to the doxonomic system itself, asking: what does belief cost, who earns the returns, and what are the welfare consequences of concentrated reality production?
+It can be analyzed with the same tools that economists use for any industry---cost functions, optimization, market concentration, externalities, public goods theory, and welfare analysis---with the crucial difference that the ``product'' is not a commodity but a state of mind, and the ``consumer'' may not know they are consuming.
 
-\section{Cost Functions for Narrative Repetition}
+This chapter applies economic analysis to the doxonomic system itself, asking: what does belief cost to produce, who earns the returns, how is the market structured, and what are the welfare consequences of concentrated reality production?
+
+
+\section{Cost Functions for Narrative Production}
 \label{sec:ch10-costs}
+
+The first question of doxonomic economics: how much does it cost to shift a population's belief by a given amount?
 
 \begin{model}[Stylized Doxonomic Cost Function]
 \label{mod:cost-function}
@@ -23,14 +28,57 @@ The functional form is chosen for tractability.
 Empirical estimation of actual cost curves is an open problem for the field.
 \end{model}
 
-The total cost of achieving population-level belief $\mu(p) = \bar{\mu}$ using $m$ channels is the solution to
-\[
+\begin{remark}[Why Costs Are Convex]
+\label{rem:convex-costs}
+The convexity of $c_k(\mu)$---the fact that it costs more to move from 90\% to 95\% adoption than from 50\% to 55\%---arises from several mechanisms:
+\begin{itemize}[nosep]
+  \item \textbf{Diminishing susceptibility}: early adopters are those with the lowest resistance $\rho_j$ (Definition~\ref{def:resistance}).
+  Each subsequent ``convert'' is harder than the last.
+  \item \textbf{Counter-mobilization}: as a narrative becomes dominant, counter-narratives crystallize around the remaining dissenters, who become more organized and more vocal.
+  \item \textbf{Experiential resistance}: holdouts often have direct experience contradicting the narrative.
+  A worker who has seen colleagues laid off despite hard work is resistant to meritocratic narratives at a level that no amount of institutional messaging can overcome.
+  \item \textbf{Identity entrenchment}: for some holdouts, rejecting the dominant narrative has become part of their identity.
+  Persuading them requires not just evidence but identity transformation---a far more expensive operation.
+\end{itemize}
+\end{remark}
+
+The total cost of achieving population-level belief $\mu(p) = \bar{\mu}$ using $m$ channels is the solution to the \emph{multi-channel cost minimization problem}:
+\begin{equation}
+\label{eq:cost-min}
   \min_{\mu_1, \ldots, \mu_m} \sum_{k=1}^m c_k(\mu_k) \quad \text{subject to} \quad \sum_k w_k \mu_k = \bar{\mu}
-\]
+\end{equation}
 where $w_k$ is the population weight of group $k$.
+This is a convex optimization problem with a standard Lagrangian solution.
+
+\begin{proposition}[Equimarginal Cost Condition]
+\label{prop:equimarginal-cost}
+The cost-minimizing allocation satisfies
+\[
+  c_k'(\mu_k) = \lambda / w_k \quad \text{for all active channels } k
+\]
+where $\lambda$ is the Lagrange multiplier on the population constraint.
+Channels with lower marginal cost (higher $\credibility{k} \cdot \reach{k}$) should be pushed to higher adoption levels.
+\end{proposition}
+
+\begin{example}[Cost Comparison: Two Channels]
+\label{ex:cost-comparison}
+A funder targets a population-level belief of $\bar{\mu} = 0.7$ using two channels:
+\begin{itemize}[nosep]
+  \item Channel 1 (university program): $\credibility{1} = 0.9$, $\reach{1} = 0.05$, serving 5\% of population.
+  \item Channel 2 (advertising): $\credibility{2} = 0.2$, $\reach{2} = 0.6$, serving 60\% of population.
+\end{itemize}
+The cost functions are $c_1(\mu) = -\ln(1-\mu)/0.045$ and $c_2(\mu) = -\ln(1-\mu)/0.12$.
+Channel 2 has lower cost per unit belief despite lower credibility, because its reach is 12 times higher.
+But the equimarginal condition dictates that the \emph{marginal} costs should be equalized---which means pushing both channels until the incremental cost of one more percentage point is the same through each.
+In practice, the university channel becomes cost-effective at the margin for the last few percentage points (converting the most resistant audiences), while advertising is cost-effective for the bulk of the population.
+\end{example}
+
 
 \section{Ideological Return on Investment}
 \label{sec:ch10-iroi}
+
+If doxonomic production has costs, it also has returns.
+The \emph{ideological return on investment} measures the doxonomic effect per dollar spent.
 
 \begin{definition}[Ideological ROI]
 \label{def:iroi}
@@ -39,7 +87,7 @@ The \emph{ideological return on investment} for belief $p$ through channel $k$ i
 \[
   \iroi_k(p) = \frac{\Delta \belief{p}}{\Delta \funding{k}} = \frac{\credibility{k} \cdot \relevance{k}{p} \cdot \reach{k} \cdot \persistence{k}}{c_k'(\mu)}
 \]
-evaluated at the current belief level.
+evaluated at the current belief level $\mu$.
 The aggregate $\iroi$ is the weighted average across all active channels.
 \end{definition}
 
@@ -48,6 +96,72 @@ The aggregate $\iroi$ is the weighted average across all active channels.
 $\iroi_k(p)$ is decreasing in $\mu(p)$: beliefs that are already widely held offer lower marginal returns to additional investment.
 This creates an incentive to diversify across beliefs or to shift from persuasion to maintenance once capture is achieved.
 \end{proposition}
+
+\begin{proof}
+The denominator $c_k'(\mu) = 1/((1-\mu)\credibility{k}\reach{k})$ is increasing in $\mu$.
+Therefore $\iroi_k$ is decreasing in $\mu$.
+As $\mu \to 1$, $c_k'(\mu) \to \infty$ and $\iroi_k \to 0$: the last few holdouts are infinitely expensive to convert.
+\end{proof}
+
+\begin{remark}[IROI and Strategic Behavior]
+\label{rem:iroi-strategy}
+The decreasing-IROI property has strategic implications.
+A rational doxonomic investor should:
+\begin{enumerate}[nosep]
+  \item invest in under-served beliefs (low $\mu$, high $\iroi$) rather than saturated ones,
+  \item shift spending from persuasion to maintenance once a belief approaches capture,
+  \item diversify across the ideological bundle (Definition~\ref{def:ideology}) rather than concentrating on a single proposition,
+  \item invest in infrastructure (high-$\persistence{}$ channels) early, when costs are low, and shift to maintenance (low-cost monitoring) later.
+\end{enumerate}
+This matches observed doxonomic behavior: the conservative movement invested heavily in infrastructure in the 1970s--1980s (high IROI, low initial $\mu$) and shifted to maintenance and extension in the 2000s--2010s \autocite{mayer2016}.
+\end{remark}
+
+
+\section{The Market for Belief: Supply and Demand}
+\label{sec:ch10-market}
+
+Belief production can be modeled as a market with supply (narrative production by institutions) and demand (audience willingness to adopt narratives).
+
+\begin{model}[Doxonomic Market]
+\label{mod:doxonomic-market}
+\index{doxonomic market}
+\textbf{Supply side}: institutions produce narrative at a cost that increases with volume (convex cost functions).
+The supply curve for belief $p$ is the marginal cost of producing an additional unit of narrative exposure: $MC(\Theta) = c'(\Theta)$, increasing in throughput $\Theta$.
+
+\textbf{Demand side}: funders demand belief change.
+Their willingness to pay is determined by the expected benefit of the belief change---political advantage, regulatory relief, consumer behavior modification, labor compliance, or ideological satisfaction.
+The demand curve is $WTP(\mu) = b'(\mu)$, where $b(\mu)$ is the private benefit to the funder of belief level $\mu$.
+
+\textbf{Equilibrium}: the market clears where $MC = WTP$, determining the equilibrium level of narrative production and the equilibrium belief level.
+\end{model}
+
+\begin{proposition}[Market Failure in Belief Production]
+\label{prop:market-failure}
+\index{market failure!belief production}
+The doxonomic market fails in at least four ways:
+\begin{enumerate}[nosep]
+  \item \textbf{Externalities}: the social costs of dominant beliefs (reduced trust, suppressed cooperation, tolerating inequality) are not borne by the funders who produce them.
+  Funders overproduce belief relative to the social optimum.
+  \item \textbf{Information asymmetry}: audiences cannot easily assess the quality, funding source, or accuracy of the narratives they consume.
+  The epistemic lemons problem (Proposition~\ref{prop:lemons}) applies.
+  \item \textbf{Public-good character}: belief is non-excludable and partially non-rival, leading to under-provision of beneficial beliefs (accurate information, cooperative norms) and over-provision of privately beneficial but socially harmful beliefs.
+  \item \textbf{Monopoly power}: high concentration ($\ehhi$) gives dominant institutions price-setting and narrative-setting power, analogous to monopoly pricing in commodity markets.
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}[Why the Market Metaphor Is Imperfect]
+\label{rem:market-imperfect}
+The market model is useful but incomplete.
+Unlike commodity markets:
+\begin{itemize}[nosep]
+  \item the ``consumer'' (audience member) often does not know they are in a market,
+  \item the ``product'' (belief) changes the consumer rather than the consumer choosing the product,
+  \item there is no price signal (beliefs are not purchased but absorbed),
+  \item demand is partly endogenous (funders can create demand for their own narratives by creating the social conditions that make those narratives appealing).
+\end{itemize}
+The market metaphor illuminates cost structures and concentration, but it should not be taken to imply that belief production is a voluntary transaction between informed parties.
+\end{remark}
+
 
 \section{Belief as Public Good or Public Bad}
 \label{sec:ch10-public-good}
@@ -58,9 +172,31 @@ This gives beliefs the structure of a \emph{public good}---or, when harmful, a \
 \begin{definition}[Doxonomic Externality]
 \label{def:doxonomic-externality}
 \index{doxonomic externality}
-A \emph{doxonomic externality} arises when a subsidized belief $p$ imposes costs on agents who did not choose to produce or receive it.
-Examples include: reduced social trust from selfishness narratives, increased tolerance for inequality from meritocratic myths, or reduced collective action capacity from individualist anthropologies.
+A \emph{doxonomic externality} arises when a subsidized belief $p$ imposes costs (or benefits) on agents who did not choose to produce or receive it.
 \end{definition}
+
+\begin{example}[Negative Doxonomic Externalities]
+\label{ex:negative-externality}
+\begin{itemize}[nosep]
+  \item The belief ``human nature is selfish'' reduces cooperative behavior in public goods settings, imposing costs on everyone through lower social trust, weaker collective action, and reduced provision of public goods \autocite{fischbacher2001}.
+  \item The belief ``poverty reflects personal failure'' reduces political support for safety nets, imposing costs on low-income populations through reduced transfers and services.
+  \item The belief ``regulation kills jobs'' delays environmental and safety regulation, imposing costs through pollution, workplace injury, and financial instability.
+  \item The belief ``there is no alternative to the current system'' suppresses political imagination, imposing costs through democratic atrophy.
+\end{itemize}
+In each case, the funder benefits from the belief (lower taxes, less regulation, cheaper labor) while the social costs are distributed across the population.
+\end{example}
+
+\begin{example}[Positive Doxonomic Externalities]
+\label{ex:positive-externality}
+Not all doxonomic externalities are negative:
+\begin{itemize}[nosep]
+  \item Public health campaigns that increase belief in vaccine safety generate positive externalities through herd immunity.
+  \item Narratives promoting cooperative norms increase social trust, benefiting third parties.
+  \item Accurate scientific communication about climate change, if internalized, generates benefits through better collective action.
+\end{itemize}
+Positive doxonomic externalities are under-produced by the market (the funder cannot capture all the benefits), just as negative externalities are over-produced (the funder does not bear all the costs).
+This is the standard public-goods logic applied to belief.
+\end{example}
 
 \begin{theorem}[Welfare Loss from Doxonomic Externalities]
 \label{thm:welfare-loss}
@@ -68,8 +204,62 @@ If the social cost of belief $p$ is $D(\mu(p))$ (increasing and convex in adopti
 \[
   \mu^* > \mu^{**} \quad \text{where} \quad \mu^{**} = \arg\min_{\mu} \left[ c(\mu) + D(\mu) \right]
 \]
-The welfare loss is $\int_{\mu^{**}}^{\mu^*} [D'(\mu) - c'(\mu)] \, d\mu > 0$.
+The welfare loss (deadweight loss) is
+\[
+  W = \int_{\mu^{**}}^{\mu^*} [D'(\mu) - c'(\mu)] \, d\mu > 0
+\]
 \end{theorem}
+
+\begin{proof}
+The private funder minimizes $c(\mu)$ and ignores $D(\mu)$, producing at $\mu^*$ where $c'(\mu^*) = b'(\mu^*)$ (marginal cost equals marginal private benefit).
+The social planner minimizes $c(\mu) + D(\mu)$, producing at $\mu^{**}$ where $c'(\mu^{**}) + D'(\mu^{**}) = b'(\mu^{**})$.
+Since $D'(\mu) > 0$, the social planner's first-order condition is satisfied at a lower $\mu$, so $\mu^{**} < \mu^*$.
+The welfare loss is the integral of the gap between social marginal damage and private marginal cost over the over-production interval.
+\end{proof}
+
+\begin{example}[Welfare Loss: Selfish-Human-Nature Narrative]
+\label{ex:welfare-loss}
+Suppose the belief ``human nature is selfish'' has:
+\begin{itemize}[nosep]
+  \item Private benefit to funders (reduced regulation, lower labor costs): $b(\mu) = 10\mu$ (in billions \$/year).
+  \item Production cost: $c(\mu) = -5\ln(1-\mu)$ (in billions \$/year).
+  \item Social damage (reduced trust, cooperation, public goods): $D(\mu) = 8\mu^2$ (in billions \$/year).
+\end{itemize}
+The private optimum: $c'(\mu^*) = b'(\mu^*)$ gives $5/(1-\mu^*) = 10$, so $\mu^* = 0.5$.
+The social optimum: $c'(\mu^{**}) + D'(\mu^{**}) = b'(\mu^{**})$ gives $5/(1-\mu^{**}) + 16\mu^{**} = 10$, yielding $\mu^{**} \approx 0.28$.
+The welfare loss is $W = \int_{0.28}^{0.5} [16\mu - 5/(1-\mu) + 10] \, d\mu \approx \$1.8\text{B/year}$.
+These numbers are illustrative, not calibrated.
+But the structure is real: the private optimum overshoots the social optimum by a wide margin because the funder does not bear the social damage.
+\end{example}
+
+
+\section{Doxonomic Pigouvian Correction}
+\label{sec:ch10-pigouvian}
+
+In standard economics, externalities are corrected by a Pigouvian tax: a tax equal to the marginal social damage, which forces the producer to internalize the cost.
+The doxonomic analogue would be:
+
+\begin{model}[Doxonomic Pigouvian Tax]
+\label{mod:pigouvian}
+\index{Pigouvian tax!doxonomic}
+A \emph{doxonomic Pigouvian tax} on belief production would impose a per-unit charge of $t^* = D'(\mu^{**})$ on each unit of doxonomic throughput.
+Under this tax, the funder's problem becomes $\min_\mu [c(\mu) + t^*\Theta(\mu)]$, which aligns the private optimum with the social optimum.
+\end{model}
+
+\begin{remark}[Why Pigouvian Correction Is Difficult]
+\label{rem:pigouvian-difficulty}
+In practice, a doxonomic Pigouvian tax faces severe implementation problems:
+\begin{enumerate}[nosep]
+  \item \textbf{Measurement}: social damage $D(\mu)$ is extremely difficult to estimate.
+  What is the dollar value of reduced social trust?
+  \item \textbf{Attribution}: linking a specific funding flow to a specific belief change to a specific social cost requires the full doxonomic accounting chain (Chapter~\ref{ch:belief-flow-accounting}).
+  \item \textbf{Free speech}: in many jurisdictions, taxing speech or belief production raises constitutional issues.
+  \item \textbf{Political feasibility}: the actors who would be taxed are the same actors with the most doxonomic power (Chapter~\ref{ch:doxonomic-power}).
+\end{enumerate}
+More feasible policy instruments include: mandatory disclosure of doxonomic funding (transparency), public-interest counter-investment (subsidizing alternative narratives), structural reform of narrative infrastructure (media ownership limits, public broadcasting mandates), and educational intervention (doxonomic literacy curricula).
+See Chapter~\ref{ch:epistemic-democracy}.
+\end{remark}
+
 
 \section{Epistemic Herfindahl Index}
 \label{sec:ch10-ehhi}
@@ -89,48 +279,163 @@ In standard antitrust economics, $\mathrm{HHI} > 0.25$ signals high concentratio
 Whether the same threshold applies to belief production is an empirical question---narrative markets differ from commodity markets in credibility dynamics, network effects, and audience resistance.
 We adopt $\ehhi > 0.25$ as a provisional warning indicator, not as a settled regulatory standard.
 
-\section{Subsidy Structures}
+\begin{proposition}[Concentration and Welfare]
+\label{prop:concentration-welfare}
+\index{concentration!welfare effects}
+High $\ehhi$ worsens doxonomic welfare in two ways:
+\begin{enumerate}[nosep]
+  \item \textbf{Monopoly pricing of credibility}: dominant institutions can charge higher ``prices'' (extract more concessions from funders) for their credibility services, but they pass this rent to the funder rather than to the public in the form of better quality.
+  \item \textbf{Reduced narrative diversity}: concentrated markets produce narrower narrative range (Proposition~\ref{prop:narrative-range}), which reduces the public's access to alternative framings and increases the risk of common-sense capture.
+\end{enumerate}
+\end{proposition}
+
+
+\section{Subsidy Structures and Hidden Transfers}
 \label{sec:ch10-subsidies}
 
 Much doxonomic spending is invisible because it is structured as tax-exempt philanthropy, corporate sponsorship, or institutional cross-subsidy.
+These structures mean that the public co-finances belief production without choosing to do so.
 
 \begin{model}[Hidden Doxonomic Transfer]
 \label{mod:hidden-transfer}
-Let a corporation spend $S$ on think-tank funding.
-The effective doxonomic transfer is $S \cdot (1 - t)$ where $t$ is the tax rate on the deduction.
-Society effectively co-finances the doxonomic investment through foregone tax revenue.
-The net public cost is $S \cdot t$ for a narrative chosen by the funder.
+\index{hidden transfer}
+Let a corporation spend $S$ on think-tank funding, structured as a tax-deductible charitable contribution.
+The effective doxonomic transfer has two components:
+\begin{itemize}[nosep]
+  \item The corporation's net cost: $S \cdot (1-t)$ where $t$ is the marginal tax rate.
+  \item The public subsidy: $S \cdot t$, representing foregone tax revenue that would otherwise fund public services.
+\end{itemize}
+Society effectively co-finances the doxonomic investment: for every dollar the corporation spends on narrative production, taxpayers contribute $t/(1-t)$ additional dollars through the tax deduction.
+At a 21\% corporate rate, the public co-investment is about 27 cents per dollar.
 \end{model}
+
+\begin{example}[Scale of Hidden Transfers]
+\label{ex:hidden-transfers}
+In the United States:
+\begin{itemize}[nosep]
+  \item Total grants by the top 50 conservative foundations exceeded \$1 billion/year in the 2010s \autocite{mayer2016}.
+  \item Donor-advised funds---which allow anonymous, tax-deductible giving---held over \$230 billion in assets by 2022.
+  \item Corporate lobbying expenditure (partially deductible) exceeded \$4 billion/year.
+  \item 501(c)(4) ``social welfare'' organizations (which can engage in unlimited political spending without disclosing donors) spent hundreds of millions in election years.
+\end{itemize}
+The tax subsidy to ideological production is not a minor accounting detail.
+It is a structural feature of the doxonomic system: society partially funds the production of beliefs whose content is chosen by private actors.
+\end{example}
+
+\begin{remark}[Progressive vs.\ Regressive Doxonomic Subsidies]
+\label{rem:regressive}
+Tax deductions for charitable giving are regressive in their doxonomic effects: a dollar of giving by a high-income donor produces a larger tax subsidy than a dollar of giving by a low-income donor (because higher marginal tax rates yield larger deductions).
+This means the public co-investment in belief production disproportionately amplifies the narrative preferences of the wealthy.
+A flat tax credit (rather than a deduction) would be doxonomically more equitable, though it would reduce total philanthropic giving.
+\end{remark}
+
+
+\section{The Doxonomic Balance Sheet}
+\label{sec:ch10-balance}
+
+Combining the concepts of this chapter, we can sketch a national-level doxonomic balance sheet:
+
+\begin{model}[National Doxonomic Balance Sheet]
+\label{mod:balance-sheet}
+\index{doxonomic balance sheet}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+\textbf{Doxonomic Expenditure Category} & \textbf{Est.\ Annual (US, \$B)} \\
+\midrule
+Advertising (narrative component) & $\sim$300 \\
+Lobbying and political spending & $\sim$15 \\
+Think-tank and foundation grants & $\sim$5 \\
+Public relations industry & $\sim$20 \\
+Education (doxonomic component) & difficult to separate \\
+Entertainment (narrative component) & difficult to separate \\
+Religious institutions & difficult to separate \\
+Platform algorithmic curation & not directly priced \\
+\midrule
+\textbf{Total identifiable} & $\sim$340+ \\
+\bottomrule
+\end{tabular}
+\end{center}
+This is a lower bound.
+The ``difficult to separate'' categories (education, entertainment, religion) collectively dwarf the identifiable categories in doxonomic effect, but their belief-production component cannot be cleanly isolated from their other functions.
+\end{model}
+
+\begin{remark}
+The balance sheet reveals an asymmetry: identifiable doxonomic spending (advertising, lobbying, think tanks, PR) is dominated by private actors with concentrated interests.
+Public counter-investment (public broadcasting, civic education, public-interest media) is a small fraction.
+The doxonomic playing field is tilted by this asymmetry---and the tilt is itself a product of prior doxonomic success (beliefs about ``small government'' reduce political support for public counter-investment).
+\end{remark}
+
 
 \section{Notes and References}
 \label{sec:ch10-notes}
 
 The economics of public goods and externalities draws on \textcite{stiglitz2012} and \textcite{arrow1963}.
 The market for ideas framework is from \textcite{coase1974}.
-Media market concentration is analyzed in \textcite{bagdikian2004}.
+Media market concentration is analyzed in \textcite{bagdikian2004} and \textcite{mcchesney1999}.
 The Herfindahl index originates in \textcite{herfindahl1950}.
 On manipulation as an economic phenomenon, see \textcite{akerlof2015}.
 The political economy of think-tank funding is documented in \textcite{mayer2016}.
+
+Pigouvian taxation for externalities is a standard result in welfare economics; see \textcite{stiglitz2012}.
+For the specific challenges of taxing speech and information externalities, see Sunstein (1993) and \textcite{sunstein2017}.
+On donor-advised funds and dark money structures, see \textcite{mayer2016}.
+The concept of a national doxonomic balance sheet is new to this text; related accounting concepts appear in national income accounting and media economics.
+For advertising expenditure data, WARC and eMarketer provide the standard industry estimates.
+On the regressive structure of charitable tax deductions, see the U.S.\ Congressional Budget Office reports on tax expenditures.
+
 
 \section{Exercises}
 
 \begin{exercise}
 Compute $\ehhi$ for the following hypothetical market: three channels with throughputs $\Theta_1 = 50$, $\Theta_2 = 30$, $\Theta_3 = 20$.
 Is this market concentrated by doxonomic standards?
+How does $\ehhi$ change if a fourth channel enters with $\Theta_4 = 40$?
 \end{exercise}
 
 \begin{exercise}
-A funder can invest \$10M in advertising ($\credibility{} = 0.2$, $\reach{} = 0.6$) or in university research ($\credibility{} = 0.85$, $\reach{} = 0.05$).
-Compute $\iroi$ for each.
+A funder can invest \$10M in advertising ($\credibility{} = 0.2$, $\reach{} = 0.6$, $\persistence{} = 0.05$ years) or in university research ($\credibility{} = 0.85$, $\reach{} = 0.05$, $\persistence{} = 25$ years).
+Compute $\iroi$ for each channel, including the persistence factor.
 Under what conditions is the university investment more effective despite lower reach?
+What is the breakeven time horizon?
 \end{exercise}
 
 \begin{exercise}
-Model the welfare loss from the belief ``poverty reflects personal failure'' using a specific damage function $D(\mu) = \alpha \mu^2$.
-Find the socially optimal belief level and the deadweight loss.
+Model the welfare loss from the belief ``poverty reflects personal failure'' using the damage function $D(\mu) = \alpha \mu^2$ where $\alpha$ represents the annual social cost of reduced safety-net spending per unit of meritocratic belief.
+Find the socially optimal belief level $\mu^{**}$ and the deadweight loss $W$.
+How does $W$ change with $\alpha$?
 \end{exercise}
 
 \begin{exercise}
 Estimate the hidden public subsidy to ideological production through the U.S.\ 501(c)(3) tax exemption.
-What total doxonomic spending does this structure enable?
+If the top 50 conservative foundations distribute \$1B/year in grants at a 21\% corporate tax rate and a 37\% individual rate (for high-income donors), what is the total annual public co-investment?
+Who decides how this public money is spent?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch10-pigouvian}
+Design a doxonomic Pigouvian correction for the selfishness narrative.
+Estimate the marginal social damage $D'(\mu)$, propose a specific tax or subsidy structure, and discuss the implementation obstacles.
+Is a Pigouvian tax more or less feasible than direct counter-investment (public funding of cooperative-narrative infrastructure)?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch10-balance}
+Construct a partial doxonomic balance sheet for your country.
+Estimate the identifiable doxonomic expenditure in at least four categories (advertising, lobbying, think tanks, public broadcasting).
+What is the ratio of private to public doxonomic investment?
+What does this ratio imply for narrative pluralism?
+\end{exercise}
+
+\begin{exercise}
+The decreasing-IROI property implies that rational funders should diversify across the ideological bundle.
+Model a funder with three target beliefs ($p_1, p_2, p_3$) at initial adoption levels $\mu_1 = 0.8$, $\mu_2 = 0.3$, $\mu_3 = 0.1$.
+How should a \$10M budget be allocated across the three beliefs to maximize total belief impact?
+\end{exercise}
+
+\begin{exercise}
+The market-failure proposition identifies four failures.
+For each, give a concrete real-world example and propose a specific policy intervention.
+Which interventions are most politically feasible?
+Which would be most effective?
 \end{exercise}

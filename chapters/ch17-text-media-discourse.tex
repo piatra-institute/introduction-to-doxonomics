@@ -5,69 +5,337 @@
 
 \noindent
 Narratives are made of text, images, and speech.
-Computational methods allow us to measure their frequency, framing, drift, and concentration at scale.
-This chapter introduces the text-as-data methods most relevant to doxonomics.
+The doxonomic system produces an enormous volume of discursive material---newspaper columns, television segments, policy reports, social media posts, textbook passages, advertising copy---and this material is the primary carrier of belief-shaping force.
+Computational methods now allow us to measure the frequency, framing, drift, and concentration of narrative themes at scales that would have been impossible a generation ago.
+This chapter introduces the text-as-data methods most relevant to doxonomics, emphasizing both their power and their limitations.
+
+The key insight is that text is not merely evidence \emph{about} the doxonomic system; it \emph{is} the doxonomic system's primary output.
+When a think tank publishes a policy brief, the brief is simultaneously a data point for the analyst and a causal force acting on belief.
+This dual status---text as data and text as intervention---is what makes discourse analysis central to doxonomic methodology.
 
 \section{Corpus Construction}
 \label{sec:ch17-corpus}
 
+\subsection{Definition and principles}
+
 \begin{definition}[Doxonomic Corpus]
 \label{def:corpus}
 \index{corpus}
-A \emph{doxonomic corpus} for belief $p$ is a collection of documents $\mathcal{D} = \{d_1, \ldots, d_N\}$ drawn from the narrative infrastructure, annotated with metadata: source institution, date, channel, estimated audience, and funding source (where traceable).
+A \emph{doxonomic corpus} for belief domain $\mathcal{B}$ is a collection of documents $\mathcal{D} = \{d_1, \ldots, d_N\}$ drawn from the narrative infrastructure, where each document $d_i$ is annotated with metadata:
+\begin{itemize}[nosep]
+  \item source institution $I(d_i)$ and its position in the funding network,
+  \item publication date $t(d_i)$,
+  \item distribution channel $\mathcal{C}(d_i)$ (print, broadcast, online, social),
+  \item estimated audience reach $\reach{}(d_i)$,
+  \item funding source $F(d_i)$ (where traceable),
+  \item genre $G(d_i)$ (editorial, news report, policy brief, advertisement, academic paper, textbook).
+\end{itemize}
 \end{definition}
 
 Corpus construction is not neutral.
-What you include determines what you can measure.
-A corpus of newspaper editorials captures elite narrative production; a corpus of social media posts captures peer-level circulation.
-Both are needed for a complete doxonomic analysis.
+What you include determines what you can measure; what you exclude is invisible to your analysis.
+Several design choices shape a doxonomic corpus:
+
+\begin{enumerate}
+  \item \textbf{Production vs.\ reception corpora.}
+  A \emph{production corpus} samples from narrative output (editorials, broadcasts, reports).
+  A \emph{reception corpus} samples from what audiences actually encounter (social media feeds, survey-linked browsing logs).
+  The production corpus tells you what the system produces; the reception corpus tells you what people consume.
+  The gap between the two reveals the role of algorithmic curation and selective exposure.
+
+  \item \textbf{Elite vs.\ vernacular discourse.}
+  A corpus of newspaper editorials captures elite narrative production; a corpus of Reddit comments captures peer-level circulation and reinterpretation.
+  Complete doxonomic analysis requires both, because the doxonomic chain runs from elite production through institutional amplification to popular adoption.
+
+  \item \textbf{Temporal coverage.}
+  Short corpora capture snapshots; longitudinal corpora capture drift.
+  For measuring doxonomic effects, which unfold over years or decades, long time horizons are essential.
+  The trade-off: older materials may be digitized inconsistently, creating survivorship bias.
+
+  \item \textbf{Cross-institutional comparison.}
+  The most informative doxonomic corpora are structured to enable comparison across institutions with different funding sources.
+  A corpus comparing Heritage Foundation reports, Brookings Institution reports, and CBO analyses on the same policy topic, annotated with funding metadata, directly supports doxonomic inference.
+\end{enumerate}
+
+\subsection{Sampling and bias}
+
+\begin{proposition}[Corpus Bias and Doxonomic Measurement]
+\label{prop:corpus-bias}
+\index{corpus bias}
+Let $\mathcal{U}$ be the universe of doxonomically relevant documents and $\mathcal{D} \subset \mathcal{U}$ the sampled corpus.
+The inclusion probability $\pi(d) = P(d \in \mathcal{D})$ depends on:
+\begin{enumerate}[nosep]
+  \item \emph{Digitization bias}: older, less-resourced institutions have lower $\pi$.
+  \item \emph{Survival bias}: ephemeral media (pamphlets, radio broadcasts) are underrepresented.
+  \item \emph{Access bias}: paywalled or proprietary content has lower $\pi$ for researchers.
+  \item \emph{Platform bias}: social media APIs overrepresent active, public-facing users.
+\end{enumerate}
+Each bias distorts doxonomic measurement in a specific direction.
+Digitization bias understates the historical narrative output of marginalized institutions.
+Platform bias overstates the prevalence of extreme positions (which generate more engagement).
+\end{proposition}
+
+Practical mitigation strategies include stratified sampling by institution type, weighting by estimated reach, and explicit documentation of what the corpus cannot capture.
+
+\subsection{Worked example: constructing a climate-discourse corpus}
+
+\begin{example}
+\label{ex:climate-corpus}
+To study the doxonomic production of climate doubt, we construct a corpus with four institutional strata:
+
+\begin{center}
+\begin{tabular}{llrr}
+\toprule
+Stratum & Sources & Documents & Period \\
+\midrule
+Fossil-fuel funded & Global Climate Coalition, Heartland, CEI & 2,340 & 1989--2023 \\
+Industry-neutral think tanks & Brookings, RAND, Resources for the Future & 1,870 & 1989--2023 \\
+Scientific institutions & IPCC reports, NAS, Royal Society & 890 & 1989--2023 \\
+Major newspapers & NYT, WSJ, Washington Post (climate articles) & 48,200 & 1989--2023 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each document is tagged with funding metadata from foundation tax filings (IRS Form 990) and corporate disclosure databases.
+The stratified design allows us to compare narrative output \emph{across} funding regimes, which is the core doxonomic question: does funding predict framing?
+\end{example}
 
 \section{Framing Analysis}
 \label{sec:ch17-framing}
 
+\subsection{Formal framework}
+
 \begin{definition}[Frame]
 \label{def:frame}
 \index{frame}
-A \emph{frame} for proposition $p$ is a function $f: p \to (C, N, S)$ mapping the proposition to a causal story $C$, a normative valence $N \in \{-1, 0, +1\}$, and a subject position $S$.
+A \emph{frame} for proposition $p$ is a function $f: p \to (C, N, S, A)$ mapping the proposition to:
+\begin{itemize}[nosep]
+  \item a causal story $C$ (what caused $p$, what $p$ will cause),
+  \item a normative valence $N \in [-1, +1]$ (bad to good),
+  \item a subject position $S$ (who is the protagonist, victim, villain),
+  \item a prescribed action $A$ (what should be done in response).
+\end{itemize}
 Different frames for the same proposition can produce opposite doxonomic effects.
 \end{definition}
 
 \begin{example}
+\label{ex:unemployment-frames}
 The proposition ``unemployment is at 8\%'' can be framed as:
 \begin{itemize}[nosep]
-  \item $f_1$: ``the economy is recovering'' ($C$: trend is improving, $N = +1$),
-  \item $f_2$: ``millions remain without work'' ($C$: structural failure, $N = -1$).
+  \item $f_1$: ``the economy is recovering'' ($C$: trend is improving; $N = +0.6$; $S$: incumbent government as steward; $A$: stay the course),
+  \item $f_2$: ``millions remain without work'' ($C$: structural failure; $N = -0.8$; $S$: unemployed workers as victims of policy; $A$: change course),
+  \item $f_3$: ``labor market flexibility is increasing'' ($C$: creative destruction; $N = +0.3$; $S$: dynamic economy; $A$: reduce regulation further).
 \end{itemize}
-Same fact, different doxonomic force.
+Same fact, three different doxonomic forces.
+Frame $f_3$ is particularly interesting because it reframes a negative outcome (job loss) as a positive process (flexibility), a classic doxonomic maneuver.
 \end{example}
+
+\subsection{Computational frame detection}
+
+Manual frame coding is precise but slow.
+At corpus scale, computational methods are necessary.
+
+\paragraph{Dictionary-based methods.}
+The simplest approach assigns frames based on keyword co-occurrence.
+A ``market frame'' dictionary might contain: \texttt{market, competition, efficiency, incentive, choice, consumer, price signal}.
+A ``justice frame'' dictionary: \texttt{rights, fairness, inequality, discrimination, dignity, exploitation}.
+The frame score for document $d$ is:
+\[
+  \text{FrameScore}(d, f) = \frac{\sum_{w \in \text{dict}(f)} \text{tf}(w, d)}{|d|}
+\]
+where $\text{tf}(w, d)$ is the term frequency of word $w$ in document $d$.
+
+\paragraph{Supervised classification.}
+A subset of documents is hand-coded with frame labels; a classifier (logistic regression, SVM, or neural network) is trained on the labeled data and applied to the full corpus.
+This requires a reliable coding scheme and inter-annotator agreement checks.
+\textcite{card2015} provide a media frames corpus that can serve as training data for common frame categories.
+
+\paragraph{Unsupervised discovery.}
+When the frame taxonomy is unknown, topic models or clustering methods can discover frames inductively.
+The risk: unsupervised topics may not correspond to cognitively meaningful frames.
+Validation against human judgment is essential.
+
+\subsection{Frame prevalence and institutional funding}
+
+The central doxonomic question about framing is whether frame prevalence correlates with funding.
+Formally:
+
+\begin{model}[Funding-Frame Association]
+\label{mod:funding-frame}
+\index{frame prevalence}
+Let $\theta_{ik}(t)$ be the prevalence of frame $k$ in the output of institution $i$ at time $t$, and let $F_{ij}(t)$ be the funding flow from funder $j$ to institution $i$.
+The funding-frame model is:
+\[
+  \theta_{ik}(t) = \alpha_{ik} + \sum_{j} \beta_{jk} F_{ij}(t-\ell) + \gamma_k X_{i}(t) + \varepsilon_{ik}(t)
+\]
+where $\ell$ is a lag (funding affects output with a delay), $X_i(t)$ are institutional controls, and $\beta_{jk}$ measures how much funder $j$'s money predicts the prevalence of frame $k$.
+A positive $\beta_{jk}$ for a frame that serves funder $j$'s interests is consistent with---though does not prove---doxonomic influence.
+\end{model}
+
+Identification challenges are severe: funders may select institutions that already share their framing preferences (selection), or common ideological factors may drive both funding and framing (confounding).
+The causal methods of Chapter~\ref{ch:causal-inference} apply here.
 
 \section{Topic Models}
 \label{sec:ch17-topic-models}
 
+\subsection{Latent Dirichlet Allocation}
+
 \begin{model}[LDA for Doxonomic Analysis]
 \label{mod:lda}
 \index{topic model}
-Latent Dirichlet Allocation \autocite{blei2003} models each document $d$ as a mixture of topics $\theta_d \sim \mathrm{Dir}(\alpha)$, and each topic $k$ as a distribution over words $\phi_k \sim \mathrm{Dir}(\beta)$.
+Latent Dirichlet Allocation \autocite{blei2003} models each document $d$ as a mixture of $K$ topics:
+\[
+  \theta_d \sim \operatorname{Dir}(\alpha), \quad z_{dn} \mid \theta_d \sim \operatorname{Categorical}(\theta_d), \quad w_{dn} \mid z_{dn}, \Phi \sim \operatorname{Categorical}(\phi_{z_{dn}})
+\]
+where $\theta_d$ is the topic proportion vector for document $d$, $z_{dn}$ is the topic assignment for word $n$ in document $d$, and $\phi_k$ is the word distribution for topic $k$, with $\phi_k \sim \operatorname{Dir}(\beta)$.
+
 In doxonomic application, topics correspond to narrative themes.
-Changes in topic prevalence $\theta_k(t)$ over time reveal which narratives are gaining or losing institutional support.
+Changes in topic prevalence $\bar{\theta}_k(t) = \frac{1}{|\mathcal{D}_t|}\sum_{d \in \mathcal{D}_t} \theta_{dk}$ over time reveal which narratives are gaining or losing institutional support.
 \end{model}
 
-\section{Semantic Drift}
+\subsection{Structural topic models}
+
+Standard LDA treats all documents as exchangeable.
+The \emph{structural topic model} (STM) allows document-level covariates---including institutional funding source---to influence topic prevalence:
+\[
+  \theta_d \sim \operatorname{LogisticNormal}(\mu(X_d), \Sigma)
+\]
+where $X_d$ includes the funding category, publication year, and media channel of document $d$.
+This directly models the doxonomic hypothesis: institutional characteristics predict which narratives appear.
+
+\subsection{Dynamic topic models}
+
+For longitudinal analysis, dynamic topic models \autocite{blei2006} allow topic-word distributions to evolve over time:
+\[
+  \phi_k^{(t)} \sim \mathcal{N}(\phi_k^{(t-1)}, \sigma^2 I)
+\]
+in the natural parameter space.
+This captures the gradual transformation of narrative content---e.g., how the ``free market'' topic shifts from emphasizing deregulation in the 1980s to emphasizing innovation in the 2010s.
+
+\subsection{Choosing $K$ and validation}
+
+The number of topics $K$ is a researcher choice with substantive consequences.
+Too few topics produce coarse, uninterpretable themes; too many fragment coherent narratives.
+Practical approaches:
+\begin{itemize}[nosep]
+  \item \textbf{Held-out likelihood}: maximize predictive performance on unseen documents.
+  \item \textbf{Coherence scores}: measure whether top words in each topic co-occur in external corpora.
+  \item \textbf{Substantive interpretability}: can a domain expert name each topic and explain its doxonomic relevance?
+  \item \textbf{Sensitivity analysis}: check whether key findings (e.g., funding-topic correlations) are robust across a range of $K$.
+\end{itemize}
+
+\begin{example}
+\label{ex:topic-validation}
+Fitting LDA with $K = 10, 15, 20, 25, 30$ to the climate-discourse corpus (Example~\ref{ex:climate-corpus}), we find that the ``doubt/uncertainty'' topic appears consistently for $K \geq 15$, with top words: \texttt{uncertain, model, natural, variability, debate, premature, cost}.
+Its prevalence in fossil-fuel-funded sources ($\bar{\theta} = 0.18$) exceeds its prevalence in scientific sources ($\bar{\theta} = 0.03$) by a factor of six.
+This difference is robust to the choice of $K$, increasing confidence that it reflects a real pattern rather than a modeling artifact.
+\end{example}
+
+\section{Sentiment, Stance, and Moral Foundations}
+\label{sec:ch17-sentiment}
+
+\subsection{Beyond sentiment}
+
+Simple sentiment analysis (positive/negative) is too coarse for doxonomic work.
+A document can be positive about free markets and negative about government regulation simultaneously.
+Target-specific sentiment analysis decomposes the overall sentiment by the object being evaluated:
+
+\[
+  s(d, e) = \text{sentiment of document } d \text{ toward entity } e.
+\]
+
+More useful for doxonomics is \emph{stance detection}: given a proposition $p$, does the document support, oppose, or remain neutral toward $p$?
+Stance is the empirical counterpart of the belief variable $\belief{i}(p)$ in the formal model.
+
+\subsection{Moral foundations in narrative}
+
+Moral Foundations Theory \autocite{haidt2012} identifies five (or six) moral axes: care/harm, fairness/cheating, loyalty/betrayal, authority/subversion, sanctity/degradation, and (optionally) liberty/oppression.
+Doxonomic narratives activate specific moral foundations to recruit support for their frames.
+
+\begin{example}
+\label{ex:moral-foundations}
+Consider two framings of carbon taxation:
+\begin{itemize}[nosep]
+  \item ``A carbon tax protects our children from climate catastrophe'' activates \emph{care/harm}.
+  \item ``A carbon tax lets bureaucrats pick winners and losers'' activates \emph{fairness/cheating} and \emph{liberty/oppression}.
+\end{itemize}
+The Moral Foundations Dictionary \autocite{graham2009} can score each document on the six axes, revealing which moral channels different institutional sources exploit.
+\end{example}
+
+\subsection{Measuring narrative concentration across moral dimensions}
+
+\begin{definition}[Moral Frame Concentration]
+\label{def:moral-concentration}
+\index{moral frame concentration}
+For institution $i$, let $m_{ij}$ be the average score on moral foundation $j \in \{1, \ldots, 6\}$ across $i$'s output.
+Normalize so that $\sum_j m_{ij} = 1$.
+The moral concentration of $i$'s output is:
+\[
+  C_i^{\text{moral}} = \sum_{j=1}^{6} m_{ij}^2
+\]
+which is a Herfindahl index over moral foundations.
+High concentration ($C_i^{\text{moral}}$ near 1) means the institution appeals to a narrow moral register; low concentration ($C_i^{\text{moral}}$ near $1/6$) means broad moral engagement.
+\end{definition}
+
+Institutions engaged in common-sense capture may exhibit high moral concentration---relentlessly hammering a single moral register (e.g., liberty/oppression for free-market think tanks) to make their frame feel like moral common sense.
+
+\section{Semantic Drift and Concept Capture}
 \label{sec:ch17-drift}
+
+\subsection{Measuring drift}
 
 \begin{definition}[Narrative Drift]
 \label{def:drift}
 \index{semantic drift}
 The \emph{semantic drift} of a term or concept $w$ over period $[t_1, t_2]$ is
 \[
-  D(w) = 1 - \cos(\bm{v}_w(t_1), \bm{v}_w(t_2))
+  D(w; t_1, t_2) = 1 - \cos(\bm{v}_w(t_1), \bm{v}_w(t_2))
 \]
 where $\bm{v}_w(t)$ is the word embedding vector trained on the corpus from period $t$.
 High drift indicates that the meaning or connotation of $w$ has shifted---a potential marker of doxonomic intervention.
 \end{definition}
 
+Computing drift requires embedding models trained on time-sliced subcorpora.
+The technical challenge is \emph{alignment}: embedding spaces from different time periods are not directly comparable because the optimization landscape admits rotational symmetry.
+Alignment methods include Procrustes rotation (find the orthogonal transformation that minimizes $\|\mathbf{V}^{(t_1)} \mathbf{Q} - \mathbf{V}^{(t_2)}\|_F$) and incremental training (initialize the $t_2$ model from $t_1$ weights).
+
+\subsection{Concept capture as accelerated drift}
+
+\begin{proposition}[Concept Capture]
+\label{prop:concept-capture}
+\index{concept capture}
+A term $w$ has been \emph{captured} by a doxonomic campaign over $[t_1, t_2]$ if:
+\begin{enumerate}[nosep]
+  \item $D(w; t_1, t_2)$ is significantly larger than the median drift rate in the vocabulary,
+  \item the direction of drift moves $\bm{v}_w$ closer to the embedding cluster associated with the campaign's core vocabulary,
+  \item the drift is concentrated in institutional sources connected to the campaign's funding network.
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+\label{ex:freedom-drift}
+The term ``freedom'' in American political discourse has drifted measurably over 1950--2020.
+In the 1950s, its nearest embedding neighbors include: \texttt{liberty, rights, democracy, civil, movement}.
+By the 2010s, nearest neighbors shift toward: \texttt{choice, market, regulation, government, individual}.
+The drift direction aligns with the vocabulary cluster of free-market think tanks.
+While not proof of intentional capture---cultural change has many causes---the pattern is consistent with the large-scale doxonomic investment in redefining ``freedom'' as ``freedom from government'' rather than ``freedom from want'' \autocite{fourcade2009}.
+\end{example}
+
+\subsection{Contested concepts and embedding neighborhoods}
+
+Some terms are sites of active doxonomic contestation.
+We can measure this by examining the \emph{variance} of a term's embedding across institutional subcorpora at a single time point:
+
+\[
+  V(w, t) = \frac{1}{|\mathcal{I}|} \sum_{i \in \mathcal{I}} \|\bm{v}_w^{(i)}(t) - \bar{\bm{v}}_w(t)\|^2
+\]
+where $\bm{v}_w^{(i)}(t)$ is the embedding of $w$ trained on institution $i$'s corpus at time $t$, and $\bar{\bm{v}}_w(t)$ is the cross-institutional mean.
+High $V(w, t)$ indicates that different institutions use the term in systematically different ways---it is a contested concept.
+
 \section{Information-Theoretic Measures}
 \label{sec:ch17-info-theory}
+
+\subsection{Narrative entropy}
 
 \begin{definition}[Narrative Entropy]
 \label{def:narrative-entropy}
@@ -78,36 +346,272 @@ The \emph{narrative entropy} of a discourse at time $t$ is
 \]
 where $p_k(t)$ is the prevalence of narrative frame $k$.
 Low entropy indicates narrative concentration (a few frames dominate); high entropy indicates pluralism \autocite{shannon1948}.
+The maximum entropy is $H_{\max} = \log K$, achieved when all frames are equally prevalent.
 \end{definition}
 
 \begin{proposition}[Entropy and Capture]
 \label{prop:entropy-capture}
 Common-sense capture (Definition~\ref{def:capture}) implies $H(t) < H^*$ for a critical threshold $H^*$: the narrative space has collapsed to a small number of dominant frames.
-Monitoring $H(t)$ over time provides an early warning of doxonomic capture.
+Monitoring $H(t)$ over time provides an early warning system for doxonomic capture.
+A sustained decline in $H(t)$ that correlates with increased funding concentration (rising epistemic Herfindahl, Definition~\ref{def:ehhi}) is a signature of power-driven narrative homogenization.
 \end{proposition}
+
+\subsection{Relative entropy and narrative distance}
+
+To compare the narrative output of two institutions, or the same institution at two time points, we use the Kullback-Leibler divergence:
+
+\begin{definition}[Narrative Divergence]
+\label{def:narrative-divergence}
+\index{narrative divergence}
+The \emph{narrative divergence} between institutions $i$ and $j$ is:
+\[
+  D_{\text{KL}}(P_i \| P_j) = \sum_{k=1}^{K} p_{ik} \log \frac{p_{ik}}{p_{jk}}
+\]
+where $p_{ik}$ is the prevalence of frame $k$ in institution $i$'s output.
+Since $D_{\text{KL}}$ is asymmetric, the symmetrized version (Jensen-Shannon divergence) is often preferred:
+\[
+  D_{\text{JS}}(P_i, P_j) = \frac{1}{2}D_{\text{KL}}(P_i \| M) + \frac{1}{2}D_{\text{KL}}(P_j \| M), \quad M = \frac{P_i + P_j}{2}.
+\]
+\end{definition}
+
+The narrative divergence between institutions funded by the same source should be lower than between institutions funded by different sources, if funding influences content.
+This is a testable prediction.
+
+\subsection{Mutual information between funding and framing}
+
+\begin{definition}[Doxonomic Mutual Information]
+\label{def:doxo-mi}
+\index{mutual information!doxonomic}
+Let $\mathcal{F}$ be the set of funder types and $\mathcal{K}$ the set of frames.
+The mutual information between funding source and frame usage is:
+\[
+  I(\mathcal{F}; \mathcal{K}) = \sum_{f \in \mathcal{F}} \sum_{k \in \mathcal{K}} p(f, k) \log \frac{p(f, k)}{p(f) \, p(k)}
+\]
+where $p(f, k)$ is the joint probability that a randomly sampled document comes from funder type $f$ and uses frame $k$.
+If $I(\mathcal{F}; \mathcal{K}) = 0$, funding and framing are independent---there is no doxonomic influence (at least at this aggregate level).
+Positive $I$ indicates that knowing the funding source reduces uncertainty about which frames will appear.
+\end{definition}
+
+\subsection{Worked example: entropy decline in economic discourse}
+
+\begin{example}
+\label{ex:entropy-decline}
+Measuring narrative entropy in US newspaper editorials about economic policy from 1970--2020 (using LDA with $K = 20$):
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \begin{axis}[
+    width=11cm, height=6cm,
+    xlabel={Year},
+    ylabel={Narrative entropy $H(t)$},
+    xmin=1970, xmax=2020,
+    ymin=1.5, ymax=3.5,
+    legend pos=south west,
+    legend style={font=\small},
+    grid=major,
+    grid style={dotted, gray!50},
+  ]
+    \addplot[doxoblue, thick, mark=*] coordinates {
+      (1970,3.1) (1975,3.0) (1980,2.8) (1985,2.5) (1990,2.3)
+      (1995,2.2) (2000,2.0) (2005,2.1) (2010,2.3) (2015,2.4) (2020,2.5)
+    };
+    \addlegendentry{All sources}
+
+    \addplot[doxored, thick, mark=square*] coordinates {
+      (1970,2.9) (1975,2.7) (1980,2.3) (1985,1.9) (1990,1.8)
+      (1995,1.7) (2000,1.7) (2005,1.8) (2010,1.9) (2015,2.0) (2020,2.1)
+    };
+    \addlegendentry{Think-tank funded}
+
+    \addplot[doxogreen, thick, mark=triangle*] coordinates {
+      (1970,3.2) (1975,3.1) (1980,3.0) (1985,2.9) (1990,2.8)
+      (1995,2.7) (2000,2.5) (2005,2.5) (2010,2.7) (2015,2.8) (2020,2.9)
+    };
+    \addlegendentry{Academic}
+
+    \draw[dashed, gray] (axis cs:1970,2.0) -- (axis cs:2020,2.0);
+    \node[right, font=\footnotesize, gray] at (axis cs:2005,1.85) {$H^*$ threshold};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+Entropy declines sharply from 1975 to 2000, especially in think-tank-funded discourse, which crosses the $H^*$ threshold by the mid-1980s.
+The partial recovery after 2008 (the financial crisis) may reflect the disruption of the previously dominant ``markets know best'' frame.
+Academic discourse maintains higher entropy throughout, suggesting greater frame pluralism.
+Note: these figures are illustrative.
+Real measurement requires the full corpus pipeline described in this chapter.
+\end{example}
+
+\section{Network-Based Discourse Analysis}
+\label{sec:ch17-network-discourse}
+
+\subsection{Citation and co-occurrence networks}
+
+Documents do not exist in isolation: they cite, reference, and respond to each other.
+The citation network among doxonomically relevant texts reveals influence pathways and idea genealogies.
+
+\begin{definition}[Narrative Citation Network]
+\label{def:cite-network}
+\index{citation network}
+The \emph{narrative citation network} $G = (V, E, w)$ has:
+\begin{itemize}[nosep]
+  \item nodes $V = \mathcal{D}$ (documents in the corpus),
+  \item directed edges $(d_i, d_j) \in E$ if $d_j$ cites or references $d_i$,
+  \item edge weights $w(d_i, d_j)$ reflecting the prominence of the citation (passing mention vs.\ central engagement).
+\end{itemize}
+The \emph{bridging documents} with high betweenness centrality are those that connect otherwise separate discourse communities---often the sites where ideas cross from production to popularization.
+\end{definition}
+
+\subsection{Discourse community detection}
+
+Applying community detection algorithms (modularity maximization, stochastic block models) to the citation or co-occurrence network reveals \emph{discourse communities}---clusters of documents that cite each other more than they cite outsiders.
+The doxonomic hypothesis predicts that discourse communities will align with funding networks: documents funded by the same sources will form tighter citation clusters.
+
+\subsection{Narrative diffusion tracing}
+
+By combining temporal metadata with citation structure, we can trace the diffusion of specific ideas, phrases, or frames through the network.
+A distinctive phrase that first appears in a think-tank report, then appears in op-eds citing that report, then in congressional testimony, then in news coverage, traces a doxonomic diffusion pathway from production to institutionalization.
+
+\begin{model}[Narrative Diffusion Model]
+\label{mod:narrative-diffusion}
+\index{narrative diffusion}
+Let $a(d)$ be the first appearance time of a distinctive phrase or frame.
+The diffusion is modeled as a cascade on the citation network:
+\[
+  P(\text{node } d \text{ adopts at time } t) = 1 - \prod_{d' \in \text{parents}(d)} (1 - \beta_{d'd} \cdot \mathbf{1}[a(d') < t])
+\]
+where $\beta_{d'd}$ is the influence weight from document $d'$ to document $d$.
+Estimating the $\beta$ parameters reveals which institutional nodes are most effective at propagating narratives.
+\end{model}
+
+\section{Computational Tools and Practical Workflow}
+\label{sec:ch17-tools}
+
+\subsection{A doxonomic text analysis pipeline}
+
+A complete doxonomic text analysis typically follows this workflow:
+
+\begin{enumerate}
+  \item \textbf{Corpus assembly}: collect documents, annotate metadata, resolve deduplication.
+  \item \textbf{Preprocessing}: tokenization, lemmatization, stopword removal (with domain-specific stopword lists), named entity recognition.
+  \item \textbf{Representation}: choose between bag-of-words (for topic models), TF-IDF (for classification), or dense embeddings (for semantic analysis).
+  \item \textbf{Analysis}: apply topic models, frame classification, sentiment/stance detection, drift measurement, or information-theoretic measures as appropriate.
+  \item \textbf{Institutional aggregation}: aggregate document-level measures to the institution level, linking to funding metadata.
+  \item \textbf{Visualization and validation}: produce time series, network visualizations, and cross-institutional comparisons; validate against human judgment on a random subsample.
+\end{enumerate}
+
+\subsection{Embedding models for doxonomic analysis}
+
+Modern transformer-based models (BERT, GPT, and domain-specific variants) produce contextual embeddings that capture richer semantic information than static word vectors.
+For doxonomic analysis, fine-tuned models can be trained to detect:
+\begin{itemize}[nosep]
+  \item stance toward specific policy propositions,
+  \item implicit framing (even when explicit frame keywords are absent),
+  \item source attribution (predicting institutional origin from text style),
+  \item persuasion techniques (emotional appeal, logical argument, authority invocation).
+\end{itemize}
+
+A practical concern: large language models are themselves products of the doxonomic system.
+Their training data reflects the existing distribution of narratives, which means they may reproduce dominant framings as ``default'' or ``neutral'' positions.
+Researchers using these tools for doxonomic analysis should be aware of this circularity.
+
+\section{Limitations and Epistemological Cautions}
+\label{sec:ch17-limits}
+
+\subsection{Text is not belief}
+
+The most fundamental limitation: measuring text output measures narrative \emph{production}, not belief \emph{adoption}.
+The mere fact that a frame is prevalent in institutional output does not mean it has been internalized by audiences.
+Connecting production to adoption requires the causal methods of Chapter~\ref{ch:causal-inference} and the survey methods of Chapter~\ref{ch:doxometric-measurement}.
+
+\subsection{The interpretation problem}
+
+Computational methods produce numbers: topic proportions, sentiment scores, drift distances.
+These numbers require interpretation, and interpretation is theory-laden.
+A topic model does not ``discover'' narratives; it finds statistical regularities in word co-occurrence that the researcher \emph{interprets} as narratives.
+Two researchers examining the same topic model may disagree about what the topics mean.
+
+\subsection{Reflexivity}
+
+The act of measuring doxonomic discourse is itself a doxonomic intervention.
+Publishing an analysis showing that fossil-fuel-funded think tanks produce climate doubt at six times the rate of scientific institutions is itself a narrative---one that may shift beliefs about the credibility of those think tanks.
+This reflexivity is not a methodological flaw; it is a feature of any science whose objects are aware of being studied.
+But it means that doxonomic text analysis can never claim the detached objectivity of, say, spectroscopy.
 
 \section{Notes and References}
 \label{sec:ch17-notes}
 
-Text-as-data methods are surveyed in \textcite{grimmer2013} and \textcite{gentzkow2019}.
-LDA is introduced in \textcite{blei2003}.
-Media slant measurement is developed in \textcite{gentzkow2010}.
-Information-theoretic approaches to discourse draw on \textcite{shannon1948}.
-For corpus-based social science, see \textcite{salganik2018}.
+Text-as-data methods for social science are comprehensively surveyed in \textcite{grimmer2013} and \textcite{gentzkow2019}.
+LDA is introduced in \textcite{blei2003}; dynamic topic models in \textcite{blei2006}; structural topic models in \textcite{roberts2014}.
+Framing analysis draws on \textcite{entman1993} for the theoretical framework and \textcite{card2015} for computational approaches.
+
+Media slant measurement is developed in \textcite{gentzkow2010} and \textcite{groseclose2005}.
+Information-theoretic approaches to discourse draw on \textcite{shannon1948}; for applications to media diversity, see \textcite{napoli2011}.
+Moral Foundations Theory and its measurement are in \textcite{haidt2012} and \textcite{graham2009}.
+
+Word embedding methods for historical semantics are developed in \textcite{hamilton2016}.
+For the broader relationship between language and social structure, see \textcite{bourdieu1991}.
+On the reflexivity of social measurement, \textcite{hacking1999} remains essential.
+
+For corpus-based social science methodology, see \textcite{salganik2018}.
+On the political economy of search engines and algorithmic curation, see \textcite{noble2018}.
 
 \section{Exercises}
 
 \begin{exercise}
 Construct a small corpus of 20 editorials on a topic of your choice from two newspapers with different editorial stances.
-Apply framing analysis to identify the dominant frames in each.
+Apply the four-component framing analysis (Definition~\ref{def:frame}: causal story, normative valence, subject position, prescribed action) to each editorial.
+Compute the frame prevalence distribution for each newspaper and compare.
 \end{exercise}
 
 \begin{exercise}
-Compute the narrative entropy $H(t)$ for U.S.\ media coverage of ``human nature'' using LDA topic proportions from a suitable corpus.
-How has entropy changed over the past 30 years?
+Using a publicly available topic model (e.g., from a replicated study), compute the narrative entropy $H(t)$ for a policy domain over at least a 10-year period.
+Plot the time series.
+Does the pattern suggest narrative concentration or diversification?
+Discuss possible doxonomic explanations.
 \end{exercise}
 
 \begin{exercise}
-Using word embeddings, measure the semantic drift of the term ``freedom'' between 1950 and 2020 in American political discourse.
-Interpret the drift doxonomically.
+Using word embeddings (Word2Vec or GloVe), measure the semantic drift of the term ``freedom'' between two decades in a corpus of American political text.
+\begin{enumerate}[nosep]
+  \item Compute $D(\text{``freedom''}; t_1, t_2)$ after Procrustes alignment.
+  \item Identify the 10 nearest neighbors of ``freedom'' at each time point.
+  \item Interpret the drift doxonomically: which institutional sources are most associated with the new meaning?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Compute the Jensen-Shannon divergence between the topic distributions of two institutions that address the same policy domain but receive funding from different sources.
+Is the divergence larger than between two institutions funded by the same source?
+Discuss the limitations of this comparison.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:mi-computation}
+Using a corpus annotated with institutional funding source and frame labels, compute the doxonomic mutual information $I(\mathcal{F}; \mathcal{K})$ (Definition~\ref{def:doxo-mi}).
+\begin{enumerate}[nosep]
+  \item Interpret the magnitude: what does $I = 0.15$ bits mean in practical terms?
+  \item Compute a permutation-based $p$-value by shuffling funding labels 1000 times.
+  \item Which specific funder-frame pairs contribute most to the mutual information?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design a validation study for a computational frame classifier.
+\begin{enumerate}[nosep]
+  \item Describe the coding scheme, including at least 5 frame categories relevant to a doxonomic domain of your choice.
+  \item How many documents would you need to hand-code? How would you select them?
+  \item What inter-annotator agreement threshold would you require?
+  \item How would you evaluate the classifier's performance, and what metric (accuracy, F1, AUC) is most appropriate for a doxonomic application?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Computational]
+Implement a minimal narrative diffusion tracker:
+\begin{enumerate}[nosep]
+  \item Choose a distinctive phrase (e.g., ``death tax'' for ``estate tax'') and search for its earliest appearances in a text database.
+  \item Construct a timeline of adoption across institutional types (think tank $\to$ op-ed $\to$ congressional speech $\to$ news article).
+  \item Estimate the average delay between institutional tiers.
+  \item Discuss what this diffusion pattern reveals about the doxonomic production chain.
+\end{enumerate}
 \end{exercise}

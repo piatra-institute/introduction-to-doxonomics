@@ -5,7 +5,15 @@
 
 \noindent
 Doxonomics requires measurement.
+Without it, the field remains assertion---a collection of plausible claims about belief production that cannot be tested, compared, or refuted.
 This chapter develops the theory of \emph{doxometrics}\index{doxometrics}: the quantitative measurement of public belief, its intensity, distribution, and institutional embeddedness.
+
+The central difficulty is that beliefs are \emph{latent variables}.
+We do not observe them directly.
+We observe indicators---survey responses, behaviors, choices, texts, institutional practices---and must infer the underlying belief structure.
+This inference is never perfect, and the measurement challenges are at least as severe as those in any social science.
+Doxometrics must therefore be psychometrically serious: attentive to reliability, validity, bias, and the gap between what we measure and what we claim to measure.
+
 
 \section{What Counts as a Measurable Belief?}
 \label{sec:ch13-operationalization}
@@ -17,28 +25,128 @@ A belief $p$ is \emph{doxometrically operationalized} when there exists a measur
 The population-level measure is $\hat{\mu}(p) = \frac{1}{N}\sum_{j=1}^N m(j)$.
 \end{definition}
 
-The central challenge: beliefs are latent variables.
-We observe responses (survey answers, behaviors, choices) and must infer the underlying credence.
+Not all beliefs are equally measurable.
+The layered ontology (Principle~\ref{prin:layered-ontology}) implies that different layers present different measurement challenges:
+
+\begin{center}
+\begin{tabular}{lp{4.5cm}p{5cm}}
+\toprule
+\textbf{Layer} & \textbf{Measurement method} & \textbf{Difficulty} \\
+\midrule
+1. Propositional belief & Surveys, polls & Moderate (social desirability bias, framing effects) \\
+2. Norm perception & Norm-elicitation surveys, vignettes & Moderate (perception $\neq$ reality) \\
+3. Practical schema & Behavioral observation, reaction time & High (must be inferred from action, not report) \\
+4. Identity commitment & Identity scales, in-group/out-group tasks & Moderate-high (self-report may be performative) \\
+5. Affective orientation & Implicit association tests, physiological measures & High (requires specialized equipment; validity debated) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Most doxometric work focuses on layer~1 because it is the most tractable.
+But the most consequential doxonomic products---deep anthropological regimes, embodied dispositions, affective prejudices---operate at layers 3--5, where measurement is hardest.
+This gap between what is most measurable and what is most important is the field's central methodological challenge.
+
 
 \section{Indicators and Proxies}
 \label{sec:ch13-indicators}
 
 Direct measurement of $\pi_j(p)$ is rarely possible.
-We distinguish:
+We distinguish four types of indicators, each with characteristic strengths and biases:
 
-\begin{itemize}[nosep]
-  \item \textbf{Stated belief}: direct survey response (``Do you agree that human nature is selfish?'').
-  \item \textbf{Behavioral marker}: observed action consistent with $p$ (e.g., defection rates in public goods games as a proxy for selfishness belief).
-  \item \textbf{Revealed preference}: choices that imply $p$ (e.g., voting for policies consistent with $p$).
-  \item \textbf{Textual indicator}: frequency and framing of $p$ in media, social media, or institutional documents.
-\end{itemize}
+\begin{description}[nosep]
+  \item[Stated belief:] direct survey response (``Do you agree that human nature is selfish?'').
+  \textit{Strength}: easy to collect at scale.
+  \textit{Bias}: social desirability (respondents give ``acceptable'' answers), acquiescence (tendency to agree with any statement), framing effects (wording changes responses dramatically).
+
+  \item[Behavioral marker:] observed action consistent with $p$ (e.g., defection rates in public goods games as a proxy for selfishness belief; willingness to cross a picket line as a proxy for individualist values).
+  \textit{Strength}: resistant to social desirability bias (actions are costly, so they reveal more than words).
+  \textit{Bias}: behavior is multiply determined (defection in a game may reflect strategic calculation, not belief about human nature).
+
+  \item[Revealed preference:] choices that imply $p$ (e.g., voting for policies consistent with meritocratic belief; purchasing choices consistent with consumerist identity).
+  \textit{Strength}: based on high-stakes real-world decisions.
+  \textit{Bias}: preferences are not beliefs (I may vote for redistribution because it benefits me, not because I reject meritocracy).
+
+  \item[Textual indicator:] frequency and framing of $p$ in media, social media, institutional documents, or personal communication.
+  \textit{Strength}: available at massive scale through computational methods.
+  \textit{Bias}: discourse frequency is not belief prevalence (a proposition may be frequently discussed precisely because it is contested, not because it is believed).
+\end{description}
 
 \begin{proposition}[Divergence of Indicators]
 \label{prop:divergence}
 Stated belief and behavioral markers may diverge systematically.
 A population may report cooperative values while behaving competitively (or vice versa).
-The gap $|m_{\text{stated}}(p) - m_{\text{behavioral}}(p)|$ is itself a doxonomic observable, measuring the depth of internalization.
+The gap $|m_{\text{stated}}(p) - m_{\text{behavioral}}(p)|$ is itself a doxonomic observable, measuring the \emph{depth of internalization}.
 \end{proposition}
+
+\begin{remark}[The Divergence as Data]
+\label{rem:divergence-as-data}
+When stated belief exceeds behavioral compliance, the belief has not been internalized to layer~3 (practical schema): people profess it but do not enact it.
+When behavioral compliance exceeds stated belief, the belief may operate doxically (layer~5): people enact it without explicitly endorsing it.
+The gap between layers is not noise to be eliminated; it is signal about the depth and mode of doxonomic penetration.
+\end{remark}
+
+\begin{example}[Measuring Belief in Meritocracy]
+\label{ex:measuring-meritocracy}
+Four indicators for the belief ``success reflects effort and talent'':
+\begin{enumerate}[nosep]
+  \item \textbf{Stated}: Likert-scale agreement with ``people who work hard almost always get ahead'' (World Values Survey item).
+  \item \textbf{Behavioral}: willingness to assign unequal rewards in an experimental dictator game after observing performance differences.
+  \item \textbf{Revealed preference}: voting for politicians who oppose redistributive taxation.
+  \item \textbf{Textual}: frequency of meritocratic framing (``earned,'' ``deserved,'' ``self-made'') in media coverage of wealth.
+\end{enumerate}
+Each captures a different facet.
+A complete doxometric assessment uses all four and reports both the individual estimates and the divergences.
+\end{example}
+
+
+\section{Measurement Bias and Correction}
+\label{sec:ch13-bias}
+
+Several systematic biases plague doxometric measurement.
+
+\begin{definition}[Social Desirability Bias]
+\label{def:social-desirability}
+\index{social desirability bias}
+\emph{Social desirability bias} (SDB) is the tendency of respondents to answer survey questions in a way that will be viewed favorably by others, rather than truthfully.
+In doxometric contexts, SDB causes under-reporting of socially disapproved beliefs (racism, selfish motivation) and over-reporting of socially approved beliefs (cooperation, fairness).
+\end{definition}
+
+Correction strategies:
+\begin{itemize}[nosep]
+  \item \textbf{List experiments}\index{list experiment}: respondents report the number of statements they agree with from a list, rather than identifying which ones.
+  The treatment group's list includes the sensitive item; the control group's does not.
+  The difference in average counts estimates the prevalence of the sensitive belief without any individual revealing their answer.
+  \item \textbf{Endorsement experiments}: respondents evaluate a policy endorsed by a figure associated with the belief.
+  The endorsement effect measures implicit alignment without direct self-report.
+  \item \textbf{Implicit measures}: reaction-time tasks (Implicit Association Test) measure automatic associations, bypassing deliberate self-presentation.
+  \textit{Caveat}: the reliability and validity of IATs for measuring beliefs (as opposed to associations) remains debated.
+  \item \textbf{Behavioral validation}: compare survey responses with behavior in incentivized tasks.
+  Respondents who claim to value cooperation but defect in public goods games are flagged as exhibiting SDB.
+\end{itemize}
+
+\begin{definition}[Framing Bias]
+\label{def:framing-bias}
+\index{framing bias}
+\emph{Framing bias} occurs when the wording of a survey question influences the response, independent of the underlying belief.
+``Do you believe in free enterprise?'' and ``Do you think corporations should be unregulated?'' may target the same proposition but elicit different responses.
+Doxometric instruments should include multiple framings of the same target belief and report the framing sensitivity as a measure of measurement precision.
+\end{definition}
+
+\begin{definition}[Measurement Invariance]
+\label{def:invariance}
+\index{measurement invariance}
+A doxometric instrument satisfies \emph{measurement invariance} across groups $G_1, \ldots, G_L$ if the relationship between latent belief and observed indicators is the same in each group.
+Formally: the factor loadings $\lambda_k$ and intercepts are equal across groups (metric and scalar invariance).
+Without invariance, cross-group comparisons of belief levels are not meaningful---a higher score in group $G_1$ might reflect a stronger belief or a different relationship between the belief and the indicator.
+\end{definition}
+
+\begin{remark}[Why Invariance Matters for Doxonomics]
+\label{rem:invariance-matters}
+Doxonomic analysis frequently compares belief levels across countries, classes, racial groups, or media environments.
+If the measurement instrument is not invariant across these groups---if ``hard work leads to success'' means something different to a white professional in Connecticut than to a Black factory worker in Detroit---then the comparison is spurious.
+Every cross-group doxometric comparison should be accompanied by an invariance test.
+\end{remark}
+
 
 \section{Latent Variable Models}
 \label{sec:ch13-latent}
@@ -51,12 +159,52 @@ The latent belief $\pi_j$ generates observables via
 \[
   y_{jk} = \lambda_k \pi_j + \varepsilon_{jk}
 \]
-where $\lambda_k$ is the factor loading for indicator $k$ and $\varepsilon_{jk} \sim \mathcal{N}(0, \sigma_k^2)$ is measurement error.
-The latent belief is recovered as
+where $\lambda_k$ is the factor loading for indicator $k$ (how strongly the indicator reflects the latent belief) and $\varepsilon_{jk} \sim \mathcal{N}(0, \sigma_k^2)$ is measurement error.
+The latent belief is recovered as the weighted average:
 \[
   \hat{\pi}_j = \frac{\sum_k \lambda_k y_{jk} / \sigma_k^2}{\sum_k \lambda_k^2 / \sigma_k^2}
 \]
+This is the minimum-variance unbiased estimator under the model.
 \end{model}
+
+\begin{proposition}[Reliability]
+\label{prop:reliability}
+\index{reliability}
+The \emph{reliability} of the latent belief estimate is
+\[
+  \text{Rel}(\hat{\pi}) = 1 - \frac{\mathrm{Var}(\hat{\pi} - \pi)}{\mathrm{Var}(\hat{\pi})} = \frac{\sum_k \lambda_k^2 / \sigma_k^2}{\sum_k \lambda_k^2 / \sigma_k^2 + 1}
+\]
+Reliability increases with the number of indicators $K$ (more items → more signal) and with the factor loadings $\lambda_k$ (stronger items → more signal), and decreases with measurement error variance $\sigma_k^2$.
+The standard threshold for acceptable reliability in psychometrics is $\text{Rel} > 0.70$.
+\end{proposition}
+
+\begin{remark}[Beyond Single-Factor Models]
+\label{rem:multi-factor}
+The single-factor model assumes that all indicators load on a single latent belief.
+Many doxonomic beliefs are multi-dimensional.
+``Meritocratic belief'' may decompose into: belief in effort → success, belief in equal opportunity, belief in desert-based distribution, and attribution of poverty to individual failure.
+These may be correlated but not identical.
+Exploratory factor analysis (EFA) and confirmatory factor analysis (CFA) should be used to assess dimensionality before constructing composite indices.
+Treating a multi-dimensional construct as unidimensional produces unreliable and uninterpretable results.
+\end{remark}
+
+\subsection{Item Response Theory}
+
+For more refined measurement, item response theory (IRT) models the probability of endorsing each item as a function of the latent belief and item characteristics:
+
+\begin{model}[Two-Parameter IRT]
+\label{mod:irt}
+\index{item response theory}
+The probability that agent $j$ endorses item $k$ is
+\[
+  P(y_{jk} = 1 \mid \pi_j) = \frac{1}{1 + \exp(-a_k(\pi_j - b_k))}
+\]
+where $a_k$ is the \emph{discrimination parameter} (how sharply the item distinguishes between high and low $\pi_j$) and $b_k$ is the \emph{difficulty parameter} (the belief level at which endorsement probability is 50\%).
+\end{model}
+
+IRT improves on the factor model by allowing each item to have a different measurement precision at different points on the belief continuum.
+A well-designed doxometric instrument should include items with different difficulty parameters to measure accurately across the full range of belief levels---from strong disbelief through ambivalence to strong endorsement.
+
 
 \section{Composite Indices of Belief Dominance}
 \label{sec:ch13-composite}
@@ -64,34 +212,178 @@ The latent belief is recovered as
 \begin{definition}[Doxonomic Dominance Index]
 \label{def:dominance-index}
 \index{dominance index}
-The \emph{doxonomic dominance index} for belief $p$ is
+The \emph{doxonomic dominance index} (DDI) for belief $p$ is
 \[
   \mathrm{DDI}(p) = \alpha_1 \hat{\mu}(p) + \alpha_2 \cdot (1 - \mathrm{Var}(\hat{\pi})) + \alpha_3 \cdot \mathrm{InstEmbed}(p) + \alpha_4 \cdot \mathrm{MediaFreq}(p)
 \]
-where $\mathrm{InstEmbed}(p)$ measures how many institutions treat $p$ as operational truth and $\mathrm{MediaFreq}(p)$ is the normalized frequency of $p$ in public discourse.
+where:
+\begin{itemize}[nosep]
+  \item $\hat{\mu}(p)$ is the population-mean belief (how widely held),
+  \item $1 - \mathrm{Var}(\hat{\pi})$ is the concentration of belief (how uniformly held),
+  \item $\mathrm{InstEmbed}(p)$ measures institutional embeddedness (how many institutions treat $p$ as operational truth),
+  \item $\mathrm{MediaFreq}(p)$ is the normalized frequency of $p$ in public discourse.
+\end{itemize}
 The weights $\alpha_i$ satisfy $\sum \alpha_i = 1$.
 \end{definition}
+
+\begin{remark}[DDI Limitations]
+\label{rem:ddi-limitations}
+The DDI is a \emph{dashboard sketch}, not a validated index.
+The weights $\alpha_i$ are currently arbitrary; different weights produce different rankings.
+The components mix unlike quantities (survey proportions, variance measures, frequency counts) without a clear scaling doctrine.
+Before the DDI can serve as a serious research tool, it requires:
+\begin{itemize}[nosep]
+  \item empirical validation (does DDI predict policy outcomes, behavioral patterns, or other independently measurable consequences?),
+  \item sensitivity analysis (how much do results change with different weight specifications?),
+  \item normalization (each component should be on a comparable scale).
+\end{itemize}
+We include it here as a conceptual prototype, not as a finished instrument.
+\end{remark}
+
+
+\section{Measuring Institutional Embeddedness}
+\label{sec:ch13-embeddedness}
+
+The DDI requires a measure of institutional embeddedness---how deeply a belief is woven into the operational assumptions of institutions.
+
+\begin{definition}[Institutional Embeddedness]
+\label{def:inst-embed}
+\index{institutional embeddedness}
+The \emph{institutional embeddedness} of belief $p$ is
+\[
+  \mathrm{InstEmbed}(p) = \frac{1}{|\mathcal{U}|} \sum_{U_i \in \mathcal{U}} \mathbf{1}[p \in \sigma_i]
+\]
+where $\mathcal{U}$ is the set of institutional contexts and $\mathbf{1}[p \in \sigma_i] = 1$ if $p$ functions as an operational assumption in context $U_i$.
+\end{definition}
+
+Operationalizing this requires coding institutional practices, curricula, regulations, and organizational structures for the presence of $p$ as an operational assumption---a qualitative judgment that can be systematized through:
+\begin{itemize}[nosep]
+  \item textbook analysis (does the economics curriculum assume rational self-interest?),
+  \item organizational document analysis (do HR policies assume shirking? do compensation structures assume competitive motivation?),
+  \item legal analysis (does regulatory framework assume market efficiency?),
+  \item expert survey (do practitioners in a field report that $p$ is a taken-for-granted assumption in their work?).
+\end{itemize}
+
+\begin{example}[Embeddedness of ``Rational Self-Interest'']
+\label{ex:embeddedness}
+Coding for the belief ``agents are rational self-interest maximizers'' across U.S.\ institutional contexts:
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Institution} & \textbf{Embedded?} & \textbf{Evidence} \\
+\midrule
+Economics curricula & Yes & Textbook analysis \\
+Corporate HR / compensation & Yes & Incentive-based pay design \\
+Antitrust regulation & Yes & Consumer welfare standard \\
+Criminal justice & Partial & Deterrence theory; also retributive \\
+Public education & No & Assumes cooperation, development \\
+Religious institutions & No & Assumes altruism, duty \\
+Military & Partial & Hierarchy + unit solidarity \\
+Family law & No & Assumes care, obligation \\
+\bottomrule
+\end{tabular}
+\end{center}
+$\mathrm{InstEmbed} \approx 3.5/8 = 0.44$.
+The belief is institutionally embedded in roughly half of major contexts---far from total, but substantial enough to function as a default assumption in public life.
+\end{example}
+
+
+\section{Measuring Doxonomic Change Over Time}
+\label{sec:ch13-temporal}
+
+Doxonomic analysis requires not just snapshot measurement but the tracking of belief trajectories over time.
+
+\begin{definition}[Belief Trajectory]
+\label{def:trajectory}
+\index{belief trajectory}
+The \emph{belief trajectory} for proposition $p$ is the time series $\{\hat{\mu}(p, t)\}_{t=0}^{T}$.
+A doxonomic event (a major campaign, a crisis, a curriculum reform) produces a detectable shift in the trajectory.
+\end{definition}
+
+Sources for longitudinal belief data:
+\begin{itemize}[nosep]
+  \item \textbf{Repeated cross-sections}: World Values Survey (waves every 5 years since 1981), General Social Survey (annual/biennial since 1972), Eurobarometer (biannual since 1973).
+  \item \textbf{Panel surveys}: tracking the same individuals over time (more informative but more expensive; subject to attrition).
+  \item \textbf{Text time series}: media corpus analysis tracking narrative frequency and framing over decades (Google Ngrams, GDELT, Media Cloud).
+  \item \textbf{Behavioral time series}: cooperation rates in experimental games, charitable giving rates, labor market indicators.
+\end{itemize}
+
+\begin{remark}[Identifying Doxonomic Events in Time Series]
+\label{rem:event-identification}
+A sudden shift in $\hat{\mu}(p, t)$ coinciding with a known doxonomic investment (a new think tank, a major ad campaign, a curriculum reform, a media ownership change) is \emph{suggestive} but not \emph{causal} evidence of doxonomic effect.
+Establishing causality requires the methods of Chapter~\ref{ch:causal-inference}: natural experiments, difference-in-differences, or synthetic controls that rule out confounding events.
+Time-series correlation between funding and belief is a starting point, not a conclusion.
+\end{remark}
+
 
 \section{Notes and References}
 \label{sec:ch13-notes}
 
-Measurement theory for social science draws on \textcite{king1994}.
-Latent variable models are standard in psychometrics; see also \textcite{blei2003} for topic models as latent belief measurement.
+Measurement theory for social science draws on \textcite{king1994} and \textcite{gelman2020}.
+Latent variable models and factor analysis are standard in psychometrics; see Bollen (1989) for the structural equation modeling framework.
+Item response theory is developed in Embretson and Reise (2000).
 Behavioral measures of beliefs about cooperation are developed in \textcite{fischbacher2001} and \textcite{henrich2001}.
-Survey methodology for belief measurement connects to \textcite{salganik2018}.
+Survey methodology for the digital age connects to \textcite{salganik2018}.
 On the divergence between stated and revealed preferences, see \textcite{kahneman2011}.
+
+List experiments and other techniques for sensitive questions are reviewed in Blair, Imai, and Zhou (2015).
+The Implicit Association Test is from Greenwald, McGhee, and Schwartz (1998); for a critical assessment, see Oswald et al.\ (2013).
+Measurement invariance testing is covered in Meredith (1993) and Vandenberg and Lance (2000).
+For topic models as tools for measuring latent constructs in text, see \textcite{blei2003} and \textcite{grimmer2013}.
+On the distinction between discourse frequency and belief prevalence, see \textcite{zaller1992}: media coverage shapes the \emph{accessibility} of considerations, not directly the \emph{beliefs} of the audience.
+
 
 \section{Exercises}
 
 \begin{exercise}
 Design a five-item survey instrument to measure belief in selfish human nature.
-Specify the response format, argue for content validity, and describe how you would assess reliability.
+Include at least two reverse-coded items.
+Specify the response format, argue for content validity, and describe how you would assess reliability and dimensionality.
 \end{exercise}
 
 \begin{exercise}
-Using the factor model, show that the reliability of the latent belief estimate $\hat{\pi}_j$ increases with the number of indicators $K$ and decreases with measurement error variance $\sigma_k^2$.
+Using the factor model (Model~\ref{mod:factor}), show that the reliability of the latent belief estimate $\hat{\pi}_j$ increases with the number of indicators $K$ and decreases with measurement error variance $\sigma_k^2$.
+Compute the minimum $K$ needed for $\text{Rel} > 0.80$ when $\lambda_k = 0.7$ and $\sigma_k = 0.5$ for all $k$.
 \end{exercise}
 
 \begin{exercise}
 Compute the DDI for the belief ``markets are efficient'' using plausible estimates for each component.
+Then repeat with different weight specifications ($\alpha_1 = 0.5$ vs.\ $\alpha_1 = 0.1$).
+How sensitive is the DDI to the choice of weights?
+What does this imply about its usefulness?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch13-list}
+Design a list experiment to measure the prevalence of the belief ``most poor people are poor because they are lazy'' in a population where this belief is socially disapproved.
+Specify the control and treatment lists, the sample size calculation, and the estimator.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch13-invariance}
+A doxometric instrument measuring meritocratic belief is administered in the U.S.\ and Sweden.
+Describe how you would test for measurement invariance across the two countries.
+What would you conclude if configural invariance holds but scalar invariance fails?
+Can you compare mean belief levels across the two countries?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch13-layers}
+Choose a specific belief (e.g., ``inequality is natural'').
+For each of the five layers in the ontology (Principle~\ref{prin:layered-ontology}), propose a concrete measurement method.
+Which layers are most important for doxonomic analysis?
+Which are most measurable?
+What is the gap between importance and measurability, and what does it imply for the field?
+\end{exercise}
+
+\begin{exercise}
+Using publicly available World Values Survey data, plot the trajectory of belief in ``hard work leads to success'' in three countries over the past 30 years.
+Do you observe any doxonomic events (sudden shifts)?
+If so, what was happening in each country at the time of the shift?
+\end{exercise}
+
+\begin{exercise}
+The chapter notes that discourse frequency is not the same as belief prevalence.
+Give an example where $\mathrm{MediaFreq}(p)$ is high but $\hat{\mu}(p)$ is low, and vice versa.
+What does each configuration imply doxonomically?
 \end{exercise}

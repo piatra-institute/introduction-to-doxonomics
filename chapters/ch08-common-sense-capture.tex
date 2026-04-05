@@ -5,8 +5,10 @@
 
 \noindent
 The most powerful doxonomic achievement is not persuading people to hold a belief.
-It is making a belief so pervasive that it ceases to be recognized as a belief at all.
-This chapter formalizes \emph{common-sense capture}\index{common-sense capture}: the phase transition by which a funded narrative becomes invisible infrastructure.
+It is making a belief so pervasive that it ceases to be recognized as a belief at all---when a funded narrative becomes invisible infrastructure, indistinguishable from the texture of reality.
+
+This chapter formalizes \emph{common-sense capture}\index{common-sense capture}: the phase transition by which a contested proposition becomes unquestioned background, the mechanisms that produce it, the conditions that sustain it, and the signatures by which it can be detected.
+
 
 \section{Capture as Phase Transition}
 \label{sec:ch8-phase-transition}
@@ -20,16 +22,33 @@ A belief $p$ is \emph{captured} in a population if:
   \item $\mathrm{Var}(\pi_j(p)) < \varepsilon$ for small $\varepsilon$ (tight concentration),
   \item the proposition $p$ is not salient as a \emph{claim}---it is experienced as a feature of reality.
 \end{enumerate}
-Conditions (1) and (2) are measurable. Condition (3) is the distinctively doxonomic condition: $p$ has exited the space of contestation.
+Conditions (1) and (2) are measurable.
+Condition (3) is the distinctively doxonomic condition: $p$ has exited the space of contestation.
 \end{definition}
 
 The transition from ``widely held opinion'' to ``common sense'' is not gradual.
 It exhibits threshold behavior analogous to phase transitions in physics.
+Below the critical threshold, a belief is debated, contested, and recognized as a position.
+Above it, the belief disappears into the background: it is no longer argued for because it no longer needs to be.
+
+\begin{example}[Stages of Capture]
+\label{ex:stages-capture}
+Consider the proposition ``economic growth is the primary objective of government policy.''
+\begin{enumerate}[nosep]
+  \item \textbf{Contested (pre-1950s)}: alternative objectives were actively debated---full employment, social solidarity, moral improvement, imperial expansion, class harmony.
+  \item \textbf{Dominant (1950s--1970s)}: GDP growth became the primary metric, but alternatives (quality of life, distributional equity) were still voiced in mainstream discourse.
+  \item \textbf{Common sense (1980s--2000s)}: growth became so dominant that questioning it sounded eccentric. Policy debates assumed growth as the goal and argued only about means.
+  \item \textbf{Captured/doxic (2000s--present)}: growth is not argued for; it is the unstated premise of virtually all policy discussion. A politician who says ``we should not pursue growth'' is not engaging in a legitimate policy debate; they are committing a category error.
+\end{enumerate}
+The transition from stage 2 to stage 4 is what doxonomics calls capture.
+\end{example}
+
 
 \section{Threshold Models}
 \label{sec:ch8-thresholds}
 
 Following \textcite{granovetter1978} and \textcite{schelling1978}, we model adoption as a threshold process.
+The core insight is that individual adoption decisions depend on how many others have already adopted: people are more willing to hold a belief when they perceive it as socially supported.
 
 \begin{model}[Granovetter-Schelling Belief Adoption]
 \label{mod:granovetter}
@@ -45,24 +64,158 @@ The equilibrium population fraction is a fixed point of
 \]
 \end{model}
 
+The threshold $\tau_j$ can be interpreted as agent $j$'s ``social proof requirement'': how many people must hold a belief before $j$ is willing to adopt it.
+Agents with low thresholds are \emph{early adopters} (they adopt without much social support); agents with high thresholds are \emph{holdouts} (they adopt only when almost everyone else already has).
+
 \begin{theorem}[Tipping Point]
 \label{thm:tipping}
 \index{tipping point}
 If $G$ is continuous and $G(0) > 0$ (some agents adopt unconditionally), then there exists at least one stable equilibrium $\mu^*$.
-A doxonomic investment that shifts $G$ downward (lowering thresholds by increasing social pressure or reducing the cost of adoption) can cause a discontinuous jump in $\mu^*$---a \emph{tipping point}.
+A doxonomic investment that shifts $G$ downward (lowering thresholds by increasing social pressure, institutional endorsement, or reducing the perceived cost of adoption) can cause a discontinuous jump in $\mu^*$---a \emph{tipping point}.
 \end{theorem}
 
 \begin{proof}[Proof sketch]
 The function $h(\mu) = G(\mu) - \mu$ is continuous with $h(0) = G(0) > 0$ and $h(1) = G(1) - 1 \leq 0$.
 By the intermediate value theorem, $h$ has a zero.
 Stability requires $G'(\mu^*) < 1$.
-A downward shift in $G$ (uniform reduction in thresholds) raises $G(\mu)$ for all $\mu$, which can push $\mu^*$ past a saddle-node bifurcation.
+A downward shift in $G$ (uniform reduction in thresholds) raises $G(\mu)$ for all $\mu$, which can push $\mu^*$ past a saddle-node bifurcation, causing the low-adoption equilibrium to disappear and the system to jump to the high-adoption equilibrium.
 \end{proof}
+
+\begin{example}[Tipping in Belief Adoption]
+\label{ex:tipping}
+\index{tipping point!example}
+Consider a population with threshold distribution $G(\tau) = \tau^{1/2}$ (many agents have low thresholds; few are extreme holdouts).
+The fixed points satisfy $\mu = \mu^{1/2}$, giving $\mu^* = 0$ and $\mu^* = 1$.
+The interior dynamics are: for any $\mu > 0$, we have $G(\mu) = \mu^{1/2} > \mu$, so adoption grows.
+This system has only one stable equilibrium: $\mu^* = 1$ (complete adoption).
+Any nonzero seed of adoption cascades to unanimity.
+
+Now consider $G(\tau) = \tau^2$ (most agents have high thresholds).
+The fixed points satisfy $\mu = \mu^2$, giving $\mu^* = 0$ and $\mu^* = 1$.
+For $\mu \in (0,1)$, $G(\mu) = \mu^2 < \mu$, so adoption shrinks.
+This system has only one stable equilibrium: $\mu^* = 0$ (no adoption).
+Even substantial initial adoption erodes to zero.
+
+The doxonomic implication: the \emph{shape} of the threshold distribution---determined by institutional environment, prior narrative exposure, and social structure---determines whether a belief can cascade.
+Doxonomic investment works by reshaping $G$: lowering thresholds through institutional endorsement, repetition, and social proof until the system tips.
+\end{example}
+
+\begin{remark}[What Determines Thresholds?]
+\label{rem:thresholds}
+Individual thresholds $\tau_j$ are not fixed parameters.
+They depend on:
+\begin{itemize}[nosep]
+  \item \textbf{Institutional endorsement}: when authoritative institutions adopt $p$, individual thresholds drop (``if Harvard says so, it must be reasonable'').
+  \item \textbf{Perceived cost of dissent}: in environments where questioning $p$ is socially costly (mockery, professional risk, ostracism), thresholds drop (people adopt to avoid punishment, not because they are convinced).
+  \item \textbf{Narrative coherence}: when $p$ fits into an existing ideological bundle (Definition~\ref{def:ideology}), thresholds drop because adoption is cognitively cheap.
+  \item \textbf{Prior exposure}: repeated exposure to $p$ through multiple channels lowers thresholds via the illusory truth effect.
+  \item \textbf{Identity alignment}: when $p$ is framed as aligned with a valued identity, thresholds drop; when framed as threatening, thresholds rise.
+\end{itemize}
+Doxonomic investment works on thresholds through all five mechanisms simultaneously.
+\end{remark}
+
+
+\section{The Doxonomic Investment Needed for Capture}
+\label{sec:ch8-investment}
+
+How much does capture cost?
+This depends on the initial threshold distribution, the available channels, and the target belief.
+
+\begin{model}[Capture Cost]
+\label{mod:capture-cost}
+\index{capture cost}
+Let $G_0(\tau)$ be the initial threshold distribution and $G_F(\tau)$ the distribution after doxonomic investment $F$.
+Assume investment uniformly lowers thresholds: $G_F(\tau) = G_0(\tau - \alpha F)$ for some effectiveness parameter $\alpha$.
+The minimum investment $F^*$ needed for capture is the smallest $F$ such that the high-adoption fixed point of $\mu = G_F(\mu)$ exists and is globally stable.
+
+At the tipping point, $G_F$ must be tangent to the 45-degree line from below:
+\[
+  G_F(\mu^*) = \mu^* \quad \text{and} \quad G_F'(\mu^*) = 1
+\]
+These two equations determine $(\mu^*, F^*)$.
+\end{model}
+
+\begin{remark}
+The capture cost $F^*$ depends critically on the initial threshold distribution.
+In populations with many low-threshold agents (already predisposed by prior narrative exposure or identity alignment), $F^*$ is small---a nudge suffices.
+In populations with many high-threshold agents (resistant due to counter-institutions, lived experience, or strong alternative narratives), $F^*$ can be enormous.
+This explains why the same doxonomic operation can succeed in one context and fail in another: the target population's threshold distribution matters as much as the budget.
+\end{remark}
+
+
+\section{Mechanisms of Capture}
+\label{sec:ch8-mechanisms}
+
+Capture does not happen through a single mechanism.
+It typically involves the coordinated operation of several:
+
+\subsection{Institutional Saturation}
+
+When enough institutions treat $p$ as an operational premise, the cumulative effect is overwhelming.
+A student who encounters $p$ in economics class, in management training, in the workplace, in advertising, in entertainment, and in political discourse receives $p$ from so many independent-seeming sources that it appears to be a natural fact rather than a specific claim.
+
+\begin{definition}[Institutional Saturation]
+\label{def:saturation}
+\index{institutional saturation}
+A belief $p$ is \emph{institutionally saturated} if the fraction of institutional contexts in which $p$ functions as an operational premise exceeds a threshold $\sigma$:
+\[
+  \frac{|\{U_i \in \mathcal{U} : p \in \sigma_i\}|}{|\mathcal{U}|} > \sigma
+\]
+where $\mathcal{U}$ is the cover of social life by institutional contexts and $\sigma_i$ is the local belief system of context $U_i$ (Chapter~\ref{ch:contradiction-coherence}).
+\end{definition}
+
+Institutional saturation is related to but distinct from population-level adoption.
+A belief can be institutionally saturated ($p$ is embedded in workplaces, schools, and media) without being unanimously held (many individuals privately doubt $p$).
+This is the pluralistic-ignorance configuration (Definition~\ref{def:pluralistic-ignorance}): the institutional environment enforces $p$ as operational reality even where private belief is weak.
+
+\subsection{Crowding Out Alternatives}
+
+Capture involves not just amplifying $p$ but \emph{suppressing alternatives}.
+When the narrative infrastructure is saturated with $p$, there is no institutional space for $\neg p$: no funding, no platforms, no expert endorsement, no curriculum presence.
+The alternatives do not need to be explicitly censored; they are simply not produced at sufficient volume to be encountered.
+
+\begin{definition}[Narrative Crowding Out]
+\label{def:crowding-out}
+\index{crowding out}
+A belief $p$ \emph{crowds out} alternative $q$ if the doxonomic investment in $p$ reduces the effective throughput for $q$:
+\[
+  \frac{\partial \Theta(q)}{\partial F(p)} < 0
+\]
+This occurs when $p$ and $q$ compete for the same infrastructure (media attention, curriculum space, expert endorsement, public attention) and $p$'s dominance leaves insufficient residual capacity for $q$.
+\end{definition}
+
+\subsection{Normalization Through Repetition}
+
+Sheer repetition makes a claim feel true (the illusory truth effect).
+When $p$ is encountered daily across multiple channels, it acquires the phenomenological quality of familiarity, which the cognitive system interprets as evidence for truth.
+This is not a rational process; it is a cognitive heuristic that doxonomic systems exploit.
+
+\subsection{Social Proof Cascades}
+
+Once a critical mass of people (or, more importantly, a critical mass of \emph{visible} people) endorses $p$, social proof dynamics take over.
+Each new adopter makes $p$ appear more normal, which lowers the threshold for the next adopter, which makes $p$ appear even more normal---a positive feedback cascade that accelerates toward capture.
+
+\begin{model}[Social Proof Cascade]
+\label{mod:cascade}
+\index{social proof cascade}
+Let $\mu(t)$ be the fraction holding $p$ at time $t$, with dynamics:
+\[
+  \frac{d\mu}{dt} = \alpha\phi(t)(1-\mu) + \beta\mu(1-\mu) - \delta\mu
+\]
+where $\alpha\phi(t)$ is institutional production, $\beta$ is the social proof coefficient, and $\delta$ is natural decay.
+Setting $d\mu/dt = 0$, the non-trivial equilibria satisfy:
+\[
+  \mu^* = \frac{(\alpha\phi + \beta - \delta) \pm \sqrt{(\alpha\phi + \beta - \delta)^2 + 4\beta\alpha\phi}}{2\beta}
+\]
+When $\beta$ is large (strong social proof), the system is bistable: there is a low-$\mu$ equilibrium and a high-$\mu$ equilibrium, separated by an unstable threshold.
+Doxonomic investment (increasing $\phi$) pushes the system across the threshold and into the high-$\mu$ basin.
+\end{model}
+
 
 \section{Path Dependence and Lock-In}
 \label{sec:ch8-lock-in}
 
-Once a belief crosses the tipping point, it becomes self-reinforcing through mechanisms described in Chapter~\ref{ch:belief-production-chain}: the belief generates behaviors that generate institutions that generate funding that generates more of the same belief.
+Once a belief crosses the tipping point, it becomes self-reinforcing through the feedback mechanisms described in Chapter~\ref{ch:belief-production-chain}: the belief generates behaviors that generate institutions that generate funding that generates more of the same belief.
 
 \begin{definition}[Doxonomic Lock-In]
 \label{def:lock-in}
@@ -79,8 +232,34 @@ Lock-in occurs when the self-reinforcement gain exceeds the natural decay rate:
 where $\delta$ is the rate at which belief decays absent reinforcement.
 \end{proposition}
 
+Lock-in has a temporal dimension.
+The longer a belief has been locked in, the harder it is to dislodge, because:
+\begin{itemize}[nosep]
+  \item institutional infrastructure has been built around it (path dependence),
+  \item professional careers depend on it (vested interests),
+  \item curricula have transmitted it to new generations (generational reproduction),
+  \item alternative beliefs have atrophied for lack of institutional support (crowding out),
+  \item the belief has shaped behavior in ways that generate confirming evidence (self-fulfillment).
+\end{itemize}
+
+\begin{example}[Lock-In: Homo Economicus]
+\label{ex:lock-in-homo-economicus}
+The selfish-rational-agent model (homo economicus) has been locked in as the operational anthropology of economic policy since approximately the 1980s.
+Dislodging it would require simultaneous intervention at multiple points:
+\begin{itemize}[nosep]
+  \item \textbf{Curricula}: rewriting economics textbooks to foreground conditional cooperation, behavioral complexity, and institutional context.
+  \item \textbf{Professional norms}: changing what counts as ``rigorous'' economic analysis in journals, tenure review, and policy consulting.
+  \item \textbf{Policy design}: replacing incentive-based regulation with trust-based institutional design.
+  \item \textbf{Management theory}: replacing principal-agent models with cooperative organizational theories.
+  \item \textbf{Popular culture}: producing narratives in which cooperative behavior is normal, not exceptional.
+\end{itemize}
+No single intervention suffices because the lock-in operates at all five levels simultaneously.
+This is why lock-in is so durable: disrupting one level is compensated by the other four.
+\end{example}
+
+
 \section{Saturation and Diminishing Returns}
-\label{sec:ch8-saturation}
+\label{sec:ch8-saturation-returns}
 
 \begin{proposition}[Diminishing Returns Post-Capture]
 \label{prop:diminishing}
@@ -91,8 +270,108 @@ Once common-sense capture is achieved ($\mu(p) > \theta$), the marginal belief c
 Post-capture, doxonomic spending shifts from persuasion to \emph{maintenance}: preventing erosion rather than producing new converts.
 \end{proposition}
 
-This has an important practical implication: the cost of maintaining a captured belief is typically much lower than the cost of capturing it.
-This asymmetry explains why dominant narratives persist long after the original funding rationale has changed.
+This has several practical implications:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Maintenance is cheaper than capture.}
+  The cost of maintaining a captured belief is typically an order of magnitude lower than the cost of capturing it.
+  Once the infrastructure is built, the institutions staffed, and the curricula written, the system runs on inertia plus modest annual investment.
+  This asymmetry explains why dominant narratives persist long after the original funding rationale has changed.
+
+  \item \textbf{Over-investment is common.}
+  Funders often continue spending at capture-level rates even after capture has been achieved, because they cannot easily measure the current belief level and err on the side of caution.
+  This produces \emph{doxonomic waste}: resources spent reinforcing beliefs that are already unquestioned.
+
+  \item \textbf{The marginal dollar is better spent on new frontiers.}
+  Once $p$ is captured, a rational doxonomic investor should redirect resources to adjacent beliefs ($p_2, p_3, \ldots$) that extend the ideological bundle, rather than pouring more money into $p$ itself.
+  This is the doxonomic analogue of market saturation in product economics.
+\end{enumerate}
+
+
+\section{Detecting Capture: Empirical Signatures}
+\label{sec:ch8-detection}
+
+How does a researcher identify that a belief has been captured rather than merely being popular?
+The detection methods from Section~\ref{sec:ch2-detecting-doxa} apply, but we can add quantitative signatures:
+
+\begin{definition}[Capture Signature]
+\label{def:capture-signature}
+\index{capture!detection}
+A belief $p$ shows a \emph{capture signature} if:
+\begin{enumerate}[nosep]
+  \item \textbf{Asymmetric argumentation}: $p$ appears overwhelmingly as a premise rather than a conclusion in public discourse (measurable via corpus analysis).
+  \item \textbf{Low narrative entropy}: the narrative space around $p$'s domain has collapsed to a small number of frames ($H(t)$ below baseline; see Definition~\ref{def:narrative-entropy}).
+  \item \textbf{High institutional saturation}: $p$ functions as an operational assumption in a large fraction of institutional contexts (Definition~\ref{def:saturation}).
+  \item \textbf{Anomaly response}: challenges to $p$ are met with confusion or ridicule rather than counter-argument.
+  \item \textbf{Funding-belief decoupling}: $p$'s prevalence persists even during periods of reduced doxonomic investment (the belief runs on institutional inertia, not active funding).
+  \item \textbf{Cross-domain consistency}: $p$ appears in economics, management, law, media, and everyday speech without any domain citing the others as its source.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Not all captured beliefs are false, and not all uncaptured beliefs are true.
+The capture signature identifies a \emph{structural} property of the belief's social position, not an epistemic property of its content.
+``The earth orbits the sun'' is also captured (near-universal, low variance, invisible as a claim), but it is captured \emph{because it is true and well-evidenced}, not because of doxonomic investment.
+The researcher must distinguish evidence-driven capture from investment-driven capture---which requires the separation of audit and evaluation (Principle~\ref{prin:separation}).
+\end{remark}
+
+
+\section{Historical Case: The Capture of ``Markets Know Best''}
+\label{sec:ch8-case}
+
+The belief that markets are generally superior to government in allocating resources provides a detailed case study of the capture process.
+
+\textbf{Phase 1: Contestation (1930s--1960s).}
+In the aftermath of the Great Depression, market-skeptical views dominated: Keynesian macroeconomics, strong regulation, public ownership of utilities, and active industrial policy were mainstream.
+The belief ``markets know best'' was a minority position, associated with a small network of Austrian and Chicago economists.
+
+\textbf{Phase 2: Infrastructure Building (1947--1980).}
+The Mont P\`{e}lerin Society (1947), the Foundation for Economic Education, and later the Heritage Foundation (1973), Cato Institute (1977), and dozens of smaller think tanks built the narrative infrastructure.
+Funding from Olin, Scaife, Koch, and Bradley foundations supported law-and-economics programs at universities, endowed chairs, and produced a generation of economists, lawyers, and policy intellectuals committed to market-first thinking \autocite{mirowski2009, slobodian2018}.
+
+\textbf{Phase 3: Political Capture (1979--1990).}
+Thatcher and Reagan brought the narrative to political power.
+Deregulation, privatization, and tax cuts were enacted.
+The behavioral consequences (rising stock markets, new consumer products, visible wealth creation for some) appeared to confirm the narrative.
+
+\textbf{Phase 4: Common-Sense Capture (1990s--2008).}
+By the 1990s, even center-left parties (Clinton's Democrats, Blair's New Labour) adopted market-first assumptions.
+The ``Washington Consensus'' made market liberalization the default prescription for developing countries.
+Alternatives (industrial policy, public ownership, cooperative models) were no longer debated; they were simply absent from serious policy discussion.
+
+\textbf{Phase 5: Partial Fracture (2008--present).}
+The financial crisis disrupted the capture by generating a massive contradiction (markets spectacularly failed to self-correct).
+But the fracture was partial: despite the crisis, the policy response (austerity, quantitative easing for banks, limited re-regulation) largely preserved market-first assumptions.
+The belief was shaken but not dislodged---evidence of deep lock-in.
+
+\begin{remark}
+This case illustrates the full capture trajectory: from minority position to infrastructure building to political implementation to common-sense invisibility to partial fracture under contradiction.
+The total doxonomic investment over 60 years was plausibly in the billions of dollars.
+The capture was not permanent---the 2008 crisis opened cracks---but the lock-in was strong enough to survive even a dramatic empirical refutation.
+\end{remark}
+
+
+\section{Escape from Capture}
+\label{sec:ch8-escape}
+
+If common-sense capture is so durable, how does it ever end?
+Chapter~\ref{ch:how-belief-regimes-fracture} treats this in detail, but a preview is useful here.
+
+\begin{conjecture}[Conditions for De-Capture]
+\label{conj:de-capture}
+\index{de-capture}
+A captured belief $p$ can be dislodged when:
+\begin{enumerate}[nosep]
+  \item \textbf{Contradiction accumulates}: the gap between $p$ and lived experience becomes too large for institutional maintenance to bridge (e.g., ``markets self-correct'' during a prolonged recession).
+  \item \textbf{Counter-infrastructure exists}: alternative institutions have been built that can supply a replacement narrative at sufficient volume (e.g., the environmental movement built enough infrastructure to challenge growth-as-progress).
+  \item \textbf{Generational turnover}: new cohorts arrive without the formative exposure that locked in $p$ for the previous generation.
+  \item \textbf{Elite defection}: high-credibility insiders publicly break with $p$, reducing the social cost of dissent (e.g., prominent economists questioning homo economicus after 2008).
+  \item \textbf{Crisis opens the Overton window}: an exogenous shock temporarily suspends the normal inertia of common sense (Chapter~\ref{ch:crisis-doxonomics}).
+\end{enumerate}
+Typically, multiple conditions must coincide.
+Single-condition de-capture is rare; this is why lock-in is so durable.
+\end{conjecture}
+
 
 \section{Notes and References}
 \label{sec:ch8-notes}
@@ -103,19 +382,66 @@ Path dependence in institutional contexts is treated in \textcite{north1990}.
 The concept of lock-in from technology economics \autocite{arthur1989} transfers to the belief domain.
 On the invisibility of dominant frames, see \textcite{lukes2005}.
 
+The capture of market-first ideology is documented in \textcite{mirowski2009}, \textcite{harvey2005}, \textcite{slobodian2018}, and \textcite{phillipsfein2009}.
+On the illusory truth effect and repetition-based persuasion, see \textcite{kahneman2011}.
+Social proof dynamics are analyzed in \textcite{cialdini2006}.
+On the partial fracture of market fundamentalism after 2008, see \textcite{streeck2016}.
+For the concept of crowding out in media and attention markets, see \textcite{mcchesney1999}.
+On narrative entropy as a measure of discursive openness, see the information-theoretic framework in Chapter~\ref{ch:text-media}.
+The concept of institutional saturation extends the Althusserian notion of ideological state apparatuses \autocite{althusser1970} into a measurable condition.
+
+
 \section{Exercises}
 
 \begin{exercise}
 Given a threshold distribution $G(\tau) = \tau^2$ on $[0,1]$, find all fixed points of $\mu^* = G(\mu^*)$.
 Determine their stability.
-What is the minimum uniform threshold reduction $\Delta$ needed to eliminate the low-adoption equilibrium?
+What is the minimum uniform threshold reduction $\Delta$ needed to create a stable high-adoption equilibrium?
+Plot $G(\tau)$ and the shifted $G(\tau - \Delta)$ to illustrate.
 \end{exercise}
 
 \begin{exercise}
-Estimate the maintenance cost of the belief ``economic growth is always desirable'' by identifying two institutions that continuously reinforce it and estimating their budgets.
+For the social proof cascade model (Model~\ref{mod:cascade}) with $\alpha = 0.3$, $\beta = 0.5$, $\delta = 0.1$, find the minimum institutional investment $\phi^*$ needed for a stable high-adoption equilibrium to exist.
+Plot the phase portrait for $\phi$ just below and just above $\phi^*$.
+\end{exercise}
+
+\begin{exercise}
+Estimate the maintenance cost of the belief ``economic growth is always desirable'' by identifying three institutions that continuously reinforce it and estimating their annual budgets.
+Compare the maintenance cost to a rough estimate of the original capture cost (infrastructure built from the 1940s onward).
 \end{exercise}
 
 \begin{exercise}
 Design a formal test to distinguish a belief that is common sense (Definition~\ref{def:common-sense}) from one that is captured (Definition~\ref{def:capture}).
 What empirical evidence would differentiate the two?
+Apply your test to ``democracy is the best form of government.''
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch8-crowding}
+Model the crowding-out effect formally.
+Let two beliefs $p$ and $q$ compete for a shared narrative infrastructure with total capacity $\Theta_{\max}$.
+Show that if $\Theta(p) + \Theta(q) \leq \Theta_{\max}$, increased investment in $p$ necessarily reduces throughput for $q$.
+Under what conditions can $q$ survive despite being outspent?
+\end{exercise}
+
+\begin{exercise}
+Apply the capture signature (Definition~\ref{def:capture-signature}) to the belief ``a university degree is necessary for a good career.''
+Assess each of the six criteria.
+Is this belief captured?
+If so, who benefits from its capture?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:ch8-de-capture}
+Choose a belief that has been partially de-captured in the past 20 years (e.g., ``smoking is glamorous,'' ``homosexuality is a disorder,'' ``colonialism was civilizing'').
+Trace the de-capture process through the five conditions in Conjecture~\ref{conj:de-capture}.
+Which conditions were most important?
+Was the de-capture complete or partial?
+\end{exercise}
+
+\begin{exercise}
+The chapter claims that ``maintenance is cheaper than capture.''
+Formalize this claim using the social proof cascade model.
+Show that the per-period funding needed to maintain $\mu^*$ near 1 is lower than the total funding needed to reach $\mu^*$ from $\mu = 0$.
+Under what conditions is this \emph{not} true?
 \end{exercise}

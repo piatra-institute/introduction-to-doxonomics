@@ -5,11 +5,15 @@
 
 \noindent
 Doxonomic systems operate over decades and centuries.
-Computational methods capture the present; historical methods reveal how we arrived here.
-This chapter develops the tools for doxonomic history: genealogy of concepts, institutional archives, long-duration narrative change, and the integration of historical and computational evidence.
+Computational methods capture the present; historical methods reveal how we arrived here---and reveal it in a form that no regression can provide, because the causal chains that produce today's common sense were laid down by specific actors making specific decisions in specific institutional contexts.
+This chapter develops the tools for doxonomic history: genealogy of concepts, institutional archive analysis, long-duration narrative change, comparative-historical methods, and the integration of historical evidence with the computational and statistical methods developed in Chapters~\ref{ch:causal-inference}--\ref{ch:text-media}.
+
+The central premise is that doxonomic processes leave archival traces---in foundation grant records, corporate strategy memos, propaganda agency files, curriculum committee minutes, and media ownership ledgers---and that these traces, when assembled systematically, reveal the material infrastructure behind what presents itself as ``just common sense.''
 
 \section{Genealogy of Concepts}
 \label{sec:ch18-genealogy}
+
+\subsection{Definition and scope}
 
 \begin{definition}[Doxonomic Genealogy]
 \label{def:genealogy}
@@ -17,69 +21,489 @@ This chapter develops the tools for doxonomic history: genealogy of concepts, in
 A \emph{doxonomic genealogy} of belief $p$ is a reconstruction of:
 \begin{enumerate}[nosep]
   \item when $p$ was first articulated as an explicit claim,
-  \item which agents promoted it and with what resources,
+  \item which agents promoted it and with what material resources,
   \item through which institutional channels it gained credibility,
-  \item what alternative beliefs it displaced,
-  \item at what point it achieved common-sense status (if ever).
+  \item what alternative beliefs it displaced and by what mechanisms,
+  \item at what point it achieved common-sense status (if ever),
+  \item what residual traces of the displaced alternatives survive.
 \end{enumerate}
 \end{definition}
 
-This extends \textcite{foucault1971} from discourse analysis to funded discourse analysis: not just \emph{who said what when}, but \emph{who paid for it to be said, through what institutions, with what effect}.
+This extends \textcite{foucault1971} from discourse analysis to \emph{funded} discourse analysis: not just \emph{who said what when}, but \emph{who paid for it to be said, through what institutions, with what effect on the distribution of beliefs in the population}.
+The genealogical method is not simply intellectual history (the history of ideas) but institutional-material history (the history of the infrastructure that gave certain ideas reach and persistence while denying those resources to competitors).
+
+\subsection{Genealogy vs.\ intellectual history}
+
+Standard intellectual history traces ideas through their logical development: Locke influenced Smith who influenced Mill who influenced Hayek.
+Doxonomic genealogy adds the material dimension: \emph{how} did Hayek's ideas achieve mass influence when other equally rigorous economists (e.g., Joan Robinson, Nicholas Kaldor) did not?
+The answer is not in the quality of the arguments but in the institutional infrastructure---Mont P\`{e}lerin Society, the network of free-market think tanks, corporate-funded university chairs---that gave Hayek's framework reach, repetition, and persistence that Robinson's never had.
+
+\begin{proposition}[Genealogical Distinctness Criterion]
+\label{prop:genealogy-criterion}
+A doxonomic genealogy differs from standard intellectual history if and only if the material conditions of belief production appear as explanatory factors---that is, if removing the funding and institutional analysis from the genealogy would change the explanation of why belief $p$ achieved its current prevalence.
+\end{proposition}
+
+\subsection{Constructing a genealogy: method}
+
+A doxonomic genealogy proceeds in five stages:
+
+\begin{enumerate}
+  \item \textbf{Identify the target belief and establish its current status.}
+  What is the belief?
+  Is it common sense, contested, marginal?
+  What is the evidence for its current prevalence (surveys, policy outcomes, textbook content)?
+
+  \item \textbf{Trace the intellectual precursors.}
+  When was the belief first articulated?
+  By whom?
+  In what context?
+  This is standard intellectual history.
+
+  \item \textbf{Map the institutional infrastructure.}
+  Which institutions promoted the belief?
+  When were they founded?
+  By whom, and with what funding?
+  What channels did they use (publications, conferences, curricula, media, policy advisory)?
+
+  \item \textbf{Identify the critical amplification events.}
+  At what moments did the belief's prevalence change sharply?
+  What combination of institutional action and external events (crises, elections, technological change) produced the shift?
+
+  \item \textbf{Document the displaced alternatives.}
+  What beliefs did the target belief replace?
+  Were those alternatives refuted, defunded, or simply drowned out?
+  Do archival traces of the alternatives survive?
+\end{enumerate}
+
+\subsection{Worked example: the genealogy of ``markets are efficient''}
+
+\begin{example}
+\label{ex:genealogy-emh}
+The belief that financial markets efficiently aggregate information (the efficient markets hypothesis) provides a compact genealogy:
+
+\paragraph{Intellectual precursors.}
+Bachelier (1900) on random walks in bond prices; Samuelson (1965) on the impossibility of beating the market; \textcite{fama1970} on the three forms of market efficiency.
+
+\paragraph{Institutional infrastructure.}
+The University of Chicago economics department, funded in part by conservative foundations (Olin, Bradley, Scaife) from the 1950s onward.
+The Graduate School of Business (now Booth) trained a generation of finance scholars and MBA students.
+The Journal of Financial Economics provided a publication outlet.
+Corporate partnerships (Wells Fargo's index fund, founded 1971) created commercial incentives to promote the hypothesis.
+
+\paragraph{Amplification.}
+The success of index funds in the 1980s--90s provided apparent empirical vindication.
+Deregulatory policy (repeal of Glass-Steagall, 1999) was justified partly by efficient-markets reasoning.
+Business media (CNBC, Bloomberg) adopted efficient-markets language as default vocabulary.
+
+\paragraph{Displacement.}
+Keynesian and institutionalist approaches to finance (which emphasized speculation, herd behavior, and regulatory necessity) were marginalized in leading economics departments by the 1980s, though they survived in heterodox programs.
+
+\paragraph{Crisis and partial genealogical reversal.}
+The 2008 financial crisis disrupted the genealogy: behavioral finance gained institutional footing, and former proponents (including Greenspan) acknowledged that the hypothesis had been taken too far.
+But the institutional infrastructure---departments, journals, textbooks, curricula---remained largely intact, and the hypothesis recovered much of its common-sense status within a decade.
+\end{example}
 
 \section{Institutional Archives}
 \label{sec:ch18-archives}
 
-Key archival sources for doxonomic history:
-\begin{itemize}[nosep]
-  \item foundation annual reports and grant records,
-  \item corporate archives (advertising, internal strategy),
-  \item government propaganda agency records,
-  \item educational curriculum archives,
-  \item media ownership transfer records,
-  \item think-tank publication archives.
+\subsection{Types of archival sources}
+
+Doxonomic history depends on archives that conventional intellectual historians rarely consult.
+The key categories:
+
+\begin{enumerate}
+  \item \textbf{Foundation records.}
+  Annual reports, grant databases, IRS Form 990 filings (for US nonprofits), board meeting minutes.
+  These reveal who funded what, how much, and through what intermediaries.
+  Major digitized sources include the Foundation Directory Online and GuideStar/Candid.
+
+  \item \textbf{Corporate archives.}
+  Advertising strategies, public relations campaigns, internal strategy memos, lobbying expenditure records.
+  Many are accessible only through litigation discovery (e.g., tobacco industry documents at the UCSF Truth Tobacco Documents Library) or leak (e.g., ExxonMobil climate research memos).
+
+  \item \textbf{Government propaganda records.}
+  State information agencies (USIA, BBC World Service, Soviet-era Agitprop), censorship bureaus, educational ministry curriculum directives.
+  National archives in most democracies declassify propaganda records after 25--50 years.
+
+  \item \textbf{Educational archives.}
+  Textbook editions, curriculum committee records, accreditation standards, university hiring and tenure records.
+  Particularly valuable for tracing the institutionalization of beliefs in the education system.
+
+  \item \textbf{Media ownership records.}
+  FCC filings (US), Ofcom records (UK), media concentration databases.
+  These document changes in narrative infrastructure ownership.
+
+  \item \textbf{Think-tank publications.}
+  Policy briefs, reports, congressional testimony, media appearances.
+  Most think tanks maintain publication archives; many are now digitized.
+\end{enumerate}
+
+\subsection{Archival methodology for doxonomics}
+
+\begin{model}[Archival Triangulation]
+\label{mod:triangulation}
+\index{archival triangulation}
+Because no single archive captures the full doxonomic chain (from funding decision to belief change), doxonomic archival research requires triangulation across at least three source types:
+\begin{enumerate}[nosep]
+  \item \emph{Production archives}: what was produced (think-tank publications, media content).
+  \item \emph{Infrastructure archives}: who funded the production (foundation records, corporate filings).
+  \item \emph{Reception evidence}: what changed in the population (polling data, behavioral indicators, policy outcomes).
+\end{enumerate}
+The doxonomic claim---that funding shaped narrative which shaped belief---requires evidence from all three levels.
+Evidence from production alone shows what was said but not why.
+Evidence from infrastructure alone shows who paid but not what resulted.
+Evidence from reception alone shows what changed but not what caused the change.
+\end{model}
+
+\subsection{Source criticism for doxonomic archives}
+
+Archival sources require critical evaluation, and doxonomic archives present distinctive challenges:
+
+\begin{itemize}
+  \item \textbf{Survivorship bias.}
+  Archives that survive are disproportionately those of successful, well-funded institutions.
+  Failed doxonomic campaigns, suppressed counter-narratives, and defunded organizations leave fewer traces.
+  The archive systematically over-represents the winners of doxonomic competition.
+
+  \item \textbf{Strategic self-presentation.}
+  Foundation annual reports and corporate public relations materials present a sanitized version of institutional activity.
+  Internal memos and litigation discovery documents are more candid but harder to access.
+
+  \item \textbf{Opacity by design.}
+  Some doxonomic funding is deliberately obscured through donor-advised funds, pass-through organizations (``dark money''), and offshore foundations.
+  The archival record may have intentional gaps \autocite{mayer2016}.
+
+  \item \textbf{Volume and heterogeneity.}
+  The archival record for even a single doxonomic campaign (e.g., climate doubt) can comprise millions of pages across dozens of institutional archives.
+  Systematic coverage requires computational assistance (OCR, topic modeling, named entity recognition applied to archival materials).
 \end{itemize}
+
+\subsection{Worked example: the tobacco documents}
+
+\begin{example}
+\label{ex:tobacco-archives}
+The UCSF Truth Tobacco Industry Documents Library contains over 14 million documents released through litigation.
+These documents revealed a systematic doxonomic campaign: tobacco companies funded research institutions, public relations firms, and front organizations to produce and circulate the narrative that the link between smoking and cancer was ``uncertain'' and ``debated'' \autocite{oreskes2010}.
+
+Key archival findings:
+\begin{itemize}[nosep]
+  \item A 1969 Brown \& Williamson memo stated: ``Doubt is our product since it is the best means of competing with the `body of fact' that exists in the mind of the general public.''
+  \item Funding records show that tobacco companies directed \$450+ million to the Council for Tobacco Research (1954--1998), which published research designed to create the appearance of scientific controversy.
+  \item Media analysis showed that news coverage of the smoking-cancer link used ``balance'' framing (quoting both sides equally) for decades after the scientific consensus had solidified, partly because industry-funded scientists provided a steady supply of quotable ``experts.''
+\end{itemize}
+
+This case illustrates the archival triangulation model: production archives (industry-funded publications), infrastructure archives (funding records, internal memos), and reception evidence (media framing, public opinion surveys showing persistent doubt).
+\end{example}
 
 \section{Long-Duration Narrative Change}
 \label{sec:ch18-longue-duree}
 
+\subsection{Periodization of belief regimes}
+
 \begin{model}[Periodization of Belief Regimes]
 \label{mod:periodization}
 \index{periodization}
-A doxonomic period is defined by the dominance of an anthropological regime $\alpha$.
+A \emph{doxonomic period} is defined by the dominance of a coherent belief regime $\alpha$: a mutually reinforcing set of common-sense beliefs, institutional practices, and narrative infrastructure that together constitute the ``taken for granted'' framework for a domain.
 Transitions between periods are marked by:
+\begin{enumerate}[nosep]
+  \item \emph{Funding shifts}: new donors enter, old donors exit, institutional vehicles change.
+  \item \emph{Institutional realignment}: new think tanks, curriculum reforms, media ownership changes.
+  \item \emph{Narrative crises}: events (wars, financial collapses, pandemics) that destabilize the dominant frame by making its predictions visibly fail.
+  \item \emph{Measurable belief shifts}: changes in population belief distributions detectable through surveys, electoral behavior, or policy outcomes.
+\end{enumerate}
+\end{model}
+
+The periodization framework draws on the \emph{longue dur\'{e}e} tradition of the Annales school (Braudel, Bloch) but adds a specifically doxonomic layer: the material infrastructure of belief production is treated as a structural feature comparable to geography, demography, or technology.
+
+\subsection{A periodization of economic common sense, 1870--2020}
+
+\begin{example}
+\label{ex:econ-periodization}
+We can identify five doxonomic periods for economic belief in the Anglophone world:
+
+\begin{center}
+\begin{tabular}{p{2.5cm}p{3.5cm}p{3cm}p{3.5cm}}
+\toprule
+Period & Dominant belief & Key institutions & Transition trigger \\
+\midrule
+Classical liberalism (1870--1929) & Self-regulating markets & Universities, business press, chambers of commerce & Great Depression \\[4pt]
+Keynesian consensus (1933--1970) & Government must manage demand & Government agencies, Brookings, NBER, reformed economics depts.\ & Stagflation, oil shocks \\[4pt]
+Neoliberal ascendancy (1970--2008) & Markets are efficient, government is the problem & Heritage, Cato, AEI, Chicago school, IMF, World Bank & 2008 financial crisis \\[4pt]
+Contested interregnum (2008--2020) & No stable consensus; populist, technocratic, and progressive frames compete & Fragmented: social media, partisan media, revived heterodox econ & COVID-19, inequality crises \\[4pt]
+Post-2020 (emerging) & Uncertain; industrial policy revival, climate urgency & Emerging institutions: climate funds, tech policy think tanks & TBD \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each transition involved not just a change in ideas but a change in the institutional infrastructure that produced and circulated ideas.
+The neoliberal transition, for instance, required a 30-year institution-building campaign before the political conditions (stagflation, Thatcher/Reagan elections) allowed the new beliefs to achieve policy dominance \autocite{mirowski2009, harvey2005, phillipsfein2009}.
+\end{example}
+
+\subsection{Temporal scales in doxonomic change}
+
+Doxonomic processes operate at multiple temporal scales simultaneously:
+
+\begin{enumerate}
+  \item \textbf{Event time} (days to weeks): a crisis, scandal, or policy announcement can temporarily shift the narrative landscape.
+  Media framing during a crisis can set the terms for subsequent debate.
+
+  \item \textbf{Campaign time} (months to years): a coordinated doxonomic campaign (think-tank launch, advertising blitz, curriculum reform) unfolds over this timescale.
+  Most natural experiments and quasi-experimental designs operate at this scale.
+
+  \item \textbf{Institutional time} (decades): the creation, growth, and transformation of narrative institutions.
+  Universities, media organizations, and think tanks operate on generational timescales.
+  The lag between institutional founding and measurable belief change is typically 10--30 years.
+
+  \item \textbf{Structural time} (generations to centuries): deep shifts in the taken-for-granted framework---from divine right to social contract, from mercantilist to liberal economic thought, from racial hierarchy to formal equality.
+  These shifts involve wholesale replacement of the institutional infrastructure, not just modification.
+\end{enumerate}
+
+The historian's distinctive contribution to doxonomics is the ability to work across these temporal scales, tracing how event-level disruptions interact with institutional-level dynamics and structural-level transformations.
+
+\section{Comparative-Historical Methods}
+\label{sec:ch18-comparative}
+
+\subsection{Mill's methods and doxonomic comparison}
+
+Comparative-historical analysis applies Mill's methods of agreement and difference to historical cases:
+
+\begin{definition}[Doxonomic Comparative Design]
+\label{def:comparative}
+\index{comparative-historical method}
+\textbf{Method of agreement}: if two societies with different economic structures, political systems, and cultures both adopted belief $p$ after building similar narrative infrastructure, the infrastructure (not the background conditions) is the likely cause.
+
+\textbf{Method of difference}: if two otherwise similar societies diverge in their beliefs after one builds narrative infrastructure that the other does not, the infrastructure is the likely cause of the divergence.
+\end{definition}
+
+\begin{example}
+\label{ex:comparative-neoliberal}
+The neoliberal turn occurred in both the US and UK (method of agreement) despite different political systems, welfare state traditions, and economic structures.
+What they shared: both received heavy investment in free-market think tanks and both experienced stagflation crises that discredited the Keynesian alternative.
+
+The neoliberal turn did \emph{not} occur in the same form in France or Germany during the same period (method of difference), where think-tank infrastructure was weaker and existing institutions (dirigisme, social market economy) were more robust.
+This pattern is consistent with the hypothesis that institutional infrastructure, not just ideas or economic conditions, drove the transition.
+\end{example}
+
+\subsection{Process tracing}
+
+Process tracing follows the causal chain from funding decision to belief change step by step within a single case, verifying that each link in the hypothesized mechanism actually operated.
+
+\begin{model}[Doxonomic Process Trace]
+\label{mod:process-trace}
+\index{process tracing}
+A complete doxonomic process trace documents:
+\begin{enumerate}[nosep]
+  \item the funding decision (who decided to invest, when, how much, and why),
+  \item institutional creation or capture (which organizations received the funding and what they did with it),
+  \item narrative production (what specific publications, broadcasts, or educational materials were produced),
+  \item distribution and amplification (through which channels the narrative reached audiences),
+  \item reception and adoption (evidence that the target population's beliefs actually changed),
+  \item feedback (how the changed beliefs affected policy, which in turn affected funding for the next cycle).
+\end{enumerate}
+Each step must be documented with archival evidence.
+Gaps in the chain weaken the causal claim proportionally.
+\end{model}
+
+\subsection{Counterfactual reasoning}
+
+Historical counterfactuals are inherently speculative, but they serve an important analytical function: they help distinguish necessary from sufficient conditions.
+
+\begin{example}
+\label{ex:counterfactual}
+\emph{Would neoliberalism have become common sense without the think-tank network?}
+The counterfactual requires us to hold fixed the intellectual content (Hayek, Friedman, Buchanan) and the economic conditions (stagflation) while removing the institutional infrastructure.
+Several considerations:
 \begin{itemize}[nosep]
-  \item shifts in funding patterns (new donors, new institutional vehicles),
-  \item institutional realignment (new think tanks, curriculum reforms),
-  \item narrative crises (events that destabilize the dominant frame),
-  \item measurable changes in population belief distributions.
+  \item Similar ideas existed in the 1930s (the original neoliberals) but failed to achieve policy influence without institutional infrastructure.
+  \item Comparable economic crises in countries without the think-tank network produced different ideological responses (e.g., France's turn to \emph{dirigisme} rather than marketization after the 1970s crises).
+  \item The speed and synchronization of the neoliberal turn across multiple policy domains (labor, finance, trade, welfare) is more consistent with coordinated institutional action than independent intellectual convergence.
 \end{itemize}
+The counterfactual suggests that the infrastructure was a necessary (though not sufficient) condition.
+The ideas and the crisis were also necessary.
+It was the \emph{combination}---prepared ideas, built infrastructure, and catalyzing crisis---that produced the regime change.
+\end{example}
+
+\section{Integrating Historical and Computational Evidence}
+\label{sec:ch18-integration}
+
+\subsection{The complementarity principle}
+
+Historical and computational methods have complementary strengths:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Feature & Historical methods & Computational methods \\
+\midrule
+Temporal depth & Centuries & Decades (limited by digitization) \\
+Causal mechanism & Detailed process tracing & Statistical association \\
+Scale & Few cases, deep & Many cases, broad \\
+Source type & Archives, documents & Digitized corpora, databases \\
+Subjectivity & High (interpreter-dependent) & Lower (algorithm-dependent) \\
+Counterfactuals & Qualitative reasoning & Formal modeling \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Neither method alone is sufficient for doxonomic analysis.
+Historical methods provide causal mechanism and temporal depth but are limited in scale and reproducibility.
+Computational methods provide scale and reproducibility but are limited in causal depth and temporal reach.
+The strongest doxonomic studies combine both.
+
+\subsection{Mixed-methods research designs}
+
+\begin{model}[Sequential Mixed-Methods Design]
+\label{mod:mixed-methods}
+\index{mixed methods}
+A productive sequence for doxonomic research:
+\begin{enumerate}[nosep]
+  \item \textbf{Computational scan}: use topic models and text analysis on a large corpus to identify patterns (e.g., a funding-frame correlation, a semantic drift event).
+  \item \textbf{Historical deep dive}: select 2--3 cases where the pattern is strongest and conduct archival process tracing to verify the causal mechanism.
+  \item \textbf{Computational verification}: return to the large corpus to check whether the mechanism identified in the deep dive holds more broadly (e.g., does the funding-frame correlation persist after controlling for institutional ideology?).
+  \item \textbf{Generalization}: combine the historical mechanism with the computational evidence to formulate a general doxonomic claim, noting the scope conditions under which it holds.
+\end{enumerate}
 \end{model}
 
 \begin{example}
-The shift from Keynesian common sense (``government manages the economy'') to neoliberal common sense (``markets are self-correcting'') can be periodized as: intellectual groundwork (1947--1970, Mont P\`{e}lerin Society), institutional build-out (1970--1980, Heritage Foundation, Cato Institute, AEI), political capture (1979--1983, Thatcher and Reagan), and normalization (1990--2008, Third Way, Washington Consensus) \autocite{mirowski2009, harvey2005}.
+\label{ex:mixed-methods}
+A mixed-methods study of climate doubt:
+\begin{enumerate}[nosep]
+  \item \emph{Computational scan}: topic modeling of 50,000 climate-related documents shows that the ``uncertainty'' frame is six times more prevalent in fossil-fuel-funded sources than in scientific sources (cf.\ Example~\ref{ex:topic-validation}).
+  \item \emph{Historical deep dive}: archival research on ExxonMobil's internal climate research (1977--1988) vs.\ its public communications (1989--2008) reveals a deliberate strategy to emphasize uncertainty despite internal knowledge of climate risks \autocite{oreskes2010}.
+  \item \emph{Computational verification}: the funding-uncertainty correlation holds after controlling for institutional political alignment and publication year, suggesting it is not merely a proxy for conservative ideology.
+  \item \emph{Generalization}: funded narrative production can sustain an ``uncertainty'' frame in public discourse for decades even when the scientific evidence is overwhelming---provided the funding is sufficient to maintain a steady stream of credentialed dissenting voices.
+\end{enumerate}
 \end{example}
+
+\section{Oral History and Elite Interviews}
+\label{sec:ch18-oral}
+
+Written archives capture institutional output; they rarely capture the informal decision-making, personal networks, and tacit strategies behind doxonomic campaigns.
+Oral history and elite interviews fill this gap.
+
+\subsection{Interview design for doxonomic research}
+
+Interviewing participants in doxonomic campaigns (foundation officers, think-tank directors, editors, academics who received targeted funding) requires attention to:
+\begin{itemize}[nosep]
+  \item \textbf{Retrospective bias}: participants may rationalize or sanitize their past decisions.
+  Cross-check interview claims against archival records wherever possible.
+  \item \textbf{Strategic non-disclosure}: participants may have ongoing relationships with funders and decline to discuss sensitive topics.
+  Anonymization and embargo periods can help.
+  \item \textbf{Survivor bias}: those willing to be interviewed are disproportionately those who are comfortable with their role.
+  Dissenters, whistleblowers, and those who left the campaign may provide more candid accounts but are harder to locate.
+\end{itemize}
+
+\subsection{Snowball sampling through doxonomic networks}
+
+Because doxonomic campaigns involve interconnected networks of actors, snowball sampling---asking each interviewee to suggest further contacts---is a natural recruitment strategy.
+The risk: the sample follows the network's own structure, overrepresenting central actors and missing peripheral or dissenting voices.
+Corrective measures include targeted recruitment of actors identified in archival records but not mentioned by earlier interviewees.
+
+\section{Ethical Considerations in Doxonomic Historical Research}
+\label{sec:ch18-ethics}
+
+\subsection{The politics of genealogy}
+
+Doxonomic genealogy is inherently political: it traces how beliefs that present themselves as natural truths were, in fact, produced by identifiable actors with identifiable interests.
+This creates several ethical obligations:
+\begin{itemize}[nosep]
+  \item \textbf{Accuracy}: because genealogical claims can damage reputations and delegitimize institutions, the evidentiary standard must be high.
+  Every claim should be traceable to specific archival evidence.
+  \item \textbf{Symmetry}: genealogical analysis should be applied to all belief-producing institutions, not selectively to those the researcher opposes.
+  Progressive foundations, public universities, and NGOs also engage in funded narrative production.
+  \item \textbf{Proportionality}: the strength of the genealogical conclusion should be proportional to the evidence.
+  ``Corporation X funded institution Y, which published document Z'' is a factual chain.
+  ``Corporation X caused belief $p$ to become common sense'' is a causal claim that requires much more evidence.
+\end{itemize}
+
+\subsection{Access and power asymmetries}
+
+Archival access is itself a doxonomic variable.
+Well-funded institutions can restrict access to their archives, employ legal teams to resist FOIA requests, and control the narrative about their own history.
+The tobacco and fossil-fuel archives became available primarily through litigation, not voluntary disclosure.
+This creates a systematic bias: the doxonomic campaigns most in need of genealogical scrutiny are precisely those with the greatest capacity to prevent it.
 
 \section{Notes and References}
 \label{sec:ch18-notes}
 
-Genealogical method draws on \textcite{foucault1971}.
-The institutional history of neoliberalism is documented in \textcite{mirowski2009} and \textcite{mayer2016}.
-On long-duration institutional change, see \textcite{north1990} and \textcite{acemoglu2012}.
+Genealogical method draws on \textcite{foucault1971}; for an accessible introduction, see \textcite{gutting2005}.
+The institutional history of neoliberalism is documented in \textcite{mirowski2009}, \textcite{harvey2005}, and \textcite{phillipsfein2009}.
+On the Mont P\`{e}lerin Society specifically, see \textcite{slobodian2018}.
+
+Long-duration institutional change is theorized in \textcite{north1990} and \textcite{acemoglu2012}.
+The Annales school's \emph{longue dur\'{e}e} framework originates with Braudel (1949); for its application to institutional analysis, see \textcite{pierson2004}.
+
+Comparative-historical methods are developed in \textcite{mahoney2003} and \textcite{skocpol1979}.
+Process tracing is formalized in \textcite{bennett2015}.
 Archival methods for social science are covered in \textcite{king1994}.
+
+The tobacco industry documents case is analyzed in \textcite{oreskes2010} and Proctor (2012).
+On fossil-fuel industry climate denial, see \textcite{oreskes2010} and Supran and Oreskes (2017).
+On dark money and archival opacity, see \textcite{mayer2016}.
+
+For mixed-methods research design, see \textcite{creswell2017}.
+On oral history methodology, see Ritchie (2014).
 
 \section{Exercises}
 
 \begin{exercise}
-Construct a doxonomic genealogy of the belief ``taxation is theft'' from its philosophical origins to its current institutional support.
+Construct a doxonomic genealogy of the belief ``taxation is theft'' from its philosophical origins (Locke, Nozick) to its current institutional support.
+Identify at least three institutional channels through which the belief gained popular currency.
+What alternative beliefs about taxation did it displace?
 \end{exercise}
 
 \begin{exercise}
-Using the periodization framework, identify the major doxonomic periods for beliefs about gender roles in the 20th century.
-What institutional shifts mark the transitions?
+Using the periodization framework (Model~\ref{mod:periodization}), identify the major doxonomic periods for beliefs about gender roles in the 20th century.
+For each transition, specify:
+\begin{enumerate}[nosep]
+  \item the funding shifts (which institutions gained or lost resources),
+  \item the institutional realignments (new organizations, curriculum changes),
+  \item the narrative crises (events that destabilized the prior regime),
+  \item the measurable belief changes (survey evidence, behavioral indicators).
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 Design an archival research project to estimate the total spending on neoliberal narrative production from 1970 to 2000.
-What sources would you use?
-What are the main obstacles?
+\begin{enumerate}[nosep]
+  \item List the specific archival sources you would consult.
+  \item Describe the main obstacles to accurate estimation (opacity, definitional ambiguity, international flows).
+  \item Propose a lower-bound estimation strategy that uses only publicly available data.
+  \item How would you handle the ``dark money'' problem---funding that flows through intermediaries designed to obscure the original source?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Apply the archival triangulation model (Model~\ref{mod:triangulation}) to a doxonomic campaign of your choice.
+For each of the three archive types (production, infrastructure, reception), identify:
+\begin{enumerate}[nosep]
+  \item the specific archives or databases you would consult,
+  \item what evidence you would look for,
+  \item what limitations or gaps you would expect to encounter.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Write a complete doxonomic process trace (Model~\ref{mod:process-trace}) for the dissemination of a specific idea from academic publication to policy implementation.
+Choose an idea where archival sources are available (e.g., the Laffer Curve, the ``broken windows'' theory of policing, the ``school choice'' movement).
+Document each step with specific archival evidence and identify the weakest link in the causal chain.
+\end{exercise}
+
+\begin{exercise}
+Compare the doxonomic infrastructure for economic policy ideas in two countries (e.g., the US and Germany, or the UK and France).
+\begin{enumerate}[nosep]
+  \item Map the major think tanks, their funding sources, and their institutional relationships in each country.
+  \item Apply Mill's method of difference: how do differences in infrastructure correlate with differences in dominant economic beliefs?
+  \item Discuss confounding factors: what other differences between the countries might explain the belief differences?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Design an interview protocol for oral history research on a doxonomic campaign.
+\begin{enumerate}[nosep]
+  \item Specify the target population (who would you interview?).
+  \item Write 10 questions that probe the material infrastructure of belief production without leading the interviewee toward a predetermined conclusion.
+  \item Describe your strategy for dealing with retrospective bias and strategic non-disclosure.
+  \item How would you triangulate interview evidence against archival records?
+\end{enumerate}
 \end{exercise}
