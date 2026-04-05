@@ -101,6 +101,21 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}{Exercise}[chapter]
 
+% === Part interludes ===
+\newenvironment{interlude}{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \vspace*{3cm}
+  \begin{center}\rule{4cm}{0.4pt}\end{center}
+  \vspace{0.5cm}
+  \begin{quote}\itshape
+}{%
+  \end{quote}
+  \vspace{1cm}
+  \begin{center}\rule{4cm}{0.4pt}\end{center}
+  \clearpage
+}
+
 % === Doxonomics-specific notation ===
 
 % Belief strength

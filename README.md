@@ -45,6 +45,7 @@ The output is `main.pdf`. All intermediate files (`.aux`, `.bbl`, `.bcf`, `.log`
 ├── Makefile
 ├── .latexmkrc
 ├── frontmatter/
+│   ├── cover.tex             # full-black cover page
 │   ├── titlepage.tex
 │   ├── preface.tex
 │   └── notation.tex          # symbol table
@@ -58,7 +59,7 @@ The output is `main.pdf`. All intermediate files (`.aux`, `.bbl`, `.bcf`, `.log`
 │   ├── ...
 │   └── appH-reading.tex
 ├── bibliography/
-│   └── references.bib        # ~100 entries
+│   └── references.bib        # ~175 entries
 ├── figures/                   # (empty — TikZ diagrams are inline)
 └── docs/
     └── doxonomics-critique.md # external review
