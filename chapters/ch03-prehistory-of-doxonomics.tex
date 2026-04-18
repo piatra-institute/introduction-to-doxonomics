@@ -318,7 +318,7 @@ The task of this book is to assemble them.
 \begin{center}
 \begin{tikzpicture}[
   every node/.style={font=\footnotesize},
-  year/.style={font=\footnotesize\bfseries, anchor=north},
+  name/.style={font=\footnotesize\bfseries, rotate=45, anchor=north east},
 ]
   \draw[thick, -Stealth] (0,0) -- (15,0);
 
@@ -338,11 +338,12 @@ The task of this book is to assemble them.
     13.7/Zuboff/2019
   } {
     \draw (\x, 0.15) -- (\x, -0.15);
-    \node[year] at (\x, -0.25) {\t};
+    \node[name] at (\x, -0.25) {\t};
     \node[font=\tiny, anchor=south] at (\x, 0.2) {\d};
   }
 \end{tikzpicture}
 \end{center}
+\vspace{1.5em}
 
 
 \section{Notes and References}
