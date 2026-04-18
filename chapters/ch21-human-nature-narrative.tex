@@ -308,6 +308,94 @@ Escaping the trap requires a coordinated shift in both narrative and norm percep
 
 The selfishness regime constitutes a doxonomic trap: the low-cooperation equilibrium is Pareto-inferior (everyone would be better off with more cooperation), but the narrative that ``people are selfish'' is self-confirming, and anyone who proposes the cooperative alternative is dismissed as ignoring ``human nature.''
 
+\section{Affect, Precision, and the Moral Basin}
+\label{sec:ch21-affect-precision}
+
+The self-fulfilling mechanism of Section~\ref{sec:ch21-self-fulfilling} operates through perceived norms: the regime shifts what agents expect others to do, and behavior follows expectation.
+A deeper layer operates through moral feeling itself.
+The selfishness regime does not only tell agents that others will defect; it also teaches them which emotional responses count as \emph{moral warrant}.
+Contempt for a free-rider reads as moral perception; unease at a cooperator who ``left money on the table'' reads as prudence; sympathy for a diffuse victim reads as sentimentality.
+Over time the regime shapes not only propositional belief but the precision assigned to affect---which gut responses are treated as evidence, and which are treated as noise to be overridden.
+
+This section sketches an individual-level mechanism that feeds the population dynamics already developed.
+Doxonomics is not psychology (Chapter~\ref{ch:ontology-belief}), but population belief aggregates individual states, and some of the most durable regimes operate by recruiting the machinery of moral affect.
+The account is stylized and active-inference-compatible; it is a proposed synthesis, not a canonical result.
+
+\subsection{Feelings as dashboards, not verdicts}
+
+The folk theory of moral cognition treats feeling as perception: disgust reveals wrongness, anger reveals injustice, guilt reveals culpability.
+The empirical picture is more constrained.
+Moral evaluation can, in some tasks, be reported faster than self-reported felt emotion, and incidental affect (disgust primed by a bad smell, anger carried over from traffic) leaks into unrelated moral judgments, though meta-analysis suggests average incidental-affect effects are small.
+The useful compression is that moral feelings are \emph{dashboards}---fast compressions of harm, threat, norm violation, and action urgency---not \emph{verdicts}.
+
+Under active inference---a family of frameworks in which the brain is modeled as continually predicting its sensory inputs and updating to minimize prediction error---emotion is an \emph{interoceptive inference}: the organism's best model of its own bodily state (heart rate, arousal, visceral tone), used to regulate action.
+What governs how much that inference shapes downstream judgment is \emph{precision}---the confidence the system assigns to the bodily signal relative to other evidence channels.
+When precision on interoception is high and evidence on harm, intent, or victim structure is diffuse, the system falls into a moral basin driven by feeling.
+When precision is more evenly distributed, the same feeling becomes one input among several.
+
+\subsection{A minimal state space}
+
+Let the individual moral state be
+\[
+  x_t = \bigl[\,I,\ \Pi,\ H,\ T,\ N,\ V,\ C,\ R,\ S,\ U\,\bigr]
+\]
+with $I$ interoceptive arousal, $\Pi$ the precision placed on it, $H$ perceived harm, $T$ inferred intent, $N$ taboo/purity salience, $V$ victim salience, $C$ self-causation, $R$ repair efficacy, $S$ social confirmation, and $U$ residual ambiguity.
+The state moves on a potential $\mathcal{V}(x; c)$ shaped by context $c$: threat cues, narrative framing, group signals, institutional environment.
+The picture is a landscape: $\mathcal{V}$ has local minima---\emph{attractors}---around which the system settles, each surrounded by a \emph{basin} of nearby states that drain into it.
+Attractors here are not physical locations but stable patterns of appraisal and disposition.
+Candidate attractors correspond to action dispositions: \emph{avoid} (disgust-like exclusion), \emph{punish} (anger-like sanction), \emph{repair} (guilt-like restitution), \emph{help} (empathic concern), and \emph{suspend} (withholding judgment).
+Context $c$ reshapes the landscape: a regime that deepens one basin and flattens others changes which attractor the same facts tend to produce.
+The same person, facing the same facts, can land in different basins depending on which variables the environment amplifies.
+
+\begin{definition}[Moral Distortion Index]
+\label{def:moral-distortion}
+\index{moral distortion index}
+\index{distortion index, moral}
+For an individual in moral state $x$, the \emph{moral distortion index} is
+\[
+  D(x) \;=\; \frac{\Pi\,I + S}{H + T + V + C + R + \varepsilon}
+\]
+for small $\varepsilon > 0$.
+$D \ll 1$: judgment is anchored to appraisal evidence (harm, intent, victim structure, causation, repair).
+$D \gg 1$: bodily affect weighted by precision, plus social reinforcement, outruns appraisal.
+\end{definition}
+
+$D$ is a bookkeeping device, not a measurement instrument.
+It names the regime in which ``this feels wrong'' most readily hardens into ``this \emph{is} wrong,'' and---symmetrically---the regime in which moral feeling serves as useful input rather than mistaken revelation.
+
+\subsection{Doxonomic amplification of \texorpdfstring{$D$}{D}}
+
+A regime does not control the full state $x$; it shapes context $c$, and context shapes which variables the environment makes salient.
+The selfishness regime raises $D$ asymmetrically through two complementary moves:
+\begin{enumerate}[nosep]
+  \item \textbf{Amplification.} It elevates $\Pi\,I$ and $S$ on regime-supporting stimuli---betrayal narratives about free-riders, affective framings of welfare recipients, spectacle-driven coverage of individual wrongdoing---so that anger and contempt feel like moral perception.
+  \item \textbf{Diffusion.} It suppresses $H$, $V$, $C$, and $R$ on regime-threatening stimuli---institutional harms spread across populations, victims with no camera, causal chains too long to narrate, reparative policies framed as fiscally irresponsible.
+\end{enumerate}
+The aggregate effect is to grant moral feeling high precision where it supports the regime and low precision where it would challenge it.
+This composes with Section~\ref{sec:ch21-self-fulfilling}: narrative shifts norm perception, and it also shifts which feelings are granted moral authority.
+
+\begin{proposition}[Affective Recruitment]\footnote{This proposition follows from the model assumptions; it is a structural claim about how regimes exploit affect, not a calibrated prediction.}
+\label{prop:affective-recruitment}
+\index{affective recruitment}
+A regime that selectively amplifies $\Pi\,I$ and $S$ on regime-supporting stimuli while diffusing $H$, $V$, $C$, and $R$ on regime-threatening stimuli raises population $D$ asymmetrically.
+The resulting distribution of moral feeling tracks institutional interest rather than evidential warrant, even when no agent experiences the shift as manipulation.
+\end{proposition}
+
+The mechanism matters precisely because it is not experienced as indoctrination.
+Agents feel their moral responses as their own.
+The regime has shaped not what they think but what feels morally self-evident---which is a deeper lock-in than propositional belief, and correspondingly harder to dislodge.
+
+\subsection{Hysteresis and the cost of exit}
+
+Attractor dynamics imply hysteresis: once a moral basin deepens through repetition, social reinforcement, and enacted judgment, the evidence required to exit it exceeds the evidence that would have been required to prevent entry.
+This is consistent with the lock-in properties of doxonomic systems developed in Chapter~\ref{ch:formal-models}.
+The policy consequence is that counter-doxonomic work cannot rely on argument alone.
+Arguments operate on appraisal variables ($H$, $T$, $V$); lock-in operates on the affect-precision channel $\Pi\,I$ and the social-coupling channel $S$.
+Shifting the moral basin requires sustained experiential counter-evidence (cooperative institutions that visibly work), sustained reframing of affect (narratives that re-locate anger toward structural sources of harm and concern toward structurally produced victims), or both.
+
+Whether populations actually exhibit the asymmetric $D$ predicted by Proposition~\ref{prop:affective-recruitment} is an open empirical problem.
+Candidate approaches are discussed in Chapter~\ref{ch:doxometric-measurement} (individual-level affect measurement) and Chapter~\ref{ch:text-media} (regime-level amplification patterns in discourse).
+
 \section{The Policy Feedback Loop}
 \label{sec:ch21-policy}
 
