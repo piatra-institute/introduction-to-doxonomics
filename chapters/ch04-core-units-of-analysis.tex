@@ -7,7 +7,7 @@
 Doxonomics requires a precise vocabulary of parts.
 Before we can model how beliefs are produced, we need formal definitions of the entities involved: who produces belief, through what institutional machinery, via which channels, with what resources, carrying what content, reaching which audiences, and feeding back into what structures.
 
-This chapter defines seven core units---agents, institutions, channels, budgets, narratives, audiences, and feedback loops---and gives each a mathematical specification.
+This chapter defines seven core units (agents, institutions, channels, budgets, narratives, audiences, and feedback loops) and gives each a mathematical specification.
 Together they constitute the component library from which doxonomic systems are assembled.
 
 
@@ -29,7 +29,7 @@ A \emph{doxonomic agent} is an entity $a \in \agentspace$ characterized by:
 The four types play structurally different roles:
 
 \textbf{Funders} allocate resources to channels.
-They have preferences about what the population believes---preferences that may be ideological (a foundation promoting free-market ideas), commercial (a corporation promoting consumerism), or governmental (a state promoting national identity).
+They have preferences about what the population believes, preferences that may be ideological (a foundation promoting free-market ideas), commercial (a corporation promoting consumerism), or governmental (a state promoting national identity).
 Their strategic problem is: given budget $r(a)$, how to allocate across channels to maximize $u_a(\beliefvec)$.
 
 \textbf{Institutions} process funding into narrative outputs.
@@ -37,7 +37,7 @@ They are the factories of belief production: universities, think tanks, media or
 Their output depends not only on funding but on their internal norms, personnel, accumulated credibility, and organizational culture.
 
 \textbf{Intermediaries} amplify, filter, translate, or repackage narratives as they move through the system.
-A journalist who writes up a think-tank report, a social media influencer who popularizes an academic finding, a textbook author who translates research into pedagogical material---each is an intermediary who transforms the narrative in the process of transmitting it.
+A journalist who writes up a think-tank report, a social media influencer who popularizes an academic finding, a textbook author who translates research into pedagogical material: each is an intermediary who transforms the narrative in the process of transmitting it.
 
 \textbf{Audience members} receive, interpret, and may resist or adopt narratives.
 They are not passive.
@@ -51,7 +51,7 @@ A university professor is both an institution (producing research) and an interm
 The type classification is analytical, not existential: it describes the \emph{role} an agent plays in a specific doxonomic transaction, not a permanent identity.
 \end{remark}
 
-The key structural asymmetry is that funders optimize over $\beliefspace$---they have preferences about what the population believes and resources to act on those preferences---while audience members are typically modeled as updating agents without strategic control over the information environment.
+The key structural asymmetry is that funders optimize over $\beliefspace$ (they have preferences about what the population believes and resources to act on those preferences), while audience members are typically modeled as updating agents without strategic control over the information environment.
 This asymmetry is the source of doxonomic power.
 
 \begin{example}[Agent Asymmetry in Climate Discourse]
@@ -74,7 +74,7 @@ This did not make the doubt narrative \emph{true}; it made it \emph{ubiquitous}.
 Institutions are the central machinery of doxonomic production.
 They are not mere conduits; they \emph{transform} inputs.
 A think tank does not simply relay its donor's wishes.
-It translates them into credentialed, publishable, quotable form---adding the epistemic capital that makes the output persuasive.
+It translates them into credentialed, publishable, quotable form, adding the epistemic capital that makes the output persuasive.
 
 \begin{definition}[Institutional Processing Function]
 \label{def:institution-function}
@@ -89,7 +89,7 @@ The credibility multiplier reflects the institution's accumulated epistemic capi
 
 The processing function captures three things:
 \begin{enumerate}[nosep]
-  \item \textbf{Content transformation}: the input (a donor's policy preference) becomes output (a research paper, a textbook chapter, an op-ed). The content may be identical, but the form is different---and form determines doxonomic force.
+  \item \textbf{Content transformation}: the input (a donor's policy preference) becomes output (a research paper, a textbook chapter, an op-ed). The content may be identical, but the form is different, and form determines doxonomic force.
   \item \textbf{Credibility attachment}: the institutional brand is affixed to the output. ``A study by the Heritage Foundation'' and ``a study by Harvard'' carry different credibility weights, even if the methodology is identical.
   \item \textbf{Audience routing}: different institutions have access to different distribution networks. A think tank's output reaches policymakers and journalists; a university's output reaches students and academics; an advertising agency's output reaches consumers.
 \end{enumerate}
@@ -141,7 +141,7 @@ A \emph{channel} is a medium of narrative transmission characterized by:
   \item \emph{reach} $\reach{k} \in [0,1]$: the fraction of the population exposed per unit time,
   \item \emph{credibility} $\credibility{k} \in [0,1]$: the weight audiences assign to messages from this channel,
   \item \emph{persistence} $\persistence{k} \in \R_{>0}$: the half-life of the narrative in audience memory,
-  \item \emph{cost function} $c_k: \R_{\geq 0} \to [0,1]$: the mapping from funding to effective reach (typically concave---diminishing returns to spending).
+  \item \emph{cost function} $c_k: \R_{\geq 0} \to [0,1]$: the mapping from funding to effective reach (typically concave: diminishing returns to spending).
 \end{itemize}
 \end{definition}
 
@@ -229,7 +229,7 @@ The marginal return at funding level $f$ is $\credibility{k} \cdot \persistence{
 For the think tank: $0.75 \cdot 10 \cdot 0.01 / \sqrt{f} = 0.075/\sqrt{f}$.
 For advertising: $0.2 \cdot 0.1 \cdot 0.25/\sqrt{f} = 0.005/\sqrt{f}$.
 The think tank's marginal return is 15 times higher.
-At the optimum, the funder should invest almost entirely in the think tank---a non-obvious result that reflects the enormous premium of credibility $\times$ persistence over raw reach.
+At the optimum, the funder should invest almost entirely in the think tank, a non-obvious result that reflects the enormous premium of credibility $\times$ persistence over raw reach.
 \end{example}
 
 \begin{remark}[Why Doxonomic Budgets Are Hard to Measure]
@@ -248,7 +248,7 @@ Chapter~\ref{ch:belief-flow-accounting} develops methods for addressing these me
 \section{Narratives}
 \label{sec:ch4-narratives}
 
-Narratives are the \emph{content} of doxonomic systems---what institutions produce, channels transmit, and audiences process.
+Narratives are the \emph{content} of doxonomic systems: what institutions produce, channels transmit, and audiences process.
 
 \begin{definition}[Narrative]
 \label{def:narrative}
@@ -264,12 +264,12 @@ A \emph{narrative} $n \in \narspace$ is a structured proposition or set of propo
 The same factual content can be embedded in radically different narratives.
 ``Unemployment is at 8\%'' becomes:
 \begin{itemize}[nosep]
-  \item $n_1$: ``The economy is recovering---unemployment has fallen from 10\% to 8\%.'' (Causal: recovery. Frame: progress. Subject: optimistic citizen.)
+  \item $n_1$: ``The economy is recovering: unemployment has fallen from 10\% to 8\%.'' (Causal: recovery. Frame: progress. Subject: optimistic citizen.)
   \item $n_2$: ``Eight million people cannot find work, and the government has failed them.'' (Causal: policy failure. Frame: injustice. Subject: abandoned worker.)
   \item $n_3$: ``Welfare dependency keeps people from seeking employment.'' (Causal: moral failure. Frame: personal responsibility. Subject: taxpayer.)
 \end{itemize}
 Same statistic, three different doxonomic effects.
-The narrative---not the fact---is the doxonomic product.
+The narrative, not the fact, is the doxonomic product.
 
 \begin{definition}[Narrative Distance]
 \label{def:narrative-distance}
@@ -279,7 +279,7 @@ Given a vector-space representation of narratives (e.g., via document embeddings
   d(n_1, n_2) = 1 - \frac{\langle \bm{v}_{n_1}, \bm{v}_{n_2} \rangle}{\|\bm{v}_{n_1}\| \cdot \|\bm{v}_{n_2}\|}
 \]
 where $\bm{v}_n$ is the embedding vector of narrative $n$.
-Large narrative distance between the dominant frame and an alternative frame indicates that the alternative is not merely a different opinion but a \emph{different way of seeing}---harder to reach by incremental argument, requiring more doxonomic investment to install.
+Large narrative distance between the dominant frame and an alternative frame indicates that the alternative is not merely a different opinion but a \emph{different way of seeing}, harder to reach by incremental argument, requiring more doxonomic investment to install.
 \end{definition}
 
 \begin{remark}[Narratives vs.\ Propositions]
@@ -287,7 +287,7 @@ Large narrative distance between the dominant frame and an alternative frame ind
 A narrative is more than a proposition.
 The proposition ``inequality is increasing'' has a truth value.
 The narrative ``inequality is increasing because the lazy are being rewarded'' has a truth value, a moral judgment, a causal attribution, and a subject position.
-Doxonomic systems rarely produce naked propositions; they produce narratives---because narratives engage identity, emotion, and action in ways that propositions alone cannot.
+Doxonomic systems rarely produce naked propositions; they produce narratives, because narratives engage identity, emotion, and action in ways that propositions alone cannot.
 This is why doxonomic production operates at multiple layers of the ontology simultaneously (Principle~\ref{prin:layered-ontology}).
 \end{remark}
 
@@ -334,7 +334,7 @@ It is shaped by:
 \label{ex:resistance}
 Survey data consistently shows that belief in meritocracy is negatively correlated with direct experience of structural barriers.
 Black Americans score lower on meritocratic belief scales than white Americans; women in male-dominated workplaces are more skeptical of ``effort determines success'' than men in the same workplaces; first-generation college students are less convinced of equal opportunity than their legacy peers.
-In doxonomic terms, lived experience of structural disadvantage raises $\rho_l$ for meritocratic narratives---a form of experiential resistance that no amount of doxonomic investment can fully overcome.
+In doxonomic terms, lived experience of structural disadvantage raises $\rho_l$ for meritocratic narratives, a form of experiential resistance that no amount of doxonomic investment can fully overcome.
 \end{example}
 
 
@@ -343,7 +343,7 @@ In doxonomic terms, lived experience of structural disadvantage raises $\rho_l$ 
 
 The belief production chain is not unidirectional.
 Beliefs, once internalized, alter behavior, which alters institutions, which alters funding.
-This feedback structure is what makes doxonomic systems self-sustaining---and what makes them so difficult to disrupt.
+This feedback structure is what makes doxonomic systems self-sustaining, and what makes them so difficult to disrupt.
 
 \begin{definition}[Doxonomic Feedback]
 \label{def:feedback}
@@ -383,7 +383,7 @@ This is a self-undermining loop: success (increased scrutiny) reduces future eff
 \end{example}
 
 Self-reinforcing feedback is the mechanism by which temporary doxonomic investments become permanent features of a society's common sense.
-Self-undermining feedback is the mechanism by which doxonomic systems can fail---a topic developed in Chapter~\ref{ch:how-belief-regimes-fracture}.
+Self-undermining feedback is the mechanism by which doxonomic systems can fail, a topic developed in Chapter~\ref{ch:how-belief-regimes-fracture}.
 
 \begin{definition}[Doxonomic Stability]
 \label{def:stability}
@@ -473,7 +473,7 @@ Under what conditions do two stable fixed points coexist?
 Design a doxonomic system from scratch: choose a belief $p$, specify funders, institutions, channels, narratives, target audiences, and feedback structure.
 Estimate plausible values for $\credibility{k}$, $\reach{k}$, $\persistence{k}$, and $\rho_l$.
 Compute the expected $\belief{i}$ using the first-order model.
-Then identify the weakest link in your system---the point where counter-doxonomic intervention would be most effective.
+Then identify the weakest link in your system, the point where counter-doxonomic intervention would be most effective.
 \end{exercise}
 
 \begin{exercise}

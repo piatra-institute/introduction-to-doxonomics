@@ -6,9 +6,9 @@
 \noindent
 Doxonomics makes strong claims about the causal structure of belief: that material resources shape public opinion through identifiable institutional mechanisms.
 These claims must be testable, falsifiable, and honest about their limitations.
-A field that studies how power corrupts knowledge production must be especially vigilant about how its own knowledge production might be corrupted---by ideological commitment, confirmation bias, unfalsifiable theorizing, or the temptation to see doxonomic causation in every correlation between money and belief.
+A field that studies how power corrupts knowledge production must be especially vigilant about how its own knowledge production might be corrupted: by ideological commitment, confirmation bias, unfalsifiable theorizing, or the temptation to see doxonomic causation in every correlation between money and belief.
 
-This chapter develops the tools for validating doxonomic models---uncertainty quantification, out-of-sample prediction, sensitivity analysis, triangulation, and Bayesian model comparison---and the intellectual discipline to admit when those models fail.
+This chapter develops the tools for validating doxonomic models (uncertainty quantification, out-of-sample prediction, sensitivity analysis, triangulation, and Bayesian model comparison) and the intellectual discipline to admit when those models fail.
 It is the methodological conscience of the book.
 
 \section{Uncertainty Quantification}
@@ -19,11 +19,11 @@ It is the methodological conscience of the book.
 \begin{principle}[Doxonomic Uncertainty]
 \label{prin:uncertainty}
 \index{uncertainty quantification}
-Every doxonomic estimate---of funding flows, belief prevalence, causal effects, model parameters---must be accompanied by a quantified uncertainty.
+Every doxonomic estimate (of funding flows, belief prevalence, causal effects, model parameters) must be accompanied by a quantified uncertainty.
 Point estimates without uncertainty intervals are not doxonomic science; they are doxonomic assertion.
 \end{principle}
 
-The principle sounds banal---every statistics course teaches confidence intervals---but in practice, doxonomic research faces distinctive challenges in uncertainty quantification:
+The principle sounds banal (every statistics course teaches confidence intervals), but in practice, doxonomic research faces distinctive challenges in uncertainty quantification:
 \begin{itemize}[nosep]
   \item funding data is incomplete (dark money, international flows, in-kind contributions), so the inputs to doxonomic models carry large measurement error,
   \item belief data comes from surveys with known biases (social desirability, framing effects), so the outputs carry systematic error,
@@ -69,7 +69,7 @@ The relative uncertainty of the total effect is approximately the square root of
 \end{proposition}
 
 This means that even if each individual link is estimated with moderate precision (say, a coefficient of variation of 30\%), the end-to-end estimate may have enormous uncertainty.
-For a four-link chain with 30\% relative uncertainty at each link, the total relative uncertainty is $\sqrt{4 \times 0.09} = 0.60$---a 60\% coefficient of variation, yielding a very wide confidence interval.
+For a four-link chain with 30\% relative uncertainty at each link, the total relative uncertainty is $\sqrt{4 \times 0.09} = 0.60$, a 60\% coefficient of variation, yielding a very wide confidence interval.
 This is a fundamental constraint on doxonomic measurement, not a failure of technique.
 
 \subsection{Reporting standards}
@@ -92,7 +92,7 @@ We propose minimum reporting standards for doxonomic uncertainty:
 \begin{definition}[Doxonomic Overfitting]
 \label{def:overfitting}
 \index{overfitting}
-A doxonomic model \emph{overfits} if it explains observed patterns in a specific dataset (e.g., media coverage correlates with funding) but fails to predict out-of-sample---because the apparent pattern reflects noise, selection, or post hoc rationalization rather than genuine causal structure.
+A doxonomic model \emph{overfits} if it explains observed patterns in a specific dataset (e.g., media coverage correlates with funding) but fails to predict out-of-sample, because the apparent pattern reflects noise, selection, or post hoc rationalization rather than genuine causal structure.
 \end{definition}
 
 Doxonomics is especially vulnerable to overfitting for three reasons:
@@ -126,7 +126,7 @@ The ideological hazard is the temptation to:
 \end{itemize}
 \end{principle}
 
-The ideological hazard does not invalidate doxonomics---the same hazard exists in any social science that studies power---but it requires institutional safeguards: pre-registration, adversarial collaboration, publication of null results, and the kind of epistemic humility developed in Section~\ref{sec:ch20-humility}.
+The ideological hazard does not invalidate doxonomics (the same hazard exists in any social science that studies power), but it requires institutional safeguards: pre-registration, adversarial collaboration, publication of null results, and the kind of epistemic humility developed in Section~\ref{sec:ch20-humility}.
 
 \section{Out-of-Sample Prediction}
 \label{sec:ch20-prediction}
@@ -157,7 +157,7 @@ The doxonomic model must outperform the null to justify its additional complexit
 
 In doxonomic settings, temporal splits are more informative than random splits.
 Train the model on data up to year $t$ and predict outcomes for years $t+1, t+2, \ldots$
-This tests whether the model's structural relationships are stable over time---a stronger test than cross-sectional prediction.
+This tests whether the model's structural relationships are stable over time, a stronger test than cross-sectional prediction.
 
 \begin{example}
 \label{ex:temporal-prediction}
@@ -270,7 +270,7 @@ Doxonomic claims typically involve choosing among competing explanations for the
 \begin{itemize}[nosep]
   \item $M_1$: funding causes belief change (the doxonomic explanation),
   \item $M_2$: ideology drives both funding and belief (confounding),
-  \item $M_3$: belief change drives funding (reverse causation---funders invest where they see receptive audiences),
+  \item $M_3$: belief change drives funding (reverse causation: funders invest where they see receptive audiences),
   \item $M_4$: no systematic relationship (coincidence).
 \end{itemize}
 
@@ -321,7 +321,7 @@ When multiple models are plausible, Bayesian model averaging (BMA) provides pred
   P(\theta \mid \text{data}) = \sum_{m=1}^{M} P(\theta \mid \text{data}, M_m) \cdot P(M_m \mid \text{data})
 \]
 where $P(M_m \mid \text{data})$ is the posterior model probability.
-This is especially appropriate for doxonomics because the correct model is genuinely uncertain---confounding, reverse causation, and doxonomic causation may all operate simultaneously.
+This is especially appropriate for doxonomics because the correct model is genuinely uncertain: confounding, reverse causation, and doxonomic causation may all operate simultaneously.
 
 \section{Triangulation}
 \label{sec:ch20-triangulation}
@@ -404,7 +404,7 @@ Doxonomics should state explicitly what observations would count as evidence aga
   \item \textbf{Reverse dominance}: if belief change consistently precedes (rather than follows) funding and institutional activity, the causal arrow runs the other direction.
 \end{enumerate}
 
-None of these falsifications would be established by a single study---they would require a pattern of findings across multiple contexts and methods.
+None of these falsifications would be established by a single study; they would require a pattern of findings across multiple contexts and methods.
 
 \subsection{Lakatos and degenerating programs}
 
@@ -416,7 +416,7 @@ Doxonomics should be evaluated by this standard:
   \item A \emph{degenerating} sign: every counter-example to a doxonomic claim is explained away by ad hoc auxiliary hypotheses (``the funding was dark money we can't trace,'' ``the effect operates at a level we can't measure,'' ``the alternative explanation is itself a doxonomic product'').
 \end{itemize}
 
-The danger of degeneration is especially acute for doxonomics because its subject matter---the production of belief by power---provides a built-in excuse for any failure: ``the reason you don't see the doxonomic effect is that the doxonomic system has prevented you from seeing it.''
+The danger of degeneration is especially acute for doxonomics because its subject matter (the production of belief by power) provides a built-in excuse for any failure: ``the reason you don't see the doxonomic effect is that the doxonomic system has prevented you from seeing it.''
 This is the epistemic equivalent of an unfalsifiable conspiracy theory, and guarding against it requires the formal validation tools of this chapter.
 
 \section{Epistemic Humility in Practice}
@@ -435,7 +435,7 @@ Every doxonomic publication should explicitly state:
   \item \textbf{How it could be wrong}: the most plausible alternative explanation for the observed pattern.
   \item \textbf{What would change the conclusion}: the specific evidence that would cause the author to abandon or substantially revise the claim.
 \end{enumerate}
-Over-claiming undermines the field's credibility---its own epistemic capital.
+Over-claiming undermines the field's credibility: its own epistemic capital.
 A field that studies the corruption of epistemic authority must guard its own epistemic authority with unusual care.
 \end{principle}
 
@@ -468,7 +468,7 @@ A field-wide norm of graduated language would do more to protect doxonomics from
 \index{analytical symmetry}
 Doxonomic analysis should be applied symmetrically to all belief-producing institutions, not selectively to those the researcher opposes.
 If the tools developed in this book can show that fossil-fuel funding shaped climate beliefs, the same tools should be applied to environmental foundation funding, government science communication, and academic knowledge production.
-The asymmetric application of doxonomic analysis---scrutinizing only one side's narrative infrastructure---is itself a form of doxonomic bias.
+The asymmetric application of doxonomic analysis (scrutinizing only one side's narrative infrastructure) is itself a form of doxonomic bias.
 \end{principle}
 
 This is not a ``both sides'' equivalence.
@@ -489,7 +489,7 @@ We conclude with a catalog of the most common errors in doxonomic reasoning, dis
   \item \textbf{Guilt by association.}
   ``Institution $X$ receives funding from corporation $Y$; therefore $X$'s conclusions are wrong.''
   Funding creates a \emph{suspicion} of bias, not proof of it.
-  The doxonomic question is whether funding predicts framing \emph{conditional on the evidence}---not whether funded conclusions are false.
+  The doxonomic question is whether funding predicts framing \emph{conditional on the evidence}, not whether funded conclusions are false.
   Remedy: distinguish between the genetic fallacy (dismissing claims because of their origin) and legitimate doxonomic analysis (studying how origin correlates with content).
 
   \item \textbf{Monocausal explanation.}
@@ -529,7 +529,7 @@ For triangulation methodology, see \textcite{king1994} and \textcite{morgan2015}
 On the replication crisis and its implications for social science methodology, see Open Science Collaboration (2015).
 The ethics of social science research are discussed in \textcite{salganik2018}.
 
-On the problem of reflexivity in social science---the fact that studying social phenomena can change them---see \textcite{hacking1999} and Bourdieu (2004).
+On the problem of reflexivity in social science (the fact that studying social phenomena can change them), see \textcite{hacking1999} and Bourdieu (2004).
 
 \section{Exercises}
 

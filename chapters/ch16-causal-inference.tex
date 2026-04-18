@@ -5,9 +5,9 @@
 
 \noindent
 Doxonomics makes causal claims: funding \emph{causes} belief shift, institutions \emph{produce} narratives, exposure \emph{changes} behavior.
-These claims require rigorous causal methods---yet the doxonomic setting presents distinctive challenges that standard econometric toolkits do not fully address.
+These claims require rigorous causal methods, yet the doxonomic setting presents distinctive challenges that standard econometric toolkits do not fully address.
 Beliefs are partially observable, treatments are continuous and multi-dimensional, interference between units is the norm rather than the exception, and the actors who generate the ``treatment'' have strategic reasons to obscure the causal chain.
-This chapter adapts the modern causal inference toolkit---potential outcomes, difference-in-differences, instrumental variables, causal graphs, synthetic controls, and regression discontinuity---to these distinctive challenges.
+This chapter adapts the modern causal inference toolkit (potential outcomes, difference-in-differences, instrumental variables, causal graphs, synthetic controls, and regression discontinuity) to these distinctive challenges.
 
 We proceed from a methodological conviction: doxonomics cannot content itself with establishing that correlations exist between funding flows and belief distributions.
 The field must identify \emph{mechanisms} and estimate \emph{magnitudes}.
@@ -94,7 +94,7 @@ If assignment were random, identification would be trivial:
   \widehat{\mathrm{ADTE}} = \bar{Y}_{\text{treated}} - \bar{Y}_{\text{control}} = 62.3 - 54.7 = 7.6 \text{ points}.
 \]
 But assignment is not random: the think tank targets swing-district legislators.
-Selection bias means $\E[Y_j(0) \mid D_j = 1] \neq \E[Y_j(0) \mid D_j = 0]$---swing legislators may differ from safe-seat legislators in baseline ideology.
+Selection bias means $\E[Y_j(0) \mid D_j = 1] \neq \E[Y_j(0) \mid D_j = 0]$: swing legislators may differ from safe-seat legislators in baseline ideology.
 The naive estimator confounds the treatment effect with selection.
 
 We need one of the identification strategies developed below.
@@ -103,7 +103,7 @@ We need one of the identification strategies developed below.
 \section{Natural Experiments in Doxonomic Settings}
 \label{sec:ch16-natural}
 
-Natural experiments arise when narrative exposure varies for reasons unrelated to individual characteristics---what \textcite{angrist2009} call ``instruments of fate.''
+Natural experiments arise when narrative exposure varies for reasons unrelated to individual characteristics, what \textcite{angrist2009} call ``instruments of fate.''
 The doxonomic setting offers several distinctive sources of quasi-random variation.
 
 \subsection{Media market boundaries}
@@ -119,7 +119,7 @@ For counties $c$ near boundary $b$:
   Y_c = \alpha + \tau D_c + f(\text{dist}_c) + \gamma X_c + \varepsilon_c
 \]
 where $D_c$ is exposure, $\text{dist}_c$ is distance to the boundary, $f(\cdot)$ is a smooth function (typically linear or polynomial), and $X_c$ are county-level covariates.
-The identifying assumption is that unobserved determinants of $Y$ vary smoothly across the boundary---a form of regression discontinuity in geographic space.
+The identifying assumption is that unobserved determinants of $Y$ vary smoothly across the boundary, a form of regression discontinuity in geographic space.
 \end{model}
 
 \subsection{Outlet entry and exit}
@@ -136,7 +136,7 @@ Historical examples include:
 \subsection{Platform algorithm changes}
 
 When a social media platform changes its content recommendation algorithm, the resulting shift in exposure is exogenous to any individual user's characteristics.
-These events create a useful before/after contrast, though identification requires that no other changes occurred simultaneously---a condition that platform companies rarely guarantee.
+These events create a useful before/after contrast, though identification requires that no other changes occurred simultaneously, a condition that platform companies rarely guarantee.
 
 \subsection{Policy shocks}
 
@@ -174,7 +174,7 @@ where $\text{Treat}_i = 1$ for units in the treated group, $\text{Post}_t = 1$ f
 
 \subsection{Parallel trends and pre-treatment tests}
 
-The parallel trends assumption is untestable---it concerns the counterfactual path of the treated group.
+The parallel trends assumption is untestable: it concerns the counterfactual path of the treated group.
 However, we can probe its plausibility by examining whether treated and control groups followed parallel trajectories \emph{before} treatment.
 
 \begin{proposition}[Pre-Trend Test]
@@ -234,7 +234,7 @@ Rejection provides evidence against the identifying assumption.
 
 \subsection{Staggered adoption and modern DiD}
 
-In many doxonomic settings, treatment rolls out at different times across units---a think-tank network opens regional offices sequentially, or a media platform enters different markets over several years.
+In many doxonomic settings, treatment rolls out at different times across units: a think-tank network opens regional offices sequentially, or a media platform enters different markets over several years.
 Classical two-way fixed effects (TWFE) regression can produce biased estimates under staggered treatment timing because early-treated units serve as ``controls'' for later-treated units.
 
 Recent methodological advances address this problem.
@@ -263,7 +263,7 @@ Using survey data on beliefs about economic regulation from 2012--2022, we estim
 \midrule
 1 year post  & $+3.2$ (1.4) & $+2.8$ (1.6) & $+4.1$ (1.8) \\
 2 years post & $+5.1$ (1.7) & $+4.4$ (1.9) & $+5.8$ (2.3) \\
-3 years post & $+6.3$ (2.0) & $+5.9$ (2.2) & --- \\
+3 years post & $+6.3$ (2.0) & $+5.9$ (2.2) & -- \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -288,15 +288,15 @@ This \emph{selective exposure} means that naive regression of belief on exposure
 \index{instrumental variable}
 An \emph{instrument} $Z$ for doxonomic exposure $D$ is a variable that satisfies:
 \begin{enumerate}[nosep]
-  \item \textbf{Relevance}: $\operatorname{Cov}(Z, D) \neq 0$---the instrument predicts exposure.
-  \item \textbf{Exclusion}: $Z$ affects belief $Y$ only through exposure $D$---no direct effect.
-  \item \textbf{Independence}: $Z \perp\!\!\!\perp U$---the instrument is uncorrelated with unobserved confounders.
+  \item \textbf{Relevance}: $\operatorname{Cov}(Z, D) \neq 0$, meaning the instrument predicts exposure.
+  \item \textbf{Exclusion}: $Z$ affects belief $Y$ only through exposure $D$, with no direct effect.
+  \item \textbf{Independence}: $Z \perp\!\!\!\perp U$, meaning the instrument is uncorrelated with unobserved confounders.
 \end{enumerate}
 Under these conditions, the IV estimator identifies the Local Average Treatment Effect (LATE):
 \[
   \tau^{\text{LATE}} = \frac{\operatorname{Cov}(Y, Z)}{\operatorname{Cov}(D, Z)} = \frac{\text{reduced form}}{\text{first stage}}
 \]
-which is the average treatment effect among \emph{compliers}---agents whose exposure is changed by the instrument.
+which is the average treatment effect among \emph{compliers}, agents whose exposure is changed by the instrument.
 \end{definition}
 
 \subsection{Candidate instruments}
@@ -436,7 +436,7 @@ An expanded version includes institutional structure, social influence, and feed
 \end{center}
 
 Two feedback loops appear: $B \to S$ (beliefs shape social networks through homophily) and $X \to W$ (behavior affects wealth, which funds future narrative production).
-These feedback loops mean the system is not a DAG in the strict sense---it is a \emph{dynamic causal model} that unfolds over time.
+These feedback loops mean the system is not a DAG in the strict sense. It is a \emph{dynamic causal model} that unfolds over time.
 We recover a DAG by indexing variables by time period: $B_t$ can cause $S_{t+1}$ but not $S_t$.
 
 \subsection{Identification via d-separation}
@@ -504,7 +504,7 @@ The synthetic $A$ is: $0.31 \times \text{Country B} + 0.24 \times \text{Country 
 Pre-treatment fit: root mean squared prediction error $= 1.3$ on a 100-point trust scale.
 
 Post-ban, actual trust in government in $A$ exceeds synthetic $A$ by 4.2 points on average over 2011--2018.
-Placebo tests show that $A$'s gap ranks 1st out of 16 (all countries), yielding a placebo $p$-value of $1/16 = 0.0625$---suggestive but not conventionally significant.
+Placebo tests show that $A$'s gap ranks 1st out of 16 (all countries), yielding a placebo $p$-value of $1/16 = 0.0625$, suggestive but not conventionally significant.
 This illustrates a common limitation: with few donor units, synthetic control has limited statistical power.
 \end{example}
 
@@ -589,7 +589,7 @@ This has profound implications for cost-effectiveness analysis of doxonomic inte
 
 \subsection{Cluster randomized designs}
 
-One practical solution to interference is to randomize at the cluster level---treating entire communities, media markets, or network components:
+One practical solution to interference is to randomize at the cluster level, treating entire communities, media markets, or network components:
 \[
   Y_{jc} = \alpha + \tau D_c + \gamma X_{jc} + \varepsilon_{jc}
 \]
@@ -655,15 +655,15 @@ If it is \emph{non-classical} (e.g., people misreport beliefs more when politica
 \subsection{Long causal chains}
 
 The doxonomic causal chain $W \to F \to I \to N \to E \to B \to X$ spans many links.
-End-to-end identification---from wealth to behavior---is extremely difficult in a single study.
+End-to-end identification (from wealth to behavior) is extremely difficult in a single study.
 The modular approach described in Section~\ref{sec:ch16-dags} provides a practical alternative: identify individual links credibly and combine them.
-But this requires an additional ``no interaction'' assumption---that the causal effect of each link does not depend on how other links are configured.
+But this requires an additional ``no interaction'' assumption, that the causal effect of each link does not depend on how other links are configured.
 
 \subsection{Feedback and general equilibrium}
 
 Doxonomic systems feature feedback: beliefs affect behavior, behavior affects economic outcomes, economic outcomes affect the resources available for narrative production.
 Standard partial-equilibrium causal estimates may miss these amplification (or dampening) effects.
-Structural estimation methods---which embed the causal model within a general equilibrium framework---can address this, but at the cost of stronger parametric assumptions.
+Structural estimation methods (which embed the causal model within a general equilibrium framework) can address this, but at the cost of stronger parametric assumptions.
 
 \section{Notes and References}
 \label{sec:ch16-notes}

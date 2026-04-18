@@ -5,7 +5,7 @@
 
 \noindent
 Doxonomic systems are networks: funders connect to institutions, institutions connect to media, media connect to audiences, and audiences feed back into funders.
-The structure of these connections---who is linked to whom, with what weight, through what pathways---determines how narratives flow, where they amplify, and which nodes hold structural power.
+The structure of these connections (who is linked to whom, with what weight, through what pathways) determines how narratives flow, where they amplify, and which nodes hold structural power.
 
 This chapter applies graph theory and network science to map and measure doxonomic structures.
 Where previous chapters treated the belief production chain as a linear sequence, this chapter reveals it as a complex, multiply-connected network with shortcuts, bottlenecks, clusters, and bridges.
@@ -26,7 +26,7 @@ A \emph{doxonomic network} is a weighted directed graph $G = (V, E, w)$ where:
 \end{definition}
 
 A doxonomic network is typically \emph{multipartite}: vertices can be classified into layers (funders → institutions → channels → audiences), with most edges running between layers.
-But the network is not strictly layered---there are important within-layer connections (institutions cite each other, media outlets share content, funders coordinate) and feedback edges (audience behavior influences funders).
+But the network is not strictly layered: there are important within-layer connections (institutions cite each other, media outlets share content, funders coordinate) and feedback edges (audience behavior influences funders).
 
 \begin{definition}[Network Types]
 \label{def:network-types}
@@ -57,7 +57,7 @@ The audience-overlap network shows which channels reach the same people.
 \label{rem:multiplex}
 \index{multiplex network}
 In practice, these networks overlap: institution $A$ may be funded by funder $X$ (funding edge), cited by media outlet $Y$ (citation edge), share a board member with institution $B$ (interlock edge), and hire graduates of institution $C$ (personnel edge).
-The multiplex structure---multiple relationship types between the same nodes---is what makes doxonomic networks so robust: disrupting one type of connection leaves others intact.
+The multiplex structure (multiple relationship types between the same nodes) is what makes doxonomic networks so robust: disrupting one type of connection leaves others intact.
 A funder who withdraws funding may still be connected through board interlocks and personnel sharing.
 \end{remark}
 
@@ -76,7 +76,7 @@ The \emph{doxonomic centrality} of node $v$ is its eigenvector centrality in the
   x_v = \frac{1}{\lambda} \sum_{u: (u,v) \in E} w_{uv} \cdot x_u
 \]
 where $\lambda$ is the largest eigenvalue of the weighted adjacency matrix.
-Nodes with high doxonomic centrality are those that receive large weighted inputs from other central nodes---a recursive definition that captures the idea that influence from influential sources is worth more than influence from peripheral ones.
+Nodes with high doxonomic centrality are those that receive large weighted inputs from other central nodes, a recursive definition that captures the idea that influence from influential sources is worth more than influence from peripheral ones.
 \end{definition}
 
 Eigenvector centrality is closely related to PageRank (used by Google to rank web pages) and has a natural doxonomic interpretation: a node is central if it is cited, funded, or sourced by other central nodes.
@@ -86,11 +86,11 @@ This captures the credibility-laundering dynamic (Example~\ref{ex:think-tank-cre
 \label{ex:centrality-hierarchy}
 In the U.S.\ policy-influencing network, typical centrality rankings are:
 \begin{enumerate}[nosep]
-  \item \textbf{Highest}: major universities (Harvard, MIT, Stanford, Chicago) --- central through personnel, citation, and prestige networks simultaneously.
-  \item \textbf{High}: legacy think tanks (Brookings, Heritage, AEI, RAND) --- central through funding, citation, and congressional testimony networks.
-  \item \textbf{Medium}: prestige media (\textit{NYT}, \textit{WSJ}, \textit{Washington Post}) --- central through citation and audience networks.
-  \item \textbf{Lower}: newer think tanks, advocacy organizations --- connected through fewer network layers.
-  \item \textbf{Peripheral}: grassroots organizations, independent media --- weakly connected to the core.
+  \item \textbf{Highest}: major universities (Harvard, MIT, Stanford, Chicago), central through personnel, citation, and prestige networks simultaneously.
+  \item \textbf{High}: legacy think tanks (Brookings, Heritage, AEI, RAND), central through funding, citation, and congressional testimony networks.
+  \item \textbf{Medium}: prestige media (\textit{NYT}, \textit{WSJ}, \textit{Washington Post}), central through citation and audience networks.
+  \item \textbf{Lower}: newer think tanks, advocacy organizations, connected through fewer network layers.
+  \item \textbf{Peripheral}: grassroots organizations, independent media, weakly connected to the core.
 \end{enumerate}
 The centrality hierarchy is remarkably stable over time: the top-ranked institutions in 2020 were substantially the same as in 1990, reflecting the path dependence of epistemic capital accumulation (Proposition~\ref{prop:rent-persistence}).
 \end{example}
@@ -187,7 +187,7 @@ Epistemic brokers derive power from three sources:
 \label{ex:brokerage-neoliberal}
 Milton Friedman functioned as an epistemic broker between academic economics, public media, and political policy.
 He translated technical economic arguments into popular columns (\textit{Newsweek}), television programs (\textit{Free to Choose}), and policy advice (to Pinochet, Reagan, Thatcher).
-His brokerage position---connecting the academic cluster to the media cluster to the political cluster---was arguably more consequential than his academic contributions alone, because it enabled ideas that were contentious within economics to become common sense in policy.
+His brokerage position (connecting the academic cluster to the media cluster to the political cluster) was arguably more consequential than his academic contributions alone, because it enabled ideas that were contentious within economics to become common sense in policy.
 \end{example}
 
 
@@ -222,7 +222,7 @@ His brokerage position---connecting the academic cluster to the media cluster to
 
 In this network, institution $I_2$ is the epistemic broker: it bridges both funders and both media outlets.
 It receives funding from both $F_1$ and $F_2$ and feeds into both $M_1$ and $M_2$.
-Its betweenness centrality is the highest in the network---removing $I_2$ would disconnect $F_1$ from $M_2$ and $F_2$ from $M_1$.
+Its betweenness centrality is the highest in the network: removing $I_2$ would disconnect $F_1$ from $M_2$ and $F_2$ from $M_1$.
 
 \begin{remark}[Interpreting the Diagram]
 \label{rem:interpreting-diagram}
@@ -230,7 +230,7 @@ Several doxonomic insights emerge from even this simple network:
 \begin{itemize}[nosep]
   \item $F_2$ has more total funding (\$6M) but $F_1$'s funding reaches a higher-credibility media outlet ($M_1$) through the more efficient pathway $F_1 \to I_1 \to M_1$.
   \item $I_2$ is the most structurally powerful institution despite receiving less funding than $I_3$, because of its bridging position.
-  \item If $I_2$ is captured by one funder (say $F_2$ doubles its grant while $F_1$ withdraws), the narrative output of $M_1$ shifts---even though $M_1$ receives no direct funding from $F_2$.
+  \item If $I_2$ is captured by one funder (say $F_2$ doubles its grant while $F_1$ withdraws), the narrative output of $M_1$ shifts, even though $M_1$ receives no direct funding from $F_2$.
   This is \emph{indirect influence}: controlling the broker controls the bridge.
 \end{itemize}
 \end{remark}
@@ -256,7 +256,7 @@ The spectral gap $\lambda_1 - \lambda_2$ (difference between the two largest eig
 \label{prop:spectral-fragmentation}
 \index{spectral gap}
 If the spectral gap $\lambda_1 - \lambda_2$ is small (near zero), the network is close to disconnected: it contains clusters that communicate weakly.
-In doxonomic terms, a small spectral gap predicts epistemic fragmentation (Definition~\ref{def:fragmentation})---the network can sustain divergent belief systems in different clusters.
+In doxonomic terms, a small spectral gap predicts epistemic fragmentation (Definition~\ref{def:fragmentation}): the network can sustain divergent belief systems in different clusters.
 A large spectral gap predicts narrative convergence: information flows rapidly enough across the network that maintaining divergent narratives is difficult.
 \end{proposition}
 
@@ -290,7 +290,7 @@ Key events include:
 \begin{example}[Network Evolution: Conservative Infrastructure 1970--2020]
 \label{ex:network-evolution}
 \begin{itemize}[nosep]
-  \item \textbf{1970}: sparse network---a few academic nodes (Chicago, Virginia), the Mont P\`{e}lerin Society, and limited institutional infrastructure.
+  \item \textbf{1970}: sparse network with a few academic nodes (Chicago, Virginia), the Mont P\`{e}lerin Society, and limited institutional infrastructure.
   \item \textbf{1980}: new nodes added (Heritage, Cato, AEI expansion, Olin-funded law-and-economics programs), dense funding edges from Olin/Scaife/Bradley/Koch.
   \item \textbf{1996}: Fox News enters as a high-reach amplifier node, dramatically increasing the spectral radius and connecting the policy cluster to a mass audience.
   \item \textbf{2007--2015}: digital nodes (Breitbart, Daily Wire, PragerU, Turning Point USA) add a new layer with very high reach but lower credibility, creating the two-tier structure described in Model~\ref{mod:two-tier}.
@@ -331,7 +331,7 @@ Suppose a doxonomic network has 50 institutions, with 3 hubs (a major think tank
   \item \textbf{Targeted removal} of the 3 hubs: throughput reduction $\sim 60\%$, plus the network fragments into disconnected components.
 \end{itemize}
 The ten-fold difference in effect illustrates scale-free vulnerability.
-In practice, ``removing'' an institution means discrediting it (credibility attack, Chapter~\ref{ch:epistemic-capital}), cutting its funding, or undermining its gatekeeper position---not literal elimination.
+In practice, ``removing'' an institution means discrediting it (credibility attack, Chapter~\ref{ch:epistemic-capital}), cutting its funding, or undermining its gatekeeper position, not literal elimination.
 \end{example}
 
 
@@ -421,7 +421,7 @@ What does the difference tell you about its doxonomic role?
 
 \begin{exercise}
 Milton Friedman is described as an epistemic broker connecting academic, media, and political clusters.
-Identify a contemporary equivalent---a person or institution that bridges two or more doxonomic clusters.
+Identify a contemporary equivalent: a person or institution that bridges two or more doxonomic clusters.
 Map their connections.
 What would happen to narrative flow between the clusters if the broker were removed?
 \end{exercise}

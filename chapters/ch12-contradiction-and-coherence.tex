@@ -8,7 +8,7 @@ Real societies do not hold a single coherent ideology.
 They hold fragments: the workplace teaches competition, the family teaches care, the church teaches sacrifice, the market teaches acquisition, the school teaches meritocracy, the community teaches solidarity.
 These local belief systems often contradict each other.
 Yet the social order functions \emph{as if} they were compatible.
-People move between institutional contexts daily---from the competitive office to the cooperative dinner table to the hierarchical church to the egalitarian friendship group---without experiencing a crisis of coherence at each transition.
+People move between institutional contexts daily (from the competitive office to the cooperative dinner table to the hierarchical church to the egalitarian friendship group) without experiencing a crisis of coherence at each transition.
 
 How is this possible?
 This chapter uses sheaf-theoretic language to formalize how local coherence coexists with global contradiction, how ideology manages the seams, and what happens when the seams tear.
@@ -16,7 +16,7 @@ This chapter uses sheaf-theoretic language to formalize how local coherence coex
 \textbf{A note on mathematical level.}
 This chapter uses concepts from algebraic topology (sheaves, \v{C}ech cohomology, obstruction classes).
 These concepts are applied here as a formal language for social phenomena, not as proven theorems about societies.
-The sheaf framework is \emph{speculative}---it has not been empirically operationalized---but it is formally precise, and we believe it captures something important about ideological structure that other models miss.
+The sheaf framework is \emph{speculative} (it has not been empirically operationalized), but it is formally precise, and we believe it captures something important about ideological structure that other models miss.
 Readers without algebraic topology background can follow the definitions and examples; the cohomological proofs can be treated as black boxes on first reading.
 
 
@@ -27,7 +27,7 @@ Readers without algebraic topology background can follow the definitions and exa
 \label{def:local-belief}
 \index{local belief system}
 Let $\mathcal{U} = \{U_1, \ldots, U_n\}$ be a cover of social life by institutional contexts (workplace, family, school, market, polity, religious community, peer group, online space, etc.).
-A \emph{local belief system} on $U_i$ is a consistent set of propositions $\sigma_i \in \Gamma(U_i, \sheaf)$---a section of a sheaf $\sheaf$ over $U_i$---specifying the operational norms, anthropological assumptions, and behavioral expectations within that context.
+A \emph{local belief system} on $U_i$ is a consistent set of propositions $\sigma_i \in \Gamma(U_i, \sheaf)$ (a section of a sheaf $\sheaf$ over $U_i$) specifying the operational norms, anthropological assumptions, and behavioral expectations within that context.
 \end{definition}
 
 The key word is \emph{consistent}.
@@ -59,7 +59,7 @@ Most people do not experience these contradictions as contradictions because:
   \item \textbf{Contextual activation}: different contexts activate different belief systems, and the transition happens automatically (you don't ``decide'' to stop competing when you get home; you shift registers without deliberation).
   \item \textbf{Temporal separation}: you experience contexts sequentially, not simultaneously, so the contradiction is temporally distributed.
   \item \textbf{Narrative bridging}: ideology provides stories that connect the contradictions (``competing at work \emph{is} caring for my family because I'm providing for them'').
-  \item \textbf{Layer separation}: the contradictions often exist at different layers of the ontology (Principle~\ref{prin:layered-ontology})---propositional beliefs about policy may contradict practical schemas about behavior, but because they operate at different cognitive levels, the contradiction is not felt.
+  \item \textbf{Layer separation}: the contradictions often exist at different layers of the ontology (Principle~\ref{prin:layered-ontology}). Propositional beliefs about policy may contradict practical schemas about behavior, but because they operate at different cognitive levels, the contradiction is not felt.
 \end{enumerate}
 \end{remark}
 
@@ -81,7 +81,7 @@ A \emph{belief sheaf} is a sheaf $\sheaf$ on the topological space $(\mathcal{U}
 \end{definition}
 
 The sheaf condition is the formal statement of coherence: if all the local systems agree where they overlap, they can be assembled into a single global system.
-The interesting case is when this condition \emph{fails}---when local systems are individually consistent but cannot be glued.
+The interesting case is when this condition \emph{fails}: when local systems are individually consistent but cannot be glued.
 
 \begin{definition}[Gluing Obstruction]
 \label{def:obstruction}
@@ -89,7 +89,7 @@ The interesting case is when this condition \emph{fails}---when local systems ar
 A \emph{gluing obstruction} exists when local sections are individually consistent but cannot be glued into a global section.
 Formally, the obstruction lies in the first \v{C}ech cohomology group $H^1(\mathcal{U}, \sheaf)$.
 When $H^1 \neq 0$, the society maintains local coherence without global consistency.
-The \emph{dimension} $\dim H^1(\mathcal{U}, \sheaf)$ counts the number of independent obstructions---the number of independent contradictions that the society must manage.
+The \emph{dimension} $\dim H^1(\mathcal{U}, \sheaf)$ counts the number of independent obstructions: the number of independent contradictions that the society must manage.
 \end{definition}
 
 \begin{example}[Computing an Obstruction]
@@ -116,13 +116,13 @@ If contradictions are structurally inevitable (because different institutions se
 \index{ideology!as obstruction management}
 A dominant ideology is a mechanism for managing non-trivial $H^1(\mathcal{U}, \sheaf)$.
 It does not eliminate contradictions.
-It provides narrative bridges---\emph{transition maps}---that allow agents to move between contradictory local belief systems without experiencing the contradiction as a crisis.
+It provides narrative bridges (\emph{transition maps}) that allow agents to move between contradictory local belief systems without experiencing the contradiction as a crisis.
 \end{theorem}
 
 \begin{proof}[Proof sketch]
 Define transition maps $g_{ij}: U_i \cap U_j \to \mathrm{Aut}(\sheaf)$ that ``translate'' between local systems on overlaps.
 These maps form a \v{C}ech 1-cocycle: a collection of compatibility data specifying how local systems relate on overlaps.
-The ideology is effective if the cocycle is perceived as a coboundary---i.e., if agents experience the transition as natural rather than contradictory.
+The ideology is effective if the cocycle is perceived as a coboundary, i.e., if agents experience the transition as natural rather than contradictory.
 Formally, the ideology ``trivializes'' the obstruction class in the agents' subjective experience, even though the cohomological obstruction $[g] \in H^1(\mathcal{U}, \sheaf)$ remains objectively non-zero.
 \end{proof}
 
@@ -186,7 +186,7 @@ The regime is most stable at intermediate $h$, maintaining contradictions that a
 
 \begin{remark}[Why Full Coherence Is Dangerous for Power]
 \label{rem:full-coherence-dangerous}
-If a doxonomic system were fully coherent---if ``humans are selfish'' were consistently applied in every institutional context---the implications would be visible and shocking.
+If a doxonomic system were fully coherent (if ``humans are selfish'' were consistently applied in every institutional context), the implications would be visible and shocking.
 A fully coherent selfish anthropology would imply: no family obligation, no civic duty, no charitable giving, no trust.
 No real society has ever applied the selfish model consistently, because doing so would be socially unsustainable.
 The \emph{inconsistency} is what makes the system livable: selfishness at work, care at home, duty in the military, charity on Sundays.
@@ -208,14 +208,14 @@ Contemporary neoliberal common sense contains several managed contradictions:
 \end{enumerate}
 Each contradiction has an ideological bridge.
 Each bridge is under tension.
-Doxonomic investment is required to maintain the bridges---which is why ideological maintenance has ongoing costs (Chapter~\ref{ch:common-sense-capture}).
+Doxonomic investment is required to maintain the bridges, which is why ideological maintenance has ongoing costs (Chapter~\ref{ch:common-sense-capture}).
 \end{example}
 
 
 \section{Fragmented Publics}
 \label{sec:ch12-fragmentation}
 
-When the transition maps break down---when agents can no longer smoothly move between contradictory local systems---the sheaf fails to cohere even locally.
+When the transition maps break down (when agents can no longer smoothly move between contradictory local systems), the sheaf fails to cohere even locally.
 This is the condition of \emph{epistemic fragmentation}\index{epistemic fragmentation}: multiple publics inhabiting incommensurable belief worlds.
 
 \begin{definition}[Epistemic Fragmentation]
@@ -230,7 +230,7 @@ Each component has its own internal coherence, but there is no common framework 
 \end{definition}
 
 Fragmentation is distinct from pluralism.
-Pluralism means different beliefs coexist within a \emph{shared} epistemic framework---agents disagree but can understand each other's positions and engage in meaningful debate.
+Pluralism means different beliefs coexist within a \emph{shared} epistemic framework: agents disagree but can understand each other's positions and engage in meaningful debate.
 Fragmentation means the frameworks themselves are incommensurable: the concepts, categories, evidence standards, and even the perceived facts differ between components so radically that meaningful debate is impossible.
 
 \begin{example}[Fragmentation in Contemporary Politics]
@@ -243,7 +243,7 @@ It is not that liberals and conservatives disagree about policy (polarization); 
   \item different epistemic authorities (trust in different institutions, experts, and evidence sources),
   \item different core categories (``freedom'' means different things in different political communities).
 \end{itemize}
-In sheaf terms, the two components have no transition maps between them---there is no narrative bridge that allows a member of one community to make sense of the other's positions within their own framework.
+In sheaf terms, the two components have no transition maps between them: there is no narrative bridge that allows a member of one community to make sense of the other's positions within their own framework.
 \end{example}
 
 \begin{proposition}[Fragmentation and Doxonomic Strategy]
@@ -282,7 +282,7 @@ where $I_{\text{shared}}$ is the investment in shared narrative infrastructure (
 In most Western democracies, $I_{\text{shared}}$ has declined (public broadcasting defunded, common curricula fragmented, public spaces privatized) while $A(t)$ and $P(t)$ have increased (cable news segmentation, social media echo chambers, algorithmic personalization).
 The model predicts $dC/dt < 0$: increasing fragmentation.
 This trajectory, if unchecked, leads from managed contradiction (livable incoherence) through polarization (stressed incoherence) to fragmentation (incommensurable disconnection).
-Reversing it would require renewed investment in shared institutions ($I_{\text{shared}}$) and regulation of algorithmic sorting ($P(t)$)---which are themselves doxonomic investments subject to the political dynamics of Chapters~\ref{ch:epistemic-democracy} and~\ref{ch:better-belief-ecologies}.
+Reversing it would require renewed investment in shared institutions ($I_{\text{shared}}$) and regulation of algorithmic sorting ($P(t)$), which are themselves doxonomic investments subject to the political dynamics of Chapters~\ref{ch:epistemic-democracy} and~\ref{ch:better-belief-ecologies}.
 \end{remark}
 
 
@@ -295,7 +295,7 @@ The sheaf framework has implications for both the maintenance of doxonomic power
 \label{prop:critique-as-gluing}
 \index{critique!as gluing}
 Critical analysis of ideology can be understood, in sheaf terms, as an attempt to \emph{force the gluing}: to lay the local sections side by side and expose the contradictions that ideology's transition maps conceal.
-``You say people are selfish at work but cooperative at home---\emph{which is it}?''
+``You say people are selfish at work but cooperative at home, \emph{which is it}?''
 This move threatens the doxonomic system because it makes the obstruction visible, transforming managed contradiction into experienced contradiction.
 \end{proposition}
 
@@ -309,7 +309,7 @@ Even when agents are shown the contradiction, they may:
   \item experience discomfort but lack alternative local systems to replace the existing ones,
   \item acknowledge the contradiction intellectually while continuing to live within it practically (the gap between layers 1 and 3 of the ontology).
 \end{itemize}
-Effective critique requires not only exposing contradictions but providing \emph{alternative local sections} that are locally consistent and globally more coherent---a far more demanding task that requires counter-institutional infrastructure (Chapter~\ref{ch:counter-doxonomic}).
+Effective critique requires not only exposing contradictions but providing \emph{alternative local sections} that are locally consistent and globally more coherent, a far more demanding task that requires counter-institutional infrastructure (Chapter~\ref{ch:counter-doxonomic}).
 \end{remark}
 
 
@@ -327,7 +327,7 @@ On the fragmentation of the American information environment, see \textcite{benk
 
 The coherence dynamics model (equation~\ref{eq:coherence}) is new to this text and intentionally stylized.
 Its purpose is to identify the variables that drive coherence and fragmentation, not to make quantitative predictions.
-Empirical estimation would require measures of shared-institution investment, ideological sorting, and algorithmic personalization---all of which are partially available (public broadcasting budgets, audience overlap metrics, platform transparency data) but have not been integrated into a coherence index.
+Empirical estimation would require measures of shared-institution investment, ideological sorting, and algorithmic personalization, all of which are partially available (public broadcasting budgets, audience overlap metrics, platform transparency data) but have not been integrated into a coherence index.
 
 
 \section{Exercises}

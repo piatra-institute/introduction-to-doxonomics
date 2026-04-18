@@ -64,13 +64,13 @@ Consider three funders, each with \$10M/year, pursuing the same belief:
   \item \textbf{Ideological funder}: allocates based on personal conviction (``I believe in education'') rather than cost-effectiveness analysis. May over-invest in a favored channel and under-invest in others.
 \end{itemize}
 The gap between the optimizer and the other two is the \emph{allocative inefficiency} of the doxonomic system.
-Real doxonomic systems are typically far from optimal---which, depending on one's normative position, may be a relief.
+Real doxonomic systems are typically far from optimal, which, depending on one's normative position, may be a relief.
 \end{example}
 
 \begin{remark}[The Dark Budget]
 \label{rem:dark-budget}
 Not all doxonomic funding is visible.
-``Dark money''\index{dark money}---funding channeled through intermediaries that do not disclose their donors---is a significant fraction of total doxonomic investment in some countries.
+``Dark money''\index{dark money} (funding channeled through intermediaries that do not disclose their donors) is a significant fraction of total doxonomic investment in some countries.
 \textcite{mayer2016} estimates that hundreds of millions of dollars flow annually through donor-advised funds and pass-through foundations in the United States alone, with the ultimate source legally obscured.
 The funding allocation operator $\mathcal{F}$ is thus partially unobservable, complicating the doxonomic audit.
 Chapter~\ref{ch:belief-flow-accounting} develops methods for inferring hidden funding from observable outputs.
@@ -143,7 +143,7 @@ is the probability that individual $j$ encounters at least one narrative relevan
 \end{definition}
 
 The exposure matrix $E$ is the most consequential object in the circulation stage.
-It determines the information environment of every individual---and in the platform era, it is increasingly determined by algorithms rather than by editorial judgment or audience choice.
+It determines the information environment of every individual. In the platform era, it is increasingly determined by algorithms rather than by editorial judgment or audience choice.
 
 \begin{definition}[Exposure Asymmetry]
 \label{def:exposure-asymmetry}
@@ -153,7 +153,7 @@ The \emph{exposure asymmetry} for belief $i$ and its negation $\neg i$ is
   A_j(i) = v_{i,j} - v_{\neg i, j}
 \]
 measuring the degree to which individual $j$'s information environment is skewed toward $i$.
-If $A_j(i) > 0$ for most $j$, the population is in an asymmetric information environment favoring $i$---the precondition for Bayesian divergence (Proposition~\ref{prop:unequal-updating}).
+If $A_j(i) > 0$ for most $j$, the population is in an asymmetric information environment favoring $i$, the precondition for Bayesian divergence (Proposition~\ref{prop:unequal-updating}).
 \end{definition}
 
 \begin{remark}[Algorithmic Circulation]
@@ -173,7 +173,7 @@ Chapter~\ref{ch:text-media} discusses methods for partially reconstructing algor
 \label{sec:ch5-internalization}
 
 Internalization is the process by which exposure becomes credence.
-It is the stage where the doxonomic system meets the individual mind---and where the simplifying assumptions of formal models are most strained.
+It is the stage where the doxonomic system meets the individual mind, and where the simplifying assumptions of formal models are most strained.
 
 \subsection{The Bayesian Baseline}
 
@@ -183,7 +183,7 @@ As a first approximation, we model internalization as Bayesian updating:
   \pi_j^{(t+1)}(p_i) = \frac{\pi_j^{(t)}(p_i) \cdot L_j(e_j \mid p_i)}{\pi_j^{(t)}(p_i) \cdot L_j(e_j \mid p_i) + (1 - \pi_j^{(t)}(p_i)) \cdot L_j(e_j \mid \neg p_i)}
 \end{equation}
 where $L_j$ is the likelihood function shaped by $j$'s exposure.
-When exposure is heavily skewed---when $j$ sees many more arguments for $p_i$ than against---the posterior converges toward $p_i$ regardless of the prior.
+When exposure is heavily skewed (when $j$ sees many more arguments for $p_i$ than against), the posterior converges toward $p_i$ regardless of the prior.
 
 \begin{conjecture}[Asymptotic Capture]
 \label{conj:asymptotic-capture}
@@ -196,7 +196,7 @@ Then $\pi_j^{(t)}(p_i) \to 1$ almost surely as $t \to \infty$, regardless of the
 \begin{remark}
 The assumptions are strong and worth stating explicitly: conditional independence, well-specified likelihoods, no source discounting, no model revision, no endogenous stopping.
 In practice, agents discount unfamiliar sources, update models, experience motivated reasoning, and face correlated rather than independent signals.
-The conjecture identifies an idealized mechanism---asymmetric exposure can overwhelm priors---not a universal law.
+The conjecture identifies an idealized mechanism (asymmetric exposure can overwhelm priors), not a universal law.
 Repetition alone does not mathematically guarantee capture; it does so only under conditions that doxonomic systems are designed to approximate.
 \end{remark}
 
@@ -213,10 +213,10 @@ The Bayesian model is a useful benchmark, but real internalization involves seve
   This means the credibility weight is not a property of the channel alone but of the \emph{channel $\times$ audience} interaction.
 
   \item \textbf{Social proof}\index{social proof}: agents use perceived peer behavior as evidence.
-  If ``everyone seems to believe $p$,'' this is treated as independent evidence for $p$---even when it is not independent but is itself the product of shared doxonomic exposure \autocite{cialdini2006}.
+  If ``everyone seems to believe $p$,'' this is treated as independent evidence for $p$, even when it is not independent but is itself the product of shared doxonomic exposure \autocite{cialdini2006}.
   Social proof creates a positive feedback loop: doxonomic production increases expressed belief, which increases perceived consensus, which increases genuine belief.
 
-  \item \textbf{Repetition and mere exposure}: repeated exposure to a claim increases its perceived truth, independent of evidential content---the ``illusory truth effect'' \autocite{kahneman2011}.
+  \item \textbf{Repetition and mere exposure}: repeated exposure to a claim increases its perceived truth, independent of evidential content, the ``illusory truth effect'' \autocite{kahneman2011}.
   This is the most direct mechanism of doxonomic production: sheer volume of exposure substitutes for evidence.
 
   \item \textbf{Narrative coherence}: agents are more likely to internalize a proposition that fits into an existing narrative structure (Chapter~\ref{ch:ontology-belief}, Definition~\ref{def:ideology}).
@@ -296,7 +296,7 @@ If each operator in the chain is continuous and the composed map $\bpc: K \to K$
 
 \begin{proof}
 By Brouwer's fixed-point theorem, every continuous map from a compact convex set to itself has a fixed point.
-The continuity assumption requires that small changes in funding produce small changes in narrative output, exposure, belief, behavior, and reproduction---reasonable for aggregate quantities, though potentially violated at phase transitions.
+The continuity assumption requires that small changes in funding produce small changes in narrative output, exposure, belief, behavior, and reproduction, reasonable for aggregate quantities, though potentially violated at phase transitions.
 The compactness assumption requires bounded funding ($K \subset [0, F_{\max}]^m$), which is physically realistic.
 \end{proof}
 
@@ -321,7 +321,7 @@ This is the doxonomic version of ``history matters.''
 \label{sec:ch5-generational}
 
 The most powerful form of reproduction is generational.
-Each generation's beliefs are partly determined by the institutional environment they grow up in---which was built by the previous generation's beliefs.
+Each generation's beliefs are partly determined by the institutional environment they grow up in, which was built by the previous generation's beliefs.
 
 \begin{model}[Generational Fixed Point]
 \label{mod:generational}
@@ -373,7 +373,7 @@ Suppose
 \]
 This means: 40\% of think-tank output is picked up by media; 20\% eventually enters education; 30\% of media output enters education; and so on.
 The Leontief inverse $(\bm{I} - \bm{A})^{-1}$ reveals that a \$1 injection into think tanks produces more than \$1 of total narrative output, because the think-tank output amplifies through media and education.
-The $(3,1)$ entry of the inverse gives the \emph{total} effect on education of a unit injection into think tanks---including all indirect pathways.
+The $(3,1)$ entry of the inverse gives the \emph{total} effect on education of a unit injection into think tanks, including all indirect pathways.
 \end{example}
 
 
@@ -444,7 +444,7 @@ Social proof as a persuasion mechanism is analyzed in \textcite{cialdini2006}.
 The Reinhart-Rogoff episode is documented in Herndon, Ash, and Pollin (2014).
 On dark money and funding opacity, see \textcite{mayer2016}.
 Generational reproduction of belief through institutional transmission draws on \textcite{bourdieu1984} and \textcite{bowles1976}.
-On performativity---models that reshape the reality they describe---see \textcite{mackenzie2006}.
+On performativity (models that reshape the reality they describe), see \textcite{mackenzie2006}.
 
 Equilibrium selection in games with multiple equilibria is a deep problem in economic theory; see \textcite{schelling1978} for focal-point selection and \textcite{north1990} for path-dependent institutional selection.
 
@@ -463,7 +463,7 @@ Define explicit operators $\mathcal{F}$, $\mathcal{P}$, $\mathcal{C}$, $\mathcal
 \end{exercise}
 
 \begin{exercise}
-Consider two competing belief production chains---one promoting ``human nature is selfish,'' the other promoting ``human nature is cooperative''---sharing the same population.
+Consider two competing belief production chains (one promoting ``human nature is selfish,'' the other promoting ``human nature is cooperative'') sharing the same population.
 Model this as a two-player game over funding allocations and characterize the Nash equilibrium.
 Under what conditions does the better-funded chain always win?
 Under what conditions can the less-funded chain prevail?
