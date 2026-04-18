@@ -2,7 +2,9 @@
 
 MAIN = main
 LATEXMK = latexmk
-# Keep .fdb_latexmk and .fls so latexmk can track dependencies across runs
+# Artifacts removed by `make clean` and after each build.
+# `make distclean` additionally removes the PDF and the latexmk tracking files
+# ($(MAIN).fdb_latexmk, $(MAIN).fls), forcing a fully fresh rebuild next time.
 ARTIFACTS = *.aux *.bbl *.bcf *.blg *.idx *.ilg *.ind *.log *.out *.run.xml *.toc
 
 all: $(MAIN).pdf
@@ -18,4 +20,4 @@ clean:
 	rm -f $(ARTIFACTS)
 
 distclean:
-	rm -f $(ARTIFACTS) $(MAIN).pdf
+	rm -f $(ARTIFACTS) $(MAIN).pdf $(MAIN).fdb_latexmk $(MAIN).fls
