@@ -5,7 +5,7 @@
 
 \noindent
 This chapter develops the mathematical core of doxonomics.
-The previous chapters introduced concepts---belief stocks, narrative flows, thresholds, lock-in, capture---using a mixture of formal definitions and qualitative argument.
+The previous chapters introduced concepts (belief stocks, narrative flows, thresholds, lock-in, capture) using a mixture of formal definitions and qualitative argument.
 Here we build the dynamical models that give these concepts predictive structure.
 
 Five model families are presented, each illuminating a different aspect of doxonomic dynamics: stock-and-flow models for aggregate belief trajectories, epidemiological models for narrative spread, Bayesian models for rational updating under asymmetric exposure, cascade models for sudden collective shifts, and competitive models for belief-versus-belief dynamics.
@@ -41,7 +41,7 @@ Each term has a distinct doxonomic interpretation:
   It is proportional to narrative flow $\phi$ and to the remaining persuadable fraction $(1-\belief{})$: as belief approaches 1, there are fewer people left to persuade.
   \item The decay term $-\delta\belief{}$ captures the natural erosion of belief absent reinforcement: memories fade, new generations arrive uninstructed, and contrary experience accumulates.
   \item The social reinforcement term $\beta\belief{}(1-\belief{})$ captures peer effects: holding a belief makes you more likely to transmit it to non-holders.
-  This term is logistic---strongest when $\belief{} \approx 0.5$ and vanishing at the extremes.
+  This term is logistic, strongest when $\belief{} \approx 0.5$ and vanishing at the extremes.
 \end{itemize}
 
 \subsection{Stability Analysis}
@@ -69,7 +69,7 @@ The steady states are:
 \index{bistability}
 The discriminant $\Delta = (\alpha\phi + \beta - \delta)^2 + 4\beta\alpha\phi$ is always positive (since $\beta, \alpha, \phi \geq 0$), so two real roots always exist when $\beta > 0$.
 However, only roots in $[0,1]$ are physically meaningful.
-The system exhibits \emph{bistability}---two stable equilibria separated by an unstable threshold---when $\beta$ is sufficiently large relative to $\delta$.
+The system exhibits \emph{bistability} (two stable equilibria separated by an unstable threshold) when $\beta$ is sufficiently large relative to $\delta$.
 Specifically, when $\beta > \delta$ and $\phi$ is in an intermediate range, there exist a low-belief stable equilibrium $B_L^*$ and a high-belief stable equilibrium $B_H^*$, separated by an unstable equilibrium $B_U^*$.
 The basin of attraction of each stable equilibrium determines the system's response to perturbations.
 \end{remark}
@@ -94,7 +94,7 @@ Above $\phi^*$, the system is bistable: the high-belief equilibrium is reachable
 
 This has a direct doxonomic interpretation: there is a \emph{minimum funding level} below which no amount of social reinforcement can sustain a belief.
 Above that level, the belief can be ``tipped'' into a self-sustaining high-adoption equilibrium by a temporary burst of investment.
-Once tipped, the belief persists even if funding is subsequently reduced (as long as $\phi$ remains above the level needed to maintain the equilibrium---which may be much lower than the tipping level).
+Once tipped, the belief persists even if funding is subsequently reduced (as long as $\phi$ remains above the level needed to maintain the equilibrium, which may be much lower than the tipping level).
 
 \begin{example}[Numerical Example]
 \label{ex:stock-flow-numerical}
@@ -105,7 +105,7 @@ With $\alpha = 0.3$, $\beta = 0.5$, $\delta = 0.1$:
   The unstable threshold is $B_U^* \approx 0.35$.
   \item At $\phi = 0.5$: $B_H^* \approx 0.95$ (near-complete adoption); the low equilibrium has vanished.
 \end{itemize}
-The critical finding: at $\phi = 0.1$, a temporary shock that pushes adoption above 35\% will cause the system to cascade to the high equilibrium---and stay there even after the shock ends.
+The critical finding: at $\phi = 0.1$, a temporary shock that pushes adoption above 35\% will cause the system to cascade to the high equilibrium, and stay there even after the shock ends.
 This is the formal model of the tipping-point phenomenon from Chapter~\ref{ch:common-sense-capture}.
 \end{example}
 
@@ -253,7 +253,7 @@ The divergence rate is proportional to $D_{\mathrm{KL}}(q_A \| 1-q_A) + D_{\math
 \end{proof}
 
 \begin{remark}
-This theorem is the formal foundation for the claim that doxonomic polarization does not require irrationality---only asymmetric evidence supply.
+This theorem is the formal foundation for the claim that doxonomic polarization does not require irrationality, only asymmetric evidence supply.
 Two perfectly rational populations in different information environments will arrive at opposite conclusions with certainty.
 The doxonomic system controls $q_k$ (the exposure bias of each channel); the rest is Bayes' rule doing its job.
 \end{remark}
@@ -271,7 +271,7 @@ After $T = 50$ signals:
 Both groups are fully rational.
 Both have seen 50 pieces of ``evidence.''
 They disagree completely because they live in different information environments.
-If asked, each would say the other group is ``ignoring the evidence''---and from their perspective, they would be right.
+If asked, each would say the other group is ``ignoring the evidence.'' From their perspective, they would be right.
 This is doxonomic polarization in its purest form.
 \end{example}
 
@@ -283,7 +283,7 @@ Correlated signals carry less information per signal than independent ones, whic
 \begin{itemize}[nosep]
   \item the \emph{perceived} evidence is stronger than the \emph{actual} evidence (agents treat correlated signals as independent, over-counting),
   \item the polarization occurs faster than the theorem predicts (because agents are over-confident in their media-derived beliefs),
-  \item de-polarization requires not just exposure to counter-signals but recognition that prior signals were correlated---a meta-cognitive step that most agents do not take spontaneously.
+  \item de-polarization requires not just exposure to counter-signals but recognition that prior signals were correlated, a meta-cognitive step that most agents do not take spontaneously.
 \end{itemize}
 This is one reason why ``just expose people to the other side'' is a weaker intervention than doxonomic analysis might naively suggest.
 The problem is not insufficient exposure; it is the structure of the prior evidence environment.
@@ -302,7 +302,7 @@ Agent $j$'s optimal action is:
 \[
   a_j = \begin{cases} + & \text{if } \pi_j(p \mid s_j, a_1, \ldots, a_{j-1}) > 1/2 \\ - & \text{otherwise} \end{cases}
 \]
-An \emph{information cascade} occurs when the accumulated public evidence from predecessors' actions is so strong that agent $j$'s optimal action is independent of $j$'s private signal---the public evidence overwhelms private information.
+An \emph{information cascade} occurs when the accumulated public evidence from predecessors' actions is so strong that agent $j$'s optimal action is independent of $j$'s private signal: the public evidence overwhelms private information.
 \end{model}
 
 \begin{proposition}[Cascade Fragility]
@@ -310,7 +310,7 @@ An \emph{information cascade} occurs when the accumulated public evidence from p
 \index{information cascade!fragility}
 Information cascades are \emph{informationally fragile}: they aggregate very little information.
 In a cascade, each agent's action reveals no new information (because the action is independent of the private signal).
-Therefore, the cascade is based on the signals of the few agents who acted before the cascade began---potentially as few as two or three.
+Therefore, the cascade is based on the signals of the few agents who acted before the cascade began, potentially as few as two or three.
 A single credible revelation of contradictory information can shatter the cascade.
 \end{proposition}
 
@@ -320,7 +320,7 @@ Everyone acts as if $p$ is true, not because the evidence is overwhelming, but b
 This is precisely the pluralistic-ignorance configuration (Definition~\ref{def:pluralistic-ignorance}).
 
 The fragility result (Proposition~\ref{prop:cascade-fragility}) has an important implication for regime fracture (Chapter~\ref{ch:how-belief-regimes-fracture}): cascade-based consensus is dramatically more vulnerable to disruption than evidence-based consensus.
-A single whistleblower, a single scandal, or a single credible defection can trigger a \emph{reverse cascade}---a rapid collapse of apparent consensus, as each agent, seeing others defect, reveals their own private doubt.
+A single whistleblower, a single scandal, or a single credible defection can trigger a \emph{reverse cascade} (a rapid collapse of apparent consensus, as each agent, seeing others defect, reveals their own private doubt).
 This is the mechanism behind ``preference cascades'' and the ``element of surprise in revolutions'' \autocite{kuran1995}.
 \end{remark}
 
@@ -377,9 +377,9 @@ When the beliefs are symmetric in all respects except funding, this reduces to $
 \label{rem:underfunded-survival}
 The under-funded belief ($\phi_2 < \phi_1$) can survive or even win if:
 \begin{itemize}[nosep]
-  \item it has lower intrinsic decay ($\gamma_2 < \gamma_1$)---it is more consistent with lived experience and requires less maintenance,
-  \item it has stronger competitive displacement ($\beta_{21} > \beta_{12}$)---it is more effective at undermining the dominant belief per unit of contact,
-  \item it occupies a different niche---rather than directly contradicting belief 1, it addresses a different aspect of the proposition space, enabling coexistence.
+  \item it has lower intrinsic decay ($\gamma_2 < \gamma_1$), meaning it is more consistent with lived experience and requires less maintenance,
+  \item it has stronger competitive displacement ($\beta_{21} > \beta_{12}$), meaning it is more effective at undermining the dominant belief per unit of contact,
+  \item it occupies a different niche: rather than directly contradicting belief 1, it addresses a different aspect of the proposition space, enabling coexistence.
 \end{itemize}
 These conditions provide guidance for counter-doxonomic strategy (Chapter~\ref{ch:counter-doxonomic}): when outspent, invest in resilience ($\gamma$ reduction), efficiency ($\beta$ enhancement), and niche differentiation rather than trying to match the dominant belief's funding.
 \end{remark}
@@ -388,7 +388,7 @@ These conditions provide guidance for counter-doxonomic strategy (Chapter~\ref{c
 \section{Agent-Based Models}
 \label{sec:ch11-abm}
 
-When analytical models become intractable---because of heterogeneous agents, network structure, multiple interacting beliefs, or complex institutional dynamics---agent-based models (ABMs) provide a computational alternative.
+When analytical models become intractable (because of heterogeneous agents, network structure, multiple interacting beliefs, or complex institutional dynamics), agent-based models (ABMs) provide a computational alternative.
 
 \begin{model}[Doxonomic Agent-Based Model]
 \label{mod:abm}
@@ -416,7 +416,7 @@ They allow exploration of phenomena that are difficult to capture in closed-form
 \label{rem:playgrounds}
 The Piatra Institute's computational playgrounds implement several doxonomic ABMs with adjustable parameters.
 Readers can explore: how network topology affects polarization speed, how funding asymmetry determines competitive outcomes, how inoculation strategies perform against different epidemic dynamics, and how threshold distributions shape the conditions for capture.
-These simulations are designed to complement---not replace---the analytical models of this chapter.
+These simulations are designed to complement the analytical models of this chapter, not to replace them.
 \end{remark}
 
 
@@ -456,7 +456,7 @@ When in doubt, start with the analytical model and move to ABM only when the ana
 Stock-and-flow models adapt systems dynamics; for an introduction, see \textcite{sterman2000}.
 The SIR framework for information diffusion is developed in \textcite{watts2002}; for a comprehensive treatment of epidemic models on networks, see \textcite{pastor-satorras2015}.
 On the distinction between simple and complex contagion (behaviors that require multiple reinforcing contacts to spread), see \textcite{centola2007, centola2018}.
-Continuous-state opinion-dynamics models---the closest neighbor to the stock-and-flow and Bayesian families---are surveyed in \textcite{degroot1974} and \textcite{hegselmann2002}.
+Continuous-state opinion-dynamics models (the closest neighbor to the stock-and-flow and Bayesian families) are surveyed in \textcite{degroot1974} and \textcite{hegselmann2002}.
 Bayesian polarization under asymmetric information is treated in the economics of media bias \autocite{gentzkow2010}; on rational herding, see \textcite{banerjee1992}.
 Cascade models originate with \textcite{banerjee1992} and \textcite{bikhchandani1992}; on cascade fragility, see also \textcite{chamley2004}.
 Lotka-Volterra models for cultural competition appear in the cultural evolution literature \autocite{nowak2006}; the competitive exclusion principle is standard in mathematical ecology.
