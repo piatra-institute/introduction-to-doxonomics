@@ -8,14 +8,14 @@ The linter says yes or no on specific patterns. This pass asks questions the wri
 ## How to use
 
 1. Read the whole chapter through, top to bottom, without jumping to fix.
-2. Work through the forty questions in order. Each takes ten to thirty seconds unless it is flagging something.
+2. Work through the forty-one questions in order. Each takes ten to thirty seconds unless it is flagging something.
 3. Mark each question **Pass**, **Flag**, or **Rewrite**. "Rewrite" means the answer is no and the fix is not mechanical.
 4. Apply the fixes. Read again. Re-check any question whose answer might have changed.
 5. If more than six questions are flagged, the chapter is not yet ready for a final build. Return to the draft.
 
 Running time: roughly 45–60 minutes per chapter for a writer who has done the pass before.
 
-The questions are not equally weighted. Four are disqualifying (Q5, Q10, Q23, Q37). A chapter that passes the disqualifying questions and flags half the polish ones is closer to shippable than one that fails a disqualifying question and passes the rest.
+The questions are not equally weighted. Five are disqualifying (Q5, Q10, Q23, Q37, Q41). A chapter that passes the disqualifying questions and flags half the polish ones is closer to shippable than one that fails a disqualifying question and passes the rest.
 
 
 ## Section I — Opening discipline (Q1–5)
@@ -185,6 +185,15 @@ The questions are not equally weighted. Four are disqualifying (Q5, Q10, Q23, Q3
 *Fix:* Write the chapter's contribution in one sentence. If you cannot, the chapter may be a survey rather than an argument.
 
 
+## Section VIII — Jurisdictional reach (Q41)
+
+**Q41. Could a reader in Bucharest, São Paulo, Mumbai, or Berlin finish the chapter and feel the concept reaches them, or does the chapter read as a chapter about the United States that occasionally gestures elsewhere?**
+*Why:* The book's formal apparatus is jurisdiction-neutral; its examples should be too. A captured-narrative regime, a meritocratic legitimation infrastructure, a crisis-doxonomic phase shift — all operate in any society with the right structural conditions, and the chapter should make that reach legible without forcing the non-US reader to translate every example.
+*Pattern to avoid:* US examples as the only instance; US dollar figures stated without comparative scale; US historical episodes (9/11, Reagan era, the 2008 crisis as US story, MAGA) used as the paradigmatic case without parallel.
+*Pattern to use:* Principle stated jurisdiction-neutral first; US case as one fully-documented instance alongside at least one non-US parallel (UK, Brazil, India, France, Germany, EU, Romania, South Africa, Japan, China — whatever the evidence supports).
+*Fix:* For each US-marked passage, decide: generalize the principle and demote the US to "for example"; or add a one-sentence non-US parallel with citation. Genuinely US-specific worked examples (e.g., the 1971–1996 conservative-think-tank pipeline) stay, but the surrounding framing must locate them as one case of a worldwide pattern. The linter's `globalize` check flags US markers that lack a non-US parallel within ±5 sentences; honor the flag unless the line carries `% globalize-exempt: <reason>`.
+
+
 ## When to run this
 
 - Once, when the chapter is "structurally done" but before a final build.
@@ -194,17 +203,17 @@ The questions are not equally weighted. Four are disqualifying (Q5, Q10, Q23, Q3
 
 ## Pairing with the linter
 
-- `tools/doxo.py voice <chapter>` — em-dashes, AI-tic vocabulary, Pattern 2, "Now," opener density, rhetorical-question density, unqualified universal nouns.
+- `tools/doxo.py voice <chapter>` — em-dashes, AI-tic vocabulary, Pattern 2, "Now," opener density, rhetorical-question density, unqualified universal nouns, US-centric framing without non-US parallel (`globalize`).
 - `tools/doxo.py stats <chapter>` — word count, sentence-length distribution, readability, top-20 verbs and nouns (reveals tic words not on the hit-list).
 - `tools/doxo.py refs` — broken cross-references, missing bib keys, orphan labels.
 - `tools/doxo.py structure <chapter>` — presence of epigraph, intro paragraph, definitions, exercises, notes-and-references section.
 - This document — the qualitative pass.
 
-The linter can be wrong (false positives on math, rare LaTeX constructs); the forty questions cannot be wrong, only unanswered. If a linter flag and a diagnostic flag disagree, the diagnostic is authoritative.
+The linter can be wrong (false positives on math, rare LaTeX constructs); the forty-one questions cannot be wrong, only unanswered. If a linter flag and a diagnostic flag disagree, the diagnostic is authoritative.
 
 
 ## Running against an external model
 
-The full chapter plus this document, `voice.md`, and a handful of surrounding chapters can be fed to an external model for a holistic review. The model should work through the forty questions with line references and produce a structured audit.
+The full chapter plus this document, `voice.md`, and a handful of surrounding chapters can be fed to an external model for a holistic review. The model should work through the forty-one questions with line references and produce a structured audit.
 
 Limitations observed in similar pipelines elsewhere: external models over-produce "wholesale rewrites" that compress away load-bearing detail; Pattern 2 flags need the next-paragraph-developed check before acting; and "needs stronger sourcing" often means "dossier fix" or "log as research-pass item," not "rewrite the script." Apply the same triage discipline here: a flag is a hypothesis, not a verdict.

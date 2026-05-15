@@ -18,7 +18,9 @@ The prose sounds like a researcher who has built the formal apparatus, read the 
 
 **Formally precise.** Where the chapter introduces formal apparatus, the notation matches `frontmatter/notation.tex`; variables are defined on first use; every $\alpha$, $\beta$, $\mu$ has a named referent. Formal claims are in `\begin{proposition}`, `\begin{definition}`, `\begin{model}`; conjectural ones are in `\begin{conjecture}` or flagged with a footnote.
 
-**Jurisdictionally precise.** Do not let American institutions, American education systems, or American market structures pass as the default. When the claim is about the United States, say so. "The state," "the university," "the media" without a jurisdiction is a hole in the argument.
+**Jurisdictionally precise, and conceptually portable.** Do not let American institutions, American education systems, American market structures, or American empirical findings pass as the default frame. When the claim is about the United States, say so. But labeling is not enough: the *concept* must read as world-applicable. State the principle in jurisdiction-neutral terms first; locate the US case as one instance alongside at least one non-US parallel (UK, Brazil, India, France, Germany, Romania, EU, South Africa, Japan, China — pick what the evidence supports). "The state," "the university," "the media" without a jurisdiction is a hole in the argument; a US-only example used as the canonical case is the same hole worn differently.
+
+**Exception.** A section explicitly about a US-specific episode (e.g., a worked case study of the 1971–1996 conservative-think-tank pipeline) may stay US-centric, but the surrounding chapter framing must establish that the episode is one instance of a worldwide pattern. Inline opt-out for the linter: append `% globalize-exempt: <reason>` on a line that should be skipped.
 
 **Rhythmically varied.** Long sentences build; short sentences land. The chapters already read well when read aloud; keep them reading well. A definition followed by a one-sentence gloss is better than a definition surrounded by four more sentences of restatement.
 

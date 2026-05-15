@@ -55,6 +55,93 @@ VOICE_PATTERNS: list[tuple[str, str]] = [
 ]
 
 
+# Globalize check: US-frame markers that should sit alongside a non-US parallel.
+# Each entry signals a US-centric instance. A violation is raised only if no
+# parallel marker (country/region/named non-US figure or institution) appears
+# in the surrounding window. A line that ends with the comment
+# `% globalize-exempt: <reason>` is skipped.
+GLOBALIZE_US_MARKERS: list[str] = [
+    r"\bHeritage Foundation\b",
+    r"\bCato Institute\b",
+    r"\bAmerican Enterprise Institute\b",
+    r"\bAEI\b",
+    r"\bFox News\b",
+    r"\bManhattan Institute\b",
+    r"\bBrookings(?: Institution)?\b",
+    r"\bFederal Reserve\b",
+    r"\bCitizens United\b",
+    r"\bPATRIOT Act\b",
+    r"\bAmerican Dream\b",
+    r"\bSilicon Valley\b",
+    r"\bin the U\.?S\.?(?:\b|$)",
+    r"\bin the United States\b",
+    r"\bAmerican (?:economy|public|voters|media|consumers|workers|households|conservatives|liberals|politics|culture)\b",
+    r"\bReagan(?:'s)?\b",
+    r"\bTrump(?:'s)?\b",
+    r"\bMAGA\b",
+    r"\bWall Street\b",
+]
+
+GLOBALIZE_PARALLEL_REGEX = re.compile(
+    r"\b(?:UK|United Kingdom|Britain|British|Brazil(?:ian)?|India(?:n)?|"
+    r"France|French|Germany|German|EU|European|Japan(?:ese)?|China|Chinese|"
+    r"Romania(?:n)?|Sweden|Norway|Denmark|Nordic|Scandinavia(?:n)?|"
+    r"Argentina|Chile|Mexico|Russia(?:n)?|Hungary|Hungarian|"
+    r"South Africa(?:n)?|Spain|Spanish|Italy|Italian|Australia(?:n)?|"
+    r"Canada|Canadian|Korea(?:n)?|Pakistan(?:i)?|Bangladesh|Turkey|Turkish|"
+    r"Thatcher|Bolsonaro|Modi|Macron|Merkel|Orb[aá]n|Le Pen|Berlusconi|Lula|"
+    r"IEA\b|Adam Smith Institute|Mont P[èe]lerin|Atlas Network|"
+    r"Latin America(?:n)?|Global South|sub-Saharan|Africa(?:n)?|"
+    r"Eastern Europe(?:an)?|Western Europe(?:an)?)\b",
+    re.IGNORECASE,
+)
+
+GLOBALIZE_EXEMPT_REGEX = re.compile(r"%\s*globalize-exempt\b", re.IGNORECASE)
+
+# Per-marker compiled regex with IGNORECASE for case-tolerant matching of
+# institution names while still anchoring on word boundaries.
+GLOBALIZE_US_COMPILED = [
+    (pattern, re.compile(pattern, re.IGNORECASE)) for pattern in GLOBALIZE_US_MARKERS
+]
+
+
+def _globalize_hits(
+    lines: list[str],
+    scrubbed: list[str],
+    window: int = 15,
+) -> list[tuple[int, str, str]]:
+    """Return (line_no, source_line, matched_phrase) for US markers lacking a
+    non-US parallel within ±window lines of scrubbed prose.
+
+    The exempt comment `% globalize-exempt:` on the source line suppresses the
+    check for that line. A parallel marker anywhere in the window neutralizes
+    the violation.
+    """
+    hits: list[tuple[int, str, str]] = []
+    n = len(scrubbed)
+    for i, prose in enumerate(scrubbed):
+        source = lines[i] if i < len(lines) else ""
+        if GLOBALIZE_EXEMPT_REGEX.search(source):
+            continue
+        for pattern, compiled in GLOBALIZE_US_COMPILED:
+            m = compiled.search(prose)
+            if not m:
+                continue
+            lo = max(0, i - window)
+            hi = min(n, i + window + 1)
+            window_text = " ".join(scrubbed[lo:hi])
+            # Remove the matched US phrase from the window before checking
+            # parallels: avoids "in the US" inside the window text counting
+            # as its own parallel.
+            window_text = compiled.sub(" ", window_text)
+            if GLOBALIZE_PARALLEL_REGEX.search(window_text):
+                continue
+            phrase = m.group(0)
+            hits.append((i + 1, source.strip() or prose.strip(), phrase))
+            break  # one hit per line is enough
+    return hits
+
+
 def _flag_matches(label: str, pattern: str, lines: list[str], scrubbed: list[str]) -> list[tuple[int, str]]:
     """Scan scrubbed prose lines; return (line_no, original_source_line) tuples.
 
@@ -158,6 +245,7 @@ def cmd_voice(target: str):
 
     total_issues = 0
     total_files = 0
+    total_globalize = 0
 
     for name, path in targets:
         raw = read_file(path)
@@ -172,6 +260,7 @@ def cmd_voice(target: str):
         print(f"\n=== VOICE CHECK: {name} ===")
 
         file_issues = 0
+        file_globalize = 0
 
         # Pattern-based checks.
         for label, pattern in VOICE_PATTERNS:
@@ -209,12 +298,25 @@ def cmd_voice(target: str):
             print(f"\n  WARN  high rhetorical-question count: {q_count}")
             print( "        check for questions immediately answered in the next sentence")
 
+        # Globalize check: US frame markers without a non-US parallel within ±15 lines.
+        glob_hits = _globalize_hits(lines, scrubbed)
+        if glob_hits:
+            file_issues += 1
+            file_globalize = len(glob_hits)
+            print(f"\n  WARN  globalize: US framing without non-US parallel ({len(glob_hits)})")
+            for num, text, phrase in glob_hits[:8]:
+                print(f"        L{num} [{phrase}]: {text[:120]}")
+            if len(glob_hits) > 8:
+                print(f"        ... and {len(glob_hits) - 8} more.")
+
         if file_issues == 0:
             print("  OK   no voice violations detected.")
         else:
             print(f"\n  -- {file_issues} issue category/ies in {name}")
         total_issues += file_issues
+        total_globalize += file_globalize
 
     if total_files > 1:
         print(f"\n=== SUMMARY ===")
         print(f"  {total_files} files scanned, {total_issues} issue categor{'y' if total_issues == 1 else 'ies'} total.")
+        print(f"  globalize hits: {total_globalize}")

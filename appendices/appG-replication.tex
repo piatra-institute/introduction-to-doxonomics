@@ -3,30 +3,30 @@
 
 These exercises guide the reader through replicating key doxonomic analyses using real data.
 
-\section*{Exercise 1: Epistemic Herfindahl Index for U.S.\ Cable News}
+\section*{Exercise 1: Epistemic Herfindahl Index for Cable / Broadcast News}
 
-\textbf{Goal}: Compute $\ehhi$ for the U.S.\ cable news market.
+\textbf{Goal}: Compute $\ehhi$ for a national television-news market. The US cable-news worked example is given below; the same methodology applies to UK broadcast news (BBC, Sky, ITV, GB News), Brazilian open TV (Globo, Record, SBT, Band), Indian news TV (Republic, Times Now, NDTV, Aaj Tak, India Today), or any other partitioned national market.
 
-\textbf{Data}: Nielsen audience share data (available from Pew Research Center's annual ``State of the News Media'' reports).
+\textbf{Data}: Nielsen audience-share data (available from Pew Research Center's annual ``State of the News Media'' reports for the US; BARB for the UK; Kantar IBOPE Media for Brazil; BARC for India; ATM-style audience services in EU member states).
 
 \textbf{Steps}:
 \begin{enumerate}[nosep]
-  \item Obtain average primetime viewership for CNN, Fox News, MSNBC, and other cable news channels.
+  \item Obtain average primetime viewership for the major channels in the chosen market (e.g., in the US: CNN, Fox News, MSNBC, and other cable news channels; comparable channel lists for the UK, Brazil, India, etc.).
   \item Compute market shares $s_k = \text{viewership}_k / \text{total viewership}$.
   \item Compute $\ehhi = \sum_k s_k^2$.
-  \item Interpret: is the cable news market concentrated by doxonomic standards ($\ehhi > 0.25$)?
+  \item Interpret: is the cable / broadcast news market concentrated by doxonomic standards ($\ehhi > 0.25$)?
   \item Repeat for 2005, 2010, 2015, 2020. Plot the trend.
 \end{enumerate}
 
 \section*{Exercise 2: Donor Network of Free-Market Think Tanks}
 
-\textbf{Goal}: Construct a donor-institution network for U.S.\ free-market think tanks.
+\textbf{Goal}: Construct a donor-institution network for a national free-market think-tank ecosystem. The US case is given below; the same methodology applies to the UK (IEA, Adam Smith Institute, Centre for Policy Studies, Institute for Free Trade, TaxPayers' Alliance), Brazil (Instituto Millenium, Instituto Mises Brasil, Instituto Liberal), India (CCS, Liberty Institute, Takshashila), and other Atlas-Network national ecosystems.
 
-\textbf{Data}: IRS 990 filings via ProPublica Nonprofit Explorer; InfluenceWatch profiles.
+\textbf{Data}: IRS 990 filings via ProPublica Nonprofit Explorer; InfluenceWatch profiles. (UK Charity Commission filings; Brazilian and Indian equivalent registries where available.)
 
 \textbf{Steps}:
 \begin{enumerate}[nosep]
-  \item Select 10 major think tanks (Heritage Foundation, Cato Institute, AEI, Hoover, Manhattan Institute, etc.).
+  \item Select 10 major think tanks for the chosen market (in the US: Heritage Foundation, Cato Institute, AEI, Hoover, Manhattan Institute, etc.; substitute the national-equivalent list for non-US replications).
   \item For each, identify the top 5 foundation donors from 990 filings.
   \item Construct a bipartite network (donors $\times$ institutions) with edge weights = grant amounts.
   \item Compute eigenvector centrality for all nodes.

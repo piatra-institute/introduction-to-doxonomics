@@ -5,17 +5,18 @@ One-page index of editorial state across the book. Per-chapter work is tracked i
 
 ## At a glance
 
-All 44 `.tex` files are authorial-em-dash clean except one preserved primary-source epigraph (Huxley, `ch19-experimental-doxonomics.tex` L4). Four chapters carry research dossiers with landed citations; the remaining 32 chapters and 8 appendices do not yet have dossiers. Refs audit is clean (zero hard errors). The PDF builds at 510 pages.
+All 44 `.tex` files are authorial-em-dash clean except one preserved primary-source epigraph (Huxley, `ch19-experimental-doxonomics.tex` L4). The book is also globalize-clean: every US-centric example now sits beside a non-US parallel within ±15 lines, enforced by the `globalize` check in `tools/doxo.py voice`. Four chapters carry research dossiers with landed citations; the remaining 32 chapters and 8 appendices do not yet have dossiers. Refs audit is clean (zero hard errors). The PDF builds at 520 pages.
 
 
 ## Book-wide metrics
 
 | Metric | Value |
 |---|---|
-| Pages | 510 |
+| Pages | 520 |
 | Authorial em-dash lines remaining | **1** (preserved Huxley epigraph, ch19 L4) |
-| Bibliography entries | 199 |
-| Cite-family uses | 645 (190 unique keys) |
+| Globalize hits (US framing without non-US parallel) | **0** |
+| Bibliography entries | 218 (199 + 19 globalization additions) |
+| Cite-family uses | 645+ (190+ unique keys) |
 | Cross-reference labels | 915 |
 | Cross-reference uses | 394 |
 | Hard ref errors | **0** |
@@ -56,6 +57,19 @@ All 35 chapters + 2 dirty appendices + `frontmatter/preface.tex` + `main.tex` in
 
 25 net-new entries added from the research passes: `bourdieu1977`, `gneezy2000`, `ostrom2010`, `bonilla-silva2018`, `quijano2000`, `mignolo2011`, `crenshaw1989`, `butler1990`, `gould1981`, `gilens1999`, `sterman2000`, `pastor-satorras2015`, `centola2007`, `centola2018`, `hegselmann2002`, `degroot1974`, `acemoglu2016`, `epstein2006`, `chamley2004`, `glaeser2009`, `rilling2002`, `sanfey2003`, `henrich2020`, `lugones2010`, `herrnstein1994`.
 
+### Voice refresh — globalization sweep (2026-05-15)
+
+The book-wide de-US-ing pass. The `Jurisdictionally precise` rule in `docs/voice.md` is now strengthened from "label US claims as US" to "state the principle jurisdiction-neutral first; the US case is one instance alongside at least one non-US parallel." A new `globalize` check in `tools/commands/voice.py` enforces it: any US frame marker (Heritage, Cato, AEI, Fox News, Federal Reserve, Citizens United, PATRIOT Act, American Dream, Silicon Valley, "in the US", "in the United States", "American [economy/public/voters/...]", Reagan, Trump, MAGA, Wall Street) without a non-US parallel marker (UK, Brazil, India, France, Germany, EU, Nordic, South Africa, Japan, China, Romania, etc., plus Thatcher/Bolsonaro/Modi/Macron/Le Pen/etc., plus IEA/Mont Pèlerin/Atlas Network) within ±15 lines is flagged. Inline opt-out: `% globalize-exempt: <reason>`.
+
+Baseline: 47 globalize hits across 16 files. Post-sweep: **0 hits**.
+
+- **Cohort A (5 chapters, structural rewrites):** ch07 (5→0; Mont Pèlerin / IEA-ASI / US 1971–1996 / Atlas Network as four documented build-outs), ch16 (5→0; Fox News IV joined by Mediaset, Russian NTV, pre-Nazi German radio), ch22 (4→0; mobility table widened with Italy, India, Brazil, South Africa; CEO-pay ratio with UK/France/Germany/Japan; Silicon Valley generalized to Shenzhen/Bangalore/Berlin/Tallinn/Tel Aviv tech-meritocracy), ch28 (Civil War memory paired with Partition, Apartheid TRC, German Vergangenheitsbewältigung, Northern Irish Troubles, Spanish *transición*), ch30 (the user's flagged §30.5 partisan-pandemic-belief line now reads "in polarized democracies… in the US [Druckman]; in Brazil [Ajzenman]; in the UK [Roozenbeek]"; 9/11 rally-around-the-flag paired with Madrid 2004, London 2005, Mumbai 2008).
+- **Cohort B (~22 chapters, sentence-level supplements):** ch01, ch05, ch09, ch10, ch11, ch14, ch15 (6→0), ch17, ch19, ch21, ch23, ch24, ch27, ch29 (3→0), appG.
+- **Bibliography additions:** 19 net-new non-US entries: `druckman2021`, `ajzenman2020`, `roozenbeek2020`, `argomaniz2009`, `walker2011`, `kalhan2010`, `cockett1994`, `stedmanjones2012`, `plehwe2006`, `djelic2014`, `durante2019`, `enikolopov2011`, `adena2015`, `ewing2017`, `corak2013`, `asher2024`, `souza2017`, `finn2017`, `painter2014`, `hope2019`. Brings bib to 218.
+- **Infrastructure:** `docs/voice.md` §"Jurisdictionally precise" rewritten; `docs/diagnostic.md` gains §VIII "Jurisdictional reach" Q41 (disqualifying); `tools/commands/voice.py` carries the `globalize` check.
+
+Build verification: `make distclean && make` produces a clean 520-page PDF (was 510 — the +10 pages match the predicted 3–5% word-count increase from supplemental parallel sentences). `python3 tools/doxo.py refs`: zero hard errors.
+
 
 ## In progress
 
@@ -80,8 +94,9 @@ None actively. The sweep paused here for review.
 
 - **Per-chapter research dossiers for ch02–ch20 + ch22–ch36 + appendices A–H.** Only 4 chapters carry dossiers today.
 - **Full voice-refresh pass beyond the em-dash layer for remaining 34 chapters.**
-- **Unused bib entries** flagged by `refs` audit: `baier2023`, `buchanan1962`, `chomsky1988`, `frank2020`, `fraser2014`, `olson1965`, and 2 more. Cite or remove.
+- **Unused bib entries** flagged by `refs` audit: `baier2023`, `buchanan1962`, `chomsky1988`, `frank2020`, `fraser2014`, `olson1965`, and 3 more. Cite or remove.
 - **402 labels defined but never `\ref`'d** from the refs audit. Most are structural `ch:`/`sec:`/`app:` anchors and are safe to keep; a targeted cleanup pass on the ~106 non-structural ones would trim the long tail.
+- **Per-chapter research dossiers for ch07, ch16, ch22, ch28, ch30** documenting the globalization additions in "Applied 2026-05-15" blocks (the chapters now carry the globalized prose; dossier-level documentation of the non-US sources is a future tidy-up).
 
 
 ## Where state lives

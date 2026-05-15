@@ -108,8 +108,11 @@ The doxonomic setting offers several distinctive sources of quasi-random variati
 
 \subsection{Media market boundaries}
 
-Following \textcite{gentzkow2010}, adjacent counties on opposite sides of a media market boundary receive different television content despite sharing demographic and economic characteristics.
-If county $A$ receives Fox News at channel position 2 and county $B$ receives it at channel position 73, channel position creates quasi-random variation in exposure.
+Following \textcite{gentzkow2010}, adjacent localities on opposite sides of a media market boundary receive different television content despite sharing demographic and economic characteristics.
+The method is jurisdiction-portable: any partition of geography that is determined by signal range, channel-allocation rules, or licensing decisions, and is plausibly unrelated to local political preferences, generates the same identifying variation.
+In the US, channel-position assignment within cable systems provides a within-county instrument: if county $A$ receives Fox News at channel position 2 and county $B$ receives it at channel position 73, channel position creates quasi-random variation in exposure.
+In Italy, the geographic roll-out of Berlusconi's Mediaset signal between 1981 and 1985 generated a comparable boundary design: municipalities that gained Mediaset coverage years earlier showed measurably different political preferences decades later \autocite{durante2019}.
+In Russia, regional variation in the signal reach of the independent NTV network provided an analogous source of quasi-random exposure to non-state broadcasting in the 1990s \autocite{enikolopov2011}.
 
 \begin{model}[Media Boundary Design]
 \label{mod:media-boundary}
@@ -128,7 +131,9 @@ The introduction or removal of a media outlet provides a before/after comparison
 Historical examples include:
 \begin{itemize}[nosep]
   \item the rollout of television across US counties in the 1940s--50s,
-  \item the entry of Fox News into cable markets in the late 1990s \autocite{dellavigna2007},
+  \item the entry of Fox News into US cable markets in the late 1990s \autocite{dellavigna2007} and, by close analogy, the staged geographic rollout of Berlusconi's Mediaset in Italy 1981--1985 \autocite{durante2019},
+  \item the expansion of independent radio and television in 1990s Russia, with NTV's signal-reach variation generating exogenous exposure to non-state broadcasting \autocite{enikolopov2011},
+  \item the expansion of radio coverage in pre-1933 Germany, which moved with party-vote outcomes and remains a canonical natural experiment in propaganda effects \autocite{adena2015},
   \item the shutdown of local newspapers (``news deserts'') and subsequent shifts in political knowledge and participation,
   \item the introduction of broadband internet, which shifted the information mix from broadcast to on-demand.
 \end{itemize}
@@ -140,11 +145,11 @@ These events create a useful before/after contrast, though identification requir
 
 \subsection{Policy shocks}
 
-Regulatory changes that affect narrative production or distribution provide natural experiments:
+Regulatory changes that affect narrative production or distribution provide natural experiments. The class is jurisdiction-portable; concrete instances include:
 \begin{itemize}[nosep]
-  \item the repeal of the Fairness Doctrine (1987) and subsequent growth of partisan talk radio,
-  \item foreign-ownership restrictions on media,
-  \item campaign finance rulings (e.g., \emph{Citizens United}) that alter the volume of political advertising,
+  \item the US repeal of the Fairness Doctrine (1987) and subsequent growth of partisan talk radio,
+  \item the UK Political Parties, Elections and Referendums Act 2000 (PPERA) and the contrast with the post-\emph{Citizens United} regime in the US, both of which altered the volume and source structure of political advertising \autocite{ewing2017},
+  \item foreign-ownership and cross-media restrictions on broadcasting (varying across Australia, Canada, the EU member-state regimes, and India under the 2014--2020 regulatory updates),
   \item educational curriculum mandates that change what students encounter in schools.
 \end{itemize}
 
@@ -346,9 +351,10 @@ In doxonomic applications, weak instruments are a persistent concern because mos
 
 \begin{example}
 \label{ex:iv-channel}
-We instrument Fox News viewership with channel position, following \textcite{dellavigna2007}.
+The cleanest worked instance of an IV strategy for media exposure is the US channel-position design: we instrument Fox News viewership with channel position, following \textcite{dellavigna2007}.
 In cable systems, channels assigned to lower positions receive more viewers due to habitual channel-surfing patterns.
 Channel position is determined by negotiations between cable providers and networks, plausibly independent of local political preferences.
+The same IV class applies elsewhere: Italian Mediaset coverage timing instruments contemporary political preferences \autocite{durante2019}, and German radio signal availability instruments party-vote shifts in the pre-Nazi period \autocite{adena2015}.
 
 \medskip
 \noindent\textbf{First stage}: regress Fox News viewership share on channel position (controlling for demographics):
